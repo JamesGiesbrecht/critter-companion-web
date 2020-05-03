@@ -24,11 +24,12 @@ const useStyles = makeStyles({
   }
 })
 
-const Layout = ({ children }) => {
+const Layout = ({ children, toggleTheme }) => {
   const classes = useStyles()
 
   return (
     <div className={classes.layout}>
+      <button onClick={toggleTheme}>Toggle Theme</button>
       <Paper classes={{ root: classes.title }} square>
         <Typography classes={{ h3: classes.title }} variant="h3">ACNH: Critter Companion</Typography>
       </Paper>
