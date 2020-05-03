@@ -66,7 +66,7 @@ const CrittersTable = ({ critters }) => {
         <TableCell component="th" id={index} scope="critter" padding="none">
           {critter.name}
         </TableCell>
-        <TableCell align="right">{critter.price}</TableCell>
+        <TableCell align="right">{critter.value}</TableCell>
         <TableCell align="right">{critter.location}</TableCell>
         <TableCell align="right">{hours}</TableCell>
         <TableCell align="right"><Months months={critter.northern_months} /></TableCell>
