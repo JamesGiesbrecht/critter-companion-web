@@ -1,5 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
+import useTheme from '../../hooks/useTheme'
 import { makeStyles, Paper, Typography } from '@material-ui/core'
+import { ToggleButton, ToggleButtonGroup } from '@material-ui/lab'
+import LightModeIcon from '@material-ui/icons/Brightness7'
+import DarkModeIcon from '@material-ui/icons/Brightness3'
+
 
 const titleHeight = 60
 
@@ -24,15 +29,32 @@ const useStyles = makeStyles({
   }
 })
 
-const Layout = ({ children, toggleTheme }) => {
+const Layout = ({ children, theme, toggleTheme }) => {
   const classes = useStyles()
+
+  const handleThemeChange = (e, newTheme) => {
+    if (newTheme !== theme && newTheme !== null)
+      toggleTheme()
+  }
 
   return (
     <div className={classes.layout}>
-      <button onClick={toggleTheme}>Toggle Theme</button>
       <Paper classes={{ root: classes.title }} square>
         <Typography classes={{ h3: classes.title }} variant="h3">ACNH: Critter Companion</Typography>
       </Paper>
+      <ToggleButtonGroup
+        value={theme}
+        size="small"
+        exclusive
+        onChange={handleThemeChange}
+      >
+        <ToggleButton value="light">
+          <LightModeIcon />
+        </ToggleButton>
+        <ToggleButton value="dark">
+          <DarkModeIcon />
+        </ToggleButton>
+      </ToggleButtonGroup>
       <Paper classes={{ root: classes.content }} elevation={3} >
         {children}
       </Paper>

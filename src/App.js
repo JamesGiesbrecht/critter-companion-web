@@ -36,7 +36,7 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-        <Layout toggleTheme={toggleColorScheme}>
+        <Layout theme={colorScheme} toggleTheme={toggleColorScheme}>
           <Critters />
           <MaterialUISampleTable />
         </Layout>
