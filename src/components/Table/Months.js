@@ -9,6 +9,7 @@ const Months = ({ months }) => {
     const color = isActive ? { color: "primary" } : { disabled: true }
     return (
       <Chip
+        key={month}
         size="small"
         label={month}
         {...color}

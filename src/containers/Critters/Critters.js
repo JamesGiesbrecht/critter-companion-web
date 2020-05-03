@@ -7,7 +7,10 @@ const CrittersContainer = () => {
   const [fish, setFish] = useState(crittersData.filter((critter) => critter.type === "Fish"))
 
   return (
-    <CrittersTable critters={bugs} />
+    <>
+      <CrittersTable critters={bugs} />
+      <CrittersTable critters={fish} />
+    </>
   )
 }
 

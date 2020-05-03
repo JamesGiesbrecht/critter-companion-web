@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import useTheme from '../../hooks/useTheme'
+import React from 'react'
 import { makeStyles, Paper, Typography } from '@material-ui/core'
 import { ToggleButton, ToggleButtonGroup } from '@material-ui/lab'
 import LightModeIcon from '@material-ui/icons/Brightness7'

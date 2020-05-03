@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import EnhancedTableHead from './EnhancedTableHead'
-import { TableContainer, Table, TableBody, TableRow, TableCell, makeStyles } from '@material-ui/core'
+import { Collapse, TableContainer, Table, TableBody, TableRow, TableCell, makeStyles } from '@material-ui/core'
 import Months from './Months'
 
 const useStyles = makeStyles({
@@ -21,6 +21,7 @@ const useStyles = makeStyles({
 
 const CrittersTable = ({ critters }) => {
   const classes = useStyles()
+  const [expanded, setExpanded] = useState(false)
 
   const amOrPM = (hour) => {
     if (hour > 12 && hour < 24) {
@@ -52,7 +53,6 @@ const CrittersTable = ({ critters }) => {
   }
 
   const rows = critters.map((critter, index) => {
-    
     const hours = getHours(critter.start_time, critter.end_time)
     return (
       <TableRow
@@ -75,20 +75,25 @@ const CrittersTable = ({ critters }) => {
   })
 
   return (
-    <TableContainer className={classes.tableWrapper}>
-      <Table
-        className={classes.table}
-        aria-labelledby="tableTitle"
-        aria-label="enhanced table"
-      >
-        <EnhancedTableHead
+    <>
+      <button onClick={() => setExpanded(!expanded)}>Collapsed</button>
+      <Collapse in={expanded}>
+        <TableContainer className={classes.tableWrapper}>
+          <Table
+            className={classes.table}
+            aria-labelledby="tableTitle"
+            aria-label="enhanced table"
+          >
+            <EnhancedTableHead
 
-        />
-        <TableBody>
-          {rows}
-        </TableBody>
-      </Table>
-    </TableContainer>
+            />
+            <TableBody>
+              {rows}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Collapse>
+    </>
   )
 }
 
