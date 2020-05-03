@@ -1,6 +1,7 @@
 import React from 'react'
 import EnhancedTableHead from './EnhancedTableHead'
 import { TableContainer, Table, TableBody, TableRow, TableCell, makeStyles } from '@material-ui/core'
+import Months from './Months'
 
 const useStyles = makeStyles({
   tableWrapper: {
@@ -68,7 +69,7 @@ const CrittersTable = ({ critters }) => {
         <TableCell align="right">{critter.price}</TableCell>
         <TableCell align="right">{critter.location}</TableCell>
         <TableCell align="right">{hours}</TableCell>
-        <TableCell align="right">{critter.northern_months}</TableCell>
+        <TableCell align="right"><Months months={critter.northern_months} /></TableCell>
       </TableRow>
     )
   })
