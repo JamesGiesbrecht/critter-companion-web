@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import CrittersTable from '../../components/Table/CrittersTable'
-import { Collapse, Paper, makeStyles } from '@material-ui/core'
+import { Collapse, Paper, makeStyles, Typography } from '@material-ui/core'
+import { ExpandMoreRounded } from '@material-ui/icons'
 
 const useStyles = makeStyles({
   critters: {
     padding: '10px 0',
     margin: '20px auto'
-  }
+  },
+  heading: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: '15px',
+  },
 })
 
 const CrittersContainer = ({ critters, setCritters, type }) => {
@@ -20,8 +27,13 @@ const CrittersContainer = ({ critters, setCritters, type }) => {
 
   return (
     <Paper classes={{ root: classes.critters }}>
-      <button onClick={() => setExpanded(!expanded)}>Collapsed</button>
-      <img src={randomImg} alt={type} />
+      <div className={classes.heading} onClick={() => setExpanded((prevExpanded) => !prevExpanded)}>
+        <div>
+          <img src={randomImg} alt={type} />
+          <Typography>{type}</Typography>
+        </div>
+        <ExpandMoreRounded fontSize="large"/>
+      </div>
       <Collapse in={expanded}>
         <CrittersTable critters={critters} />
       </Collapse>
