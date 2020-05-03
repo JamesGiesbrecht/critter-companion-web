@@ -1,6 +1,7 @@
 import React from 'react'
-import { makeStyles, Paper } from '@material-ui/core'
-import logo from '../../assets/images/new_horizons.png'
+import { makeStyles, Paper, Typography } from '@material-ui/core'
+
+const titleHeight = 60
 
 const useStyles = makeStyles({
   layout: {
@@ -9,8 +10,17 @@ const useStyles = makeStyles({
     margin: '40px auto 0 auto',
     textAlign: 'center',
   },
-  logo: {
-    width: '300px',
+  title: {
+    display: 'inline-block',
+    padding: '0 10px',
+    height: `${titleHeight}px`,
+    lineHeight: `${titleHeight}px`,
+    backgroundColor: 'var(--green)',
+    color: 'white',
+  },
+  content: {
+    marginTop: `-${titleHeight/2}px`,
+    paddingTop: `${titleHeight/2 + 15}px`,
   }
 })
 
@@ -18,11 +28,14 @@ const Layout = ({ children }) => {
   const classes = useStyles()
 
   return (
-    <Paper classes={{root: classes.layout}}>
-      <img className={classes.logo} src={logo} alt="Animal Crossing New Horizons" />
-      Layout
-      {children}
-    </Paper>
+    <div className={classes.layout}>
+      <Paper classes={{ root: classes.title }} square>
+        <Typography classes={{ h3: classes.title }} variant="h3">ACNH: Critter Companion</Typography>
+      </Paper>
+      <Paper classes={{ root: classes.content }} elevation={3} >
+        {children}
+      </Paper>
+    </div>
   )
 }
 
