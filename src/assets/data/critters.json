@@ -7,15 +7,8 @@
     "start_time": 8,
     "end_time": 17,
     "value": 3000,
-    "northern_months": ["April", "May", "June", "July", "August", "September"],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [4, 5, 6, 7, 8, 9],
+    "southern_months": [1, 2, 3, 10, 11, 12],
     "image_path": "/assets/images/critters/bug/agrias-butterfly.png"
   },
   {
@@ -26,34 +19,8 @@
     "start_time": 4,
     "end_time": 21,
     "value": 200,
-    "northern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "southern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     "image_path": "/assets/images/critters/fish/anchovy.png"
   },
   {
@@ -64,22 +31,8 @@
     "start_time": 16,
     "end_time": 9,
     "value": 3000,
-    "northern_months": [
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "November",
-      "December"
-    ],
+    "northern_months": [5, 6, 7, 8, 9, 10],
+    "southern_months": [1, 2, 3, 4, 11, 12],
     "image_path": "/assets/images/critters/fish/angelfish.png"
   },
   {
@@ -90,34 +43,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 80,
-    "northern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "southern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     "image_path": "/assets/images/critters/bug/ant.png"
   },
   {
@@ -128,8 +55,8 @@
     "start_time": 16,
     "end_time": 9,
     "value": 10000,
-    "northern_months": ["June", "July", "August", "September"],
-    "southern_months": ["January", "February", "March", "April", "December"],
+    "northern_months": [6, 7, 8, 9],
+    "southern_months": [1, 2, 3, 4, 12],
     "image_path": "/assets/images/critters/fish/arapaima.png"
   },
   {
@@ -140,8 +67,8 @@
     "start_time": 16,
     "end_time": 9,
     "value": 10000,
-    "northern_months": ["June", "July", "August", "September"],
-    "southern_months": ["January", "February", "March", "December"],
+    "northern_months": [6, 7, 8, 9],
+    "southern_months": [1, 2, 3, 12],
     "image_path": "/assets/images/critters/fish/arowana.png"
   },
   {
@@ -152,15 +79,8 @@
     "start_time": 19,
     "end_time": 4,
     "value": 3000,
-    "northern_months": ["April", "May", "June", "July", "August", "September"],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [4, 5, 6, 7, 8, 9],
+    "southern_months": [1, 2, 3, 10, 11, 12],
     "image_path": "/assets/images/critters/bug/atlas-moth.png"
   },
   {
@@ -171,34 +91,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 600,
-    "northern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "southern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     "image_path": "/assets/images/critters/bug/bagworm.png"
   },
   {
@@ -209,22 +103,8 @@
     "start_time": 8,
     "end_time": 17,
     "value": 4500,
-    "northern_months": [
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "November",
-      "December"
-    ],
+    "northern_months": [5, 6, 7, 8, 9, 10],
+    "southern_months": [1, 2, 3, 4, 11, 12],
     "image_path": "/assets/images/critters/bug/banded-dragonfly.png"
   },
   {
@@ -235,28 +115,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 5000,
-    "northern_months": [
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [3, 4, 5, 6, 7, 8, 9, 10, 11],
+    "southern_months": [1, 2, 3, 4, 5, 9, 10, 11, 12],
     "image_path": "/assets/images/critters/fish/barred-knifejaw.png"
   },
   {
@@ -267,34 +127,8 @@
     "start_time": 21,
     "end_time": 4,
     "value": 15000,
-    "northern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "southern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     "image_path": "/assets/images/critters/fish/barreleye.png"
   },
   {
@@ -305,8 +139,8 @@
     "start_time": 17,
     "end_time": 8,
     "value": 430,
-    "northern_months": ["September", "October"],
-    "southern_months": ["March", "April"],
+    "northern_months": [9, 10],
+    "southern_months": [3, 4],
     "image_path": "/assets/images/critters/bug/bell-cricket.png"
   },
   {
@@ -317,15 +151,8 @@
     "start_time": 9,
     "end_time": 16,
     "value": 2500,
-    "northern_months": [
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October"
-    ],
-    "southern_months": ["January", "February", "March", "November", "December"],
+    "northern_months": [5, 6, 7, 8, 9, 10],
+    "southern_months": [1, 2, 3, 11, 12],
     "image_path": "/assets/images/critters/fish/betta.png"
   },
   {
@@ -336,8 +163,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 900,
-    "northern_months": ["January", "February", "March", "November", "December"],
-    "southern_months": ["May", "June", "July", "August", "September"],
+    "northern_months": [1, 2, 3, 11, 12],
+    "southern_months": [5, 6, 7, 8, 9],
     "image_path": "/assets/images/critters/fish/bitterling.png"
   },
   {
@@ -348,34 +175,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 400,
-    "northern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "southern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     "image_path": "/assets/images/critters/fish/black-bass.png"
   },
   {
@@ -386,8 +187,8 @@
     "start_time": 21,
     "end_time": 4,
     "value": 5000,
-    "northern_months": ["January", "February", "November", "December"],
-    "southern_months": ["May", "June", "July", "August"],
+    "northern_months": [1, 2, 11, 12],
+    "southern_months": [5, 6, 7, 8],
     "image_path": "/assets/images/critters/fish/blowfish.png"
   },
   {
@@ -398,27 +199,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 10000,
-    "northern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "July",
-      "August",
-      "September",
-      "November",
-      "December"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October"
-    ],
+    "northern_months": [1, 2, 3, 4, 7, 8, 9, 11, 12],
+    "southern_months": [1, 2, 3, 6, 7, 8, 9, 10],
     "image_path": "/assets/images/critters/fish/blue-marlin.png"
   },
   {
@@ -429,8 +211,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 800,
-    "northern_months": ["July", "August"],
-    "southern_months": ["January", "February"],
+    "northern_months": [7, 8],
+    "southern_months": [1, 2],
     "image_path": "/assets/images/critters/bug/blue-weevil-beetle.png"
   },
   {
@@ -441,34 +223,8 @@
     "start_time": 9,
     "end_time": 16,
     "value": 180,
-    "northern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "southern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     "image_path": "/assets/images/critters/fish/bluegill.png"
   },
   {
@@ -479,8 +235,8 @@
     "start_time": 8,
     "end_time": 17,
     "value": 250,
-    "northern_months": ["July", "August"],
-    "southern_months": ["January", "February"],
+    "northern_months": [7, 8],
+    "southern_months": [1, 2],
     "image_path": "/assets/images/critters/bug/brown-cicada.png"
   },
   {
@@ -491,23 +247,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 1000,
-    "northern_months": [
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      ""
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [4, 5, 6, 7, 8, 9, ""],
+    "southern_months": [1, 2, 3, 10, 11, 12],
     "image_path": "/assets/images/critters/fish/butterfly-fish.png"
   },
   {
@@ -518,34 +259,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 300,
-    "northern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "southern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     "image_path": "/assets/images/critters/fish/carp.png"
   },
   {
@@ -556,22 +271,8 @@
     "start_time": 16,
     "end_time": 9,
     "value": 800,
-    "northern_months": [
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "November",
-      "December"
-    ],
+    "northern_months": [5, 6, 7, 8, 9, 10],
+    "southern_months": [1, 2, 3, 4, 11, 12],
     "image_path": "/assets/images/critters/fish/catfish.png"
   },
   {
@@ -582,30 +283,8 @@
     "start_time": 17,
     "end_time": 23,
     "value": 300,
-    "northern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
-    "southern_months": [
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [1, 2, 3, 4, 5, 6, 9, 10, 11, 12],
+    "southern_months": [3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     "image_path": "/assets/images/critters/bug/centipede.png"
   },
   {
@@ -616,26 +295,8 @@
     "start_time": 16,
     "end_time": 9,
     "value": 3800,
-    "northern_months": [
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November"
-    ],
-    "southern_months": [
-      "March",
-      "April",
-      "May",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [3, 4, 5, 6, 7, 8, 9, 10, 11],
+    "southern_months": [3, 4, 5, 9, 10, 11, 12],
     "image_path": "/assets/images/critters/fish/char.png"
   },
   {
@@ -646,29 +307,8 @@
     "start_time": 16,
     "end_time": 9,
     "value": 1000,
-    "northern_months": [
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November"
-    ],
-    "southern_months": [
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [3, 4, 5, 6, 7, 8, 9, 10, 11],
+    "southern_months": [3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     "image_path": "/assets/images/critters/fish/cherry-salmon.png"
   },
   {
@@ -679,8 +319,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 10,
-    "northern_months": ["July", "August"],
-    "southern_months": ["January", "February"],
+    "northern_months": [7, 8],
+    "southern_months": [1, 2],
     "image_path": "/assets/images/critters/bug/cicada-shell.png"
   },
   {
@@ -691,34 +331,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 350,
-    "northern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "southern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     "image_path": "/assets/images/critters/bug/citrus-long-horned-beetle.png"
   },
   {
@@ -729,15 +343,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 650,
-    "northern_months": ["April", "May", "June", "July", "August", "September"],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [4, 5, 6, 7, 8, 9],
+    "southern_months": [1, 2, 3, 10, 11, 12],
     "image_path": "/assets/images/critters/fish/clownfish.png"
   },
   {
@@ -748,34 +355,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 15000,
-    "northern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "southern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     "image_path": "/assets/images/critters/fish/coelacanth.png"
   },
   {
@@ -786,14 +367,8 @@
     "start_time": 4,
     "end_time": 19,
     "value": 300,
-    "northern_months": ["April", "May", "June", "July", "August"],
-    "southern_months": [
-      "January",
-      "February",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [4, 5, 6, 7, 8],
+    "southern_months": [1, 2, 10, 11, 12],
     "image_path": "/assets/images/critters/bug/common-bluebottle.png"
   },
   {
@@ -804,30 +379,8 @@
     "start_time": 4,
     "end_time": 19,
     "value": 160,
-    "northern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
-    "southern_months": [
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [1, 2, 3, 4, 5, 6, 9, 10, 11, 12],
+    "southern_months": [3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     "image_path": "/assets/images/critters/bug/common-butterfly.png"
   },
   {
@@ -838,15 +391,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 200,
-    "northern_months": ["April", "May", "June", "July", "August", "September"],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [4, 5, 6, 7, 8, 9],
+    "southern_months": [1, 2, 3, 10, 11, 12],
     "image_path": "/assets/images/critters/fish/crawfish.png"
   },
   {
@@ -857,8 +403,8 @@
     "start_time": 17,
     "end_time": 8,
     "value": 130,
-    "northern_months": ["September", "October", "November"],
-    "southern_months": ["March", "April", "May"],
+    "northern_months": [9, 10, 11],
+    "southern_months": [3, 4, 5],
     "image_path": "/assets/images/critters/bug/cricket.png"
   },
   {
@@ -869,34 +415,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 160,
-    "northern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "southern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     "image_path": "/assets/images/critters/fish/crucian-carp.png"
   },
   {
@@ -907,8 +427,8 @@
     "start_time": 17,
     "end_time": 8,
     "value": 8000,
-    "northern_months": ["July", "August"],
-    "southern_months": ["January", "February"],
+    "northern_months": [7, 8],
+    "southern_months": [1, 2],
     "image_path": "/assets/images/critters/bug/cyclommatus-stag.png"
   },
   {
@@ -919,16 +439,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 300,
-    "northern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "October",
-      "November",
-      "December"
-    ],
-    "southern_months": ["August", "September", "October"],
+    "northern_months": [1, 2, 3, 4, 10, 11, 12],
+    "southern_months": [8, 9, 10],
     "image_path": "/assets/images/critters/fish/dab.png"
   },
   {
@@ -939,34 +451,8 @@
     "start_time": 16,
     "end_time": 9,
     "value": 240,
-    "northern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "southern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     "image_path": "/assets/images/critters/fish/dace.png"
   },
   {
@@ -977,8 +463,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 500,
-    "northern_months": ["January", "February", "November", "December"],
-    "southern_months": ["May", "June", "July", "August"],
+    "northern_months": [1, 2, 11, 12],
+    "southern_months": [5, 6, 7, 8],
     "image_path": "/assets/images/critters/bug/damselfly.png"
   },
   {
@@ -989,24 +475,8 @@
     "start_time": 8,
     "end_time": 17,
     "value": 230,
-    "northern_months": [
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [4, 5, 6, 7, 8, 9, 10],
+    "southern_months": [1, 2, 3, 4, 10, 11, 12],
     "image_path": "/assets/images/critters/bug/darner-dragonfly.png"
   },
   {
@@ -1017,8 +487,8 @@
     "start_time": 8,
     "end_time": 19,
     "value": 800,
-    "northern_months": ["May", "June", "July", "August", "September"],
-    "southern_months": ["January", "February", "March", "November", "December"],
+    "northern_months": [5, 6, 7, 8, 9],
+    "southern_months": [1, 2, 3, 11, 12],
     "image_path": "/assets/images/critters/bug/diving-beetle.png"
   },
   {
@@ -1029,8 +499,8 @@
     "start_time": 4,
     "end_time": 21,
     "value": 15000,
-    "northern_months": ["June", "July", "August", "September"],
-    "southern_months": ["January", "February", "March", "December"],
+    "northern_months": [6, 7, 8, 9],
+    "southern_months": [1, 2, 3, 12],
     "image_path": "/assets/images/critters/fish/dorado.png"
   },
   {
@@ -1041,8 +511,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 200,
-    "northern_months": ["June", "July", "August"],
-    "southern_months": ["January", "February", "December"],
+    "northern_months": [6, 7, 8],
+    "southern_months": [1, 2, 12],
     "image_path": "/assets/images/critters/bug/drone-beetle.png"
   },
   {
@@ -1053,8 +523,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 3000,
-    "northern_months": ["January", "February", "December"],
-    "southern_months": ["June", "July", "August"],
+    "northern_months": [1, 2, 12],
+    "southern_months": [6, 7, 8],
     "image_path": "/assets/images/critters/bug/dung-beetle.png"
   },
   {
@@ -1065,8 +535,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 300,
-    "northern_months": ["July", "August", "September"],
-    "southern_months": ["January", "February", "March"],
+    "northern_months": [7, 8, 9],
+    "southern_months": [1, 2, 3],
     "image_path": "/assets/images/critters/bug/earth-boring-dung-beetle.png"
   },
   {
@@ -1077,27 +547,8 @@
     "start_time": 17,
     "end_time": 8,
     "value": 4000,
-    "northern_months": [
-      "January",
-      "February",
-      "March",
-      "June",
-      "July",
-      "August",
-      "September",
-      "December"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "June",
-      "July",
-      "August",
-      "September",
-      "November",
-      "December"
-    ],
+    "northern_months": [1, 2, 3, 6, 7, 8, 9, 12],
+    "southern_months": [1, 2, 3, 6, 7, 8, 9, 11, 12],
     "image_path": "/assets/images/critters/bug/emperor-butterfly.png"
   },
   {
@@ -1105,11 +556,11 @@
     "name": "Evening Cicada",
     "type": "Bugs",
     "location": "On Trees",
-    "start_time": [ 4, 16 ],
-    "end_time": [ 8, 19 ],
+    "start_time": [4, 16],
+    "end_time": [8, 19],
     "value": 550,
-    "northern_months": ["July", "August"],
-    "southern_months": ["January", "February"],
+    "northern_months": [7, 8],
+    "southern_months": [1, 2],
     "image_path": "/assets/images/critters/bug/evening-cicada.png"
   },
   {
@@ -1120,8 +571,8 @@
     "start_time": 19,
     "end_time": 16,
     "value": 300,
-    "northern_months": ["June"],
-    "southern_months": ["December"],
+    "northern_months": [6],
+    "southern_months": [12],
     "image_path": "/assets/images/critters/bug/firefly.png"
   },
   {
@@ -1132,26 +583,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 70,
-    "northern_months": [
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [4, 5, 6, 7, 8, 9, 10, 11],
+    "southern_months": [1, 2, 3, 4, 5, 10, 11, 12],
     "image_path": "/assets/images/critters/bug/flea.png"
   },
   {
@@ -1162,34 +595,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 60,
-    "northern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "southern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     "image_path": "/assets/images/critters/bug/fly.png"
   },
   {
@@ -1200,8 +607,8 @@
     "start_time": 16,
     "end_time": 9,
     "value": 2500,
-    "northern_months": ["January", "February", "March", "November", "December"],
-    "southern_months": ["May", "June", "July", "August", "September"],
+    "northern_months": [1, 2, 3, 11, 12],
+    "southern_months": [5, 6, 7, 8, 9],
     "image_path": "/assets/images/critters/fish/football-fish.png"
   },
   {
@@ -1212,34 +619,8 @@
     "start_time": 16,
     "end_time": 9,
     "value": 400,
-    "northern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "southern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     "image_path": "/assets/images/critters/fish/freshwater-goby.png"
   },
   {
@@ -1250,8 +631,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 120,
-    "northern_months": ["May", "June", "July", "August"],
-    "southern_months": ["January", "February", "November", "December"],
+    "northern_months": [5, 6, 7, 8],
+    "southern_months": [1, 2, 11, 12],
     "image_path": "/assets/images/critters/fish/frog.png"
   },
   {
@@ -1262,8 +643,8 @@
     "start_time": 16,
     "end_time": 9,
     "value": 6000,
-    "northern_months": ["June", "July", "August", "September"],
-    "southern_months": ["January", "February", "March", "December"],
+    "northern_months": [6, 7, 8, 9],
+    "southern_months": [1, 2, 3, 12],
     "image_path": "/assets/images/critters/fish/gar.png"
   },
   {
@@ -1274,8 +655,8 @@
     "start_time": 8,
     "end_time": 17,
     "value": 500,
-    "northern_months": ["July", "August"],
-    "southern_months": ["January", "February"],
+    "northern_months": [7, 8],
+    "southern_months": [1, 2],
     "image_path": "/assets/images/critters/bug/giant-cicada.png"
   },
   {
@@ -1286,8 +667,8 @@
     "start_time": 9,
     "end_time": 16,
     "value": 5500,
-    "northern_months": ["June", "July", "August"],
-    "southern_months": ["January", "February", "December"],
+    "northern_months": [6, 7, 8],
+    "southern_months": [1, 2, 12],
     "image_path": "/assets/images/critters/fish/giant-snakehead.png"
   },
   {
@@ -1298,8 +679,8 @@
     "start_time": 23,
     "end_time": 8,
     "value": 10000,
-    "northern_months": ["July", "August"],
-    "southern_months": ["January", "February"],
+    "northern_months": [7, 8],
+    "southern_months": [1, 2],
     "image_path": "/assets/images/critters/bug/giant-stag.png"
   },
   {
@@ -1310,8 +691,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 4500,
-    "northern_months": ["May", "June", "July", "August", "September"],
-    "southern_months": ["January", "February", "March", "November", "December"],
+    "northern_months": [5, 6, 7, 8, 9],
+    "southern_months": [1, 2, 3, 11, 12],
     "image_path": "/assets/images/critters/fish/giant-trevally.png"
   },
   {
@@ -1322,15 +703,8 @@
     "start_time": 19,
     "end_time": 8,
     "value": 2000,
-    "northern_months": ["April", "May", "June", "July", "August", "September"],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [4, 5, 6, 7, 8, 9],
+    "southern_months": [1, 2, 3, 10, 11, 12],
     "image_path": "/assets/images/critters/bug/giant-water-bug.png"
   },
   {
@@ -1341,8 +715,8 @@
     "start_time": 17,
     "end_time": 8,
     "value": 12000,
-    "northern_months": ["July", "August"],
-    "southern_months": ["January", "February"],
+    "northern_months": [7, 8],
+    "southern_months": [1, 2],
     "image_path": "/assets/images/critters/bug/giraffe-stag.png"
   },
   {
@@ -1353,8 +727,8 @@
     "start_time": 17,
     "end_time": 8,
     "value": 12000,
-    "northern_months": ["July", "August"],
-    "southern_months": ["January", "February"],
+    "northern_months": [7, 8],
+    "southern_months": [1, 2],
     "image_path": "/assets/images/critters/bug/golden-stag.png"
   },
   {
@@ -1365,22 +739,8 @@
     "start_time": 16,
     "end_time": 9,
     "value": 15000,
-    "northern_months": [
-      "March",
-      "April",
-      "May",
-      "September",
-      "October",
-      "November"
-    ],
-    "southern_months": [
-      "March",
-      "April",
-      "May",
-      "September",
-      "October",
-      "November"
-    ],
+    "northern_months": [3, 4, 5, 9, 10, 11],
+    "southern_months": [3, 4, 5, 9, 10, 11],
     "image_path": "/assets/images/critters/fish/golden-trout.png"
   },
   {
@@ -1391,34 +751,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 1300,
-    "northern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "southern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     "image_path": "/assets/images/critters/fish/goldfish.png"
   },
   {
@@ -1429,8 +763,8 @@
     "start_time": 17,
     "end_time": 8,
     "value": 8000,
-    "northern_months": ["June", "July", "August", "September"],
-    "southern_months": ["January", "February", "March", "April", "December"],
+    "northern_months": [6, 7, 8, 9],
+    "southern_months": [1, 2, 3, 4, 12],
     "image_path": "/assets/images/critters/bug/goliath-beetle.png"
   },
   {
@@ -1441,8 +775,8 @@
     "start_time": 8,
     "end_time": 17,
     "value": 160,
-    "northern_months": ["July", "August", "September"],
-    "southern_months": ["January", "February", "March"],
+    "northern_months": [7, 8, 9],
+    "southern_months": [1, 2, 3],
     "image_path": "/assets/images/critters/bug/grasshopper.png"
   },
   {
@@ -1453,8 +787,8 @@
     "start_time": 4,
     "end_time": 19,
     "value": 3000,
-    "northern_months": ["May", "June", "July", "August"],
-    "southern_months": ["January", "February", "November", "December"],
+    "northern_months": [5, 6, 7, 8],
+    "southern_months": [1, 2, 11, 12],
     "image_path": "/assets/images/critters/bug/great-purple-emperor.png"
   },
   {
@@ -1465,8 +799,8 @@
     "start_time": 16,
     "end_time": 9,
     "value": 15000,
-    "northern_months": ["June", "July", "August", "September"],
-    "southern_months": ["January", "February", "March", "December"],
+    "northern_months": [6, 7, 8, 9],
+    "southern_months": [1, 2, 3, 12],
     "image_path": "/assets/images/critters/fish/great-white-shark.png"
   },
   {
@@ -1477,26 +811,8 @@
     "start_time": 9,
     "end_time": 16,
     "value": 1300,
-    "northern_months": [
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [4, 5, 6, 7, 8, 9, 10, 11],
+    "southern_months": [1, 2, 3, 4, 5, 10, 11, 12],
     "image_path": "/assets/images/critters/fish/guppy.png"
   },
   {
@@ -1507,8 +823,8 @@
     "start_time": 16,
     "end_time": 9,
     "value": 8000,
-    "northern_months": ["June", "July", "August", "September"],
-    "southern_months": ["January", "February", "March", "December"],
+    "northern_months": [6, 7, 8, 9],
+    "southern_months": [1, 2, 3, 12],
     "image_path": "/assets/images/critters/fish/hammerhead-shark.png"
   },
   {
@@ -1519,34 +835,8 @@
     "start_time": 19,
     "end_time": 8,
     "value": 1000,
-    "northern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "southern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     "image_path": "/assets/images/critters/bug/hermit-crab.png"
   },
   {
@@ -1557,14 +847,8 @@
     "start_time": 8,
     "end_time": 17,
     "value": 200,
-    "northern_months": ["March", "April", "May", "June", "July"],
-    "southern_months": [
-      "January",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [3, 4, 5, 6, 7],
+    "southern_months": [1, 9, 10, 11, 12],
     "image_path": "/assets/images/critters/bug/honeybee.png"
   },
   {
@@ -1575,8 +859,8 @@
     "start_time": 17,
     "end_time": 8,
     "value": 8000,
-    "northern_months": ["July", "August"],
-    "southern_months": ["January", "February"],
+    "northern_months": [7, 8],
+    "southern_months": [1, 2],
     "image_path": "/assets/images/critters/bug/horned-atlas.png"
   },
   {
@@ -1587,8 +871,8 @@
     "start_time": 17,
     "end_time": 8,
     "value": 1350,
-    "northern_months": ["July", "August"],
-    "southern_months": ["January", "February"],
+    "northern_months": [7, 8],
+    "southern_months": [1, 2],
     "image_path": "/assets/images/critters/bug/horned-dynastid.png"
   },
   {
@@ -1599,8 +883,8 @@
     "start_time": 17,
     "end_time": 8,
     "value": 8000,
-    "northern_months": ["July", "August"],
-    "southern_months": ["January", "February"],
+    "northern_months": [7, 8],
+    "southern_months": [1, 2],
     "image_path": "/assets/images/critters/bug/horned-elephant.png"
   },
   {
@@ -1611,8 +895,8 @@
     "start_time": 17,
     "end_time": 8,
     "value": 12000,
-    "northern_months": ["July", "August"],
-    "southern_months": ["January", "February"],
+    "northern_months": [7, 8],
+    "southern_months": [1, 2],
     "image_path": "/assets/images/critters/bug/horned-hercules.png"
   },
   {
@@ -1623,34 +907,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 150,
-    "northern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "southern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     "image_path": "/assets/images/critters/fish/horse-mackerel.png"
   },
   {
@@ -1661,14 +919,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 2400,
-    "northern_months": ["April", "May", "June", "July", "August"],
-    "southern_months": [
-      "January",
-      "February",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [4, 5, 6, 7, 8],
+    "southern_months": [1, 2, 10, 11, 12],
     "image_path": "/assets/images/critters/bug/jewel-beetle.png"
   },
   {
@@ -1679,14 +931,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 300,
-    "northern_months": ["April", "May", "June", "July", "August"],
-    "southern_months": [
-      "January",
-      "February",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [4, 5, 6, 7, 8],
+    "southern_months": [1, 2, 10, 11, 12],
     "image_path": "/assets/images/critters/fish/killifish.png"
   },
   {
@@ -1697,8 +943,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 1800,
-    "northern_months": ["September"],
-    "southern_months": ["March"],
+    "northern_months": [9],
+    "southern_months": [3],
     "image_path": "/assets/images/critters/fish/king-salmon.png"
   },
   {
@@ -1709,34 +955,8 @@
     "start_time": 16,
     "end_time": 9,
     "value": 4000,
-    "northern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "southern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     "image_path": "/assets/images/critters/fish/koi.png"
   },
   {
@@ -1747,14 +967,8 @@
     "start_time": 8,
     "end_time": 17,
     "value": 200,
-    "northern_months": ["March", "April", "May", "June", "October"],
-    "southern_months": [
-      "April",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [3, 4, 5, 6, 10],
+    "southern_months": [4, 9, 10, 11, 12],
     "image_path": "/assets/images/critters/bug/ladybug.png"
   },
   {
@@ -1765,8 +979,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 400,
-    "northern_months": ["March", "April", "May"],
-    "southern_months": ["September", "October", "November"],
+    "northern_months": [3, 4, 5],
+    "southern_months": [9, 10, 11],
     "image_path": "/assets/images/critters/fish/loach.png"
   },
   {
@@ -1777,26 +991,8 @@
     "start_time": 8,
     "end_time": 19,
     "value": 200,
-    "northern_months": [
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [4, 5, 6, 7, 8, 9, 10, 11],
+    "southern_months": [1, 2, 3, 4, 5, 10, 11, 12],
     "image_path": "/assets/images/critters/bug/long-locust.png"
   },
   {
@@ -1807,15 +1003,8 @@
     "start_time": 8,
     "end_time": 16,
     "value": 2500,
-    "northern_months": ["April", "May", "June", "July", "August", "September"],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [4, 5, 6, 7, 8, 9],
+    "southern_months": [1, 2, 3, 10, 11, 12],
     "image_path": "/assets/images/critters/bug/madagascan-sunset-moth.png"
   },
   {
@@ -1826,22 +1015,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 6000,
-    "northern_months": [
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "November",
-      "December"
-    ],
+    "northern_months": [5, 6, 7, 8, 9, 10],
+    "southern_months": [1, 2, 3, 4, 11, 12],
     "image_path": "/assets/images/critters/fish/mahi-mahi.png"
   },
   {
@@ -1852,26 +1027,8 @@
     "start_time": 19,
     "end_time": 8,
     "value": 1000,
-    "northern_months": [
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [3, 4, 5, 6, 7, 8, 9, 10],
+    "southern_months": [1, 2, 3, 4, 9, 10, 11, 12],
     "image_path": "/assets/images/critters/bug/man-faced-stinkbug.png"
   },
   {
@@ -1882,27 +1039,8 @@
     "start_time": 8,
     "end_time": 17,
     "value": 430,
-    "northern_months": [
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [3, 4, 5, 6, 7, 8, 9, 10, 11],
+    "southern_months": [1, 2, 3, 4, 9, 10, 11, 12],
     "image_path": "/assets/images/critters/bug/mantis.png"
   },
   {
@@ -1913,8 +1051,8 @@
     "start_time": 8,
     "end_time": 19,
     "value": 600,
-    "northern_months": ["August", "September", "October", "November"],
-    "southern_months": ["February", "March", "April", "May"],
+    "northern_months": [8, 9, 10, 11],
+    "southern_months": [2, 3, 4, 5],
     "image_path": "/assets/images/critters/bug/migratory-locust.png"
   },
   {
@@ -1925,8 +1063,8 @@
     "start_time": 16,
     "end_time": 9,
     "value": 2000,
-    "northern_months": ["September", "October", "November"],
-    "southern_months": ["March", "April", "May"],
+    "northern_months": [9, 10, 11],
+    "southern_months": [3, 4, 5],
     "image_path": "/assets/images/critters/fish/mitten-crab.png"
   },
   {
@@ -1937,8 +1075,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 1000,
-    "northern_months": ["July", "August"],
-    "southern_months": ["January", "February"],
+    "northern_months": [7, 8],
+    "southern_months": [1, 2],
     "image_path": "/assets/images/critters/bug/miyama-stag.png"
   },
   {
@@ -1949,24 +1087,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 500,
-    "northern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "November",
-      "December"
-    ],
-    "southern_months": [
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November"
-    ],
+    "northern_months": [1, 2, 3, 4, 5, 11, 12],
+    "southern_months": [5, 6, 7, 8, 9, 10, 11],
     "image_path": "/assets/images/critters/bug/mole-cricket.png"
   },
   {
@@ -1977,8 +1099,8 @@
     "start_time": 4,
     "end_time": 17,
     "value": 140,
-    "northern_months": ["September", "October", "November"],
-    "southern_months": ["March", "April", "May"],
+    "northern_months": [9, 10, 11],
+    "southern_months": [3, 4, 5],
     "image_path": "/assets/images/critters/bug/monarch-butterfly.png"
   },
   {
@@ -1989,8 +1111,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 2000,
-    "northern_months": ["August", "September", "October"],
-    "southern_months": ["February", "March", "April"],
+    "northern_months": [8, 9, 10],
+    "southern_months": [2, 3, 4],
     "image_path": "/assets/images/critters/fish/moray-eel.png"
   },
   {
@@ -2001,8 +1123,8 @@
     "start_time": 17,
     "end_time": 4,
     "value": 130,
-    "northern_months": ["June", "July", "August", "September"],
-    "southern_months": ["January", "February", "March", "December"],
+    "northern_months": [6, 7, 8, 9],
+    "southern_months": [1, 2, 3, 12],
     "image_path": "/assets/images/critters/bug/mosquito.png"
   },
   {
@@ -2013,34 +1135,8 @@
     "start_time": 19,
     "end_time": 4,
     "value": 130,
-    "northern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "southern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     "image_path": "/assets/images/critters/bug/moth.png"
   },
   {
@@ -2051,8 +1147,8 @@
     "start_time": 4,
     "end_time": 21,
     "value": 10000,
-    "northern_months": ["July", "August"],
-    "southern_months": ["January", "February"],
+    "northern_months": [7, 8],
+    "southern_months": [1, 2],
     "image_path": "/assets/images/critters/fish/napoleonfish.png"
   },
   {
@@ -2063,26 +1159,8 @@
     "start_time": 9,
     "end_time": 16,
     "value": 500,
-    "northern_months": [
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [4, 5, 6, 7, 8, 9, 10, 11],
+    "southern_months": [1, 2, 3, 4, 5, 10, 11, 12],
     "image_path": "/assets/images/critters/fish/neon-tetra.png"
   },
   {
@@ -2093,8 +1171,8 @@
     "start_time": 9,
     "end_time": 16,
     "value": 1500,
-    "northern_months": ["May", "June", "July", "August", "September"],
-    "southern_months": ["January", "February", "March", "November", "December"],
+    "northern_months": [5, 6, 7, 8, 9],
+    "southern_months": [1, 2, 3, 11, 12],
     "image_path": "/assets/images/critters/fish/nibble-fish.png"
   },
   {
@@ -2105,22 +1183,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 9000,
-    "northern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "December"
-    ],
-    "southern_months": [
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November"
-    ],
+    "northern_months": [1, 2, 3, 4, 5, 12],
+    "southern_months": [6, 7, 8, 9, 10, 11],
     "image_path": "/assets/images/critters/fish/oarfish.png"
   },
   {
@@ -2131,8 +1195,8 @@
     "start_time": 4,
     "end_time": 21,
     "value": 4000,
-    "northern_months": ["July", "August", "September"],
-    "southern_months": ["January", "February", "March"],
+    "northern_months": [7, 8, 9],
+    "southern_months": [1, 2, 3],
     "image_path": "/assets/images/critters/fish/ocean-sunfish.png"
   },
   {
@@ -2143,34 +1207,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 800,
-    "northern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "southern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     "image_path": "/assets/images/critters/fish/olive-flounder.png"
   },
   {
@@ -2181,28 +1219,8 @@
     "start_time": 8,
     "end_time": 17,
     "value": 2400,
-    "northern_months": [
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [3, 4, 5, 6, 7, 8, 9, 10, 11],
+    "southern_months": [1, 2, 3, 4, 5, 9, 10, 11, 12],
     "image_path": "/assets/images/critters/bug/orchid-mantis.png"
   },
   {
@@ -2213,34 +1231,8 @@
     "start_time": 9,
     "end_time": 16,
     "value": 160,
-    "northern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "southern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     "image_path": "/assets/images/critters/fish/pale-chub.png"
   },
   {
@@ -2251,34 +1243,8 @@
     "start_time": 8,
     "end_time": 19,
     "value": 1000,
-    "northern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "southern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     "image_path": "/assets/images/critters/bug/paper-kite-butterfly.png"
   },
   {
@@ -2289,8 +1255,8 @@
     "start_time": 4,
     "end_time": 19,
     "value": 2500,
-    "northern_months": ["March", "April", "May", "June"],
-    "southern_months": ["September", "October", "November", "December"],
+    "northern_months": [3, 4, 5, 6],
+    "southern_months": [9, 10, 11, 12],
     "image_path": "/assets/images/critters/bug/peacock-butterfly.png"
   },
   {
@@ -2301,8 +1267,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 1800,
-    "northern_months": ["September", "October", "November", "December"],
-    "southern_months": ["March", "April", "May", "June"],
+    "northern_months": [9, 10, 11, 12],
+    "southern_months": [3, 4, 5, 6],
     "image_path": "/assets/images/critters/fish/pike.png"
   },
   {
@@ -2313,30 +1279,8 @@
     "start_time": 23,
     "end_time": 16,
     "value": 250,
-    "northern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
-    "southern_months": [
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [1, 2, 3, 4, 5, 6, 9, 10, 11, 12],
+    "southern_months": [3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     "image_path": "/assets/images/critters/bug/pill-bug.png"
   },
   {
@@ -2344,11 +1288,11 @@
     "name": "Piranha",
     "type": "Fish",
     "location": "River",
-    "start_time": [ 9, 21 ],
-    "end_time": [ 16, 4 ],
+    "start_time": [9, 21],
+    "end_time": [16, 4],
     "value": 2500,
-    "northern_months": ["June", "July", "August", "September"],
-    "southern_months": ["January", "February", "March", "December"],
+    "northern_months": [6, 7, 8, 9],
+    "southern_months": [1, 2, 3, 12],
     "image_path": "/assets/images/critters/fish/piranha.png"
   },
   {
@@ -2359,8 +1303,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 400,
-    "northern_months": ["January", "February", "December"],
-    "southern_months": ["June", "July", "August"],
+    "northern_months": [1, 2, 12],
+    "southern_months": [6, 7, 8],
     "image_path": "/assets/images/critters/fish/pond-smelt.png"
   },
   {
@@ -2371,8 +1315,8 @@
     "start_time": 8,
     "end_time": 19,
     "value": 130,
-    "northern_months": ["May", "June", "July", "August", "September"],
-    "southern_months": ["January", "February", "March", "November", "December"],
+    "northern_months": [5, 6, 7, 8, 9],
+    "southern_months": [1, 2, 3, 11, 12],
     "image_path": "/assets/images/critters/bug/pondskater.png"
   },
   {
@@ -2383,34 +1327,8 @@
     "start_time": 9,
     "end_time": 16,
     "value": 1300,
-    "northern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "southern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     "image_path": "/assets/images/critters/fish/pop-eyed-goldfish.png"
   },
   {
@@ -2421,8 +1339,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 250,
-    "northern_months": ["July", "August", "September"],
-    "southern_months": ["January", "February", "March"],
+    "northern_months": [7, 8, 9],
+    "southern_months": [1, 2, 3],
     "image_path": "/assets/images/critters/fish/puffer-fish.png"
   },
   {
@@ -2433,15 +1351,8 @@
     "start_time": 8,
     "end_time": 16,
     "value": 4000,
-    "northern_months": ["May", "June", "July", "August", "September"],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "November",
-      "December"
-    ],
+    "northern_months": [5, 6, 7, 8, 9],
+    "southern_months": [1, 2, 3, 4, 11, 12],
     "image_path": "/assets/images/critters/bug/queen-alexandras-birdwing.png"
   },
   {
@@ -2452,8 +1363,8 @@
     "start_time": 19,
     "end_time": 8,
     "value": 6000,
-    "northern_months": ["June", "July", "August", "September"],
-    "southern_months": ["January", "February", "March", "December"],
+    "northern_months": [6, 7, 8, 9],
+    "southern_months": [1, 2, 3, 12],
     "image_path": "/assets/images/critters/bug/rainbow-stag.png"
   },
   {
@@ -2464,22 +1375,8 @@
     "start_time": 9,
     "end_time": 16,
     "value": 800,
-    "northern_months": [
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "November",
-      "December"
-    ],
+    "northern_months": [5, 6, 7, 8, 9, 10],
+    "southern_months": [1, 2, 3, 4, 11, 12],
     "image_path": "/assets/images/critters/fish/rainbowfish.png"
   },
   {
@@ -2490,28 +1387,8 @@
     "start_time": 8,
     "end_time": 17,
     "value": 2500,
-    "northern_months": [
-      "January",
-      "February",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "December"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "June",
-      "July",
-      "August",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [1, 2, 4, 5, 6, 7, 8, 9, 12],
+    "southern_months": [1, 2, 3, 6, 7, 8, 10, 11, 12],
     "image_path": "/assets/images/critters/bug/rajah-brookes-birdwing.png"
   },
   {
@@ -2522,34 +1399,8 @@
     "start_time": 9,
     "end_time": 16,
     "value": 4500,
-    "northern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "southern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     "image_path": "/assets/images/critters/fish/ranchu-goldfish.png"
   },
   {
@@ -2560,8 +1411,8 @@
     "start_time": 4,
     "end_time": 21,
     "value": 3000,
-    "northern_months": ["August", "September", "October", "November"],
-    "southern_months": ["February", "March", "April", "May"],
+    "northern_months": [8, 9, 10, 11],
+    "southern_months": [2, 3, 4, 5],
     "image_path": "/assets/images/critters/fish/ray.png"
   },
   {
@@ -2572,8 +1423,8 @@
     "start_time": 8,
     "end_time": 19,
     "value": 180,
-    "northern_months": ["September", "October"],
-    "southern_months": ["March", "April"],
+    "northern_months": [9, 10],
+    "southern_months": [3, 4],
     "image_path": "/assets/images/critters/bug/red-dragonfly.png"
   },
   {
@@ -2584,34 +1435,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 3000,
-    "northern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "southern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     "image_path": "/assets/images/critters/fish/red-snapper.png"
   },
   {
@@ -2622,8 +1447,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 600,
-    "northern_months": ["June", "July", "August", "September", "October"],
-    "southern_months": ["January", "February", "March", "April", "December"],
+    "northern_months": [6, 7, 8, 9, 10],
+    "southern_months": [1, 2, 3, 4, 12],
     "image_path": "/assets/images/critters/fish/ribbon-eel.png"
   },
   {
@@ -2634,8 +1459,8 @@
     "start_time": 8,
     "end_time": 19,
     "value": 160,
-    "northern_months": ["August", "September", "October", "November"],
-    "southern_months": ["February", "March", "April", "May"],
+    "northern_months": [8, 9, 10, 11],
+    "southern_months": [2, 3, 4, 5],
     "image_path": "/assets/images/critters/bug/rice-grasshopper.png"
   },
   {
@@ -2646,8 +1471,8 @@
     "start_time": 8,
     "end_time": 17,
     "value": 300,
-    "northern_months": ["July", "August"],
-    "southern_months": ["January", "February"],
+    "northern_months": [7, 8],
+    "southern_months": [1, 2],
     "image_path": "/assets/images/critters/bug/robust-cicada.png"
   },
   {
@@ -2658,8 +1483,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 3000,
-    "northern_months": ["May", "June", "July", "August", "September"],
-    "southern_months": ["January", "February", "March", "November", "December"],
+    "northern_months": [5, 6, 7, 8, 9],
+    "southern_months": [1, 2, 3, 11, 12],
     "image_path": "/assets/images/critters/bug/rosalia-batesi-beetle.png"
   },
   {
@@ -2670,8 +1495,8 @@
     "start_time": 21,
     "end_time": 4,
     "value": 4000,
-    "northern_months": ["June", "July", "August", "September"],
-    "southern_months": ["January", "February", "March", "December"],
+    "northern_months": [6, 7, 8, 9],
+    "southern_months": [1, 2, 3, 12],
     "image_path": "/assets/images/critters/fish/saddled-bichir.png"
   },
   {
@@ -2682,8 +1507,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 700,
-    "northern_months": ["September"],
-    "southern_months": ["March"],
+    "northern_months": [9],
+    "southern_months": [3],
     "image_path": "/assets/images/critters/fish/salmon.png"
   },
   {
@@ -2694,8 +1519,8 @@
     "start_time": 16,
     "end_time": 9,
     "value": 12000,
-    "northern_months": ["June", "July", "August", "September"],
-    "southern_months": ["January", "February", "March", "December"],
+    "northern_months": [6, 7, 8, 9],
+    "southern_months": [1, 2, 3, 12],
     "image_path": "/assets/images/critters/fish/saw-shark.png"
   },
   {
@@ -2706,8 +1531,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 2000,
-    "northern_months": ["July", "August"],
-    "southern_months": ["January", "February"],
+    "northern_months": [7, 8],
+    "southern_months": [1, 2],
     "image_path": "/assets/images/critters/bug/saw-stag.png"
   },
   {
@@ -2718,8 +1543,8 @@
     "start_time": 23,
     "end_time": 8,
     "value": 10000,
-    "northern_months": ["July", "August"],
-    "southern_months": ["January", "February"],
+    "northern_months": [7, 8],
+    "southern_months": [1, 2],
     "image_path": "/assets/images/critters/bug/scarab-beetle.png"
   },
   {
@@ -2730,22 +1555,8 @@
     "start_time": 19,
     "end_time": 4,
     "value": 8000,
-    "northern_months": [
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "November",
-      "December"
-    ],
+    "northern_months": [5, 6, 7, 8, 9, 10],
+    "southern_months": [1, 2, 3, 4, 11, 12],
     "image_path": "/assets/images/critters/bug/scorpion.png"
   },
   {
@@ -2756,34 +1567,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 400,
-    "northern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "southern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     "image_path": "/assets/images/critters/fish/sea-bass.png"
   },
   {
@@ -2794,8 +1579,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 1000,
-    "northern_months": ["January", "February", "March", "December"],
-    "southern_months": ["June", "July", "August", "September"],
+    "northern_months": [1, 2, 3, 12],
+    "southern_months": [6, 7, 8, 9],
     "image_path": "/assets/images/critters/fish/sea-butterfly.png"
   },
   {
@@ -2806,26 +1591,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 1100,
-    "northern_months": [
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [4, 5, 6, 7, 8, 9, 10, 11],
+    "southern_months": [1, 2, 3, 4, 5, 10, 11, 12],
     "image_path": "/assets/images/critters/fish/seahorse.png"
   },
   {
@@ -2836,34 +1603,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 250,
-    "northern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "southern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     "image_path": "/assets/images/critters/bug/snail.png"
   },
   {
@@ -2874,24 +1615,8 @@
     "start_time": 21,
     "end_time": 4,
     "value": 5000,
-    "northern_months": [
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [4, 5, 6, 7, 8, 9, 10],
+    "southern_months": [1, 2, 3, 4, 10, 11, 12],
     "image_path": "/assets/images/critters/fish/snapping-turtle.png"
   },
   {
@@ -2902,8 +1627,8 @@
     "start_time": 16,
     "end_time": 9,
     "value": 3750,
-    "northern_months": ["August", "September"],
-    "southern_months": ["February", "March"],
+    "northern_months": [8, 9],
+    "southern_months": [2, 3],
     "image_path": "/assets/images/critters/fish/soft-shelled-turtle.png"
   },
   {
@@ -2914,34 +1639,8 @@
     "start_time": 19,
     "end_time": 8,
     "value": 480,
-    "northern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "southern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     "image_path": "/assets/images/critters/bug/spider.png"
   },
   {
@@ -2952,28 +1651,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 500,
-    "northern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "December"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [1, 2, 3, 4, 5, 6, 7, 8, 12],
+    "southern_months": [1, 2, 6, 7, 8, 9, 10, 11, 12],
     "image_path": "/assets/images/critters/fish/squid.png"
   },
   {
@@ -2984,26 +1663,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 120,
-    "northern_months": [
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [3, 4, 5, 6, 7, 8, 9, 10],
+    "southern_months": [1, 2, 3, 4, 9, 10, 11, 12],
     "image_path": "/assets/images/critters/bug/stinkbug.png"
   },
   {
@@ -3014,8 +1675,8 @@
     "start_time": 16,
     "end_time": 9,
     "value": 15000,
-    "northern_months": ["January", "February", "March", "December"],
-    "southern_months": ["June", "July", "August", "September"],
+    "northern_months": [1, 2, 3, 12],
+    "southern_months": [6, 7, 8, 9],
     "image_path": "/assets/images/critters/fish/stringfish.png"
   },
   {
@@ -3026,24 +1687,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 10000,
-    "northern_months": [
-      "January",
-      "February",
-      "March",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
-    "southern_months": [
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September"
-    ],
+    "northern_months": [1, 2, 3, 9, 10, 11, 12],
+    "southern_months": [3, 4, 5, 6, 7, 8, 9],
     "image_path": "/assets/images/critters/fish/sturgeon.png"
   },
   {
@@ -3054,8 +1699,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 1500,
-    "northern_months": ["June", "July", "August", "September"],
-    "southern_months": ["January", "February", "March", "December"],
+    "northern_months": [6, 7, 8, 9],
+    "southern_months": [1, 2, 3, 12],
     "image_path": "/assets/images/critters/fish/suckerfish.png"
   },
   {
@@ -3066,15 +1711,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 1000,
-    "northern_months": ["April", "May", "June", "July", "August", "September"],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [4, 5, 6, 7, 8, 9],
+    "southern_months": [1, 2, 3, 10, 11, 12],
     "image_path": "/assets/images/critters/fish/surgeonfish.png"
   },
   {
@@ -3085,8 +1723,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 900,
-    "northern_months": ["July", "August", "September"],
-    "southern_months": ["January", "February", "March", "December"],
+    "northern_months": [7, 8, 9],
+    "southern_months": [1, 2, 3, 12],
     "image_path": "/assets/images/critters/fish/sweetfish.png"
   },
   {
@@ -3097,14 +1735,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 100,
-    "northern_months": ["March", "April", "May", "June", "July"],
-    "southern_months": [
-      "January",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [3, 4, 5, 6, 7],
+    "southern_months": [1, 9, 10, 11, 12],
     "image_path": "/assets/images/critters/fish/tadpole.png"
   },
   {
@@ -3115,22 +1747,8 @@
     "start_time": 19,
     "end_time": 4,
     "value": 8000,
-    "northern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "November",
-      "December"
-    ],
-    "southern_months": [
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October"
-    ],
+    "northern_months": [1, 2, 3, 4, 11, 12],
+    "southern_months": [5, 6, 7, 8, 9, 10],
     "image_path": "/assets/images/critters/bug/tarantula.png"
   },
   {
@@ -3141,26 +1759,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 1500,
-    "northern_months": [
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [2, 3, 4, 5, 6, 7, 8, 9, 10],
+    "southern_months": [1, 2, 3, 9, 10, 11, 12],
     "image_path": "/assets/images/critters/bug/tiger-beetle.png"
   },
   {
@@ -3171,24 +1771,8 @@
     "start_time": 4,
     "end_time": 19,
     "value": 240,
-    "northern_months": [
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [3, 4, 5, 6, 7, 8, 9],
+    "southern_months": [1, 2, 3, 9, 10, 11, 12],
     "image_path": "/assets/images/critters/bug/tiger-butterfly.png"
   },
   {
@@ -3199,8 +1783,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 800,
-    "northern_months": ["June", "July", "August", "September", "October"],
-    "southern_months": ["January", "February", "March", "April", "December"],
+    "northern_months": [6, 7, 8, 9, 10],
+    "southern_months": [1, 2, 3, 4, 12],
     "image_path": "/assets/images/critters/fish/tilapia.png"
   },
   {
@@ -3211,22 +1795,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 7000,
-    "northern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "November",
-      "December"
-    ],
-    "southern_months": [
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October"
-    ],
+    "northern_months": [1, 2, 3, 4, 11, 12],
+    "southern_months": [5, 6, 7, 8, 9, 10],
     "image_path": "/assets/images/critters/fish/tuna.png"
   },
   {
@@ -3237,8 +1807,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 450,
-    "northern_months": ["May", "June", "September", "October", "November"],
-    "southern_months": ["March", "April", "May", "November", "December"],
+    "northern_months": [5, 6, 9, 10, 11],
+    "southern_months": [3, 4, 5, 11, 12],
     "image_path": "/assets/images/critters/bug/violin-beetle.png"
   },
   {
@@ -3249,8 +1819,8 @@
     "start_time": 8,
     "end_time": 16,
     "value": 400,
-    "northern_months": ["August", "September"],
-    "southern_months": ["February", "March"],
+    "northern_months": [8, 9],
+    "southern_months": [2, 3],
     "image_path": "/assets/images/critters/bug/walker-cicada.png"
   },
   {
@@ -3261,8 +1831,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 600,
-    "northern_months": ["July", "August", "September"],
-    "southern_months": ["January", "February", "March"],
+    "northern_months": [7, 8, 9],
+    "southern_months": [1, 2, 3],
     "image_path": "/assets/images/critters/bug/walking-leaf.png"
   },
   {
@@ -3270,11 +1840,11 @@
     "name": "Walking Stick",
     "type": "Bugs",
     "location": "On Trees",
-    "start_time": [ 4, 17 ],
-    "end_time": [ 8, 19 ],
+    "start_time": [4, 17],
+    "end_time": [8, 19],
     "value": 600,
-    "northern_months": ["July", "August", "September", "October", "November"],
-    "southern_months": ["January", "February", "March", "April", "May"],
+    "northern_months": [7, 8, 9, 10, 11],
+    "southern_months": [1, 2, 3, 4, 5],
     "image_path": "/assets/images/critters/bug/walking-stick.png"
   },
   {
@@ -3285,34 +1855,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 2500,
-    "northern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "southern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     "image_path": "/assets/images/critters/bug/wasp.png"
   },
   {
@@ -3323,8 +1867,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 13000,
-    "northern_months": ["June", "July", "August", "September"],
-    "southern_months": ["January", "February", "March", "December"],
+    "northern_months": [6, 7, 8, 9],
+    "southern_months": [1, 2, 3, 12],
     "image_path": "/assets/images/critters/fish/whale-shark.png"
   },
   {
@@ -3335,34 +1879,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 200,
-    "northern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+    "southern_months": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     "image_path": "/assets/images/critters/bug/wharf-roach.png"
   },
   {
@@ -3373,28 +1891,8 @@
     "start_time": 4,
     "end_time": 19,
     "value": 160,
-    "northern_months": [
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October"
-    ],
-    "southern_months": [
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [3, 4, 5, 6, 7, 8, 9, 10],
+    "southern_months": [3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     "image_path": "/assets/images/critters/bug/yellow-butterfly.png"
   },
   {
@@ -3405,15 +1903,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 300,
-    "northern_months": [
-      "January",
-      "February",
-      "March",
-      "October",
-      "November",
-      "December"
-    ],
-    "southern_months": ["April", "May", "June", "July", "August", "September"],
+    "northern_months": [1, 2, 3, 10, 11, 12],
+    "southern_months": [4, 5, 6, 7, 8, 9],
     "image_path": "/assets/images/critters/fish/yellow-perch.png"
   },
   {
@@ -3424,26 +1915,8 @@
     "start_time": 24,
     "end_time": 24,
     "value": 500,
-    "northern_months": [
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November"
-    ],
-    "southern_months": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "October",
-      "November",
-      "December"
-    ],
+    "northern_months": [4, 5, 6, 7, 8, 9, 10, 11],
+    "southern_months": [1, 2, 3, 4, 5, 10, 11, 12],
     "image_path": "/assets/images/critters/fish/zebra-turkeyfish.png"
   }
 ]
