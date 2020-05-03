@@ -22,10 +22,12 @@ const useStyles = makeStyles({
     backgroundColor: 'var(--green)',
     color: 'white',
   },
-  content: {
+  controls: {
     marginTop: `-${titleHeight/2}px`,
-    paddingTop: `${titleHeight/2 + 15}px`,
-  }
+    padding: '20px',
+    paddingTop: `${titleHeight/2 + 20}px`,
+    marginBottom: '20px',
+  },
 })
 
 const Layout = ({ children, theme, toggleTheme }) => {
@@ -41,22 +43,22 @@ const Layout = ({ children, theme, toggleTheme }) => {
       <Paper classes={{ root: classes.title }} square>
         <Typography classes={{ h3: classes.title }} variant="h3">ACNH: Critter Companion</Typography>
       </Paper>
-      <ToggleButtonGroup
-        value={theme}
-        size="small"
-        exclusive
-        onChange={handleThemeChange}
-      >
-        <ToggleButton value="light">
-          <LightModeIcon />
-        </ToggleButton>
-        <ToggleButton value="dark">
-          <DarkModeIcon />
-        </ToggleButton>
-      </ToggleButtonGroup>
-      <Paper classes={{ root: classes.content }} elevation={3} >
-        {children}
+      <Paper classes={{ root: classes.controls }}>
+        <ToggleButtonGroup
+          value={theme}
+          size="small"
+          exclusive
+          onChange={handleThemeChange}
+        >
+          <ToggleButton value="light">
+            <LightModeIcon />
+          </ToggleButton>
+          <ToggleButton value="dark">
+            <DarkModeIcon />
+          </ToggleButton>
+        </ToggleButtonGroup>
       </Paper>
+      {children}
     </div>
   )
 }
