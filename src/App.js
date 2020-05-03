@@ -1,5 +1,5 @@
 import React from 'react'
-import CrittersTable from './components/CrittersTable'
+import Critters from './containers/Critters/Critters'
 import backgroundDark from './assets/images/background/leaf_wallpaper_dark.png'
 import backgroundGreen from './assets/images/background/leaf_wallpaper_green.png'
 import { CssBaseline, useMediaQuery } from '@material-ui/core'
@@ -36,7 +36,7 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
         <Layout>
-          <CrittersTable />
+          <Critters />
           <MaterialUISampleTable />
         </Layout>
     </ThemeProvider>
