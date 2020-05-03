@@ -5,6 +5,7 @@ import backgroundGreen from './assets/images/background/leaf_wallpaper_green.png
 import { CssBaseline, useMediaQuery } from '@material-ui/core'
 import { createMuiTheme, ThemeProvider, makeStyles } from '@material-ui/core/styles'
 import Layout from './containers/Layout/Layout'
+import MaterialUISampleTable from './components/MaterialUISampleTable'
 
 const App = () => {
   /* THEMING AND STYLES START */
@@ -35,8 +36,8 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
         <Layout>
-          APP
           <CrittersTable />
+          <MaterialUISampleTable />
         </Layout>
     </ThemeProvider>
   )
