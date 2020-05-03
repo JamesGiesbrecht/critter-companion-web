@@ -20,6 +20,59 @@ const useStyles = makeStyles({
 
 const CrittersTable = ({ critters }) => {
   const classes = useStyles()
+
+  const amOrPM = (hour) => {
+    if (hour > 12 && hour < 24) {
+      return `${hour - 12}pm`
+    } else if (hour < 12 && hour > 0) {
+      return `${hour}am`
+    } else if (hour === 12) {
+      return 'Noon'
+    } else if (hour === 24) {
+      return 'Midnight'
+    }
+    throw Error(`Hour (${hour}) not in range (1-24)`)
+  }
+
+  const getHours = (startTime, endTime) => {
+    if (Array.isArray(startTime)) {
+      let hours = ''
+      startTime.forEach((start, index) => {
+        if (index > 0) {
+          hours += ' & '
+        }
+        hours += `${amOrPM(start)} - ${amOrPM(endTime[index])}`
+      })
+      return hours
+    } else if (startTime === endTime) {
+      return 'All Day'
+    }
+    return `${amOrPM(startTime)} - ${amOrPM(endTime)}`
+  }
+
+  const rows = critters.map((critter, index) => {
+    
+    const hours = getHours(critter.start_time, critter.end_time)
+    return (
+      <TableRow
+        hover
+        tabIndex={-1}
+        key={critter.name}
+      >
+        <TableCell classes={{ root: classes.critterImgCell }}>
+          <img className={classes.critterImg} src={critter.image_path} alt={critter.name} />
+        </TableCell>
+        <TableCell component="th" id={index} scope="critter" padding="none">
+          {critter.name}
+        </TableCell>
+        <TableCell align="right">{critter.price}</TableCell>
+        <TableCell align="right">{critter.location}</TableCell>
+        <TableCell align="right">{hours}</TableCell>
+        <TableCell align="right">{critter.northern_months}</TableCell>
+      </TableRow>
+    )
+  })
+
   return (
     <TableContainer className={classes.tableWrapper}>
       <Table
@@ -31,24 +84,7 @@ const CrittersTable = ({ critters }) => {
 
         />
         <TableBody>
-          {critters.map((critter, index) => (
-            <TableRow
-              hover
-              tabIndex={-1}
-              key={critter.name}
-            >
-              <TableCell classes={{ root: classes.critterImgCell }}>
-                <img className={classes.critterImg} src={critter.image_path} alt={critter.name} />
-              </TableCell>
-              <TableCell component="th" id={index} scope="critter" padding="none">
-                {critter.name}
-              </TableCell>
-              <TableCell align="right">{critter.price}</TableCell>
-              <TableCell align="right">{critter.location}</TableCell>
-              <TableCell align="right">{critter.start_time}</TableCell>
-              <TableCell align="right">{critter.northern_months}</TableCell>
-            </TableRow>
-          ))}
+          {rows}
         </TableBody>
       </Table>
     </TableContainer>
