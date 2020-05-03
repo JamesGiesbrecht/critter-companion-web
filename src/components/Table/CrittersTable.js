@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import EnhancedTableHead from './EnhancedTableHead'
-import { Collapse, TableContainer, Table, TableBody, TableRow, TableCell, makeStyles } from '@material-ui/core'
+import { TableContainer, Table, TableBody, TableRow, TableCell, makeStyles } from '@material-ui/core'
 import Months from './Months'
 
 const useStyles = makeStyles({
@@ -75,25 +75,20 @@ const CrittersTable = ({ critters }) => {
   })
 
   return (
-    <>
-      <button onClick={() => setExpanded(!expanded)}>Collapsed</button>
-      <Collapse in={expanded}>
-        <TableContainer className={classes.tableWrapper}>
-          <Table
-            className={classes.table}
-            aria-labelledby="tableTitle"
-            aria-label="enhanced table"
-          >
-            <EnhancedTableHead
+    <TableContainer className={classes.tableWrapper}>
+      <Table
+        className={classes.table}
+        aria-labelledby="tableTitle"
+        aria-label="enhanced table"
+      >
+        <EnhancedTableHead
 
-            />
-            <TableBody>
-              {rows}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </Collapse>
-    </>
+        />
+        <TableBody>
+          {rows}
+        </TableBody>
+      </Table>
+    </TableContainer>
   )
 }
 
