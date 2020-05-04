@@ -40,12 +40,7 @@ const App = () => {
   const [bugs, setBugs] = useState(bugsData)
   const [fish, setFish] = useState(fishData)
   //  TODO: Availble Now || all, northern || southern, leaving this month, new this month, search, show ones not obtained
-  const [show, setShow] = useState({
-    isUnavailable: true,
-    isLeaving: true,
-    isNew: true,
-    isObtained: true
-  })
+  const [show, setShow] = useState([ 'isAvailable', 'isLeaving', 'isNew', 'isObtained' ])
   const [isNorthern, setIsNorthern] = useState(true)
 
   return (
