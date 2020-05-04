@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import useTheme from './hooks/useTheme'
+import useColorScheme from './hooks/useColorScheme'
 import Critters from './containers/Critters/Critters'
 import backgroundDark from './assets/images/background/leaf_wallpaper_dark.png'
 import backgroundGreen from './assets/images/background/leaf_wallpaper_green.png'
@@ -12,7 +12,7 @@ import fishData from './assets/data/fish.json'
 
 const App = () => {
   /* THEMING AND STYLES START */
-  const [colorScheme, toggleColorScheme] = useTheme()
+  const [colorScheme, toggleColorScheme] = useColorScheme()
   const backgroundImage = colorScheme === 'light' ? backgroundGreen : backgroundDark
   const useStyles = makeStyles({
     '@global': {
