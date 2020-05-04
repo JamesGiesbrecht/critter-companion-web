@@ -34,7 +34,7 @@ const useStyles = makeStyles({
   }
 })
 
-const CrittersContainer = ({ critters, setCritters, type }) => {
+const Critters = ({ critters, setCritters, type }) => {
   const classes = useStyles()
   const [expanded, setExpanded] = useState(false)
   const [randomImg, setRandomImg] = useState('')
@@ -69,4 +69,4 @@ const CrittersContainer = ({ critters, setCritters, type }) => {
   )
 }
 
-export default CrittersContainer
+export default Critters
