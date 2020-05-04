@@ -5,6 +5,8 @@
   --dark-bg-leaves-color: #E8B828;
   --green: #159B6A;
   --faded-green: #138B87;
+  --border-light: rgba(224, 224, 224, 1);
+  --border-dark: rgba(81, 81, 81, 1);
 }
 
 html, body {

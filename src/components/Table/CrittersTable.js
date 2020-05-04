@@ -1,27 +1,28 @@
-import React, { useState } from 'react'
+import React from 'react'
 import EnhancedTableHead from './EnhancedTableHead'
-import { TableContainer, Table, TableBody, TableRow, TableCell, makeStyles } from '@material-ui/core'
+import { TableContainer, Table, TableBody, TableRow, TableCell, makeStyles, useTheme } from '@material-ui/core'
 import Months from './Months'
 
-const useStyles = makeStyles({
-  tableWrapper: {
-    padding: '10px',
-  },
-  table: {
-    margin: '0 auto',
-    width: 'auto',
-  },
-  critterImgCell: {
-    padding: '0 10px',
-  },
-  critterImg: {
-    width: '40px',
-  }
-})
-
 const CrittersTable = ({ critters }) => {
+  const theme = useTheme()
+  const useStyles = makeStyles({
+    tableWrapper: {
+      padding: '10px',
+    },
+    table: {
+      margin: '0 auto',
+      width: 'auto',
+      borderTop: `1px solid var(--border-${theme.palette.type})`,
+    },
+    critterImgCell: {
+      padding: '0 10px',
+    },
+    critterImg: {
+      width: '40px',
+    }
+  })
+  
   const classes = useStyles()
-  const [expanded, setExpanded] = useState(false)
 
   const amOrPM = (hour) => {
     if (hour > 12 && hour < 24) {

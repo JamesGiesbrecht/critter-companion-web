@@ -8,11 +8,20 @@ const useStyles = makeStyles({
     padding: '10px 0',
     margin: '20px auto'
   },
-  heading: {
+  headingWrapper: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: '15px',
+  },
+  heading: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: "center",
+  },
+  headingImg: {
+    width: '60px',
+    marginRight: '20px',
   },
 })
 
@@ -27,10 +36,17 @@ const CrittersContainer = ({ critters, setCritters, type }) => {
 
   return (
     <Paper classes={{ root: classes.critters }}>
-      <div className={classes.heading} onClick={() => setExpanded((prevExpanded) => !prevExpanded)}>
-        <div>
-          <img src={randomImg} alt={type} />
-          <Typography>{type}</Typography>
+      <div
+        className={classes.headingWrapper}
+        onClick={() => setExpanded((prevExpanded) => !prevExpanded)}
+      >
+        <div className={classes.heading}>
+          <img
+            className={classes.headingImg}
+            src={randomImg}
+            alt={type}
+          />
+          <Typography variant="h4">{type}</Typography>
         </div>
         <ExpandMoreRounded fontSize="large"/>
       </div>
