@@ -44,7 +44,7 @@ const Critters = ({ critters, setCritters, type, show, isNorthern }) => {
   }, [setRandomImg, critters])
 
   return (
-    <Paper classes={{ root: classes.critters }}>
+    <Paper classes={{ root: classes.critters }} elevation={3}>
       <div
         className={classes.headingWrapper}
         onClick={() => setExpanded((prevExpanded) => !prevExpanded)}

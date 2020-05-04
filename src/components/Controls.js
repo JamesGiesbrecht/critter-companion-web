@@ -19,14 +19,20 @@ const Controls = ({ theme, toggleTheme, titleHeight, show, setShow, isNorthern, 
   })
   const classes = useStyles()
   const [showAll, setShowAll] = useState(false)
-
-  const handleThemeChange = (e, newTheme) => {
-    if (newTheme !== theme && newTheme !== null)
-      toggleTheme()
+  
+  const handleShowAllChange = (e, curShowAll) => {
+    if (curShowAll === false) {
+      setShow(['isNew', 'isLeaving', 'isObtained'])
+    }
   }
   
   const handleShowChange = (e, newShow) => {
     setShow(newShow)
+  }
+  
+  const handleThemeChange = (e, newTheme) => {
+    if (newTheme !== theme && newTheme !== null)
+      toggleTheme()
   }
 
   useEffect(() => {
@@ -38,7 +44,7 @@ const Controls = ({ theme, toggleTheme, titleHeight, show, setShow, isNorthern, 
   }, [show, showAll])
 
   return (
-    <Paper classes={{ root: classes.controls }}>
+    <Paper classes={{ root: classes.controls }} elevation={3}>
       <ToggleButton
         value={isNorthern}
         selected={true}
@@ -50,7 +56,7 @@ const Controls = ({ theme, toggleTheme, titleHeight, show, setShow, isNorthern, 
       <ToggleButton
         value={showAll}
         selected={showAll}
-        onChange={() => setShowAll(prevShowAll => !prevShowAll)}
+        onChange={handleShowAllChange}
         size='small'
       >
         Show All

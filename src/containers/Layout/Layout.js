@@ -23,7 +23,7 @@ const Layout = ({ children, titleHeight }) => {
 
   return (
     <div className={classes.layout}>
-      <Paper classes={{ root: classes.title }} square>
+      <Paper classes={{ root: classes.title }} elevation={3} square>
         <Typography classes={{ h3: classes.title }} variant="h3">ACNH: Critter Companion</Typography>
       </Paper>
       {children}
