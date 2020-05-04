@@ -9,6 +9,7 @@ import Layout from './containers/Layout/Layout'
 import MaterialUISampleTable from './components/MaterialUISampleTable'
 import bugsData from './assets/data/bugs.json'
 import fishData from './assets/data/fish.json'
+import Controls from './components/Controls'
 
 const App = () => {
   /* THEMING AND STYLES START */
@@ -33,14 +34,17 @@ const App = () => {
     }),
   [colorScheme]
   )
+  const titleHeight = 60
   /* THEMING AND STYLES END */
+
   const [bugs, setBugs] = useState(bugsData)
   const [fish, setFish] = useState(fishData)
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-        <Layout theme={colorScheme} toggleTheme={toggleColorScheme}>
+        <Layout theme={colorScheme} toggleTheme={toggleColorScheme} titleHeight={titleHeight}>
+          <Controls theme={colorScheme} toggleTheme={toggleColorScheme} titleHeight={titleHeight}/>
           <Critters
             critters={bugs}
             setCritters={setBugs}
