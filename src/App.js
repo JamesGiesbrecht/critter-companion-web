@@ -50,7 +50,6 @@ const App = () => {
             setCritters={setFish}
             type="Fish"
           />
-          <MaterialUISampleTable />
         </Layout>
     </ThemeProvider>
   )

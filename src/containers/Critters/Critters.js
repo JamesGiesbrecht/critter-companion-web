@@ -12,12 +12,13 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: '15px',
+    alignItems: "center",
+    padding: '0 10px',
   },
   heading: {
     display: 'flex',
     flexDirection: 'row',
-    alignItems: "center",
+    alignItems: 'center',
   },
   headingImg: {
     width: '60px',
