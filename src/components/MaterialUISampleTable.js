@@ -4,7 +4,6 @@ import clsx from 'clsx'
 import { lighten, makeStyles } from '@material-ui/core/styles'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, TableSortLabel, Toolbar, Typography, Paper, Checkbox, IconButton, Tooltip, FormControlLabel, Switch } from '@material-ui/core'
 import { Delete, FilterList } from '@material-ui/icons'
-import critters from '../assets/data/critters.json'
 
 const createData = (name, calories, fat, carbs, protein) => {
   return { name, calories, fat, carbs, protein }

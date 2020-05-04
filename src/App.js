@@ -7,7 +7,8 @@ import { CssBaseline } from '@material-ui/core'
 import { createMuiTheme, ThemeProvider, makeStyles } from '@material-ui/core/styles'
 import Layout from './containers/Layout/Layout'
 import MaterialUISampleTable from './components/MaterialUISampleTable'
-import crittersData from './assets/data/critters.json'
+import bugsData from './assets/data/bugs.json'
+import fishData from './assets/data/fish.json'
 
 const App = () => {
   /* THEMING AND STYLES START */
@@ -33,8 +34,8 @@ const App = () => {
   [colorScheme]
   )
   /* THEMING AND STYLES END */
-  const [bugs, setBugs] = useState(crittersData.filter((critter) => critter.type === "Bugs"))
-  const [fish, setFish] = useState(crittersData.filter((critter) => critter.type === "Fish"))
+  const [bugs, setBugs] = useState(bugsData)
+  const [fish, setFish] = useState(fishData)
 
   return (
     <ThemeProvider theme={theme}>
