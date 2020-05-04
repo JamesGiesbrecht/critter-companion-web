@@ -34,7 +34,7 @@ const useStyles = makeStyles({
   }
 })
 
-const Critters = ({ critters, setCritters, type }) => {
+const Critters = ({ critters, setCritters, type, show, isNorthern }) => {
   const classes = useStyles()
   const [expanded, setExpanded] = useState(false)
   const [randomImg, setRandomImg] = useState('')

@@ -4,9 +4,7 @@ import { ToggleButtonGroup, ToggleButton } from '@material-ui/lab'
 import LightModeIcon from '@material-ui/icons/Brightness7'
 import DarkModeIcon from '@material-ui/icons/Brightness3'
 
-//  TODO: Availble Now || all, northern || southern, leaving this month, new this month, search, show ones not obtained
-
-const Controls = ({ theme, toggleTheme, titleHeight }) => {
+const Controls = ({ theme, toggleTheme, titleHeight, show, setShow, isNorthern, setIsNorthern }) => {
   const useStyles = makeStyles({
     controls: {
       marginTop: `-${titleHeight/2}px`,

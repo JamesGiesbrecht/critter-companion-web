@@ -39,21 +39,41 @@ const App = () => {
 
   const [bugs, setBugs] = useState(bugsData)
   const [fish, setFish] = useState(fishData)
+  //  TODO: Availble Now || all, northern || southern, leaving this month, new this month, search, show ones not obtained
+  const [show, setShow] = useState({
+    isUnavailable: true,
+    isLeaving: true,
+    isNew: true,
+    isObtained: true
+  })
+  const [isNorthern, setIsNorthern] = useState(true)
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
         <Layout theme={colorScheme} toggleTheme={toggleColorScheme} titleHeight={titleHeight}>
-          <Controls theme={colorScheme} toggleTheme={toggleColorScheme} titleHeight={titleHeight}/>
+          <Controls
+            theme={colorScheme}
+            toggleTheme={toggleColorScheme}
+            titleHeight={titleHeight}
+            show={show}
+            setShow={setShow}
+            isNorthern={isNorthern}
+            setIsNorthern={setIsNorthern}
+          />
           <Critters
             critters={bugs}
             setCritters={setBugs}
             type="Bugs"
+            show={show}
+            isNorthern={isNorthern}
           />
           <Critters
             critters={fish}
             setCritters={setFish}
             type="Fish"
+            show={show}
+            isNorthern={isNorthern}
           />
         </Layout>
     </ThemeProvider>
