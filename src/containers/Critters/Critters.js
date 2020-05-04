@@ -23,11 +23,19 @@ const useStyles = makeStyles({
     width: '60px',
     marginRight: '20px',
   },
+  expandArrow: {
+    transform: 'rotate(0deg)',
+    transition: 'transform 0.2s linear',
+  },  
+  open: {
+    transform: 'rotate(180deg)',
+    transition: 'transform 0.2s linear',
+  }
 })
 
 const CrittersContainer = ({ critters, setCritters, type }) => {
   const classes = useStyles()
-  const [expanded, setExpanded] = useState(true)
+  const [expanded, setExpanded] = useState(false)
   const [randomImg, setRandomImg] = useState('')
 
   useEffect(() => {
@@ -48,7 +56,10 @@ const CrittersContainer = ({ critters, setCritters, type }) => {
           />
           <Typography variant="h4">{type}</Typography>
         </div>
-        <ExpandMoreRounded fontSize="large"/>
+        <ExpandMoreRounded
+          fontSize="large"
+          className={[classes.expandArrow, !expanded && classes.open].join(' ')}
+        />
       </div>
       <Collapse in={expanded}>
         <CrittersTable critters={critters} />
