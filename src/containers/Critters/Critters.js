@@ -63,7 +63,7 @@ const Critters = ({ critters, setCritters, type, show, isNorthern }) => {
         />
       </div>
       <Collapse in={expanded}>
-        <CrittersTable critters={critters} />
+        <CrittersTable critters={critters} isNorthern={isNorthern}/>
       </Collapse>
     </Paper>
   )

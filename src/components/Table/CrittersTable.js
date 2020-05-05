@@ -3,7 +3,7 @@ import EnhancedTableHead from './EnhancedTableHead'
 import { TableContainer, Table, TableBody, TableRow, TableCell, makeStyles, useTheme } from '@material-ui/core'
 import Months from './Months'
 
-const CrittersTable = ({ critters }) => {
+const CrittersTable = ({ critters, isNorthern }) => {
   const theme = useTheme()
   const useStyles = makeStyles({
     tableWrapper: {
@@ -70,7 +70,7 @@ const CrittersTable = ({ critters }) => {
         <TableCell align="right">{critter.value}</TableCell>
         <TableCell align="right">{critter.location}</TableCell>
         <TableCell align="right">{hours}</TableCell>
-        <TableCell align="right"><Months months={critter.northern_months} /></TableCell>
+        <TableCell align="right"><Months months={isNorthern ? critter.northern_months : critter.southern_months} /></TableCell>
       </TableRow>
     )
   })
