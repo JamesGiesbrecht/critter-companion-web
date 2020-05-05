@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import {
   Collapse, Paper, makeStyles, Typography,
 } from '@material-ui/core'
 import { ExpandMoreRounded } from '@material-ui/icons'
 import CrittersTable from '../../components/Table/CrittersTable'
+import { arraysAreEqual } from '../../assets/utility'
 
 const useStyles = makeStyles({
   critters: {
@@ -37,15 +38,38 @@ const useStyles = makeStyles({
 })
 
 const Critters = ({
-  critters, setCritters, type, show, isNorthern,
+  allCritters, critters, setCritters, type, show, isNorthern, showAllArray,
 }) => {
   const classes = useStyles()
   const [expanded, setExpanded] = useState(false)
   const [randomImg, setRandomImg] = useState('')
 
+  const getMonths = (critter) => (
+    isNorthern ? critter.northern_months : critter.southern_months
+  )
+
+  const isAvailableNow = (critter) => {
+    const today = new Date()
+    if (getMonths(critter).includes(today.getMonth())) return true
+    return false
+  }
+
+  const filterCritters = useCallback(() => {
+    if (arraysAreEqual(showAllArray, show)) {
+      setCritters(allCritters)
+    }
+    if (show.includes('isAvailable')) {
+      setCritters(allCritters.filter((critter) => isAvailableNow(critter)))
+    }
+  }, [show])
+
   useEffect(() => {
-    setRandomImg(critters[Math.floor(Math.random() * critters.length)].image_path)
-  }, [setRandomImg, critters])
+    setRandomImg(allCritters[Math.floor(Math.random() * critters.length)].image_path)
+  }, [setRandomImg])
+
+  useEffect(() => {
+    filterCritters()
+  }, [filterCritters, show])
 
   return (
     <Paper classes={{ root: classes.critters }} elevation={3}>
