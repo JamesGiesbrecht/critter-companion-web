@@ -6,7 +6,7 @@ import DarkModeIcon from '@material-ui/icons/Brightness3'
 import { arraysAreEqual } from '../assets/utility'
 
 const Controls = ({
-  theme, toggleTheme, titleHeight, show, setShow, isNorthern, setIsNorthern,
+  theme, toggleTheme, titleHeight, show, setShow, isNorthern, setIsNorthern, showAllArray,
 }) => {
   const useStyles = makeStyles({
     controls: {
@@ -24,7 +24,7 @@ const Controls = ({
 
   const handleShowAllChange = (e, curShowAll) => {
     if (curShowAll === false) {
-      setShow(['isNew', 'isLeaving', 'isObtained'])
+      setShow(showAllArray)
     }
   }
 
@@ -37,7 +37,7 @@ const Controls = ({
   }
 
   useEffect(() => {
-    if (arraysAreEqual(['isNew', 'isLeaving', 'isObtained'], show)) {
+    if (arraysAreEqual(showAllArray, show)) {
       setShowAll(true)
     } else {
       setShowAll(false)

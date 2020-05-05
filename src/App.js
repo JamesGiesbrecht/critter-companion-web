@@ -25,7 +25,8 @@ const App = () => {
   const [fish, setFish] = useState(fishData)
   //  TODO: Availble Now || all, northern || southern, leaving this month,
   //  new this month, search, show ones not obtained
-  const [show, setShow] = useState(['isAvailable', 'isLeaving', 'isNew', 'isObtained'])
+  const showAllArray = ['isNew', 'isLeaving', 'isObtained']
+  const [show, setShow] = useState(['isAvailable'].concat(showAllArray))
   const [isNorthern, setIsNorthern] = useState(true)
 
   return (
@@ -40,6 +41,7 @@ const App = () => {
           setShow={setShow}
           isNorthern={isNorthern}
           setIsNorthern={setIsNorthern}
+          showAllArray={showAllArray}
         />
         <Critters
           critters={bugs}
@@ -47,6 +49,7 @@ const App = () => {
           type="Bugs"
           show={show}
           isNorthern={isNorthern}
+          showAllArray={showAllArray}
         />
         <Critters
           critters={fish}
@@ -54,6 +57,7 @@ const App = () => {
           type="Fish"
           show={show}
           isNorthern={isNorthern}
+          showAllArray={showAllArray}
         />
       </Layout>
     </ThemeProvider>
