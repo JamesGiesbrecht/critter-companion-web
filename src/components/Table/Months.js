@@ -12,6 +12,7 @@ const Months = ({ months }) => {
         key={month}
         size="small"
         label={month}
+        // eslint-disable-next-line react/jsx-props-no-spreading
         {...color}
       />
     )

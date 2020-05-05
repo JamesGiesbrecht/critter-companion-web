@@ -22,11 +22,13 @@ const useColorScheme = () => {
   }
 
   useEffect(() => {
-    if (window.localStorage.hasOwnProperty('theme')) {
+    if (Object.prototype.hasOwnProperty.call(window.localStorage, 'theme')) {
       const localTheme = window.localStorage.getItem('theme')
-      localTheme && setTheme(localTheme)
+      if (localTheme) setTheme(localTheme)
+    } else if (prefersDarkMode) {
+      setTheme('dark')
     } else {
-      prefersDarkMode ? setTheme('dark') : setTheme('light')
+      setTheme('light')
     }
   }, [prefersDarkMode])
 

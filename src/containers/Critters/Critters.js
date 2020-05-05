@@ -52,6 +52,9 @@ const Critters = ({
       <div
         className={classes.headingWrapper}
         onClick={() => setExpanded((prevExpanded) => !prevExpanded)}
+        role="button"
+        tabIndex={0}
+        onKeyPress={() => setExpanded((prevExpanded) => !prevExpanded)}
       >
         <div className={classes.heading}>
           <img
