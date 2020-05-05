@@ -1,15 +1,29 @@
 import React from 'react'
-import { TableHead, TableRow, TableCell, TableSortLabel } from '@material-ui/core'
+import {
+  TableHead, TableRow, TableCell, TableSortLabel,
+} from '@material-ui/core'
 
 const headCells = [
-  { id: 'name', numeric: false, disablePadding: true, label: 'Name' },
-  { id: 'price', numeric: true, disablePadding: false, label: 'Price' },
-  { id: 'location', numeric: true, disablePadding: false, label: 'Location' },
-  { id: 'hours', numeric: true, disablePadding: false, label: 'Active Hours' },
-  { id: 'months', numeric: true, disablePadding: false, label: 'Active Months' },
+  {
+    id: 'name', numeric: false, disablePadding: true, label: 'Name',
+  },
+  {
+    id: 'price', numeric: true, disablePadding: false, label: 'Price',
+  },
+  {
+    id: 'location', numeric: true, disablePadding: false, label: 'Location',
+  },
+  {
+    id: 'hours', numeric: true, disablePadding: false, label: 'Active Hours',
+  },
+  {
+    id: 'months', numeric: true, disablePadding: false, label: 'Active Months',
+  },
 ]
 
-const EnhancedTableHead = ({ classes,  order, orderBy, numSelected, onRequestSort }) => {
+const EnhancedTableHead = ({
+  classes, order, orderBy, numSelected, onRequestSort,
+}) => {
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property)
   }

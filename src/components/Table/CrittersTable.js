@@ -1,6 +1,8 @@
 import React from 'react'
+import {
+  TableContainer, Table, TableBody, TableRow, TableCell, makeStyles, useTheme,
+} from '@material-ui/core'
 import EnhancedTableHead from './EnhancedTableHead'
-import { TableContainer, Table, TableBody, TableRow, TableCell, makeStyles, useTheme } from '@material-ui/core'
 import Months from './Months'
 
 const CrittersTable = ({ critters, isNorthern }) => {
@@ -19,19 +21,19 @@ const CrittersTable = ({ critters, isNorthern }) => {
     },
     critterImg: {
       width: '40px',
-    }
+    },
   })
-  
+
   const classes = useStyles()
 
   const amOrPM = (hour) => {
     if (hour > 12 && hour < 24) {
       return `${hour - 12}pm`
-    } else if (hour < 12 && hour > 0) {
+    } if (hour < 12 && hour > 0) {
       return `${hour}am`
-    } else if (hour === 12) {
+    } if (hour === 12) {
       return 'Noon'
-    } else if (hour === 24) {
+    } if (hour === 24) {
       return 'Midnight'
     }
     throw Error(`Hour (${hour}) not in range (1-24)`)
@@ -47,7 +49,7 @@ const CrittersTable = ({ critters, isNorthern }) => {
         hours += `${amOrPM(start)} - ${amOrPM(endTime[index])}`
       })
       return hours
-    } else if (startTime === endTime) {
+    } if (startTime === endTime) {
       return 'All Day'
     }
     return `${amOrPM(startTime)} - ${amOrPM(endTime)}`
@@ -82,9 +84,7 @@ const CrittersTable = ({ critters, isNorthern }) => {
         aria-labelledby="tableTitle"
         aria-label="enhanced table"
       >
-        <EnhancedTableHead
-
-        />
+        <EnhancedTableHead />
         <TableBody>
           {rows}
         </TableBody>

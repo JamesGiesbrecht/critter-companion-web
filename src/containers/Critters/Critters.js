@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from 'react'
-import CrittersTable from '../../components/Table/CrittersTable'
-import { Collapse, Paper, makeStyles, Typography } from '@material-ui/core'
+import {
+  Collapse, Paper, makeStyles, Typography,
+} from '@material-ui/core'
 import { ExpandMoreRounded } from '@material-ui/icons'
+import CrittersTable from '../../components/Table/CrittersTable'
 
 const useStyles = makeStyles({
   critters: {
     padding: '10px 0',
-    margin: '20px auto'
+    margin: '20px auto',
   },
   headingWrapper: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: "center",
+    alignItems: 'center',
     padding: '0 10px',
   },
   heading: {
@@ -27,14 +29,16 @@ const useStyles = makeStyles({
   expandArrow: {
     transform: 'rotate(0deg)',
     transition: 'transform 0.2s linear',
-  },  
+  },
   open: {
     transform: 'rotate(180deg)',
     transition: 'transform 0.2s linear',
-  }
+  },
 })
 
-const Critters = ({ critters, setCritters, type, show, isNorthern }) => {
+const Critters = ({
+  critters, setCritters, type, show, isNorthern,
+}) => {
   const classes = useStyles()
   const [expanded, setExpanded] = useState(false)
   const [randomImg, setRandomImg] = useState('')
@@ -63,7 +67,7 @@ const Critters = ({ critters, setCritters, type, show, isNorthern }) => {
         />
       </div>
       <Collapse in={expanded}>
-        <CrittersTable critters={critters} isNorthern={isNorthern}/>
+        <CrittersTable critters={critters} isNorthern={isNorthern} />
       </Collapse>
     </Paper>
   )
