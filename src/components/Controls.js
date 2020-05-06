@@ -55,6 +55,10 @@ const Controls = ({
   }
 
   const handleShowChange = (e, newShow) => {
+    if (newShow.includes('isAvailable')) {
+      if (!newShow.includes('isNew')) newShow.push('isNew')
+      if (!newShow.includes('isLeaving')) newShow.push('isLeaving')
+    }
     setShow(newShow)
   }
 
