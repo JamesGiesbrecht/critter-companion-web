@@ -38,9 +38,10 @@ const useStyles = makeStyles({
 })
 
 const Critters = ({
-  allCritters, critters, setCritters, type, show, isNorthern, showAllArray,
+  allCritters, type, show, isNorthern, showAllArray,
 }) => {
   const classes = useStyles()
+  const [critters, setCritters] = useState(allCritters)
   const [expanded, setExpanded] = useState(false)
   const [randomImg, setRandomImg] = useState('')
   const today = new Date()
@@ -64,45 +65,56 @@ const Critters = ({
 
   const isAvailableNow = (months) => months.includes(curMonth)
 
-  const isNew = (months) => isAvailableNow(months) && hasPrevMonth(months)
+  const isNew = (months) => isAvailableNow(months) && !hasPrevMonth(months)
 
-  const isLeaving = (months) => isAvailableNow(months) && hasNextMonth(months)
+  const isLeaving = (months) => isAvailableNow(months) && !hasNextMonth(months)
 
   const isNotObtained = () => true
 
-  const filterCritters = useCallback(() => {
-    const filteredCritters = []
+  const filterCritters = () => {
     if (arraysAreEqual(showAllArray, show)) {
-      setCritters(allCritters)
-      return
+      return allCritters
     }
-    if (show.includes('isNew')) {
-      // add critters that are new
-      filteredCritters.concat(allCritters.filter((critter) => isNew(getMonths(critter))))
-    }
-    if (show.includes('isLeaving')) {
-      // add critters that are leaving
-      filteredCritters.concat(allCritters.filter((critter) => isLeaving(getMonths(critter))))
+    let filteredCritters = []
+
+    if (show.includes('isAvailable')) {
+      // add critters that are available now
+      filteredCritters = filteredCritters.concat(allCritters.filter((critter) => (
+        isAvailableNow(getMonths(critter))
+      )))
+    } else {
+      //  If isAvailable is checked that would already include
+      //  all new and leaving critters so we are skipping them
+      if (show.includes('isNew')) {
+        // add critters that are new
+        filteredCritters = filteredCritters.concat(allCritters.filter((critter) => (
+          isNew(getMonths(critter))
+        )))
+      }
+      if (show.includes('isLeaving')) {
+        // add critters that are leaving
+        filteredCritters = filteredCritters.concat(allCritters.filter((critter) => (
+          isLeaving(getMonths(critter))
+        )))
+      }
     }
     if (show.includes('isNotObtained')) {
       // add critters that are not obtained
-      filteredCritters.concat(allCritters.filter(() => isNotObtained()))
-    }
-    if (show.includes('isAvailable')) {
-      // add critters that are available now
-      filteredCritters.concat(allCritters.filter((critter) => isAvailableNow(getMonths(critter))))
+      filteredCritters = filteredCritters.concat(allCritters.filter(() => (
+        isNotObtained()
+      )))
     }
     console.log(filteredCritters)
-    setCritters(filteredCritters)
-  }, [show])
+    return filteredCritters
+  }
 
   useEffect(() => {
     setRandomImg(allCritters[Math.floor(Math.random() * critters.length)].image_path)
   }, [setRandomImg])
 
   useEffect(() => {
-    filterCritters()
-  }, [filterCritters, show])
+    setCritters(filterCritters())
+  }, [show])
 
   return (
     <Paper classes={{ root: classes.critters }} elevation={3}>

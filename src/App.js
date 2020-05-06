@@ -21,8 +21,6 @@ const App = () => {
   const titleHeight = 60
   /* THEMING AND STYLES END */
 
-  const [bugs, setBugs] = useState(bugsData)
-  const [fish, setFish] = useState(fishData)
   //  TODO: Availble Now || all, northern || southern, leaving this month,
   //  new this month, search, show ones not obtained
   const showAllArray = []
@@ -45,8 +43,6 @@ const App = () => {
         />
         <Critters
           allCritters={bugsData}
-          critters={bugs}
-          setCritters={setBugs}
           type="Bugs"
           show={show}
           isNorthern={isNorthern}
@@ -54,8 +50,6 @@ const App = () => {
         />
         <Critters
           allCritters={fishData}
-          critters={fish}
-          setCritters={setFish}
           type="Fish"
           show={show}
           isNorthern={isNorthern}
