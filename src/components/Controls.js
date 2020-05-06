@@ -5,20 +5,32 @@ import LightModeIcon from '@material-ui/icons/Brightness7'
 import DarkModeIcon from '@material-ui/icons/Brightness3'
 import { arraysAreEqual } from '../assets/utility'
 
-const Controls = ({
-  theme, toggleTheme, titleHeight, show, setShow, isNorthern, setIsNorthern, showAllArray,
-}) => {
-  const useStyles = makeStyles({
-    controls: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-around',
-      marginTop: `-${titleHeight / 2}px`,
-      padding: '20px',
-      paddingTop: `${titleHeight / 2 + 20}px`,
-      marginBottom: '20px',
+const useStyles = makeStyles((theme) => ({
+  controls: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    flexWrap: 'wrap',
+    padding: '20px',
+    marginBottom: '20px',
+    [theme.breakpoints.down('sm')]: {
+      marginTop: '-20px',
+      paddingTop: '20px',
     },
-  })
+    [theme.breakpoints.up('sm')]: {
+      marginTop: '-25px',
+      paddingTop: '25px',
+    },
+    [theme.breakpoints.up('md')]: {
+      marginTop: '-30px',
+      paddingTop: '30px',
+    },
+  },
+}))
+
+const Controls = ({
+  theme, toggleTheme, show, setShow, isNorthern, setIsNorthern, showAllArray,
+}) => {
   const classes = useStyles()
   const [showAll, setShowAll] = useState(false)
 
