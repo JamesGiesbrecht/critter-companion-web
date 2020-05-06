@@ -7,23 +7,37 @@ import { arraysAreEqual } from '../assets/utility'
 
 const useStyles = makeStyles((theme) => ({
   controls: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-    flexWrap: 'wrap',
-    padding: '20px',
-    marginBottom: '20px',
+    padding: '15px',
+    textAlign: 'center',
     [theme.breakpoints.down('sm')]: {
       marginTop: '-20px',
-      paddingTop: '20px',
+      paddingTop: '35px',
     },
     [theme.breakpoints.up('sm')]: {
       marginTop: '-25px',
-      paddingTop: '25px',
+      paddingTop: '40px',
     },
     [theme.breakpoints.up('md')]: {
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'space-around',
       marginTop: '-30px',
-      paddingTop: '30px',
+      paddingTop: '45px',
+    },
+  },
+  buttonGroup: {
+    display: 'flex',
+    alignItems: 'center',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    width: '340px',
+    marginBottom: '15px',
+    justifyContent: 'center',
+  },
+  firstButtonGroup: {
+    justifyContent: 'space-between',
+    [theme.breakpoints.down('sm')]: {
+      width: '318px',
     },
   },
 }))
@@ -58,53 +72,57 @@ const Controls = ({
 
   return (
     <Paper classes={{ root: classes.controls }} elevation={3}>
-      <ToggleButton
-        value={isNorthern}
-        selected
-        onChange={() => setIsNorthern((prevIsNorthern) => !prevIsNorthern)}
-        size="small"
-      >
-        {isNorthern ? 'Northern' : 'Southern'}
-      </ToggleButton>
-      <ToggleButton
-        value={showAll}
-        selected={showAll}
-        onChange={handleShowAllChange}
-        size="small"
-      >
-        Show All
-      </ToggleButton>
-      <ToggleButtonGroup
-        value={show}
-        onChange={handleShowChange}
-        size="small"
-      >
-        <ToggleButton value="isAvailable">
-          Available Now
+      <div className={[classes.buttonGroup, classes.firstButtonGroup].join(' ')}>
+        <ToggleButtonGroup
+          value={theme}
+          size="small"
+          exclusive
+          onChange={handleThemeChange}
+        >
+          <ToggleButton value="light">
+            <LightModeIcon />
+          </ToggleButton>
+          <ToggleButton value="dark">
+            <DarkModeIcon />
+          </ToggleButton>
+        </ToggleButtonGroup>
+        <ToggleButton
+          value={isNorthern}
+          selected
+          onChange={() => setIsNorthern((prevIsNorthern) => !prevIsNorthern)}
+          size="small"
+        >
+          {isNorthern ? 'Northern' : 'Southern'}
         </ToggleButton>
-        <ToggleButton value="isNew">
-          New
+        <ToggleButton
+          value={showAll}
+          selected={showAll}
+          onChange={handleShowAllChange}
+          size="small"
+        >
+          Show All
         </ToggleButton>
-        <ToggleButton value="isLeaving">
-          Leaving
-        </ToggleButton>
-        <ToggleButton value="isObtained">
-          Obtained
-        </ToggleButton>
-      </ToggleButtonGroup>
-      <ToggleButtonGroup
-        value={theme}
-        size="small"
-        exclusive
-        onChange={handleThemeChange}
-      >
-        <ToggleButton value="light">
-          <LightModeIcon />
-        </ToggleButton>
-        <ToggleButton value="dark">
-          <DarkModeIcon />
-        </ToggleButton>
-      </ToggleButtonGroup>
+      </div>
+      <div className={classes.buttonGroup}>
+        <ToggleButtonGroup
+          value={show}
+          onChange={handleShowChange}
+          size="small"
+        >
+          <ToggleButton value="isAvailable">
+            Available Now
+          </ToggleButton>
+          <ToggleButton value="isNew">
+            New
+          </ToggleButton>
+          <ToggleButton value="isLeaving">
+            Leaving
+          </ToggleButton>
+          <ToggleButton value="isObtained">
+            Obtained
+          </ToggleButton>
+        </ToggleButtonGroup>
+      </div>
     </Paper>
   )
 }

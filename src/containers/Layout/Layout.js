@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
       maxWidth: '800px',
     },
     width: '98%',
-    margin: '40px auto',
+    margin: '20px auto',
     textAlign: 'center',
   },
   title: {
