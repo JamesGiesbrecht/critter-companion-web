@@ -43,24 +43,57 @@ const Critters = ({
   const classes = useStyles()
   const [expanded, setExpanded] = useState(false)
   const [randomImg, setRandomImg] = useState('')
+  const today = new Date()
+  const curMonth = today.getMonth() + 1
 
-  const getMonths = (critter) => (
-    isNorthern ? critter.northern_months : critter.southern_months
-  )
+  const getMonths = (critter) => (isNorthern ? critter.northern_months : critter.southern_months)
 
-  const isAvailableNow = (critter) => {
-    const today = new Date()
-    if (getMonths(critter).includes(today.getMonth())) return true
-    return false
+  const hasPrevMonth = (months) => {
+    if (curMonth === 1) { // January
+      return months.includes(12)
+    }
+    return months.includes(curMonth - 1)
   }
 
+  const hasNextMonth = (months) => {
+    if (curMonth === 12) { // December
+      return months.includes(1)
+    }
+    return months.includes(curMonth + 1)
+  }
+
+  const isAvailableNow = (months) => months.includes(curMonth)
+
+  const isNew = (months) => isAvailableNow(months) && hasPrevMonth(months)
+
+  const isLeaving = (months) => isAvailableNow(months) && hasNextMonth(months)
+
+  const isNotObtained = () => true
+
   const filterCritters = useCallback(() => {
+    const filteredCritters = []
     if (arraysAreEqual(showAllArray, show)) {
       setCritters(allCritters)
+      return
+    }
+    if (show.includes('isNew')) {
+      // add critters that are new
+      filteredCritters.concat(allCritters.filter((critter) => isNew(getMonths(critter))))
+    }
+    if (show.includes('isLeaving')) {
+      // add critters that are leaving
+      filteredCritters.concat(allCritters.filter((critter) => isLeaving(getMonths(critter))))
+    }
+    if (show.includes('isNotObtained')) {
+      // add critters that are not obtained
+      filteredCritters.concat(allCritters.filter(() => isNotObtained()))
     }
     if (show.includes('isAvailable')) {
-      setCritters(allCritters.filter((critter) => isAvailableNow(critter)))
+      // add critters that are available now
+      filteredCritters.concat(allCritters.filter((critter) => isAvailableNow(getMonths(critter))))
     }
+    console.log(filteredCritters)
+    setCritters(filteredCritters)
   }, [show])
 
   useEffect(() => {

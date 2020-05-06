@@ -118,8 +118,8 @@ const Controls = ({
           <ToggleButton value="isLeaving">
             Leaving
           </ToggleButton>
-          <ToggleButton value="isObtained">
-            Obtained
+          <ToggleButton value="isNotObtained">
+            Not Obtained
           </ToggleButton>
         </ToggleButtonGroup>
       </div>

@@ -25,7 +25,7 @@ const App = () => {
   const [fish, setFish] = useState(fishData)
   //  TODO: Availble Now || all, northern || southern, leaving this month,
   //  new this month, search, show ones not obtained
-  const showAllArray = ['isNew', 'isLeaving', 'isObtained']
+  const showAllArray = []
   const [show, setShow] = useState(showAllArray)
   const [isNorthern, setIsNorthern] = useState(true)
 
