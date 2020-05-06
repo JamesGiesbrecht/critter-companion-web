@@ -63,12 +63,8 @@ const Controls = ({
   }
 
   useEffect(() => {
-    if (arraysAreEqual(showAllArray, show)) {
-      setShowAll(true)
-    } else {
-      setShowAll(false)
-    }
-  }, [show, showAll])
+    setShowAll(arraysAreEqual(showAllArray, show))
+  }, [show, showAll, showAllArray])
 
   return (
     <Paper classes={{ root: classes.controls }} elevation={3}>
