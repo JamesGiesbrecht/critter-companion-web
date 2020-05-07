@@ -38,7 +38,7 @@ const useStyles = makeStyles({
 })
 
 const Critters = ({
-  allCritters, type, show, isNorthern, showAllArray,
+  allCritters, type, showAll, isAvailable, show, isNorthern, showAllArray,
 }) => {
   const classes = useStyles()
   const [critters, setCritters] = useState(allCritters)
@@ -72,7 +72,7 @@ const Critters = ({
   const isNotObtained = () => true
 
   const filterCritters = () => {
-    if (arraysAreEqual(showAllArray, show)) {
+    if (showAll) {
       return allCritters
     }
     let filteredCritters = []

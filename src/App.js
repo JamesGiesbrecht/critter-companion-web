@@ -23,8 +23,8 @@ const App = () => {
 
   //  TODO: Availble Now || all, northern || southern, leaving this month,
   //  new this month, search, show ones not obtained
-  const showAllArray = []
-  const [show, setShow] = useState(showAllArray)
+  const [showAll, setShowAll] = useState('showAll')
+  const [show, setShow] = useState(['isNew', 'isLeaving', 'isObtained'])
   const [isNorthern, setIsNorthern] = useState(true)
 
   return (
@@ -35,25 +35,26 @@ const App = () => {
           theme={colorScheme}
           toggleTheme={toggleColorScheme}
           titleHeight={titleHeight}
+          showAll={showAll}
+          setShowAll={setShowAll}
           show={show}
           setShow={setShow}
           isNorthern={isNorthern}
           setIsNorthern={setIsNorthern}
-          showAllArray={showAllArray}
         />
         <Critters
           allCritters={bugsData}
           type="Bugs"
+          showAll={showAll}
           show={show}
           isNorthern={isNorthern}
-          showAllArray={showAllArray}
         />
         <Critters
           allCritters={fishData}
           type="Fish"
+          showAll={showAll}
           show={show}
           isNorthern={isNorthern}
-          showAllArray={showAllArray}
         />
       </Layout>
     </ThemeProvider>

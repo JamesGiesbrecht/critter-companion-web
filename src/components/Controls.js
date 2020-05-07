@@ -43,32 +43,25 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const Controls = ({
-  theme, toggleTheme, show, setShow, isNorthern, setIsNorthern, showAllArray,
+  theme, toggleTheme, showAll, setShowAll, show, setShow, isNorthern, setIsNorthern,
 }) => {
   const classes = useStyles()
-  const [showAll, setShowAll] = useState(false)
 
   const handleShowAllChange = (e, curShowAll) => {
-    if (curShowAll === false) {
-      setShow(showAllArray)
-    }
-  }
-
-  const handleShowChange = (e, newShow) => {
-    if (newShow.includes('isAvailable')) {
+    if (setShowAll) {
+      const newShow = show
       if (!newShow.includes('isNew')) newShow.push('isNew')
       if (!newShow.includes('isLeaving')) newShow.push('isLeaving')
+      setShow(newShow)
     }
-    setShow(newShow)
+    setShowAll(curShowAll)
   }
+
+  const handleShowChange = (e, newShow) => setShow(newShow)
 
   const handleThemeChange = (e, newTheme) => {
     if (newTheme !== theme && newTheme !== null) toggleTheme()
   }
-
-  useEffect(() => {
-    setShowAll(arraysAreEqual(showAllArray, show))
-  }, [show, showAll, showAllArray])
 
   return (
     <Paper classes={{ root: classes.controls }} elevation={3}>
@@ -94,14 +87,19 @@ const Controls = ({
         >
           {isNorthern ? 'Northern' : 'Southern'}
         </ToggleButton>
-        <ToggleButton
+        <ToggleButtonGroup
           value={showAll}
-          selected={showAll}
-          onChange={handleShowAllChange}
           size="small"
+          exclusive
+          onChange={handleShowAllChange}
         >
-          Show All
-        </ToggleButton>
+          <ToggleButton value="showAll">
+            Show All
+          </ToggleButton>
+          <ToggleButton value="isAvailable">
+            Available Now
+          </ToggleButton>
+        </ToggleButtonGroup>
       </div>
       <div className={classes.buttonGroup}>
         <ToggleButtonGroup
@@ -109,13 +107,10 @@ const Controls = ({
           onChange={handleShowChange}
           size="small"
         >
-          <ToggleButton value="isAvailable">
-            Available Now
-          </ToggleButton>
-          <ToggleButton value="isNew">
+          <ToggleButton value="isNew" disabled={showAll}>
             New
           </ToggleButton>
-          <ToggleButton value="isLeaving">
+          <ToggleButton value="isLeaving" disabled={showAll}>
             Leaving
           </ToggleButton>
           <ToggleButton value="isNotObtained">
