@@ -1,11 +1,11 @@
 import React from 'react'
 import {
-  TableContainer, Table, TableBody, TableRow, TableCell, makeStyles, useTheme,
+  Checkbox, TableContainer, Table, TableBody, TableRow, TableCell, makeStyles, useTheme,
 } from '@material-ui/core'
 import EnhancedTableHead from './EnhancedTableHead'
 import Months from './Months'
 
-const CrittersTable = ({ critters, isNorthern }) => {
+const CrittersTable = ({ critters, isNorthern, isObtained, handleObtainedCheck }) => {
   const theme = useTheme()
   const useStyles = makeStyles({
     tableWrapper: {
@@ -68,6 +68,14 @@ const CrittersTable = ({ critters, isNorthern }) => {
         </TableCell>
         <TableCell component="th" id={index} scope="critter" padding="none">
           {critter.name}
+        </TableCell>
+        <TableCell>
+          <Checkbox
+            checked={isObtained.includes(critter.name)}
+            onChange={() => handleObtainedCheck(critter.name)}
+            name={critter.name}
+            color="primary"
+          />
         </TableCell>
         <TableCell align="right">{critter.value}</TableCell>
         <TableCell align="right">{critter.location}</TableCell>
