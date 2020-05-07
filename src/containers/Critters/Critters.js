@@ -38,7 +38,7 @@ const useStyles = makeStyles({
 })
 
 const Critters = ({
-  allCritters, type, showAll, isAvailable, show, isNorthern, showAllArray,
+  allCritters, type, showAll, show, isNorthern,
 }) => {
   const classes = useStyles()
   const [critters, setCritters] = useState(allCritters)
@@ -72,18 +72,18 @@ const Critters = ({
   const isNotObtained = () => true
 
   const filterCritters = () => {
-    if (showAll) {
-      return allCritters
-    }
     let filteredCritters = []
 
-    if (show.includes('isAvailable')) {
+    if (showAll === 'showAll') {
+      // Add all critters
+      filteredCritters = allCritters
+    } else if (showAll === 'isAvailable') {
       // add critters that are available now
       filteredCritters = filteredCritters.concat(allCritters.filter((critter) => (
         isAvailableNow(getMonths(critter))
       )))
     } else {
-      //  If isAvailable is checked that would already include
+      //  If isAvailable or showAll are checked that would already include
       //  all new and leaving critters so we are skipping them
       if (show.includes('isNew')) {
         // add critters that are new
@@ -98,8 +98,9 @@ const Critters = ({
         )))
       }
     }
+
     if (show.includes('isNotObtained')) {
-      // add critters that are not obtained
+      // remove critters that are not obtained
       filteredCritters = filteredCritters.concat(allCritters.filter(() => (
         isNotObtained()
       )))
@@ -114,7 +115,7 @@ const Critters = ({
 
   useEffect(() => {
     setCritters(filterCritters())
-  }, [show])
+  }, [show, showAll, isNorthern])
 
   return (
     <Paper classes={{ root: classes.critters }} elevation={3}>
