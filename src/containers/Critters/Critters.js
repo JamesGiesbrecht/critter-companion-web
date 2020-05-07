@@ -70,7 +70,7 @@ const Critters = ({
 
   const isLeaving = (months) => isAvailableNow(months) && !hasNextMonth(months)
 
-  const isNotObtained = () => true
+  const isNotObtained = (critterName) => !obtainedCritters.includes(critterName)
 
   const filterCritters = () => {
     let filteredCritters = []
@@ -80,9 +80,7 @@ const Critters = ({
       filteredCritters = allCritters
     } else if (showAll === 'isAvailable') {
       // add critters that are available now
-      filteredCritters = filteredCritters.concat(allCritters.filter((critter) => (
-        isAvailableNow(getMonths(critter))
-      )))
+      filteredCritters = allCritters.filter((critter) => isAvailableNow(getMonths(critter)))
     } else {
       //  If isAvailable or showAll are checked that would already include
       //  all new and leaving critters so we are skipping them
@@ -102,9 +100,7 @@ const Critters = ({
 
     if (show.includes('isNotObtained')) {
       // remove critters that are not obtained
-      filteredCritters = filteredCritters.concat(allCritters.filter(() => (
-        isNotObtained()
-      )))
+      filteredCritters = filteredCritters.filter((critter) => isNotObtained(critter.name))
     }
     console.log(filteredCritters)
     return filteredCritters
