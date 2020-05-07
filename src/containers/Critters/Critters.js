@@ -1,10 +1,9 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   Collapse, Paper, makeStyles, Typography,
 } from '@material-ui/core'
 import { ExpandMoreRounded } from '@material-ui/icons'
 import CrittersTable from '../../components/Table/CrittersTable'
-import { arraysAreEqual } from '../../assets/utility'
 
 const useStyles = makeStyles({
   critters: {

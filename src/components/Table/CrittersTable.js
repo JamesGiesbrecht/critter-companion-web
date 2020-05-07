@@ -1,11 +1,13 @@
 import React from 'react'
 import {
-  Checkbox, TableContainer, Table, TableBody, TableRow, TableCell, makeStyles, useTheme,
+  TableContainer, Table, TableBody, makeStyles, useTheme,
 } from '@material-ui/core'
 import EnhancedTableHead from './EnhancedTableHead'
-import Months from './Months'
+import CritterRow from './CritterRow'
 
-const CrittersTable = ({ critters, isNorthern, isObtained, handleObtainedCheck }) => {
+const CrittersTable = ({
+  critters, isNorthern, obtainedCritters, setObtainedCritters,
+}) => {
   const theme = useTheme()
   const useStyles = makeStyles({
     tableWrapper: {
