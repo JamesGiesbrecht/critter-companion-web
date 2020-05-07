@@ -3,7 +3,7 @@ import {
   Collapse, Paper, makeStyles, Typography,
 } from '@material-ui/core'
 import { ExpandMoreRounded } from '@material-ui/icons'
-import CrittersTable from './Table/CrittersTable'
+import CrittersTable from './CrittersTable'
 
 const useStyles = makeStyles({
   critters: {
