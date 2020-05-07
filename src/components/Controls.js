@@ -107,10 +107,10 @@ const Controls = ({
           onChange={handleShowChange}
           size="small"
         >
-          <ToggleButton value="isNew" disabled={showAll}>
+          <ToggleButton value="isNew" disabled={showAll !== null}>
             New
           </ToggleButton>
-          <ToggleButton value="isLeaving" disabled={showAll}>
+          <ToggleButton value="isLeaving" disabled={showAll !== null}>
             Leaving
           </ToggleButton>
           <ToggleButton value="isNotObtained">
