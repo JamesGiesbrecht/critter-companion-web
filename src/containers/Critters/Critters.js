@@ -106,15 +106,6 @@ const Critters = ({
     return filteredCritters
   }
 
-  const handleObtainedCheck = (critterName) => {
-    const critterIndex = obtainedCritters.indexOf(critterName)
-    if (critterIndex > -1) {
-      setObtainedCritters((prevCritters) => prevCritters.splice(critterIndex, 1))
-    } else {
-      setObtainedCritters((prevCritters) => prevCritters.concat([critterName]))
-    }
-  }
-
   useEffect(() => {
     setRandomImg(allCritters[Math.floor(Math.random() * critters.length)].image_path)
   }, [setRandomImg])
@@ -149,8 +140,8 @@ const Critters = ({
         <CrittersTable
           critters={critters}
           isNorthern={isNorthern}
-          isObtained={obtainedCritters}
-          handleObtainedCheck={handleObtainedCheck}
+          obtainedCritters={obtainedCritters}
+          setObtainedCritters={setObtainedCritters}
         />
       </Collapse>
     </Paper>

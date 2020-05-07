@@ -55,33 +55,17 @@ const CrittersTable = ({ critters, isNorthern, isObtained, handleObtainedCheck }
     return `${amOrPM(startTime)} - ${amOrPM(endTime)}`
   }
 
-  const rows = critters.map((critter, index) => {
+  const rows = critters.map((critter) => {
     const hours = getHours(critter.start_time, critter.end_time)
     return (
-      <TableRow
-        hover
-        tabIndex={-1}
+      <CritterRow
         key={critter.name}
-      >
-        <TableCell classes={{ root: classes.critterImgCell }}>
-          <img className={classes.critterImg} src={critter.image_path} alt={critter.name} />
-        </TableCell>
-        <TableCell component="th" id={index} scope="critter" padding="none">
-          {critter.name}
-        </TableCell>
-        <TableCell>
-          <Checkbox
-            checked={isObtained.includes(critter.name)}
-            onChange={() => handleObtainedCheck(critter.name)}
-            name={critter.name}
-            color="primary"
-          />
-        </TableCell>
-        <TableCell align="right">{critter.value}</TableCell>
-        <TableCell align="right">{critter.location}</TableCell>
-        <TableCell align="right">{hours}</TableCell>
-        <TableCell align="right"><Months months={isNorthern ? critter.northern_months : critter.southern_months} /></TableCell>
-      </TableRow>
+        critter={critter}
+        obtainedCritters={obtainedCritters}
+        setObtainedCritters={setObtainedCritters}
+        isNorthern={isNorthern}
+        hours={hours}
+      />
     )
   })
 
