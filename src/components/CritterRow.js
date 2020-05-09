@@ -2,10 +2,8 @@ import React, { useState } from 'react'
 import {
   TableRow, TableCell, makeStyles, Typography,
 } from '@material-ui/core'
-import Months from './Months'
 import blathersLogo from '../assets/images/blathersLogo.svg'
-import AddCircle from '@material-ui/icons/AddCircle'
-import RemoveCircle from '@material-ui/icons/RemoveCircle'
+import Months from './Months'
 
 const useStyles = makeStyles((theme) => ({
   critterImgCell: {
@@ -18,30 +16,43 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
   },
-  blathers: {
-    height: '1.5em',
-    marginRight: '3px',
-    verticalAlign: 'top',
-    display: 'inline',
-    filter: `${theme.palette.type === 'dark' ? 'invert(100%)' : ''} opacity(20%)`,
+  nameWrapper: {
+    '& img': {
+      height: '1.5em',
+      marginRight: '3px',
+      verticalAlign: 'top',
+      display: 'inline',
+      filter: `${theme.palette.type === 'dark' ? 'invert(100%)' : ''} opacity(20%)`,
+    },
     '&:hover': {
-      filter: `${theme.palette.type === 'dark' ? 'invert(100%)' : ''} opacity(100%)`,
+      '& img': {
+        filter: `${theme.palette.type === 'dark' ? 'invert(100%)' : ''} opacity(100%)`,
+      },
     },
   },
   donated: {
-    filter: `${theme.palette.type === 'dark' ? 'invert(100%)' : ''} opacity(100%)`,
+    '& img': {
+      filter: `${theme.palette.type === 'dark' ? 'invert(100%)' : ''} opacity(100%)`,
+    },
   },
   name: {
     display: 'flex',
     alignItems: 'center',
     whiteSpace: 'nowrap',
   },
-  icons: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginLeft: '3px',
+  dot: {
+    height: '.75em',
+    width: '.75em',
+    backgroundColor: '#000',
+    borderRadius: '50%',
+    display: 'inline-block',
+    marginLeft: '5px',
+  },
+  new: {
+    backgroundColor: '#00D8C5',
+  },
+  leaving: {
+    backgroundColor: '#D16A7A',
   },
 }))
 
@@ -76,7 +87,7 @@ const CritterRow = ({
       <TableCell>
         <div className={classes.name}>
           <div
-            className={classes.nameWrapper}
+            className={[classes.nameWrapper, isDonated ? classes.donated : ''].join(' ')}
             onClick={() => handleObtainedCheck(critter.name)}
             onKeyPress={() => handleObtainedCheck(critter.name)}
             role="button"
@@ -84,15 +95,12 @@ const CritterRow = ({
           >
             <img
               src={blathersLogo}
-              className={[classes.blathers, isDonated ? classes.donated : ''].join(' ')}
               alt="Donated"
             />
             <Typography component="span" noWrap>{critter.name}</Typography>
           </div>
-          <div className={classes.icons}>
-            {critter.isNew && <AddCircle color="primary" />}
-            {critter.isLeaving && <RemoveCircle color="secondary" />}
-          </div>
+          {critter.isNew && <span className={[classes.dot, classes.new].join(' ')} /> }
+          {critter.isLeaving && <span className={[classes.dot, classes.leaving].join(' ')} />}
         </div>
       </TableCell>
       <TableCell align="right">{critter.value}</TableCell>
