@@ -1,31 +1,26 @@
 import React from 'react'
-import {
-  TableContainer, Table, TableBody, makeStyles, useTheme,
-} from '@material-ui/core'
+import { TableContainer, Table, TableBody, makeStyles } from '@material-ui/core'
 import EnhancedTableHead from './EnhancedTableHead'
 import CritterRow from './CritterRow'
 
-const CrittersTable = ({
-  critters, isNorthern, obtainedCritters, setObtainedCritters,
-}) => {
-  const theme = useTheme()
-  const useStyles = makeStyles({
-    tableWrapper: {
-      padding: '10px',
-    },
-    table: {
-      margin: '0 auto',
-      width: 'auto',
-      borderTop: `1px solid var(--border-${theme.palette.type})`,
-    },
-    critterImgCell: {
-      padding: '0 10px',
-    },
-    critterImg: {
-      width: '40px',
-    },
-  })
+const useStyles = makeStyles((theme) => ({
+  tableWrapper: {
+    padding: '10px',
+  },
+  table: {
+    margin: '0 auto',
+    width: 'auto',
+    borderTop: `1px solid var(--border-${theme.palette.type})`,
+  },
+  critterImgCell: {
+    padding: '0 10px',
+  },
+  critterImg: {
+    width: '40px',
+  },
+}))
 
+const CrittersTable = ({ critters, isNorthern, obtainedCritters, setObtainedCritters }) => {
   const classes = useStyles()
 
   const amOrPM = (hour) => {

@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {
-  Collapse, Paper, makeStyles, Typography,
-} from '@material-ui/core'
+import { Collapse, Paper, makeStyles, Typography } from '@material-ui/core'
 import { ExpandMoreRounded } from '@material-ui/icons'
 import CrittersTable from './CrittersTable'
 
@@ -36,9 +34,7 @@ const useStyles = makeStyles({
   },
 })
 
-const CritterSection = ({
-  allCritters, type, showAll, show, isNorthern,
-}) => {
+const CritterSection = ({ allCritters, type, showAll, show, isNorthern }) => {
   const classes = useStyles()
   const [expanded, setExpanded] = useState(true)
   const [randomImg, setRandomImg] = useState('')

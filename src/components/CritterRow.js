@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
-import {
-  TableRow, TableCell, makeStyles, Typography,
-} from '@material-ui/core'
+import { TableRow, TableCell, makeStyles, Typography } from '@material-ui/core'
 import blathersLogo from '../assets/images/blathersLogo.svg'
 import Months from './Months'
 
@@ -56,9 +54,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const CritterRow = ({
-  critter, obtainedCritters, setObtainedCritters, isNorthern, hours,
-}) => {
+const CritterRow = ({ critter, obtainedCritters, setObtainedCritters, isNorthern, hours }) => {
   const classes = useStyles()
   const [isDonated, setIsDonated] = useState(obtainedCritters.includes(critter.name))
 

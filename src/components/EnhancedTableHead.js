@@ -1,7 +1,5 @@
 import React from 'react'
-import {
-  TableHead, TableRow, TableCell, TableSortLabel,
-} from '@material-ui/core'
+import { TableHead, TableRow, TableCell, TableSortLabel } from '@material-ui/core'
 
 const headCells = [
   {
@@ -21,9 +19,7 @@ const headCells = [
   },
 ]
 
-const EnhancedTableHead = ({
-  classes, order, orderBy, numSelected, onRequestSort,
-}) => {
+const EnhancedTableHead = ({ classes, order, orderBy, onRequestSort }) => {
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property)
   }

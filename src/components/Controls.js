@@ -41,9 +41,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const Controls = ({
-  theme, toggleTheme, showAll, setShowAll, show, setShow, isNorthern, setIsNorthern,
-}) => {
+// eslint-disable-next-line max-len
+const Controls = ({ theme, toggleTheme, showAll, setShowAll, show, setShow, isNorthern, setIsNorthern }) => {
   const classes = useStyles()
 
   const handleShowAllChange = (e, curShowAll) => {
