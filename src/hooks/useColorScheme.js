@@ -9,7 +9,7 @@ import { useMediaQuery } from '@material-ui/core'
  */
 const useColorScheme = () => {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)')
-  const [theme, setTheme] = useState('light')
+  const [theme, setTheme] = useState('dark')
 
   const toggleTheme = () => {
     if (theme === 'light') {

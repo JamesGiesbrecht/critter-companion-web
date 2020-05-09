@@ -8,16 +8,19 @@ const headCells = [
     id: 'name', numeric: false, disablePadding: true, label: 'Name',
   },
   {
-    id: 'price', numeric: true, disablePadding: false, label: 'Price',
+    id: 'obtained', numeric: false, disablePadding: true, label: 'Obtained',
   },
   {
-    id: 'location', numeric: true, disablePadding: false, label: 'Location',
+    id: 'price', numeric: true, disablePadding: true, label: 'Price',
   },
   {
-    id: 'hours', numeric: true, disablePadding: false, label: 'Active Hours',
+    id: 'location', numeric: true, disablePadding: true, label: 'Location',
   },
   {
-    id: 'months', numeric: true, disablePadding: false, label: 'Active Months',
+    id: 'hours', numeric: true, disablePadding: true, label: 'Active Hours',
+  },
+  {
+    id: 'months', numeric: true, disablePadding: true, label: 'Active Months',
   },
 ]
 
@@ -36,7 +39,7 @@ const EnhancedTableHead = ({
           <TableCell
             key={headCell.id}
             align={headCell.numeric ? 'right' : 'left'}
-            padding={headCell.disablePadding ? 'none' : 'default'}
+            padding="none"
             sortDirection={orderBy === headCell.id ? order : false}
           >
             <TableSortLabel

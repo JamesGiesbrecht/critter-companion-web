@@ -40,7 +40,7 @@ const CritterSection = ({
   allCritters, type, showAll, show, isNorthern,
 }) => {
   const classes = useStyles()
-  const [expanded, setExpanded] = useState(false)
+  const [expanded, setExpanded] = useState(true)
   const [randomImg, setRandomImg] = useState('')
   const [critters, setCritters] = useState([])
   const [obtainedCritters, setObtainedCritters] = useState([])
