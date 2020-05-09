@@ -15,9 +15,10 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
   },
   nameWrapper: {
+    paddingLeft: '0',
     '& img': {
       height: '1.5em',
-      marginRight: '3px',
+      marginRight: '5px',
       verticalAlign: 'top',
       display: 'inline',
       filter: `${theme.palette.type === 'dark' ? 'invert(100%)' : ''} opacity(20%)`,
@@ -51,6 +52,14 @@ const useStyles = makeStyles((theme) => ({
   },
   leaving: {
     backgroundColor: theme.palette.error.light,
+  },
+  hours: {
+    boxSizing: 'content-box',
+    width: '85px',
+  },
+  months: {
+    boxSizing: 'content-box',
+    width: '180px',
   },
 }))
 
@@ -99,8 +108,8 @@ const CritterRow = ({ critter, obtainedCritters, setObtainedCritters, isNorthern
       </TableCell>
       <TableCell align="right">{critter.value}</TableCell>
       <TableCell align="right">{critter.location}</TableCell>
-      <TableCell align="right">{hours}</TableCell>
-      <TableCell align="right"><Months months={isNorthern ? critter.northern_months : critter.southern_months} /></TableCell>
+      <TableCell className={classes.hours} align="right">{hours}</TableCell>
+      <TableCell className={classes.months} align="right"><Months months={isNorthern ? critter.northern_months : critter.southern_months} /></TableCell>
     </TableRow>
   )
 }

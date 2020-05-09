@@ -13,6 +13,9 @@ const useStyles = makeStyles({
     top: 20,
     width: 1,
   },
+  headers: {
+    whiteSpace: 'nowrap',
+  },
 })
 
 const headCells = [
@@ -35,9 +38,10 @@ const EnhancedTableHead = ({ order, orderBy, onSortRequest }) => {
         <TableCell />
         {headCells.map((headCell) => (
           <TableCell
+            className={classes.headers}
             key={headCell.id}
             align={headCell.align}
-            padding="none"
+            padding="default"
             sortDirection={orderBy === headCell.id ? order : false}
           >
             {headCell.id !== 'months' ? (

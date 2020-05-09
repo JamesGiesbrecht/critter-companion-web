@@ -5,7 +5,7 @@ const useStyles = makeStyles((theme) => ({
   layout: {
     [theme.breakpoints.up('sm')]: {
       width: '90%',
-      maxWidth: '800px',
+      maxWidth: '1000px',
     },
     width: '98%',
     margin: '20px auto',
