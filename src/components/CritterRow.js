@@ -49,10 +49,10 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: '5px',
   },
   new: {
-    backgroundColor: '#00D8C5',
+    backgroundColor: theme.palette.success.light,
   },
   leaving: {
-    backgroundColor: '#D16A7A',
+    backgroundColor: theme.palette.error.light,
   },
 }))
 

@@ -75,6 +75,7 @@ const CrittersTable = ({
     <TableContainer className={classes.tableWrapper}>
       <Table
         className={classes.table}
+        size="small"
         aria-labelledby="tableTitle"
         aria-label="enhanced table"
       >
