@@ -4,6 +4,7 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 import useColorScheme from './hooks/useColorScheme'
 import Critters from './containers/Critters/Critters'
 import Layout from './containers/Layout/Layout'
+import ScreenSize from './components/ScreenSize'
 
 const App = () => {
   /* THEMING AND STYLES START */
@@ -21,6 +22,7 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
+      <ScreenSize />
       <Layout
         theme={colorScheme}
         toggleTheme={toggleColorScheme}
