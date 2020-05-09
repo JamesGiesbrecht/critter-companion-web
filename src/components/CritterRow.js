@@ -84,21 +84,19 @@ const CritterRow = ({
       <TableCell classes={{ root: classes.critterImgCell }}>
         <img className={classes.critterImg} src={critter.image_path} alt={critter.name} />
       </TableCell>
-      <TableCell>
+      <TableCell
+        className={[classes.nameWrapper, isDonated ? classes.donated : ''].join(' ')}
+        onClick={() => handleObtainedCheck(critter.name)}
+        onKeyPress={() => handleObtainedCheck(critter.name)}
+        role="button"
+        tabIndex={0}
+      >
         <div className={classes.name}>
-          <div
-            className={[classes.nameWrapper, isDonated ? classes.donated : ''].join(' ')}
-            onClick={() => handleObtainedCheck(critter.name)}
-            onKeyPress={() => handleObtainedCheck(critter.name)}
-            role="button"
-            tabIndex={0}
-          >
-            <img
-              src={blathersLogo}
-              alt="Donated"
-            />
-            <Typography component="span" noWrap>{critter.name}</Typography>
-          </div>
+          <img
+            src={blathersLogo}
+            alt="Donated"
+          />
+          <Typography component="span" noWrap>{critter.name}</Typography>
           {critter.isNew && <span className={[classes.dot, classes.new].join(' ')} /> }
           {critter.isLeaving && <span className={[classes.dot, classes.leaving].join(' ')} />}
         </div>
