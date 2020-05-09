@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import { Collapse, Paper, makeStyles, Typography } from '@material-ui/core'
 import { ExpandMoreRounded } from '@material-ui/icons'
 import CrittersTable from './CrittersTable'
@@ -41,9 +41,7 @@ const CritterSection = ({ allCritters, type, showAll, show, isNorthern }) => {
   const [critters, setCritters] = useState([])
   const [obtainedCritters, setObtainedCritters] = useState([])
 
-  const isNotObtained = (critterName) => !obtainedCritters.includes(critterName)
-
-  const filterCritters = () => {
+  const filterCritters = useCallback(() => {
     let filteredCritters = []
     if (showAll === 'showAll') {
       // Add all critters
@@ -70,19 +68,21 @@ const CritterSection = ({ allCritters, type, showAll, show, isNorthern }) => {
 
     if (show.includes('isNotObtained')) {
       // remove critters that are not obtained
-      filteredCritters = filteredCritters.filter((critter) => !critter.isObtained)
+      filteredCritters = filteredCritters.filter((critter) => (
+        !obtainedCritters.includes(critter.name)
+      ))
     }
     console.log(filteredCritters)
     return filteredCritters
-  }
+  }, [allCritters, obtainedCritters, show, showAll])
 
   useEffect(() => {
     setRandomImg(allCritters[Math.floor(Math.random() * allCritters.length)].image_path)
-  }, [setRandomImg])
+  }, [setRandomImg, allCritters])
 
   useEffect(() => {
     setCritters(filterCritters())
-  }, [show, showAll, isNorthern])
+  }, [show, showAll, isNorthern, filterCritters])
 
   return (
     <Paper classes={{ root: classes.critters }} elevation={3}>
