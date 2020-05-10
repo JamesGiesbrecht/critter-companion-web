@@ -39,7 +39,9 @@ const CritterSection = ({ allCritters, type, showAll, show, isNorthern }) => {
   const [expanded, setExpanded] = useState(true)
   const [randomImg, setRandomImg] = useState('')
   const [critters, setCritters] = useState([])
-  const [obtainedCritters, setObtainedCritters] = useState([])
+  const [obtainedCritters, setObtainedCritters] = useState(
+    localStorage.getItem('obtainedCritters') ? localStorage.getItem('obtainedCritters').split(',') : [],
+  )
 
   const filterCritters = useCallback(() => {
     let filteredCritters = []
@@ -72,17 +74,21 @@ const CritterSection = ({ allCritters, type, showAll, show, isNorthern }) => {
         !obtainedCritters.includes(critter.name)
       ))
     }
-    console.log(filteredCritters)
+
     return filteredCritters
-  }, [allCritters, obtainedCritters, show, showAll])
+  }, [allCritters, show, showAll, obtainedCritters])
 
   useEffect(() => {
     setRandomImg(allCritters[Math.floor(Math.random() * allCritters.length)].image_path)
-  }, [setRandomImg, allCritters])
+  }, [setRandomImg])
+
+  useEffect(() => {
+    localStorage.setItem('obtainedCritters', obtainedCritters)
+  }, [obtainedCritters])
 
   useEffect(() => {
     setCritters(filterCritters())
-  }, [show, showAll, isNorthern, filterCritters])
+  }, [filterCritters])
 
   return (
     <Paper classes={{ root: classes.critters }} elevation={3}>
