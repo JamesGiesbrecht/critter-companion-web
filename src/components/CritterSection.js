@@ -111,11 +111,11 @@ const CritterSection = ({ allCritters, type, showAll, show, isNorthern }) => {
 
   return (
     <Paper classes={{ root: classes.critters }} elevation={3}>
+      {/* eslint-disable-next-line jsx-a11y/interactive-supports-focus */}
       <div
         className={classes.headingWrapper}
         onClick={() => setExpanded((prevExpanded) => !prevExpanded)}
         role="button"
-        tabIndex={0}
         onKeyPress={() => setExpanded((prevExpanded) => !prevExpanded)}
       >
         <div className={classes.heading}>

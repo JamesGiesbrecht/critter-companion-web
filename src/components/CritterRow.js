@@ -85,7 +85,6 @@ const CritterRow = ({ critter, donatedCritters, setDonatedCritters, isNorthern, 
   return (
     <TableRow
       hover
-      tabIndex={-1}
       key={critter.name}
     >
       <TableCell classes={{ root: classes.critterImgCell }}>
@@ -96,7 +95,6 @@ const CritterRow = ({ critter, donatedCritters, setDonatedCritters, isNorthern, 
         onClick={() => handleDonatedCheck(critter.name)}
         onKeyPress={() => handleDonatedCheck(critter.name)}
         role="button"
-        tabIndex={0}
       >
         <div className={classes.name}>
           <img
