@@ -39,8 +39,8 @@ const CritterSection = ({ allCritters, type, showAll, show, isNorthern }) => {
   const [expanded, setExpanded] = useState(true)
   const [randomImg, setRandomImg] = useState('')
   const [critters, setCritters] = useState([])
-  const [obtainedCritters, setObtainedCritters] = useState(
-    localStorage.getItem('obtainedCritters') ? localStorage.getItem('obtainedCritters').split(',') : [],
+  const [donatedCritters, setDonatedCritters] = useState(
+    localStorage.getItem('donatedCritters') ? localStorage.getItem('donatedCritters').split(',') : [],
   )
 
   const filterCritters = useCallback(() => {
@@ -68,23 +68,23 @@ const CritterSection = ({ allCritters, type, showAll, show, isNorthern }) => {
       }
     }
 
-    if (show.includes('isNotObtained')) {
-      // remove critters that are not obtained
+    if (!show.includes('isDonated')) {
+      // remove critters that are not donated
       filteredCritters = filteredCritters.filter((critter) => (
-        !obtainedCritters.includes(critter.name)
+        !donatedCritters.includes(critter.name)
       ))
     }
 
     return filteredCritters
-  }, [allCritters, show, showAll, obtainedCritters])
+  }, [allCritters, show, showAll, donatedCritters])
 
   useEffect(() => {
     setRandomImg(allCritters[Math.floor(Math.random() * allCritters.length)].image_path)
   }, [setRandomImg])
 
   useEffect(() => {
-    localStorage.setItem('obtainedCritters', obtainedCritters)
-  }, [obtainedCritters])
+    localStorage.setItem('donatedCritters', donatedCritters)
+  }, [donatedCritters])
 
   useEffect(() => {
     setCritters(filterCritters())
@@ -116,8 +116,8 @@ const CritterSection = ({ allCritters, type, showAll, show, isNorthern }) => {
         <CrittersTable
           critters={critters}
           isNorthern={isNorthern}
-          obtainedCritters={obtainedCritters}
-          setObtainedCritters={setObtainedCritters}
+          donatedCritters={donatedCritters}
+          setDonatedCritters={setDonatedCritters}
         />
       </Collapse>
     </Paper>

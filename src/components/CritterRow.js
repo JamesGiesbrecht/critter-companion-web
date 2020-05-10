@@ -63,20 +63,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const CritterRow = ({ critter, obtainedCritters, setObtainedCritters, isNorthern, hours }) => {
+const CritterRow = ({ critter, donatedCritters, setDonatedCritters, isNorthern, hours }) => {
   const classes = useStyles()
-  const [isDonated, setIsDonated] = useState(obtainedCritters.includes(critter.name))
+  const [isDonated, setIsDonated] = useState(donatedCritters.includes(critter.name))
 
-  const handleObtainedCheck = (critterName) => {
-    const critterIndex = obtainedCritters.indexOf(critterName)
+  const handleDonatedCheck = (critterName) => {
+    const critterIndex = donatedCritters.indexOf(critterName)
     setIsDonated((prevChecked) => !prevChecked)
     if (critterIndex > -1) {
-      setObtainedCritters((prevCritters) => {
+      setDonatedCritters((prevCritters) => {
         prevCritters.splice(critterIndex, 1)
         return prevCritters
       })
     } else {
-      setObtainedCritters((prevCritters) => prevCritters.concat([critterName]))
+      setDonatedCritters((prevCritters) => prevCritters.concat([critterName]))
     }
   }
 
@@ -90,9 +90,9 @@ const CritterRow = ({ critter, obtainedCritters, setObtainedCritters, isNorthern
         <img className={classes.critterImg} src={critter.image_path} alt={critter.name} />
       </TableCell>
       <TableCell
-        className={[classes.nameWrapper, isDonated ? classes.donated : ''].join(' ')}
-        onClick={() => handleObtainedCheck(critter.name)}
-        onKeyPress={() => handleObtainedCheck(critter.name)}
+        className={[classes.nameWrapper, isDonated ? classes.donated : classes.notDonated].join(' ')}
+        onClick={() => handleDonatedCheck(critter.name)}
+        onKeyPress={() => handleDonatedCheck(critter.name)}
         role="button"
         tabIndex={0}
       >

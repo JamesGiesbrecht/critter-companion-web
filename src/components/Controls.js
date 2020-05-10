@@ -111,8 +111,8 @@ const Controls = ({ theme, toggleTheme, showAll, setShowAll, show, setShow, isNo
           <ToggleButton value="isLeaving" disabled={showAll !== null}>
             Leaving
           </ToggleButton>
-          <ToggleButton value="isNotObtained">
-            Not Obtained
+          <ToggleButton value="isDonated">
+            Donated
           </ToggleButton>
         </ToggleButtonGroup>
       </div>

@@ -46,7 +46,7 @@ const stableSort = (array, comparator) => {
   return stabilizedThis.map((el) => el[0])
 }
 
-const CrittersTable = ({ critters, isNorthern, obtainedCritters, setObtainedCritters }) => {
+const CrittersTable = ({ critters, isNorthern, donatedCritters, setDonatedCritters }) => {
   const classes = useStyles()
   const [order, setOrder] = useState('asc')
   const [orderBy, setOrderBy] = useState('name')
@@ -93,8 +93,8 @@ const CrittersTable = ({ critters, isNorthern, obtainedCritters, setObtainedCrit
         <CritterRow
           key={critter.name}
           critter={critter}
-          obtainedCritters={obtainedCritters}
-          setObtainedCritters={setObtainedCritters}
+          donatedCritters={donatedCritters}
+          setDonatedCritters={setDonatedCritters}
           isNorthern={isNorthern}
           hours={hours}
         />
