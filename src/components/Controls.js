@@ -25,19 +25,16 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   buttonGroup: {
+    width: '100%',
     display: 'flex',
     alignItems: 'center',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    width: '340px',
-    marginBottom: '15px',
-    justifyContent: 'center',
-  },
-  firstButtonGroup: {
     justifyContent: 'space-between',
-    [theme.breakpoints.down('sm')]: {
-      width: '318px',
-    },
+    flexWrap: 'wrap',
+    textAlign: 'center',
+  },
+  buttons: {
+    marginRight: '10px',
+    marginBottom: '10px',
   },
 }))
 
@@ -65,8 +62,9 @@ const Controls = ({ theme, toggleTheme, showAll, setShowAll, show, setShow, isNo
 
   return (
     <Paper classes={{ root: classes.controls }} elevation={3}>
-      <div className={[classes.buttonGroup, classes.firstButtonGroup].join(' ')}>
+      <div className={classes.buttonGroup}>
         <ToggleButtonGroup
+          className={classes.buttons}
           value={theme}
           size="small"
           exclusive
@@ -80,6 +78,7 @@ const Controls = ({ theme, toggleTheme, showAll, setShowAll, show, setShow, isNo
           </ToggleButton>
         </ToggleButtonGroup>
         <ToggleButton
+          className={classes.buttons}
           value={isNorthern}
           selected
           onChange={() => setIsNorthern((prevIsNorthern) => !prevIsNorthern)}
@@ -88,6 +87,7 @@ const Controls = ({ theme, toggleTheme, showAll, setShowAll, show, setShow, isNo
           {isNorthern ? 'Northern' : 'Southern'}
         </ToggleButton>
         <ToggleButtonGroup
+          className={classes.buttons}
           value={showAll}
           size="small"
           exclusive
@@ -103,9 +103,8 @@ const Controls = ({ theme, toggleTheme, showAll, setShowAll, show, setShow, isNo
             Custom
           </ToggleButton>
         </ToggleButtonGroup>
-      </div>
-      <div className={classes.buttonGroup}>
         <ToggleButtonGroup
+          className={classes.buttons}
           value={show}
           onChange={handleShowChange}
           size="small"
