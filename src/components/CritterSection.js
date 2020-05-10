@@ -34,7 +34,7 @@ const useStyles = makeStyles({
   },
 })
 
-const CritterSection = ({ allCritters, type, showAll, show, isNorthern }) => {
+const CritterSection = ({ allCritters, type, showAll, show, isNorthern, search }) => {
   const classes = useStyles()
   const [expanded, setExpanded] = useState(true)
   // eslint-disable-next-line max-len
@@ -47,6 +47,10 @@ const CritterSection = ({ allCritters, type, showAll, show, isNorthern }) => {
 
   const filterCritters = useCallback(() => {
     let filteredCritters = []
+    if (search) {
+      return allCritters.filter((critter) => critter.name.toLowerCase().search(search) !== -1)
+    }
+
     if (showAll === 'showAll') {
       // Add all critters
       filteredCritters = allCritters
@@ -78,7 +82,7 @@ const CritterSection = ({ allCritters, type, showAll, show, isNorthern }) => {
     }
 
     return filteredCritters
-  }, [allCritters, show, showAll, donatedCritters])
+  }, [allCritters, show, showAll, donatedCritters, search])
 
   useEffect(() => {
     localStorage.setItem('donatedCritters', donatedCritters)

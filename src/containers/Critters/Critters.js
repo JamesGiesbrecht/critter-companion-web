@@ -46,6 +46,40 @@ const Critters = ({ colorScheme, toggleColorScheme, titleHeight }) => {
     })
   )
 
+  const getTables = () => {
+    if (search === '') {
+      return (
+        <>
+          <CritterSection
+            allCritters={addProperties(bugsData)}
+            type="Bugs"
+            showAll={showAll}
+            show={show}
+            isNorthern={isNorthern}
+          />
+          <CritterSection
+            allCritters={addProperties(fishData)}
+            type="Fish"
+            showAll={showAll}
+            show={show}
+            isNorthern={isNorthern}
+          />
+        </>
+      )
+    }
+    return (
+      <CritterSection
+        allCritters={addProperties(bugsData).concat(addProperties(fishData))}
+        type="Search"
+        showAll={showAll}
+        show={show}
+        isNorthern={isNorthern}
+        search={search}
+      />
+    )
+  }
+  const tables = getTables()
+
   return (
     <>
       <Controls
@@ -61,22 +95,7 @@ const Critters = ({ colorScheme, toggleColorScheme, titleHeight }) => {
         search={search}
         setSearch={setSearch}
       />
-      <CritterSection
-        allCritters={addProperties(bugsData)}
-        type="Bugs"
-        showAll={showAll}
-        show={show}
-        isNorthern={isNorthern}
-        seach={search}
-      />
-      <CritterSection
-        allCritters={addProperties(fishData)}
-        type="Fish"
-        showAll={showAll}
-        show={show}
-        isNorthern={isNorthern}
-      />
-        seach={search}
+      {tables}
     </>
   )
 }

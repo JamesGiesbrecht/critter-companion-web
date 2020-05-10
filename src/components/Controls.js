@@ -168,7 +168,7 @@ const Controls = ({ theme, toggleTheme, showAll, setShowAll, show, setShow, isNo
             }}
             inputProps={{ 'aria-label': 'search' }}
             value={search}
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(e) => setSearch(e.target.value.toLowerCase())}
           />
           {clearIcon}
         </div>
