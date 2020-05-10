@@ -51,9 +51,17 @@ const useStyles = makeStyles((theme) => ({
   leaving: {
     backgroundColor: theme.palette.error.light,
   },
+  location: {
+    [theme.breakpoints.down('xs')]: {
+      ...hidden,
+    },
+  },
   hours: {
     boxSizing: 'content-box',
     width: '85px',
+    [theme.breakpoints.down('xs')]: {
+      ...hidden,
+    },
   },
   months: {
     boxSizing: 'content-box',
@@ -105,7 +113,7 @@ const CritterRow = ({ critter, donatedCritters, setDonatedCritters, isNorthern, 
         </div>
       </TableCell>
       <TableCell className={classes.cell} align="right">{critter.value}</TableCell>
-      <TableCell className={classes.cell} align="right">{critter.location}</TableCell>
+      <TableCell className={[classes.cell, classes.location].join(' ')} align="right">{critter.location}</TableCell>
       <TableCell className={[classes.hours, classes.cell].join(' ')} align="right">{hours}</TableCell>
       <TableCell className={[classes.months, classes.cell].join(' ')} align="right"><Months months={isNorthern ? critter.northern_months : critter.southern_months} /></TableCell>
     </TableRow>
