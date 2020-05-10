@@ -115,7 +115,7 @@ const CritterSection = ({ allCritters, type, showAll, show, isNorthern, search }
   if (isLoading) {
     content = <div className="loader" />
   } else if (critters.length === 0) {
-    content = `No ${type.toLowerCase()} to show`
+    content = isSearch ? 'No search results' : `No ${type.toLowerCase()} to show`
   } else {
     content = (
       <CrittersTable

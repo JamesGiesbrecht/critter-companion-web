@@ -59,9 +59,9 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
+    backgroundColor: fade(theme.palette.common[theme.palette.type === 'light' ? 'black' : 'white'], 0.15),
     '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
+      backgroundColor: fade(theme.palette.common[theme.palette.type === 'light' ? 'black' : 'white'], 0.20),
     },
     width: '100%',
     marginRight: '10px',
@@ -72,6 +72,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    color: theme.palette.type === 'light' ? fade(theme.palette.common.black, 0.54) : '#fff',
   },
   inputRoot: {
     color: 'inherit',
