@@ -5,6 +5,7 @@ import LightModeIcon from '@material-ui/icons/Brightness7'
 import DarkModeIcon from '@material-ui/icons/Brightness3'
 import SearchIcon from '@material-ui/icons/Search'
 import ClearIcon from '@material-ui/icons/ClearRounded'
+import { dot } from '../assets/cssClasses'
 
 const useStyles = makeStyles((theme) => ({
   controls: {
@@ -37,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     '& > *': {
       marginBottom: '10px',
     },
-    [theme.breakpoints.up('680')]: {
+    [theme.breakpoints.up('710')]: {
       alignItems: 'center',
       flexDirection: 'row',
       justifyContent: 'space-between',
@@ -82,6 +83,13 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(1, 0, 1, 0),
     transition: theme.transitions.create('width'),
     width: '100%',
+  },
+  dot,
+  new: {
+    backgroundColor: theme.palette.success.light,
+  },
+  leaving: {
+    backgroundColor: theme.palette.error.light,
   },
 }))
 
@@ -158,9 +166,11 @@ const Controls = ({ theme, toggleTheme, showAll, setShowAll, show, setShow, isNo
         >
           <ToggleButton value="isNew" disabled={showAll !== 'isCustom'}>
             New
+            <span className={[classes.dot, classes.new].join(' ')} />
           </ToggleButton>
           <ToggleButton value="isLeaving" disabled={showAll !== 'isCustom'}>
             Leaving
+            <span className={[classes.dot, classes.leaving].join(' ')} />
           </ToggleButton>
           <ToggleButton value="isDonated">
             Donated

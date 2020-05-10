@@ -1,22 +1,18 @@
 import React from 'react'
 import { TableHead, TableRow, TableCell, TableSortLabel, makeStyles } from '@material-ui/core'
+import { hidden } from '../assets/cssClasses'
 
-const useStyles = makeStyles({
-  visuallyHidden: {
-    border: 0,
-    clip: 'rect(0 0 0 0)',
-    height: 1,
-    margin: -1,
-    overflow: 'hidden',
-    padding: 0,
-    position: 'absolute',
-    top: 20,
-    width: 1,
-  },
+const useStyles = makeStyles((theme) => ({
+  hidden,
   headers: {
     whiteSpace: 'nowrap',
   },
-})
+  months: {
+    [theme.breakpoints.down('sm')]: {
+      ...hidden,
+    },
+  },
+}))
 
 const headCells = [
   { id: 'name', numeric: false, align: 'center', label: 'Name' },
@@ -38,7 +34,7 @@ const EnhancedTableHead = ({ order, orderBy, onSortRequest }) => {
         <TableCell />
         {headCells.map((headCell) => (
           <TableCell
-            className={classes.headers}
+            className={[classes.headers, headCell.id === 'months' ? classes.months : null].join(' ')}
             key={headCell.id}
             align={headCell.align}
             padding="default"
@@ -52,7 +48,7 @@ const EnhancedTableHead = ({ order, orderBy, onSortRequest }) => {
               >
                 {headCell.label}
                 {orderBy === headCell.id && (
-                  <span className={classes.visuallyHidden}>
+                  <span className={classes.hidden}>
                     {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
                   </span>
                 )}

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { TableRow, TableCell, makeStyles, Typography } from '@material-ui/core'
 import blathersLogo from '../assets/images/blathersLogo.svg'
 import Months from './Months'
+import { dot, hidden } from '../assets/cssClasses'
 
 const useStyles = makeStyles((theme) => ({
   critterImgCell: {
@@ -41,14 +42,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     whiteSpace: 'nowrap',
   },
-  dot: {
-    height: '.75em',
-    width: '.75em',
-    backgroundColor: '#000',
-    borderRadius: '50%',
-    display: 'inline-block',
-    marginLeft: '5px',
-  },
+  dot,
   new: {
     backgroundColor: theme.palette.success.light,
   },
@@ -62,6 +56,9 @@ const useStyles = makeStyles((theme) => ({
   months: {
     boxSizing: 'content-box',
     width: '180px',
+    [theme.breakpoints.down('sm')]: {
+      ...hidden,
+    },
   },
 }))
 
