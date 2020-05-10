@@ -3,7 +3,7 @@ import { makeStyles, Paper, Typography } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
   layout: {
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up('md')]: {
       width: '90%',
       maxWidth: '1000px',
     },

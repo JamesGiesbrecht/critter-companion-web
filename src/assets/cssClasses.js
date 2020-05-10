@@ -1,6 +1,6 @@
 export const dot = {
-  height: '10px',
-  width: '10px',
+  height: '.75em',
+  width: '.75em',
   backgroundColor: '#000',
   borderRadius: '50%',
   display: 'inline-block',

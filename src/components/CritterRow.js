@@ -5,6 +5,9 @@ import Months from './Months'
 import { dot, hidden } from '../assets/cssClasses'
 
 const useStyles = makeStyles((theme) => ({
+  cell: {
+    padding: '8px',
+  },
   critterImgCell: {
     padding: '0 10px',
   },
@@ -40,7 +43,6 @@ const useStyles = makeStyles((theme) => ({
   name: {
     display: 'flex',
     alignItems: 'center',
-    whiteSpace: 'nowrap',
   },
   dot,
   new: {
@@ -80,15 +82,12 @@ const CritterRow = ({ critter, donatedCritters, setDonatedCritters, isNorthern, 
   }
 
   return (
-    <TableRow
-      hover
-      key={critter.name}
-    >
-      <TableCell classes={{ root: classes.critterImgCell }}>
+    <TableRow hover>
+      <TableCell classesName={[classes.critterImgCell, classes.cell].join(' ')}>
         <img className={classes.critterImg} src={critter.image_path} alt={critter.name} />
       </TableCell>
       <TableCell
-        className={[classes.nameWrapper, isDonated ? classes.donated : classes.notDonated].join(' ')}
+        className={[classes.nameWrapper, classes.cell, isDonated ? classes.donated : classes.notDonated].join(' ')}
         onClick={() => handleDonatedCheck(critter.name)}
         onKeyPress={() => handleDonatedCheck(critter.name)}
         role="button"
@@ -98,15 +97,17 @@ const CritterRow = ({ critter, donatedCritters, setDonatedCritters, isNorthern, 
             src={blathersLogo}
             alt="Donated"
           />
-          <Typography component="span" noWrap>{critter.name}</Typography>
-          {critter.isNew && <span className={[classes.dot, classes.new].join(' ')} /> }
-          {critter.isLeaving && <span className={[classes.dot, classes.leaving].join(' ')} />}
+          <span>
+            <Typography component="span">{critter.name}</Typography>
+            {critter.isNew && <span className={[classes.dot, classes.new].join(' ')} /> }
+            {critter.isLeaving && <span className={[classes.dot, classes.leaving].join(' ')} />}
+          </span>
         </div>
       </TableCell>
-      <TableCell align="right">{critter.value}</TableCell>
-      <TableCell align="right">{critter.location}</TableCell>
-      <TableCell className={classes.hours} align="right">{hours}</TableCell>
-      <TableCell className={classes.months} align="right"><Months months={isNorthern ? critter.northern_months : critter.southern_months} /></TableCell>
+      <TableCell className={classes.cell} align="right">{critter.value}</TableCell>
+      <TableCell className={classes.cell} align="right">{critter.location}</TableCell>
+      <TableCell className={[classes.hours, classes.cell].join(' ')} align="right">{hours}</TableCell>
+      <TableCell className={[classes.months, classes.cell].join(' ')} align="right"><Months months={isNorthern ? critter.northern_months : critter.southern_months} /></TableCell>
     </TableRow>
   )
 }

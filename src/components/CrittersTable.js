@@ -103,12 +103,7 @@ const CrittersTable = ({ critters, isNorthern, donatedCritters, setDonatedCritte
 
   return (
     <TableContainer className={classes.tableWrapper}>
-      <Table
-        className={classes.table}
-        size="small"
-        aria-labelledby="tableTitle"
-        aria-label="enhanced table"
-      >
+      <Table className={classes.table}>
         <EnhancedTableHead
           order={order}
           orderBy={orderBy}
