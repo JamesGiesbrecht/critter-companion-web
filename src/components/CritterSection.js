@@ -37,7 +37,8 @@ const useStyles = makeStyles({
 const CritterSection = ({ allCritters, type, showAll, show, isNorthern }) => {
   const classes = useStyles()
   const [expanded, setExpanded] = useState(true)
-  const [randomImg, setRandomImg] = useState('')
+  // eslint-disable-next-line max-len
+  const [randomImg] = useState(allCritters[Math.floor(Math.random() * allCritters.length)].image_path)
   const [critters, setCritters] = useState([])
   const [donatedCritters, setDonatedCritters] = useState(
     localStorage.getItem('donatedCritters') ? localStorage.getItem('donatedCritters').split(',') : [],
@@ -78,10 +79,6 @@ const CritterSection = ({ allCritters, type, showAll, show, isNorthern }) => {
 
     return filteredCritters
   }, [allCritters, show, showAll, donatedCritters])
-
-  useEffect(() => {
-    setRandomImg(allCritters[Math.floor(Math.random() * allCritters.length)].image_path)
-  }, [setRandomImg])
 
   useEffect(() => {
     localStorage.setItem('donatedCritters', donatedCritters)
