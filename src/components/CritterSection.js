@@ -42,6 +42,7 @@ const CritterSection = ({ allCritters, type, showAll, show, isNorthern }) => {
   const [donatedCritters, setDonatedCritters] = useState(
     localStorage.getItem('donatedCritters') ? localStorage.getItem('donatedCritters').split(',') : [],
   )
+  const [isLoading, setIsLoading] = useState(true)
 
   const filterCritters = useCallback(() => {
     let filteredCritters = []
@@ -87,8 +88,26 @@ const CritterSection = ({ allCritters, type, showAll, show, isNorthern }) => {
   }, [donatedCritters])
 
   useEffect(() => {
+    setIsLoading(true)
     setCritters(filterCritters())
+    setIsLoading(false)
   }, [filterCritters])
+
+  let content
+  if (isLoading) {
+    content = <div className="loader" />
+  } else if (critters.length === 0) {
+    content = `No ${type.toLowerCase()} to show`
+  } else {
+    content = (
+      <CrittersTable
+        critters={critters}
+        isNorthern={isNorthern}
+        donatedCritters={donatedCritters}
+        setDonatedCritters={setDonatedCritters}
+      />
+    )
+  }
 
   return (
     <Paper classes={{ root: classes.critters }} elevation={3}>
@@ -113,12 +132,7 @@ const CritterSection = ({ allCritters, type, showAll, show, isNorthern }) => {
         />
       </div>
       <Collapse in={expanded}>
-        <CrittersTable
-          critters={critters}
-          isNorthern={isNorthern}
-          donatedCritters={donatedCritters}
-          setDonatedCritters={setDonatedCritters}
-        />
+        {content}
       </Collapse>
     </Paper>
   )
