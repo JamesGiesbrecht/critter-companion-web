@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import { Collapse, Paper, makeStyles, Typography } from '@material-ui/core'
 import { ExpandMoreRounded } from '@material-ui/icons'
+import SearchIcon from '@material-ui/icons/Search'
 import CrittersTable from './CrittersTable'
 
 const useStyles = makeStyles({
@@ -21,8 +22,13 @@ const useStyles = makeStyles({
     alignItems: 'center',
   },
   headingImg: {
-    width: '60px',
+    width: '55px',
     marginRight: '20px',
+  },
+  searchIcon: {
+    height: '40px',
+    width: '40px',
+    marginRight: '15px',
   },
   expandArrow: {
     transform: 'rotate(0deg)',
@@ -36,9 +42,20 @@ const useStyles = makeStyles({
 
 const CritterSection = ({ allCritters, type, showAll, show, isNorthern, search }) => {
   const classes = useStyles()
-  const [expanded, setExpanded] = useState(true)
+  const isSearch = search && search.length > 0
+  const [expanded, setExpanded] = useState(isSearch)
   // eslint-disable-next-line max-len
-  const [randomImg] = useState(allCritters[Math.floor(Math.random() * allCritters.length)].image_path)
+  const [randomImg] = useState(
+    isSearch
+      ? <SearchIcon className={classes.searchIcon} />
+      : (
+        <img
+          className={classes.headingImg}
+          src={allCritters[Math.floor(Math.random() * allCritters.length)].image_path}
+          alt={type}
+        />
+      ),
+  )
   const [critters, setCritters] = useState([])
   const [donatedCritters, setDonatedCritters] = useState(
     localStorage.getItem('donatedCritters') ? localStorage.getItem('donatedCritters').split(',') : [],
@@ -120,11 +137,7 @@ const CritterSection = ({ allCritters, type, showAll, show, isNorthern, search }
         onKeyPress={() => setExpanded((prevExpanded) => !prevExpanded)}
       >
         <div className={classes.heading}>
-          <img
-            className={classes.headingImg}
-            src={randomImg}
-            alt={type}
-          />
+          {randomImg}
           <Typography variant="h4">{type}</Typography>
         </div>
         <ExpandMoreRounded

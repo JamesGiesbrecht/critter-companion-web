@@ -23,17 +23,26 @@ const useStyles = makeStyles((theme) => ({
       paddingTop: '45px',
     },
   },
+  buttons: {
+    display: 'flex',
+    '& > *': {
+      flexGrow: '1',
+    },
+  },
   buttonGroup: {
     width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    '& > *': {
+      marginBottom: '10px',
+    },
     [theme.breakpoints.up('680')]: {
-      display: 'flex',
       alignItems: 'center',
+      flexDirection: 'row',
       justifyContent: 'space-between',
       flexWrap: 'wrap',
       textAlign: 'center',
-      '& > *': {
-        marginBottom: '10px',
-      },
       '& > *:not(:last-child)': {
         marginRight: '10px',
       },
@@ -124,6 +133,7 @@ const Controls = ({ theme, toggleTheme, showAll, setShowAll, show, setShow, isNo
           {isNorthern ? 'Northern' : 'Southern'}
         </ToggleButton>
         <ToggleButtonGroup
+          className={classes.buttons}
           value={showAll}
           size="small"
           exclusive
@@ -140,6 +150,7 @@ const Controls = ({ theme, toggleTheme, showAll, setShowAll, show, setShow, isNo
           </ToggleButton>
         </ToggleButtonGroup>
         <ToggleButtonGroup
+          className={classes.buttons}
           value={show}
           onChange={handleShowChange}
           size="small"
