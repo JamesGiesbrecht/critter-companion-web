@@ -46,13 +46,15 @@ const Controls = ({ theme, toggleTheme, showAll, setShowAll, show, setShow, isNo
   const classes = useStyles()
 
   const handleShowAllChange = (e, curShowAll) => {
-    if (setShowAll) {
+    if (curShowAll === null || curShowAll === 'isCustom') {
+      setShowAll('isCustom')
+    } else {
       const newShow = show
       if (!newShow.includes('isNew')) newShow.push('isNew')
       if (!newShow.includes('isLeaving')) newShow.push('isLeaving')
       setShow(newShow)
+      setShowAll(curShowAll)
     }
-    setShowAll(curShowAll)
   }
 
   const handleShowChange = (e, newShow) => setShow(newShow)
@@ -97,6 +99,9 @@ const Controls = ({ theme, toggleTheme, showAll, setShowAll, show, setShow, isNo
           <ToggleButton value="isAvailable">
             Available Now
           </ToggleButton>
+          <ToggleButton value="isCustom">
+            Custom
+          </ToggleButton>
         </ToggleButtonGroup>
       </div>
       <div className={classes.buttonGroup}>
@@ -105,10 +110,10 @@ const Controls = ({ theme, toggleTheme, showAll, setShowAll, show, setShow, isNo
           onChange={handleShowChange}
           size="small"
         >
-          <ToggleButton value="isNew" disabled={showAll !== null}>
+          <ToggleButton value="isNew" disabled={showAll !== 'isCustom'}>
             New
           </ToggleButton>
-          <ToggleButton value="isLeaving" disabled={showAll !== null}>
+          <ToggleButton value="isLeaving" disabled={showAll !== 'isCustom'}>
             Leaving
           </ToggleButton>
           <ToggleButton value="isDonated">
