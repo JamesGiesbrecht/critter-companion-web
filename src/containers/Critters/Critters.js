@@ -8,6 +8,7 @@ const Critters = ({ colorScheme, toggleColorScheme, titleHeight }) => {
   const [showAll, setShowAll] = useState('showAll')
   const [show, setShow] = useState(['isNew', 'isLeaving', 'isDonated'])
   const [isNorthern, setIsNorthern] = useState(true)
+  const [search, setSearch] = useState('')
   const today = new Date()
   const curMonth = today.getMonth() + 1
 
@@ -57,6 +58,8 @@ const Critters = ({ colorScheme, toggleColorScheme, titleHeight }) => {
         setShow={setShow}
         isNorthern={isNorthern}
         setIsNorthern={setIsNorthern}
+        search={search}
+        setSearch={setSearch}
       />
       <CritterSection
         allCritters={addProperties(bugsData)}
@@ -64,6 +67,7 @@ const Critters = ({ colorScheme, toggleColorScheme, titleHeight }) => {
         showAll={showAll}
         show={show}
         isNorthern={isNorthern}
+        seach={search}
       />
       <CritterSection
         allCritters={addProperties(fishData)}
@@ -72,6 +76,7 @@ const Critters = ({ colorScheme, toggleColorScheme, titleHeight }) => {
         show={show}
         isNorthern={isNorthern}
       />
+        seach={search}
     </>
   )
 }

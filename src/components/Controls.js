@@ -4,6 +4,7 @@ import { ToggleButtonGroup, ToggleButton } from '@material-ui/lab'
 import LightModeIcon from '@material-ui/icons/Brightness7'
 import DarkModeIcon from '@material-ui/icons/Brightness3'
 import SearchIcon from '@material-ui/icons/Search'
+import ClearIcon from '@material-ui/icons/ClearRounded'
 
 const useStyles = makeStyles((theme) => ({
   controls: {
@@ -44,6 +45,9 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
   },
   search: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
     backgroundColor: fade(theme.palette.common.white, 0.15),
@@ -53,33 +57,26 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     marginRight: '10px',
   },
-  searchIcon: {
-    padding: theme.spacing(0, 2),
+  searchIcons: {
+    padding: theme.spacing(0, 1),
     height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
   },
   inputRoot: {
     color: 'inherit',
-    display: 'inline',
+    width: '100%',
   },
   inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+    padding: theme.spacing(1, 0, 1, 0),
     transition: theme.transitions.create('width'),
     width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch',
-    },
   },
 }))
 
 // eslint-disable-next-line max-len
-const Controls = ({ theme, toggleTheme, showAll, setShowAll, show, setShow, isNorthern, setIsNorthern }) => {
+const Controls = ({ theme, toggleTheme, showAll, setShowAll, show, setShow, isNorthern, setIsNorthern, search, setSearch }) => {
   const classes = useStyles()
 
   const handleShowAllChange = (e, curShowAll) => {
@@ -98,6 +95,21 @@ const Controls = ({ theme, toggleTheme, showAll, setShowAll, show, setShow, isNo
 
   const handleThemeChange = (e, newTheme) => {
     if (newTheme !== theme && newTheme !== null) toggleTheme()
+  }
+
+  let clearIcon = null
+  if (search !== '') {
+    clearIcon = (
+      <div
+        className={classes.searchIcons}
+        onClick={() => setSearch('')}
+        onKeyPress={() => setSearch('')}
+        role="button"
+        tabIndex={0}
+      >
+        <ClearIcon />
+      </div>
+    )
   }
 
   return (
@@ -145,7 +157,7 @@ const Controls = ({ theme, toggleTheme, showAll, setShowAll, show, setShow, isNo
       </div>
       <div className={classes.searchRow}>
         <div className={classes.search}>
-          <div className={classes.searchIcon}>
+          <div className={classes.searchIcons}>
             <SearchIcon />
           </div>
           <InputBase
@@ -155,7 +167,10 @@ const Controls = ({ theme, toggleTheme, showAll, setShowAll, show, setShow, isNo
               input: classes.inputInput,
             }}
             inputProps={{ 'aria-label': 'search' }}
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
           />
+          {clearIcon}
         </div>
         <ToggleButtonGroup
           value={theme}
