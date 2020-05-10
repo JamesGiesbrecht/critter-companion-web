@@ -1,8 +1,9 @@
 import React from 'react'
-import { Paper, makeStyles } from '@material-ui/core'
+import { Paper, InputBase, makeStyles, fade } from '@material-ui/core'
 import { ToggleButtonGroup, ToggleButton } from '@material-ui/lab'
 import LightModeIcon from '@material-ui/icons/Brightness7'
 import DarkModeIcon from '@material-ui/icons/Brightness3'
+import SearchIcon from '@material-ui/icons/Search'
 
 const useStyles = makeStyles((theme) => ({
   controls: {
@@ -17,24 +18,63 @@ const useStyles = makeStyles((theme) => ({
       paddingTop: '40px',
     },
     [theme.breakpoints.up('md')]: {
-      display: 'flex',
-      flexDirection: 'row',
-      justifyContent: 'space-around',
       marginTop: '-30px',
       paddingTop: '45px',
     },
   },
   buttonGroup: {
     width: '100%',
+    [theme.breakpoints.up('680')]: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      flexWrap: 'wrap',
+      textAlign: 'center',
+      '& > *': {
+        marginBottom: '10px',
+      },
+      '& > *:not(:last-child)': {
+        marginRight: '10px',
+      },
+    },
+  },
+  searchRow: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  search: {
+    position: 'relative',
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: fade(theme.palette.common.white, 0.15),
+    '&:hover': {
+      backgroundColor: fade(theme.palette.common.white, 0.25),
+    },
+    width: '100%',
+    marginRight: '10px',
+  },
+  searchIcon: {
+    padding: theme.spacing(0, 2),
+    height: '100%',
+    position: 'absolute',
+    pointerEvents: 'none',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    flexWrap: 'wrap',
-    textAlign: 'center',
+    justifyContent: 'center',
   },
-  buttons: {
-    marginRight: '10px',
-    marginBottom: '10px',
+  inputRoot: {
+    color: 'inherit',
+    display: 'inline',
+  },
+  inputInput: {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('md')]: {
+      width: '20ch',
+    },
   },
 }))
 
@@ -63,22 +103,7 @@ const Controls = ({ theme, toggleTheme, showAll, setShowAll, show, setShow, isNo
   return (
     <Paper classes={{ root: classes.controls }} elevation={3}>
       <div className={classes.buttonGroup}>
-        <ToggleButtonGroup
-          className={classes.buttons}
-          value={theme}
-          size="small"
-          exclusive
-          onChange={handleThemeChange}
-        >
-          <ToggleButton value="light">
-            <LightModeIcon />
-          </ToggleButton>
-          <ToggleButton value="dark">
-            <DarkModeIcon />
-          </ToggleButton>
-        </ToggleButtonGroup>
         <ToggleButton
-          className={classes.buttons}
           value={isNorthern}
           selected
           onChange={() => setIsNorthern((prevIsNorthern) => !prevIsNorthern)}
@@ -87,7 +112,6 @@ const Controls = ({ theme, toggleTheme, showAll, setShowAll, show, setShow, isNo
           {isNorthern ? 'Northern' : 'Southern'}
         </ToggleButton>
         <ToggleButtonGroup
-          className={classes.buttons}
           value={showAll}
           size="small"
           exclusive
@@ -104,7 +128,6 @@ const Controls = ({ theme, toggleTheme, showAll, setShowAll, show, setShow, isNo
           </ToggleButton>
         </ToggleButtonGroup>
         <ToggleButtonGroup
-          className={classes.buttons}
           value={show}
           onChange={handleShowChange}
           size="small"
@@ -117,6 +140,34 @@ const Controls = ({ theme, toggleTheme, showAll, setShowAll, show, setShow, isNo
           </ToggleButton>
           <ToggleButton value="isDonated">
             Donated
+          </ToggleButton>
+        </ToggleButtonGroup>
+      </div>
+      <div className={classes.searchRow}>
+        <div className={classes.search}>
+          <div className={classes.searchIcon}>
+            <SearchIcon />
+          </div>
+          <InputBase
+            placeholder="Search…"
+            classes={{
+              root: classes.inputRoot,
+              input: classes.inputInput,
+            }}
+            inputProps={{ 'aria-label': 'search' }}
+          />
+        </div>
+        <ToggleButtonGroup
+          value={theme}
+          size="small"
+          exclusive
+          onChange={handleThemeChange}
+        >
+          <ToggleButton value="light">
+            <LightModeIcon />
+          </ToggleButton>
+          <ToggleButton value="dark">
+            <DarkModeIcon />
           </ToggleButton>
         </ToggleButtonGroup>
       </div>
