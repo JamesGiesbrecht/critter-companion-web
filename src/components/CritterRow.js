@@ -95,12 +95,15 @@ const CritterRow = ({ critter, donatedCritters, setDonatedCritters, isNorthern, 
         <img className={classes.critterImg} src={critter.image_path} alt={critter.name} />
       </TableCell>
       <TableCell
-        className={[classes.nameWrapper, classes.cell, isDonated ? classes.donated : classes.notDonated].join(' ')}
-        onClick={() => handleDonatedCheck(critter.name)}
-        onKeyPress={() => handleDonatedCheck(critter.name)}
-        role="button"
+        className={[classes.nameWrapper, classes.cell].join(' ')}
       >
-        <div className={classes.name}>
+        {/* eslint-disable-next-line jsx-a11y/interactive-supports-focus */}
+        <div
+          className={[classes.name, isDonated ? classes.donated : classes.notDonated].join(' ')}
+          onClick={() => handleDonatedCheck(critter.name)}
+          onKeyPress={() => handleDonatedCheck(critter.name)}
+          role="button"
+        >
           <img
             src={blathersLogo}
             alt="Donated"
