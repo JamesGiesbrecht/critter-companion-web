@@ -31,6 +31,9 @@ const useStyles = makeStyles((theme) => ({
       lineHeight: '60px',
     },
   },
+  footer: {
+    height: '60px',
+  },
 }))
 
 const Layout = ({ children }) => {
@@ -42,6 +45,7 @@ const Layout = ({ children }) => {
         <Typography classes={{ h3: classes.title }} variant="h3">ACNH: Critter Companion</Typography>
       </Paper>
       {children}
+      <footer className={classes.footer} />
     </div>
   )
 }

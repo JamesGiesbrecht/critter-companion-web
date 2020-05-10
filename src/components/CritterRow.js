@@ -23,9 +23,11 @@ const useStyles = makeStyles((theme) => ({
       display: 'inline',
       filter: `${theme.palette.type === 'dark' ? 'invert(100%)' : ''} opacity(20%)`,
     },
+  },
+  notDonated: {
     '&:hover': {
       '& img': {
-        filter: `${theme.palette.type === 'dark' ? 'invert(100%)' : ''} opacity(100%)`,
+        filter: `${theme.palette.type === 'dark' ? 'invert(100%)' : ''} opacity(50%)`,
       },
     },
   },
