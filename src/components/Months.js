@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   green: {
-    backgroundColor: theme.palette.success.light,
+    backgroundColor: theme.palette.success[theme.palette.type === 'light' ? 'main' : 'light'],
     color: theme.palette.background.paper,
   },
 }))
