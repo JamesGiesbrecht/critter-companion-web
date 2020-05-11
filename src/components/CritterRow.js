@@ -159,6 +159,9 @@ const CritterRow = ({ critter, donatedCritters, setDonatedCritters, isNorthern, 
         handleModalClose={handleModalClose}
         parentClasses={classes}
         isDonated={isDonated}
+        handleDonatedCheck={handleDonatedCheck}
+        isNorthern={isNorthern}
+        hours={hours}
       />
     </TableRow>
   )

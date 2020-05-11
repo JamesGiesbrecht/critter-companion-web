@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const Months = ({ months }) => {
+const Months = ({ months, className }) => {
   const allMonths = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
   const classes = useStyles()
   const chips = allMonths.map((month, index) => {
@@ -28,7 +28,7 @@ const Months = ({ months }) => {
     const color = isActive ? { color: 'primary' } : { disabled: true }
     return (
       <Chip
-        className={classes.chip}
+        className={[classes.chip, className || null].join(' ')}
         classes={{ colorPrimary: classes.green }}
         key={month}
         size="small"
