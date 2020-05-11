@@ -1,5 +1,6 @@
 import React from 'react'
 import { makeStyles, Paper, Typography } from '@material-ui/core'
+import Footer from '../../components/Footer'
 
 const useStyles = makeStyles((theme) => ({
   layout: {
@@ -8,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
       maxWidth: '1000px',
     },
     width: '98%',
-    margin: '20px auto',
+    margin: '20px auto 0 auto',
     textAlign: 'center',
   },
   title: {
@@ -31,8 +32,8 @@ const useStyles = makeStyles((theme) => ({
       lineHeight: '60px',
     },
   },
-  footer: {
-    height: '60px',
+  footerMargin: {
+    height: '20px',
   },
 }))
 
@@ -45,7 +46,8 @@ const Layout = ({ children }) => {
         <Typography classes={{ h3: classes.title }} variant="h3">ACNH: Critter Companion</Typography>
       </Paper>
       {children}
-      <footer className={classes.footer} />
+      <Footer />
+      <footer className={classes.footerMargin} />
     </div>
   )
 }
