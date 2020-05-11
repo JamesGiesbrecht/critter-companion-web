@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { TableRow, TableCell, makeStyles, Typography } from '@material-ui/core'
+import CritterInfo from './CritterInfo'
 import blathersLogo from '../assets/images/blathersLogo.svg'
 import Months from './Months'
 import { dot, hidden } from '../assets/cssClasses'
@@ -75,6 +76,18 @@ const useStyles = makeStyles((theme) => ({
 const CritterRow = ({ critter, donatedCritters, setDonatedCritters, isNorthern, hours }) => {
   const classes = useStyles()
   const [isDonated, setIsDonated] = useState(donatedCritters.includes(critter.name))
+  const [modalOpen, setModalOpen] = useState(false)
+
+  const handleModalOpen = (e) => {
+    if (e.target.dataset.name === 'name') return
+    setModalOpen(true)
+  }
+
+  const handleModalClose = () => {
+    window.setTimeout(() => {
+      setModalOpen(false)
+    }, 100)
+  }
 
   const handleDonatedCheck = (critterName) => {
     const critterIndex = donatedCritters.indexOf(critterName)
@@ -90,8 +103,12 @@ const CritterRow = ({ critter, donatedCritters, setDonatedCritters, isNorthern, 
   }
 
   return (
-    <TableRow hover>
-      <TableCell classesName={[classes.critterImgCell, classes.cell].join(' ')}>
+    <TableRow
+      hover
+      type="button"
+      onClick={(e) => handleModalOpen(e)}
+    >
+      <TableCell className={[classes.critterImgCell, classes.cell].join(' ')}>
         <img className={classes.critterImg} src={critter.image_path} alt={critter.name} />
       </TableCell>
       <TableCell
@@ -103,22 +120,40 @@ const CritterRow = ({ critter, donatedCritters, setDonatedCritters, isNorthern, 
           onClick={() => handleDonatedCheck(critter.name)}
           onKeyPress={() => handleDonatedCheck(critter.name)}
           role="button"
+          data-name="name"
         >
           <img
             src={blathersLogo}
             alt="Donated"
+            data-name="name"
           />
-          <span>
-            <Typography component="span">{critter.name}</Typography>
+          <Typography
+            component="span"
+            data-name="name"
+          >
+            {critter.name}
             {critter.isNew && <span className={[classes.dot, classes.new].join(' ')} /> }
             {critter.isLeaving && <span className={[classes.dot, classes.leaving].join(' ')} />}
-          </span>
+          </Typography>
         </div>
       </TableCell>
-      <TableCell className={classes.cell} align="right">{critter.value}</TableCell>
-      <TableCell className={[classes.cell, classes.location].join(' ')} align="right">{critter.location}</TableCell>
-      <TableCell className={[classes.hours, classes.cell].join(' ')} align="right">{hours}</TableCell>
-      <TableCell className={[classes.months, classes.cell].join(' ')} align="right"><Months months={isNorthern ? critter.northern_months : critter.southern_months} /></TableCell>
+      <TableCell className={classes.cell} align="right">
+        {critter.value}
+      </TableCell>
+      <TableCell className={[classes.cell, classes.location].join(' ')} align="right">
+        {critter.location}
+      </TableCell>
+      <TableCell className={[classes.hours, classes.cell].join(' ')} align="right">
+        {hours}
+      </TableCell>
+      <TableCell className={[classes.months, classes.cell].join(' ')} align="right">
+        <Months months={isNorthern ? critter.northern_months : critter.southern_months} />
+      </TableCell>
+      <CritterInfo
+        critter={critter}
+        modalOpen={modalOpen}
+        handleModalClose={handleModalClose}
+      />
     </TableRow>
   )
 }
