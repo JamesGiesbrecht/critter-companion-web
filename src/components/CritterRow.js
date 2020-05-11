@@ -26,6 +26,10 @@ const useStyles = makeStyles((theme) => ({
       marginRight: '5px',
       verticalAlign: 'top',
       display: 'inline',
+    },
+  },
+  blathers: {
+    '& img': {
       filter: `${theme.palette.type === 'dark' ? 'invert(100%)' : ''} opacity(20%)`,
     },
   },
@@ -116,7 +120,7 @@ const CritterRow = ({ critter, donatedCritters, setDonatedCritters, isNorthern, 
       >
         {/* eslint-disable-next-line jsx-a11y/interactive-supports-focus */}
         <div
-          className={[classes.name, isDonated ? classes.donated : classes.notDonated].join(' ')}
+          className={[classes.name, classes.blathers, isDonated ? classes.donated : classes.notDonated].join(' ')}
           onClick={() => handleDonatedCheck(critter.name)}
           onKeyPress={() => handleDonatedCheck(critter.name)}
           role="button"
@@ -153,6 +157,8 @@ const CritterRow = ({ critter, donatedCritters, setDonatedCritters, isNorthern, 
         critter={critter}
         modalOpen={modalOpen}
         handleModalClose={handleModalClose}
+        parentClasses={classes}
+        isDonated={isDonated}
       />
     </TableRow>
   )

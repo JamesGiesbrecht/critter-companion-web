@@ -1,6 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { Card, Modal } from '@material-ui/core'
+import { Card, Modal, Avatar, CardHeader } from '@material-ui/core'
+import blathersLogo from '../assets/images/blathersLogo.svg'
 
 const useStyles = makeStyles({
   critterInfo: {
@@ -13,9 +14,13 @@ const useStyles = makeStyles({
     height: '200px',
     width: '200px',
   },
+  blathers: {
+    height: '1.2em',
+    width: '1.2em',
+  },
 })
 
-export default function CritterInfo({ critter, modalOpen, handleModalClose }) {
+const CritterInfo = ({ critter, modalOpen, handleModalClose, parentClasses, isDonated }) => {
   const classes = useStyles()
 
   return (
@@ -26,9 +31,14 @@ export default function CritterInfo({ critter, modalOpen, handleModalClose }) {
       onClose={handleModalClose}
     >
       <Card
-        className={classes.critterInfo}
+        className={[classes.critterInfo].join(' ')}
         aria-labelledby={critter.name}
       >
+        <CardHeader
+          className={[parentClasses.name, isDonated ? parentClasses.donated : parentClasses.notDonated].join(' ')}
+          avatar={<Avatar className={[classes.blathers, parentClasses.blathers].join(' ')} src={blathersLogo} />}
+          title={critter.name}
+        />
         <div
           aria-describedby={`${critter.name} Details`}
         >
@@ -38,3 +48,5 @@ export default function CritterInfo({ critter, modalOpen, handleModalClose }) {
     </Modal>
   )
 }
+
+export default CritterInfo
