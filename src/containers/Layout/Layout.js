@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   footerMargin: {
-    height: '20px',
+    height: '10px',
   },
 }))
 
