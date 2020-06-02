@@ -33,6 +33,8 @@ const Critters = ({ colorScheme, toggleColorScheme, titleHeight }) => {
 
   const isLeaving = (months) => isAvailableNow(months) && !hasNextMonth(months)
 
+  const isIncoming = (months) => !isAvailableNow(months) && hasNextMonth(months)
+
   const addProperties = (critters) => (
     critters.map((critter) => {
       const critterMonths = getMonths(critter)
@@ -41,6 +43,7 @@ const Critters = ({ colorScheme, toggleColorScheme, titleHeight }) => {
         isAvailableNow: isAvailableNow(critterMonths),
         isNew: isNew(critterMonths),
         isLeaving: isLeaving(critterMonths),
+        isIncoming: isIncoming(critterMonths),
         isDonated: false,
       }
     })
