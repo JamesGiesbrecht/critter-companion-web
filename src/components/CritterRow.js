@@ -56,6 +56,9 @@ const useStyles = makeStyles((theme) => ({
   leaving: {
     backgroundColor: theme.palette.error.light,
   },
+  incoming: {
+    backgroundColor: theme.palette.info.light,
+  },
   location: {
     [theme.breakpoints.down('xs')]: {
       ...hidden,
@@ -138,6 +141,7 @@ const CritterRow = ({ critter, donatedCritters, setDonatedCritters, isNorthern, 
             {critter.name}
             {critter.isNew && <span className={[classes.dot, classes.new].join(' ')} /> }
             {critter.isLeaving && <span className={[classes.dot, classes.leaving].join(' ')} />}
+            {critter.isIncoming && <span className={[classes.dot, classes.incoming].join(' ')} />}
           </Typography>
         </div>
       </TableCell>

@@ -3,6 +3,7 @@ import { Collapse, Paper, makeStyles, Typography } from '@material-ui/core'
 import { ExpandMoreRounded } from '@material-ui/icons'
 import SearchIcon from '@material-ui/icons/Search'
 import CrittersTable from './CrittersTable'
+import { removeItem } from '../assets/utility'
 
 const useStyles = makeStyles({
   critters: {
@@ -74,21 +75,13 @@ const CritterSection = ({ allCritters, type, showAll, show, isNorthern, search }
     } else if (showAll === 'isAvailable') {
       // add critters that are available now
       filteredCritters = allCritters.filter((critter) => critter.isAvailableNow)
-    } else if (show.includes('isNew') && show.includes('isLeaving')) {
-      filteredCritters = allCritters.filter((critter) => critter.isNew || critter.isLeaving)
     } else {
-      if (show.includes('isNew')) {
-        // add critters that are new
-        filteredCritters = filteredCritters.concat(allCritters.filter((critter) => (
-          critter.isNew
-        )))
-      }
-      if (show.includes('isLeaving')) {
-        // add critters that are leaving
-        filteredCritters = filteredCritters.concat(allCritters.filter((critter) => (
-          critter.isLeaving
-        )))
-      }
+      //  Checking if any of the conditions in show are true properties on the critter
+      const tempShow = removeItem(show, 'isDonated')
+
+      filteredCritters = allCritters.filter((critter) => (
+        tempShow.some((condition) => critter[condition])
+      ))
     }
 
     if (!show.includes('isDonated')) {

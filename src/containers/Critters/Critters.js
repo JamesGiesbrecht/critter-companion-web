@@ -6,7 +6,7 @@ import fishData from '../../assets/data/fish.json'
 
 const Critters = ({ colorScheme, toggleColorScheme, titleHeight }) => {
   const [showAll, setShowAll] = useState('showAll')
-  const [show, setShow] = useState(['isNew', 'isLeaving', 'isDonated'])
+  const [show, setShow] = useState(['isNew', 'isLeaving', 'isIncoming', 'isDonated'])
   const [isNorthern, setIsNorthern] = useState(true)
   const [search, setSearch] = useState('')
   const today = new Date()
@@ -33,6 +33,8 @@ const Critters = ({ colorScheme, toggleColorScheme, titleHeight }) => {
 
   const isLeaving = (months) => isAvailableNow(months) && !hasNextMonth(months)
 
+  const isIncoming = (months) => !isAvailableNow(months) && hasNextMonth(months)
+
   const addProperties = (critters) => (
     critters.map((critter) => {
       const critterMonths = getMonths(critter)
@@ -41,6 +43,7 @@ const Critters = ({ colorScheme, toggleColorScheme, titleHeight }) => {
         isAvailableNow: isAvailableNow(critterMonths),
         isNew: isNew(critterMonths),
         isLeaving: isLeaving(critterMonths),
+        isIncoming: isIncoming(critterMonths),
         isDonated: false,
       }
     })

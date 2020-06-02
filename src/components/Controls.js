@@ -6,6 +6,7 @@ import DarkModeIcon from '@material-ui/icons/Brightness3'
 import SearchIcon from '@material-ui/icons/Search'
 import ClearIcon from '@material-ui/icons/ClearRounded'
 import { dot } from '../assets/cssClasses'
+import { removeItem } from '../assets/utility'
 
 const useStyles = makeStyles((theme) => ({
   controls: {
@@ -38,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
     '& > *': {
       marginBottom: '10px',
     },
-    [theme.breakpoints.up('710')]: {
+    [theme.breakpoints.up('md')]: {
       alignItems: 'center',
       flexDirection: 'row',
       justifyContent: 'space-between',
@@ -91,6 +92,9 @@ const useStyles = makeStyles((theme) => ({
   leaving: {
     backgroundColor: theme.palette.error.light,
   },
+  incoming: {
+    backgroundColor: theme.palette.info.light,
+  },
 }))
 
 // eslint-disable-next-line max-len
@@ -101,9 +105,14 @@ const Controls = ({ theme, toggleTheme, showAll, setShowAll, show, setShow, isNo
     if (curShowAll === null || curShowAll === 'isCustom') {
       setShowAll('isCustom')
     } else {
-      const newShow = show
+      let newShow = show
       if (!newShow.includes('isNew')) newShow.push('isNew')
       if (!newShow.includes('isLeaving')) newShow.push('isLeaving')
+      if (curShowAll === 'showAll') {
+        if (!newShow.includes('isIncoming')) newShow.push('isIncoming')
+      } else if (curShowAll === 'isAvailable') {
+        if (newShow.includes('isIncoming')) newShow = removeItem(newShow, 'isIncoming')
+      }
       setShow(newShow)
       setShowAll(curShowAll)
     }
@@ -171,6 +180,10 @@ const Controls = ({ theme, toggleTheme, showAll, setShowAll, show, setShow, isNo
           <ToggleButton value="isLeaving" disabled={showAll !== 'isCustom'}>
             Leaving
             <span className={[classes.dot, classes.leaving].join(' ')} />
+          </ToggleButton>
+          <ToggleButton value="isIncoming" disabled={showAll !== 'isCustom'}>
+            Incoming
+            <span className={[classes.dot, classes.incoming].join(' ')} />
           </ToggleButton>
           <ToggleButton value="isDonated">
             Donated
