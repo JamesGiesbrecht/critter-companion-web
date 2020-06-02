@@ -91,6 +91,9 @@ const useStyles = makeStyles((theme) => ({
   leaving: {
     backgroundColor: theme.palette.error.light,
   },
+  incoming: {
+    backgroundColor: theme.palette.info.light,
+  },
 }))
 
 // eslint-disable-next-line max-len
@@ -171,6 +174,10 @@ const Controls = ({ theme, toggleTheme, showAll, setShowAll, show, setShow, isNo
           <ToggleButton value="isLeaving" disabled={showAll !== 'isCustom'}>
             Leaving
             <span className={[classes.dot, classes.leaving].join(' ')} />
+          </ToggleButton>
+          <ToggleButton value="isIncoming" disabled={showAll !== 'isCustom'}>
+            Incoming
+            <span className={[classes.dot, classes.incoming].join(' ')} />
           </ToggleButton>
           <ToggleButton value="isDonated">
             Donated

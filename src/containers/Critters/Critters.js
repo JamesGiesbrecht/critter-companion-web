@@ -6,7 +6,7 @@ import fishData from '../../assets/data/fish.json'
 
 const Critters = ({ colorScheme, toggleColorScheme, titleHeight }) => {
   const [showAll, setShowAll] = useState('showAll')
-  const [show, setShow] = useState(['isNew', 'isLeaving', 'isDonated'])
+  const [show, setShow] = useState(['isNew', 'isLeaving', 'isIncoming', 'isDonated'])
   const [isNorthern, setIsNorthern] = useState(true)
   const [search, setSearch] = useState('')
   const today = new Date()
