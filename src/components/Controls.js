@@ -6,6 +6,7 @@ import DarkModeIcon from '@material-ui/icons/Brightness3'
 import SearchIcon from '@material-ui/icons/Search'
 import ClearIcon from '@material-ui/icons/ClearRounded'
 import { dot } from '../assets/cssClasses'
+import { removeItem } from '../assets/utility'
 
 const useStyles = makeStyles((theme) => ({
   controls: {
@@ -104,9 +105,14 @@ const Controls = ({ theme, toggleTheme, showAll, setShowAll, show, setShow, isNo
     if (curShowAll === null || curShowAll === 'isCustom') {
       setShowAll('isCustom')
     } else {
-      const newShow = show
+      let newShow = show
       if (!newShow.includes('isNew')) newShow.push('isNew')
       if (!newShow.includes('isLeaving')) newShow.push('isLeaving')
+      if (curShowAll === 'showAll') {
+        if (!newShow.includes('isIncoming')) newShow.push('isIncoming')
+      } else if (curShowAll === 'isAvailable') {
+        if (newShow.includes('isIncoming')) newShow = removeItem(newShow, 'isIncoming')
+      }
       setShow(newShow)
       setShowAll(curShowAll)
     }
