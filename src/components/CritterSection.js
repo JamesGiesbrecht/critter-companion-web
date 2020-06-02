@@ -74,21 +74,15 @@ const CritterSection = ({ allCritters, type, showAll, show, isNorthern, search }
     } else if (showAll === 'isAvailable') {
       // add critters that are available now
       filteredCritters = allCritters.filter((critter) => critter.isAvailableNow)
-    } else if (show.includes('isNew') && show.includes('isLeaving')) {
-      filteredCritters = allCritters.filter((critter) => critter.isNew || critter.isLeaving)
     } else {
-      if (show.includes('isNew')) {
-        // add critters that are new
-        filteredCritters = filteredCritters.concat(allCritters.filter((critter) => (
-          critter.isNew
-        )))
-      }
-      if (show.includes('isLeaving')) {
-        // add critters that are leaving
-        filteredCritters = filteredCritters.concat(allCritters.filter((critter) => (
-          critter.isLeaving
-        )))
-      }
+      //  Checking if any of the conditions in show are true properties on the critter
+      const tempShow = [...show]
+      const donatedIndex = tempShow.indexOf('isDonated')
+      if (donatedIndex > -1) tempShow.splice(donatedIndex, 1)
+
+      filteredCritters = allCritters.filter((critter) => (
+        tempShow.some((condition) => critter[condition])
+      ))
     }
 
     if (!show.includes('isDonated')) {
