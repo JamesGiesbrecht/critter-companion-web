@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     '& > *': {
       marginBottom: '10px',
     },
-    [theme.breakpoints.up('710')]: {
+    [theme.breakpoints.up('md')]: {
       alignItems: 'center',
       flexDirection: 'row',
       justifyContent: 'space-between',
