@@ -77,7 +77,7 @@ const CritterSection = ({ allCritters, type, showAll, show, isNorthern, search }
       filteredCritters = allCritters.filter((critter) => critter.isAvailableNow)
     } else {
       //  Checking if any of the conditions in show are true properties on the critter
-      const tempShow = removeItem(show, 'isDonated')
+      const tempShow = removeItem([...show], 'isDonated')
 
       filteredCritters = allCritters.filter((critter) => (
         tempShow.some((condition) => critter[condition])
