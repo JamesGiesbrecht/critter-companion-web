@@ -33,21 +33,18 @@ const headCells = [
   { id: 'months', numeric: false, align: 'right', label: 'Active Months' },
 ]
 
-const EnhancedTableHead = ({ order, orderBy, onSortRequest }) => {
+const EnhancedTableHead = ({ order, orderBy, onSortRequest, isFish }) => {
   const classes = useStyles()
   const createSortHandler = (property) => (event) => {
     onSortRequest(event, property)
   }
 
-  const headers = headCells.map((headCell) => (
-    <TableCell
-      className={[classes.headers, classes[headCell.id]].join(' ')}
-      key={headCell.id}
-      align={headCell.align}
-      padding="default"
-      sortDirection={orderBy === headCell.id ? order : false}
-    >
-      {headCell.id !== 'months' ? (
+  const headers = headCells.map((headCell) => {
+    let label
+    if (headCell.id === 'months') {
+      label = headCell.label
+    } else {
+      label = (
         <TableSortLabel
           active={orderBy === headCell.id}
           direction={orderBy === headCell.id ? order : 'asc'}
@@ -60,9 +57,25 @@ const EnhancedTableHead = ({ order, orderBy, onSortRequest }) => {
             </span>
           )}
         </TableSortLabel>
-      ) : headCell.label}
-    </TableCell>
-  ))
+      )
+    }
+
+    return (
+      headCell.id !== 'size' || isFish
+        ? (
+          <TableCell
+            className={[classes.headers, classes[headCell.id]].join(' ')}
+            key={headCell.id}
+            align={headCell.align}
+            padding="default"
+            sortDirection={orderBy === headCell.id ? order : false}
+          >
+            {label}
+          </TableCell>
+        )
+        : null
+    )
+  })
 
 
   return (

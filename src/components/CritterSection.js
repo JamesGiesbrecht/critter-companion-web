@@ -116,6 +116,7 @@ const CritterSection = ({ allCritters, type, showAll, show, isNorthern, search }
         isNorthern={isNorthern}
         donatedCritters={donatedCritters}
         setDonatedCritters={setDonatedCritters}
+        isFish={type === 'Fish'}
       />
     )
   }

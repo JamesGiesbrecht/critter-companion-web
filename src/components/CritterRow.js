@@ -89,6 +89,7 @@ const sizes = {
   6: 'Huge',
 }
 
+// eslint-disable-next-line max-len
 const CritterRow = ({ critter, donatedCritters, setDonatedCritters, isNorthern, hours, isFish }) => {
   const classes = useStyles()
   const [isDonated, setIsDonated] = useState(donatedCritters.includes(critter.name))
