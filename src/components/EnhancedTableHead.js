@@ -28,6 +28,7 @@ const headCells = [
   { id: 'name', numeric: false, align: 'center', label: 'Name' },
   { id: 'value', numeric: true, align: 'right', label: 'Price' },
   { id: 'location', numeric: false, align: 'right', label: 'Location' },
+  { id: 'size', numeric: true, align: 'right', label: 'Size' },
   { id: 'start_time', numeric: false, align: 'right', label: 'Active Hours' },
   { id: 'months', numeric: false, align: 'right', label: 'Active Months' },
 ]

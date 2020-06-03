@@ -80,7 +80,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const CritterRow = ({ critter, donatedCritters, setDonatedCritters, isNorthern, hours }) => {
+const sizes = {
+  1: 'Tiny',
+  2: 'Small',
+  3: 'Medium',
+  4: 'Large',
+  5: 'x-Large',
+  6: 'Huge',
+}
+
+const CritterRow = ({ critter, donatedCritters, setDonatedCritters, isNorthern, hours, isFish }) => {
   const classes = useStyles()
   const [isDonated, setIsDonated] = useState(donatedCritters.includes(critter.name))
   const [modalOpen, setModalOpen] = useState(false)
@@ -108,6 +117,14 @@ const CritterRow = ({ critter, donatedCritters, setDonatedCritters, isNorthern, 
       setDonatedCritters((prevCritters) => prevCritters.concat([critterName]))
     }
   }
+
+  const size = isFish
+    ? (
+      <TableCell className={[classes.cell].join(' ')} align="right">
+        {sizes[critter.size] || critter.size}
+      </TableCell>
+    )
+    : null
 
   return (
     <TableRow
@@ -151,6 +168,7 @@ const CritterRow = ({ critter, donatedCritters, setDonatedCritters, isNorthern, 
       <TableCell className={[classes.cell, classes.location].join(' ')} align="right">
         {critter.location}
       </TableCell>
+      {size}
       <TableCell className={[classes.hours, classes.cell].join(' ')} align="right">
         {hours}
       </TableCell>
