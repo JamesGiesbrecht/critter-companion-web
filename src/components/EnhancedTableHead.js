@@ -8,9 +8,6 @@ const headCells = [
     id: 'name', numeric: false, disablePadding: true, label: 'Name',
   },
   {
-    id: 'obtained', numeric: false, disablePadding: true, label: 'Obtained',
-  },
-  {
     id: 'price', numeric: true, disablePadding: true, label: 'Price',
   },
   {

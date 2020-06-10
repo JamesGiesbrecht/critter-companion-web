@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {
-  TableRow, TableCell, Checkbox, makeStyles,
+  TableRow, TableCell, makeStyles, Typography,
 } from '@material-ui/core'
 import Months from './Months'
 import blathersLogo from '../assets/images/blathersLogo.svg'
@@ -18,11 +18,11 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
   },
-  icons: {
-    display: 'block',
-  },
   blathers: {
     height: '1.5em',
+    marginRight: '3px',
+    verticalAlign: 'top',
+    display: 'inline',
     filter: `${theme.palette.type === 'dark' ? 'invert(100%)' : ''} opacity(20%)`,
     '&:hover': {
       filter: `${theme.palette.type === 'dark' ? 'invert(100%)' : ''} opacity(100%)`,
@@ -33,8 +33,15 @@ const useStyles = makeStyles((theme) => ({
   },
   name: {
     display: 'flex',
-    flexDirection: 'row',
     alignItems: 'center',
+    whiteSpace: 'nowrap',
+  },
+  icons: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: '3px',
   },
 }))
 
@@ -42,11 +49,11 @@ const CritterRow = ({
   critter, obtainedCritters, setObtainedCritters, isNorthern, hours,
 }) => {
   const classes = useStyles()
-  const [isChecked, setIsChecked] = useState(obtainedCritters.includes(critter.name))
+  const [isDonated, setIsDonated] = useState(obtainedCritters.includes(critter.name))
 
   const handleObtainedCheck = (critterName) => {
     const critterIndex = obtainedCritters.indexOf(critterName)
-    setIsChecked((prevChecked) => !prevChecked)
+    setIsDonated((prevChecked) => !prevChecked)
     if (critterIndex > -1) {
       setObtainedCritters((prevCritters) => {
         prevCritters.splice(critterIndex, 1)
@@ -66,21 +73,27 @@ const CritterRow = ({
       <TableCell classes={{ root: classes.critterImgCell }}>
         <img className={classes.critterImg} src={critter.image_path} alt={critter.name} />
       </TableCell>
-      <TableCell classname={classes.name}>
-        {critter.name}
-        <img src={blathersLogo} className={[classes.blathers, isChecked ? classes.donated : ''].join(' ')} alt="Donated" />
-        <div className={classes.newLeavingIcons}>
-          {critter.isNew && <AddCircle color="primary" />}
-          {critter.isLeaving && <RemoveCircle color="secondary" />}
-        </div>
-      </TableCell>
       <TableCell>
-        <Checkbox
-          checked={isChecked}
-          onChange={() => handleObtainedCheck(critter.name)}
-          name={critter.name}
-          color="primary"
-        />
+        <div className={classes.name}>
+          <div
+            className={classes.nameWrapper}
+            onClick={() => handleObtainedCheck(critter.name)}
+            onKeyPress={() => handleObtainedCheck(critter.name)}
+            role="button"
+            tabIndex={0}
+          >
+            <img
+              src={blathersLogo}
+              className={[classes.blathers, isDonated ? classes.donated : ''].join(' ')}
+              alt="Donated"
+            />
+            <Typography component="span" noWrap>{critter.name}</Typography>
+          </div>
+          <div className={classes.icons}>
+            {critter.isNew && <AddCircle color="primary" />}
+            {critter.isLeaving && <RemoveCircle color="secondary" />}
+          </div>
+        </div>
       </TableCell>
       <TableCell align="right">{critter.value}</TableCell>
       <TableCell align="right">{critter.location}</TableCell>
