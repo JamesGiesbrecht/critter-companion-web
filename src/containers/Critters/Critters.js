@@ -3,6 +3,7 @@ import Controls from '../../components/Controls'
 import CritterSection from '../../components/CritterSection'
 import bugsData from '../../assets/data/bugs.json'
 import fishData from '../../assets/data/fish.json'
+import seaData from '../../assets/data/sea.json'
 
 const Critters = ({ colorScheme, toggleColorScheme, titleHeight }) => {
   const [showAll, setShowAll] = useState('showAll')
@@ -63,6 +64,13 @@ const Critters = ({ colorScheme, toggleColorScheme, titleHeight }) => {
           <CritterSection
             allCritters={addProperties(fishData)}
             type="Fish"
+            showAll={showAll}
+            show={show}
+            isNorthern={isNorthern}
+          />
+          <CritterSection
+            allCritters={addProperties(seaData)}
+            type="Sea Creatures"
             showAll={showAll}
             show={show}
             isNorthern={isNorthern}
