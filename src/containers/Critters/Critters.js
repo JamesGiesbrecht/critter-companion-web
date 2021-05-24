@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Controls from '../../components/Controls'
 import CritterSection from '../../components/CritterSection'
 import bugsData from '../../assets/data/bugs.json'

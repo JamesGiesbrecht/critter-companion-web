@@ -1,4 +1,3 @@
-import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Card, Modal, Avatar, CardHeader, CardContent, Typography } from '@material-ui/core'
 import blathersLogo from '../assets/images/blathersLogo.svg'

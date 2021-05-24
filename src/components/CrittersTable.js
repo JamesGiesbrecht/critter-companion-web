@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { TableContainer, Table, TableBody, makeStyles } from '@material-ui/core'
 import EnhancedTableHead from './EnhancedTableHead'
 import CritterRow from './CritterRow'

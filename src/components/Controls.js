@@ -1,5 +1,4 @@
-import React from 'react'
-import { Paper, InputBase, ToggleButtonGroup, ToggleButton, makeStyles, fade } from '@material-ui/core'
+import { Paper, InputBase, ToggleButtonGroup, ToggleButton, makeStyles } from '@material-ui/core'
 import LightModeIcon from '@material-ui/icons/Brightness7'
 import DarkModeIcon from '@material-ui/icons/Brightness3'
 import SearchIcon from '@material-ui/icons/Search'
@@ -61,9 +60,13 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common[theme.palette.type === 'light' ? 'black' : 'white'], 0.15),
+    backgroundColor: `rgba(${
+      theme.palette.common[theme.palette.type === 'light' ? '0, 0, 0' : '255, 255, 255']
+    }, 0.15)`,
     '&:hover': {
-      backgroundColor: fade(theme.palette.common[theme.palette.type === 'light' ? 'black' : 'white'], 0.20),
+      backgroundColor: `rgba(${
+        theme.palette.common[theme.palette.type === 'light' ? '0, 0, 0' : '255, 255, 255']
+      }, 0.2)`,
     },
     width: '100%',
     marginRight: '10px',
@@ -74,7 +77,9 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    color: theme.palette.type === 'light' ? fade(theme.palette.common.black, 0.54) : '#fff',
+    color: `rgba(${
+      theme.palette.common[theme.palette.type === 'light' ? '0, 0, 0' : '255, 255, 255']
+    }, 0.54)`,
   },
   inputRoot: {
     color: 'inherit',

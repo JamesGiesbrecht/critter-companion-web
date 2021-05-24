@@ -1,4 +1,3 @@
-import React from 'react'
 import { makeStyles, Paper, Typography } from '@material-ui/core'
 import Footer from '../../components/Footer'
 

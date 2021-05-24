@@ -1,4 +1,3 @@
-import React from 'react'
 import { Paper, Tooltip, Button, Link, makeStyles } from '@material-ui/core'
 
 const useStyles = makeStyles({

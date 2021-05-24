@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { TableRow, TableCell, makeStyles, Typography } from '@material-ui/core'
 import CritterInfo from './CritterInfo'
 import blathersLogo from '../assets/images/blathersLogo.svg'

@@ -1,4 +1,3 @@
-import React from 'react'
 import { TableHead, TableRow, TableCell, TableSortLabel, makeStyles } from '@material-ui/core'
 import { hidden } from '../assets/cssClasses'
 

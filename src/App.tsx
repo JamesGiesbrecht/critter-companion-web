@@ -7,11 +7,14 @@ import { useColorScheme } from 'context/Theme'
 
 const App = () => {
   const { colorScheme } = useColorScheme()
-  const routes = Routes.map((route) => (
-    <Route key={route.path} exact={route.exact} path={route.path}>
-      {route.component}
-    </Route>
-  ))
+  const routes = Routes.map((route) => {
+    const Page = route.component
+    return (
+      <Route key={route.path} exact={route.exact || false} path={route.path}>
+        <Page />
+      </Route>
+    )
+  })
 
   const theme = getTheme(colorScheme)
 
