@@ -28,7 +28,7 @@ module.exports = {
     semi: ['error', 'never'],
     'react/prop-types': 'off',
     'no-case-declarations': 'off',
-    'react/jsx-filename-extension': ['warn', { extensions: ['.tsx'] }],
+    'react/jsx-filename-extension': ['warn', { extensions: ['.jsx', '.tsx'] }],
     'react/jsx-props-no-spreading': 'off',
     'react/no-unescaped-entities': 'off',
     'react/react-in-jsx-scope': 'off',

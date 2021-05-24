@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import Controls from '../../components/Controls'
-import CritterSection from '../../components/CritterSection'
+import Controls from '../Controls'
+import CritterSection from '../CritterSection'
 import bugsData from '../../assets/data/bugs.json'
 import fishData from '../../assets/data/fish.json'
 import seaData from '../../assets/data/sea.json'
