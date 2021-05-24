@@ -1,29 +1,18 @@
-import { Home as HomeIcon, Info as InfoIcon } from '@material-ui/icons'
-import About from 'components/pages/About'
-import Home from 'components/pages/Home'
-import PageNotFound from 'components/pages/PageNotFound'
+import { FC } from 'react'
+import Critters from 'containers/Critters/Critters'
 
-export default [
-  {
-    path: '/',
-    component: Home,
-    exact: true,
-    nav: {
-      label: 'Home',
-      icon: HomeIcon,
-    },
-  },
-  {
-    path: '/about',
-    component: About,
-    nav: {
-      label: 'About',
-      icon: InfoIcon,
-    },
-  },
+interface Route {
+  path: string
+  component: FC<any>
+  exact?: boolean
+}
+
+export const routes: Route[] = [
   // 404 route, must be last
   {
     path: '*',
-    component: PageNotFound,
+    component: Critters,
   },
 ]
+
+export default routes

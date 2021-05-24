@@ -5,7 +5,7 @@ import bugsData from '../../assets/data/bugs.json'
 import fishData from '../../assets/data/fish.json'
 import seaData from '../../assets/data/sea.json'
 
-const Critters = ({ colorScheme, toggleColorScheme, titleHeight }) => {
+const Critters = () => {
   const [showAll, setShowAll] = useState('showAll')
   const [show, setShow] = useState(['isNew', 'isLeaving', 'isIncoming', 'isDonated'])
   const [isNorthern, setIsNorthern] = useState(true)
@@ -94,9 +94,6 @@ const Critters = ({ colorScheme, toggleColorScheme, titleHeight }) => {
   return (
     <>
       <Controls
-        theme={colorScheme}
-        toggleTheme={toggleColorScheme}
-        titleHeight={titleHeight}
         showAll={showAll}
         setShowAll={setShowAll}
         show={show}

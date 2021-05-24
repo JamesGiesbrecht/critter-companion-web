@@ -1,10 +1,10 @@
 import React from 'react'
-import { Paper, InputBase, makeStyles, fade } from '@material-ui/core'
-import { ToggleButtonGroup, ToggleButton } from '@material-ui/lab'
+import { Paper, InputBase, ToggleButtonGroup, ToggleButton, makeStyles, fade } from '@material-ui/core'
 import LightModeIcon from '@material-ui/icons/Brightness7'
 import DarkModeIcon from '@material-ui/icons/Brightness3'
 import SearchIcon from '@material-ui/icons/Search'
 import ClearIcon from '@material-ui/icons/ClearRounded'
+import { useColorScheme } from 'context/Theme'
 import { dot } from '../assets/cssClasses'
 import { removeItem } from '../assets/utility'
 
@@ -98,8 +98,9 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 // eslint-disable-next-line max-len
-const Controls = ({ theme, toggleTheme, showAll, setShowAll, show, setShow, isNorthern, setIsNorthern, search, setSearch }) => {
+const Controls = ({ showAll, setShowAll, show, setShow, isNorthern, setIsNorthern, search, setSearch }) => {
   const classes = useStyles()
+  const { colorScheme, toggleColorScheme } = useColorScheme()
 
   const handleShowAllChange = (e, curShowAll) => {
     if (curShowAll === null || curShowAll === 'isCustom') {
@@ -121,7 +122,7 @@ const Controls = ({ theme, toggleTheme, showAll, setShowAll, show, setShow, isNo
   const handleShowChange = (e, newShow) => setShow(newShow)
 
   const handleThemeChange = (e, newTheme) => {
-    if (newTheme !== theme && newTheme !== null) toggleTheme()
+    if (newTheme !== colorScheme && newTheme !== null) toggleColorScheme()
   }
 
   let clearIcon = null
@@ -208,7 +209,7 @@ const Controls = ({ theme, toggleTheme, showAll, setShowAll, show, setShow, isNo
           {clearIcon}
         </div>
         <ToggleButtonGroup
-          value={theme}
+          value={colorScheme}
           size="small"
           exclusive
           onChange={handleThemeChange}

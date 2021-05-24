@@ -1,6 +1,6 @@
 import { ThemeProvider, CssBaseline, StyledEngineProvider } from '@material-ui/core'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import Layout from 'components/layout/Layout'
+import Layout from 'containers/Layout/Layout'
 import getTheme from 'styles/theme'
 import Routes from 'constants/Routes'
 import { useColorScheme } from 'context/Theme'
