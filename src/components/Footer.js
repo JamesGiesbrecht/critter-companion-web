@@ -16,7 +16,9 @@ const Footer = () => {
   const classes = useStyles()
   const tooltipText = [
     'If you liked using my site please ',
-    <Link href="https://www.paypal.me/JamesGiesbrecht" className={classes.link}>consider buying me a coffee</Link>,
+    <Link href="https://www.paypal.me/JamesGiesbrecht" className={classes.link}>
+      consider buying me a coffee
+    </Link>,
     ' :)',
   ]
 

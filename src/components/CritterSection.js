@@ -47,19 +47,21 @@ const CritterSection = ({ allCritters, type, showAll, show, isNorthern, search }
   const [expanded, setExpanded] = useState(isSearch)
   // eslint-disable-next-line max-len
   const [randomImg] = useState(
-    isSearch
-      ? <SearchIcon className={classes.searchIcon} />
-      : (
-        <img
-          className={classes.headingImg}
-          src={allCritters[Math.floor(Math.random() * allCritters.length)].image_path}
-          alt={type}
-        />
-      ),
+    isSearch ? (
+      <SearchIcon className={classes.searchIcon} />
+    ) : (
+      <img
+        className={classes.headingImg}
+        src={allCritters[Math.floor(Math.random() * allCritters.length)].image_path}
+        alt={type}
+      />
+    ),
   )
   const [critters, setCritters] = useState([])
   const [donatedCritters, setDonatedCritters] = useState(
-    localStorage.getItem('donatedCritters') ? localStorage.getItem('donatedCritters').split(',') : [],
+    localStorage.getItem('donatedCritters')
+      ? localStorage.getItem('donatedCritters').split(',')
+      : [],
   )
   const [isLoading, setIsLoading] = useState(true)
 
@@ -79,16 +81,16 @@ const CritterSection = ({ allCritters, type, showAll, show, isNorthern, search }
       //  Checking if any of the conditions in show are true properties on the critter
       const tempShow = removeItem([...show], 'isDonated')
 
-      filteredCritters = allCritters.filter((critter) => (
-        tempShow.some((condition) => critter[condition])
-      ))
+      filteredCritters = allCritters.filter((critter) =>
+        tempShow.some((condition) => critter[condition]),
+      )
     }
 
     if (!show.includes('isDonated')) {
       // remove critters that are not donated
-      filteredCritters = filteredCritters.filter((critter) => (
-        !donatedCritters.includes(critter.name)
-      ))
+      filteredCritters = filteredCritters.filter(
+        (critter) => !donatedCritters.includes(critter.name),
+      )
     }
 
     return filteredCritters
@@ -128,8 +130,7 @@ const CritterSection = ({ allCritters, type, showAll, show, isNorthern, search }
         className={classes.headingWrapper}
         onClick={() => setExpanded((prevExpanded) => !prevExpanded)}
         role="button"
-        onKeyPress={() => setExpanded((prevExpanded) => !prevExpanded)}
-      >
+        onKeyPress={() => setExpanded((prevExpanded) => !prevExpanded)}>
         <div className={classes.heading}>
           {randomImg}
           <Typography variant="h4">{type}</Typography>
@@ -139,9 +140,7 @@ const CritterSection = ({ allCritters, type, showAll, show, isNorthern, search }
           className={[classes.expandArrow, !expanded && classes.open].join(' ')}
         />
       </div>
-      <Collapse in={expanded}>
-        {content}
-      </Collapse>
+      <Collapse in={expanded}>{content}</Collapse>
     </Paper>
   )
 }

@@ -90,7 +90,14 @@ const sizes = {
 }
 
 // eslint-disable-next-line max-len
-const CritterRow = ({ critter, donatedCritters, setDonatedCritters, isNorthern, hours, isFish }) => {
+const CritterRow = ({
+  critter,
+  donatedCritters,
+  setDonatedCritters,
+  isNorthern,
+  hours,
+  isFish,
+}) => {
   const classes = useStyles()
   const [isDonated, setIsDonated] = useState(donatedCritters.includes(critter.name))
   const [modalOpen, setModalOpen] = useState(false)
@@ -119,45 +126,33 @@ const CritterRow = ({ critter, donatedCritters, setDonatedCritters, isNorthern, 
     }
   }
 
-  const size = isFish
-    ? (
-      <TableCell className={[classes.cell].join(' ')} align="right">
-        {sizes[critter.size] || critter.size}
-      </TableCell>
-    )
-    : null
+  const size = isFish ? (
+    <TableCell className={[classes.cell].join(' ')} align="right">
+      {sizes[critter.size] || critter.size}
+    </TableCell>
+  ) : null
 
   return (
-    <TableRow
-      hover
-      type="button"
-      onClick={(e) => handleModalOpen(e)}
-    >
+    <TableRow hover type="button" onClick={(e) => handleModalOpen(e)}>
       <TableCell className={[classes.critterImgCell, classes.cell].join(' ')}>
         <img className={classes.critterImg} src={critter.image_path} alt={critter.name} />
       </TableCell>
-      <TableCell
-        className={[classes.nameWrapper, classes.cell].join(' ')}
-      >
+      <TableCell className={[classes.nameWrapper, classes.cell].join(' ')}>
         {/* eslint-disable-next-line jsx-a11y/interactive-supports-focus */}
         <div
-          className={[classes.name, classes.blathers, isDonated ? classes.donated : classes.notDonated].join(' ')}
+          className={[
+            classes.name,
+            classes.blathers,
+            isDonated ? classes.donated : classes.notDonated,
+          ].join(' ')}
           onClick={() => handleDonatedCheck(critter.name)}
           onKeyPress={() => handleDonatedCheck(critter.name)}
           role="button"
-          data-name="name"
-        >
-          <img
-            src={blathersLogo}
-            alt="Donated"
-            data-name="name"
-          />
-          <Typography
-            component="span"
-            data-name="name"
-          >
+          data-name="name">
+          <img src={blathersLogo} alt="Donated" data-name="name" />
+          <Typography component="span" data-name="name">
             {critter.name}
-            {critter.isNew && <span className={[classes.dot, classes.new].join(' ')} /> }
+            {critter.isNew && <span className={[classes.dot, classes.new].join(' ')} />}
             {critter.isLeaving && <span className={[classes.dot, classes.leaving].join(' ')} />}
             {critter.isIncoming && <span className={[classes.dot, classes.incoming].join(' ')} />}
           </Typography>

@@ -47,8 +47,7 @@ const EnhancedTableHead = ({ order, orderBy, onSortRequest, isFish }) => {
         <TableSortLabel
           active={orderBy === headCell.id}
           direction={orderBy === headCell.id ? order : 'asc'}
-          onClick={createSortHandler(headCell.id)}
-        >
+          onClick={createSortHandler(headCell.id)}>
           {headCell.label}
           {orderBy === headCell.id && (
             <span className={classes.hidden}>
@@ -59,23 +58,17 @@ const EnhancedTableHead = ({ order, orderBy, onSortRequest, isFish }) => {
       )
     }
 
-    return (
-      headCell.id !== 'size' || isFish
-        ? (
-          <TableCell
-            className={[classes.headers, classes[headCell.id]].join(' ')}
-            key={headCell.id}
-            align={headCell.align}
-            padding="default"
-            sortDirection={orderBy === headCell.id ? order : false}
-          >
-            {label}
-          </TableCell>
-        )
-        : null
-    )
+    return headCell.id !== 'size' || isFish ? (
+      <TableCell
+        className={[classes.headers, classes[headCell.id]].join(' ')}
+        key={headCell.id}
+        align={headCell.align}
+        padding="default"
+        sortDirection={orderBy === headCell.id ? order : false}>
+        {label}
+      </TableCell>
+    ) : null
   })
-
 
   return (
     <TableHead>

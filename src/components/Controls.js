@@ -103,7 +103,16 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 // eslint-disable-next-line max-len
-const Controls = ({ showAll, setShowAll, show, setShow, isNorthern, setIsNorthern, search, setSearch }) => {
+const Controls = ({
+  showAll,
+  setShowAll,
+  show,
+  setShow,
+  isNorthern,
+  setIsNorthern,
+  search,
+  setSearch,
+}) => {
   const classes = useStyles()
   const { colorScheme, toggleColorScheme } = useColorScheme()
 
@@ -138,8 +147,7 @@ const Controls = ({ showAll, setShowAll, show, setShow, isNorthern, setIsNorther
         onClick={() => setSearch('')}
         onKeyPress={() => setSearch('')}
         role="button"
-        tabIndex={0}
-      >
+        tabIndex={0}>
         <ClearIcon />
       </div>
     )
@@ -152,8 +160,7 @@ const Controls = ({ showAll, setShowAll, show, setShow, isNorthern, setIsNorther
           value={isNorthern}
           selected
           onChange={() => setIsNorthern((prevIsNorthern) => !prevIsNorthern)}
-          size="small"
-        >
+          size="small">
           {isNorthern ? 'Northern' : 'Southern'}
         </ToggleButton>
         <ToggleButtonGroup
@@ -161,24 +168,16 @@ const Controls = ({ showAll, setShowAll, show, setShow, isNorthern, setIsNorther
           value={showAll}
           size="small"
           exclusive
-          onChange={handleShowAllChange}
-        >
-          <ToggleButton value="showAll">
-            Show All
-          </ToggleButton>
-          <ToggleButton value="isAvailable">
-            Available Now
-          </ToggleButton>
-          <ToggleButton value="isCustom">
-            Custom
-          </ToggleButton>
+          onChange={handleShowAllChange}>
+          <ToggleButton value="showAll">Show All</ToggleButton>
+          <ToggleButton value="isAvailable">Available Now</ToggleButton>
+          <ToggleButton value="isCustom">Custom</ToggleButton>
         </ToggleButtonGroup>
         <ToggleButtonGroup
           className={classes.buttons}
           value={show}
           onChange={handleShowChange}
-          size="small"
-        >
+          size="small">
           <ToggleButton value="isNew" disabled={showAll !== 'isCustom'}>
             New
             <span className={[classes.dot, classes.new].join(' ')} />
@@ -191,9 +190,7 @@ const Controls = ({ showAll, setShowAll, show, setShow, isNorthern, setIsNorther
             Incoming
             <span className={[classes.dot, classes.incoming].join(' ')} />
           </ToggleButton>
-          <ToggleButton value="isDonated">
-            Donated
-          </ToggleButton>
+          <ToggleButton value="isDonated">Donated</ToggleButton>
         </ToggleButtonGroup>
       </div>
       <div className={classes.searchRow}>
@@ -213,12 +210,7 @@ const Controls = ({ showAll, setShowAll, show, setShow, isNorthern, setIsNorther
           />
           {clearIcon}
         </div>
-        <ToggleButtonGroup
-          value={colorScheme}
-          size="small"
-          exclusive
-          onChange={handleThemeChange}
-        >
+        <ToggleButtonGroup value={colorScheme} size="small" exclusive onChange={handleThemeChange}>
           <ToggleButton value="light">
             <LightModeIcon />
           </ToggleButton>

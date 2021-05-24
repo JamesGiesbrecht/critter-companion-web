@@ -20,7 +20,20 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const Months = ({ months, className }) => {
-  const allMonths = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+  const allMonths = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ]
   const classes = useStyles()
   const chips = allMonths.map((month, index) => {
     const isActive = months.includes(index + 1)

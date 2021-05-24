@@ -16,14 +16,16 @@ const Critters = () => {
   const getMonths = (critter) => (isNorthern ? critter.northern_months : critter.southern_months)
 
   const hasPrevMonth = (months) => {
-    if (curMonth === 1) { // January
+    // January
+    if (curMonth === 1) {
       return months.includes(12)
     }
     return months.includes(curMonth - 1)
   }
 
   const hasNextMonth = (months) => {
-    if (curMonth === 12) { // December
+    // December
+    if (curMonth === 12) {
       return months.includes(1)
     }
     return months.includes(curMonth + 1)
@@ -36,7 +38,7 @@ const Critters = () => {
 
   const isIncoming = (months) => !isAvailableNow(months) && hasNextMonth(months)
 
-  const addProperties = (critters) => (
+  const addProperties = (critters) =>
     critters.map((critter) => {
       const critterMonths = getMonths(critter)
       return {
@@ -48,7 +50,6 @@ const Critters = () => {
         isDonated: false,
       }
     })
-  )
 
   const getTables = () => {
     if (search === '') {
