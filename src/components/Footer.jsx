@@ -14,17 +14,16 @@ const useStyles = makeStyles({
 
 const Footer = () => {
   const classes = useStyles()
-  const tooltipText = [
-    'If you liked using my site please ',
-    <Link href="https://www.paypal.me/JamesGiesbrecht" className={classes.link}>
-      consider buying me a coffee
-    </Link>,
-    ' :)',
-  ]
+  /* eslint-disable prettier/prettier */
+  const tooltipText = (
+    <>
+      If you liked using my site please $<Link key="link" href="https://www.paypal.me/JamesGiesbrecht" className={classes.link}>consider buying me a coffee</Link> 😃
+    </>
+  )
 
   return (
     <Paper className={classes.footer} elevation={3}>
-      <Tooltip title={tooltipText} placement="top" interactive>
+      <Tooltip title={tooltipText} placement="top">
         <Button>Created by James Giesbrecht</Button>
       </Tooltip>
     </Paper>

@@ -63,7 +63,6 @@ const EnhancedTableHead = ({ order, orderBy, onSortRequest, isFish }) => {
         className={[classes.headers, classes[headCell.id]].join(' ')}
         key={headCell.id}
         align={headCell.align}
-        padding="default"
         sortDirection={orderBy === headCell.id ? order : false}>
         {label}
       </TableCell>
