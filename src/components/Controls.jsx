@@ -60,13 +60,9 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: `rgba(${
-      theme.palette.common[theme.palette.type === 'light' ? '0, 0, 0' : '255, 255, 255']
-    }, 0.15)`,
+    backgroundColor: `rgba(${theme.palette.mode === 'light' ? '0, 0, 0' : '255, 255, 255'}, 0.15)`,
     '&:hover': {
-      backgroundColor: `rgba(${
-        theme.palette.common[theme.palette.type === 'light' ? '0, 0, 0' : '255, 255, 255']
-      }, 0.2)`,
+      backgroundColor: `rgba(${theme.palette.mode === 'light' ? '0, 0, 0' : '255, 255, 255'}, 0.2)`,
     },
     width: '100%',
     marginRight: '10px',
@@ -77,9 +73,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    color: `rgba(${
-      theme.palette.common[theme.palette.type === 'light' ? '0, 0, 0' : '255, 255, 255']
-    }, 0.54)`,
+    color: `rgba(${theme.palette.mode === 'light' ? '0, 0, 0' : '255, 255, 255'}, 0.54)`,
   },
   inputRoot: {
     color: 'inherit',
