@@ -1,11 +1,11 @@
 import { useEffect, useState, useCallback } from 'react'
-import { Collapse, Paper, makeStyles, Typography } from '@material-ui/core'
+import { Collapse, Paper, makeStyles, Typography, Button } from '@material-ui/core'
 import { ExpandMoreRounded } from '@material-ui/icons'
 import SearchIcon from '@material-ui/icons/Search'
 import CrittersTable from './CrittersTable'
 import { removeItem } from '../assets/utility'
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   critters: {
     padding: '10px 0',
     margin: '20px auto',
@@ -31,6 +31,14 @@ const useStyles = makeStyles({
     width: '40px',
     marginRight: '15px',
   },
+  expandButton: {
+    color: theme.palette.text.primary,
+  },
+  expandIconSize: {
+    '& > *:first-child': {
+      fontSize: 40,
+    },
+  },
   expandArrow: {
     transform: 'rotate(0deg)',
     transition: 'transform 0.2s linear',
@@ -39,7 +47,7 @@ const useStyles = makeStyles({
     transform: 'rotate(180deg)',
     transition: 'transform 0.2s linear',
   },
-})
+}))
 
 const CritterSection = ({ allCritters, type, showAll, show, isNorthern, search }) => {
   const classes = useStyles()
@@ -124,20 +132,22 @@ const CritterSection = ({ allCritters, type, showAll, show, isNorthern, search }
 
   return (
     <Paper classes={{ root: classes.critters }} elevation={7}>
-      {/* eslint-disable-next-line jsx-a11y/interactive-supports-focus */}
-      <div
-        className={classes.headingWrapper}
-        onClick={() => setExpanded((prevExpanded) => !prevExpanded)}
-        role="button"
-        onKeyPress={() => setExpanded((prevExpanded) => !prevExpanded)}>
+      <div className={classes.headingWrapper}>
         <div className={classes.heading}>
           {randomImg}
           <Typography variant="h4">{type}</Typography>
         </div>
-        <ExpandMoreRounded
-          fontSize="large"
-          className={[classes.expandArrow, !expanded && classes.open].join(' ')}
-        />
+        <Button
+          size="small"
+          classes={{ root: classes.expandButton, endIcon: classes.expandIconSize }}
+          onClick={() => setExpanded((prevExpanded) => !prevExpanded)}
+          endIcon={
+            <ExpandMoreRounded
+              className={[classes.expandArrow, !expanded && classes.open].join(' ')}
+            />
+          }>
+          {expanded ? 'Collapse' : 'Expand'}
+        </Button>
       </div>
       <Collapse in={expanded}>{content}</Collapse>
     </Paper>
