@@ -123,7 +123,7 @@ const CritterSection = ({ allCritters, type, showAll, show, isNorthern, search }
   }
 
   return (
-    <Paper classes={{ root: classes.critters }} elevation={3}>
+    <Paper classes={{ root: classes.critters }} elevation={7}>
       {/* eslint-disable-next-line jsx-a11y/interactive-supports-focus */}
       <div
         className={classes.headingWrapper}

@@ -147,7 +147,7 @@ const Controls = ({
   }
 
   return (
-    <Paper classes={{ root: classes.controls }} elevation={3}>
+    <Paper classes={{ root: classes.controls }} elevation={7}>
       <div className={classes.buttonGroup}>
         <ToggleButton
           value={isNorthern}

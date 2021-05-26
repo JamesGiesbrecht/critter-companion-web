@@ -59,21 +59,21 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.info.light,
   },
   location: {
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       ...hidden,
     },
   },
   hours: {
     boxSizing: 'content-box',
     width: '85px',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       ...hidden,
     },
   },
   months: {
     boxSizing: 'content-box',
     width: '180px',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       ...hidden,
     },
   },

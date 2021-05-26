@@ -7,17 +7,17 @@ const useStyles = makeStyles((theme) => ({
     whiteSpace: 'nowrap',
   },
   location: {
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       ...hidden,
     },
   },
   start_time: {
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       ...hidden,
     },
   },
   months: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       ...hidden,
     },
   },
