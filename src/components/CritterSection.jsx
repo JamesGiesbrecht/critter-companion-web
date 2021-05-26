@@ -45,7 +45,6 @@ const CritterSection = ({ allCritters, type, showAll, show, isNorthern, search }
   const classes = useStyles()
   const isSearch = search && search.length > 0
   const [expanded, setExpanded] = useState(isSearch)
-  // eslint-disable-next-line max-len
   const [randomImg] = useState(
     isSearch ? (
       <SearchIcon className={classes.searchIcon} />

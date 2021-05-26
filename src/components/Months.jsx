@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   green: {
-    backgroundColor: theme.palette.success[theme.palette.type === 'light' ? 'main' : 'light'],
+    backgroundColor: theme.palette.success[theme.palette.mode === 'light' ? 'main' : 'light'],
     color: theme.palette.background.paper,
   },
 }))
@@ -45,7 +45,6 @@ const Months = ({ months, className }) => {
         key={month}
         size="small"
         label={month}
-        // eslint-disable-next-line react/jsx-props-no-spreading
         {...color}
       />
     )

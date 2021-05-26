@@ -56,7 +56,6 @@ const useStyles = makeStyles({
   },
 })
 
-// eslint-disable-next-line max-len
 const CritterInfo = ({
   critter,
   modalOpen,

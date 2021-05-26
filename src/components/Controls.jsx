@@ -96,7 +96,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-// eslint-disable-next-line max-len
 const Controls = ({
   showAll,
   setShowAll,

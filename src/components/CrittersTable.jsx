@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
   table: {
     margin: '0 auto',
     width: '100%',
-    borderTop: `1px solid var(--border-${theme.palette.type})`,
+    borderTop: `1px solid var(--border-${theme.palette.mode})`,
   },
   critterImgCell: {
     padding: '0 10px',
