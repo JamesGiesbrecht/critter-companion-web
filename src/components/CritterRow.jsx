@@ -1,9 +1,10 @@
 import { useState } from 'react'
-import { TableRow, TableCell, makeStyles, Typography } from '@material-ui/core'
+import { TableRow, TableCell, makeStyles, Typography, Button } from '@material-ui/core'
+import clsx from 'clsx'
 import CritterInfo from './CritterInfo'
-import blathersLogo from '../assets/images/blathersLogo.svg'
 import Months from './Months'
 import { dot, hidden } from '../assets/cssClasses'
+import BlathersIcon from './icons/BlathersIcon'
 
 const useStyles = makeStyles((theme) => ({
   cell: {
@@ -29,25 +30,23 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   blathers: {
-    '& img': {
-      filter: `${theme.palette.type === 'dark' ? 'invert(100%)' : ''} opacity(20%)`,
-    },
+    filter: 'opacity(20%)',
   },
   notDonated: {
     '&:hover': {
-      '& img': {
-        filter: `${theme.palette.type === 'dark' ? 'invert(100%)' : ''} opacity(50%)`,
+      '& svg': {
+        filter: 'opacity(60%)',
       },
     },
   },
   donated: {
-    '& img': {
-      filter: `${theme.palette.type === 'dark' ? 'invert(100%)' : ''} opacity(100%)`,
-    },
+    filter: 'opacity(85%)',
   },
   name: {
     display: 'flex',
     alignItems: 'center',
+    textTransform: 'none',
+    color: theme.palette.text.primary,
   },
   dot,
   new: {
@@ -89,7 +88,6 @@ const sizes = {
   6: 'Huge',
 }
 
-// eslint-disable-next-line max-len
 const CritterRow = ({
   critter,
   donatedCritters,
@@ -138,25 +136,20 @@ const CritterRow = ({
         <img className={classes.critterImg} src={critter.image_path} alt={critter.name} />
       </TableCell>
       <TableCell className={[classes.nameWrapper, classes.cell].join(' ')}>
-        {/* eslint-disable-next-line jsx-a11y/interactive-supports-focus */}
-        <div
-          className={[
-            classes.name,
-            classes.blathers,
-            isDonated ? classes.donated : classes.notDonated,
-          ].join(' ')}
+        <Button
+          className={clsx(classes.name, !isDonated && classes.notDonated)}
+          startIcon={
+            <BlathersIcon className={clsx(classes.blathers, isDonated && classes.donated)} />
+          }
           onClick={() => handleDonatedCheck(critter.name)}
-          onKeyPress={() => handleDonatedCheck(critter.name)}
-          role="button"
-          data-name="name">
-          <img src={blathersLogo} alt="Donated" data-name="name" />
+          disableRipple>
           <Typography component="span" data-name="name">
             {critter.name}
             {critter.isNew && <span className={[classes.dot, classes.new].join(' ')} />}
             {critter.isLeaving && <span className={[classes.dot, classes.leaving].join(' ')} />}
             {critter.isIncoming && <span className={[classes.dot, classes.incoming].join(' ')} />}
           </Typography>
-        </div>
+        </Button>
       </TableCell>
       <TableCell className={classes.cell} align="right">
         {critter.value}
