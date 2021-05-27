@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
     height: '18px',
     width: '28px',
     '& span': {
-      fontSize: '.6em',
+      fontSize: '.8em',
       textOverflow: 'clip',
       margin: '0 auto',
       padding: '0',

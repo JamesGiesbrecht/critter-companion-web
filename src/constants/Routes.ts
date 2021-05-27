@@ -8,7 +8,6 @@ interface Route {
 }
 
 export const routes: Route[] = [
-  // 404 route, must be last
   {
     path: '*',
     component: Critters,
