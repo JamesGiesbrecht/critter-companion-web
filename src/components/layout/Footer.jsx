@@ -4,8 +4,6 @@ const useStyles = makeStyles({
   footer: {
     display: 'inline-block',
     margin: '20px auto 0 auto',
-    fontSize: '12px',
-    padding: '0',
   },
   link: {
     color: '#90caf9',
@@ -24,7 +22,7 @@ const Footer = () => {
   return (
     <Paper className={classes.footer} elevation={7}>
       <Tooltip title={tooltipText} placement="top">
-        <Button>Created by James Giesbrecht</Button>
+        <Button target="_blank" href="https://jamesgiesbrecht.ca">Created by James Giesbrecht</Button>
       </Tooltip>
     </Paper>
   )

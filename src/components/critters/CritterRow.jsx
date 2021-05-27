@@ -46,7 +46,6 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     textTransform: 'none',
-    color: theme.palette.text.primary,
   },
   dot,
   new: {

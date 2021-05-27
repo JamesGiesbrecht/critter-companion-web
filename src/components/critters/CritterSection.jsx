@@ -31,9 +31,6 @@ const useStyles = makeStyles((theme) => ({
     width: '40px',
     marginRight: '15px',
   },
-  expandButton: {
-    color: theme.palette.text.primary,
-  },
   expandIconSize: {
     '& > *:first-child': {
       fontSize: 40,
@@ -138,7 +135,7 @@ const CritterSection = ({ allCritters, type, showAll, show, search }) => {
         </div>
         <Button
           size="small"
-          classes={{ root: classes.expandButton, endIcon: classes.expandIconSize }}
+          classes={{ endIcon: classes.expandIconSize }}
           onClick={() => setExpanded((prevExpanded) => !prevExpanded)}
           endIcon={
             <ExpandMoreIcon className={clsx(classes.expandArrow, !expanded && classes.open)} />
