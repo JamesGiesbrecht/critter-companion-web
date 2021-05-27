@@ -1,4 +1,5 @@
-import React from 'react'
+import { memo } from 'react'
+import clsx from 'clsx'
 import { Chip, makeStyles } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
@@ -8,32 +9,44 @@ const useStyles = makeStyles((theme) => ({
     height: '18px',
     width: '28px',
     '& span': {
-      fontSize: '.6em',
+      fontSize: '.8em',
       textOverflow: 'clip',
       margin: '0 auto',
       padding: '0',
     },
   },
   green: {
-    backgroundColor: theme.palette.success[theme.palette.type === 'light' ? 'main' : 'light'],
+    backgroundColor: theme.palette.success[theme.palette.mode === 'light' ? 'main' : 'light'],
     color: theme.palette.background.paper,
   },
 }))
 
 const Months = ({ months, className }) => {
-  const allMonths = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+  const allMonths = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ]
   const classes = useStyles()
   const chips = allMonths.map((month, index) => {
     const isActive = months.includes(index + 1)
     const color = isActive ? { color: 'primary' } : { disabled: true }
     return (
       <Chip
-        className={[classes.chip, className || null].join(' ')}
+        className={clsx(classes.chip, className)}
         classes={{ colorPrimary: classes.green }}
         key={month}
         size="small"
         label={month}
-        // eslint-disable-next-line react/jsx-props-no-spreading
         {...color}
       />
     )
@@ -42,4 +55,4 @@ const Months = ({ months, className }) => {
   return chips
 }
 
-export default Months
+export default memo(Months)

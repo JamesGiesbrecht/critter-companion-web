@@ -1,11 +1,11 @@
-import React, { useEffect, useState, useCallback } from 'react'
-import { Collapse, Paper, makeStyles, Typography } from '@material-ui/core'
-import { ExpandMoreRounded } from '@material-ui/icons'
-import SearchIcon from '@material-ui/icons/Search'
-import CrittersTable from './CrittersTable'
-import { removeItem } from '../assets/utility'
+import { useEffect, useState, useCallback, memo } from 'react'
+import clsx from 'clsx'
+import { Collapse, Paper, makeStyles, Typography, Button } from '@material-ui/core'
+import { ExpandMoreRounded as ExpandMoreIcon, Search as SearchIcon } from '@material-ui/icons'
+import CrittersTable from 'components/critters/CrittersTable'
+import { removeItem } from 'assets/utility'
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(() => ({
   critters: {
     padding: '10px 0',
     margin: '20px auto',
@@ -31,6 +31,11 @@ const useStyles = makeStyles({
     width: '40px',
     marginRight: '15px',
   },
+  expandIconSize: {
+    '& > *:first-child': {
+      fontSize: 40,
+    },
+  },
   expandArrow: {
     transform: 'rotate(0deg)',
     transition: 'transform 0.2s linear',
@@ -39,27 +44,28 @@ const useStyles = makeStyles({
     transform: 'rotate(180deg)',
     transition: 'transform 0.2s linear',
   },
-})
+}))
 
-const CritterSection = ({ allCritters, type, showAll, show, isNorthern, search }) => {
+const CritterSection = ({ allCritters, type, showAll, show, search }) => {
   const classes = useStyles()
   const isSearch = search && search.length > 0
   const [expanded, setExpanded] = useState(isSearch)
-  // eslint-disable-next-line max-len
   const [randomImg] = useState(
-    isSearch
-      ? <SearchIcon className={classes.searchIcon} />
-      : (
-        <img
-          className={classes.headingImg}
-          src={allCritters[Math.floor(Math.random() * allCritters.length)].image_path}
-          alt={type}
-        />
-      ),
+    isSearch ? (
+      <SearchIcon className={classes.searchIcon} />
+    ) : (
+      <img
+        className={classes.headingImg}
+        src={allCritters[Math.floor(Math.random() * allCritters.length)].image_path}
+        alt={type}
+      />
+    ),
   )
   const [critters, setCritters] = useState([])
   const [donatedCritters, setDonatedCritters] = useState(
-    localStorage.getItem('donatedCritters') ? localStorage.getItem('donatedCritters').split(',') : [],
+    localStorage.getItem('donatedCritters')
+      ? localStorage.getItem('donatedCritters').split(',')
+      : [],
   )
   const [isLoading, setIsLoading] = useState(true)
 
@@ -79,16 +85,16 @@ const CritterSection = ({ allCritters, type, showAll, show, isNorthern, search }
       //  Checking if any of the conditions in show are true properties on the critter
       const tempShow = removeItem([...show], 'isDonated')
 
-      filteredCritters = allCritters.filter((critter) => (
-        tempShow.some((condition) => critter[condition])
-      ))
+      filteredCritters = allCritters.filter((critter) =>
+        tempShow.some((condition) => critter[condition]),
+      )
     }
 
     if (!show.includes('isDonated')) {
       // remove critters that are not donated
-      filteredCritters = filteredCritters.filter((critter) => (
-        !donatedCritters.includes(critter.name)
-      ))
+      filteredCritters = filteredCritters.filter(
+        (critter) => !donatedCritters.includes(critter.name),
+      )
     }
 
     return filteredCritters
@@ -113,36 +119,33 @@ const CritterSection = ({ allCritters, type, showAll, show, isNorthern, search }
     content = (
       <CrittersTable
         critters={critters}
-        isNorthern={isNorthern}
         donatedCritters={donatedCritters}
         setDonatedCritters={setDonatedCritters}
+        isFish={type === 'Fish'}
       />
     )
   }
 
   return (
-    <Paper classes={{ root: classes.critters }} elevation={3}>
-      {/* eslint-disable-next-line jsx-a11y/interactive-supports-focus */}
-      <div
-        className={classes.headingWrapper}
-        onClick={() => setExpanded((prevExpanded) => !prevExpanded)}
-        role="button"
-        onKeyPress={() => setExpanded((prevExpanded) => !prevExpanded)}
-      >
+    <Paper classes={{ root: classes.critters }} elevation={7}>
+      <div className={classes.headingWrapper}>
         <div className={classes.heading}>
           {randomImg}
           <Typography variant="h4">{type}</Typography>
         </div>
-        <ExpandMoreRounded
-          fontSize="large"
-          className={[classes.expandArrow, !expanded && classes.open].join(' ')}
-        />
+        <Button
+          size="small"
+          classes={{ endIcon: classes.expandIconSize }}
+          onClick={() => setExpanded((prevExpanded) => !prevExpanded)}
+          endIcon={
+            <ExpandMoreIcon className={clsx(classes.expandArrow, !expanded && classes.open)} />
+          }>
+          {expanded ? 'Collapse' : 'Expand'}
+        </Button>
       </div>
-      <Collapse in={expanded}>
-        {content}
-      </Collapse>
+      <Collapse in={expanded}>{content}</Collapse>
     </Paper>
   )
 }
 
-export default CritterSection
+export default memo(CritterSection)

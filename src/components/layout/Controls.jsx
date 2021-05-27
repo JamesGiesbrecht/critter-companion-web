@@ -1,12 +1,12 @@
-import React from 'react'
-import { Paper, InputBase, makeStyles, fade } from '@material-ui/core'
-import { ToggleButtonGroup, ToggleButton } from '@material-ui/lab'
+import clsx from 'clsx'
+import { Paper, InputBase, ToggleButtonGroup, ToggleButton, makeStyles } from '@material-ui/core'
 import LightModeIcon from '@material-ui/icons/Brightness7'
 import DarkModeIcon from '@material-ui/icons/Brightness3'
 import SearchIcon from '@material-ui/icons/Search'
 import ClearIcon from '@material-ui/icons/ClearRounded'
-import { dot } from '../assets/cssClasses'
-import { removeItem } from '../assets/utility'
+import { useColorScheme } from 'context/Theme'
+import { dot } from 'assets/cssClasses'
+import { removeItem } from 'assets/utility'
 
 const useStyles = makeStyles((theme) => ({
   controls: {
@@ -61,9 +61,9 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common[theme.palette.type === 'light' ? 'black' : 'white'], 0.15),
+    backgroundColor: `rgba(${theme.palette.mode === 'light' ? '0, 0, 0' : '255, 255, 255'}, 0.15)`,
     '&:hover': {
-      backgroundColor: fade(theme.palette.common[theme.palette.type === 'light' ? 'black' : 'white'], 0.20),
+      backgroundColor: `rgba(${theme.palette.mode === 'light' ? '0, 0, 0' : '255, 255, 255'}, 0.2)`,
     },
     width: '100%',
     marginRight: '10px',
@@ -74,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    color: theme.palette.type === 'light' ? fade(theme.palette.common.black, 0.54) : '#fff',
+    color: `rgba(${theme.palette.mode === 'light' ? '0, 0, 0' : '255, 255, 255'}, 0.54)`,
   },
   inputRoot: {
     color: 'inherit',
@@ -97,9 +97,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-// eslint-disable-next-line max-len
-const Controls = ({ theme, toggleTheme, showAll, setShowAll, show, setShow, isNorthern, setIsNorthern, search, setSearch }) => {
+const Controls = ({
+  showAll,
+  setShowAll,
+  show,
+  setShow,
+  isNorthern,
+  setIsNorthern,
+  search,
+  setSearch,
+}) => {
   const classes = useStyles()
+  const { colorScheme, toggleColorScheme } = useColorScheme()
 
   const handleShowAllChange = (e, curShowAll) => {
     if (curShowAll === null || curShowAll === 'isCustom') {
@@ -121,7 +130,7 @@ const Controls = ({ theme, toggleTheme, showAll, setShowAll, show, setShow, isNo
   const handleShowChange = (e, newShow) => setShow(newShow)
 
   const handleThemeChange = (e, newTheme) => {
-    if (newTheme !== theme && newTheme !== null) toggleTheme()
+    if (newTheme !== colorScheme && newTheme !== null) toggleColorScheme()
   }
 
   let clearIcon = null
@@ -132,22 +141,20 @@ const Controls = ({ theme, toggleTheme, showAll, setShowAll, show, setShow, isNo
         onClick={() => setSearch('')}
         onKeyPress={() => setSearch('')}
         role="button"
-        tabIndex={0}
-      >
+        tabIndex={0}>
         <ClearIcon />
       </div>
     )
   }
 
   return (
-    <Paper classes={{ root: classes.controls }} elevation={3}>
+    <Paper classes={{ root: classes.controls }} elevation={7}>
       <div className={classes.buttonGroup}>
         <ToggleButton
           value={isNorthern}
           selected
           onChange={() => setIsNorthern((prevIsNorthern) => !prevIsNorthern)}
-          size="small"
-        >
+          size="small">
           {isNorthern ? 'Northern' : 'Southern'}
         </ToggleButton>
         <ToggleButtonGroup
@@ -155,39 +162,29 @@ const Controls = ({ theme, toggleTheme, showAll, setShowAll, show, setShow, isNo
           value={showAll}
           size="small"
           exclusive
-          onChange={handleShowAllChange}
-        >
-          <ToggleButton value="showAll">
-            Show All
-          </ToggleButton>
-          <ToggleButton value="isAvailable">
-            Available Now
-          </ToggleButton>
-          <ToggleButton value="isCustom">
-            Custom
-          </ToggleButton>
+          onChange={handleShowAllChange}>
+          <ToggleButton value="showAll">Show All</ToggleButton>
+          <ToggleButton value="isAvailable">Available Now</ToggleButton>
+          <ToggleButton value="isCustom">Custom</ToggleButton>
         </ToggleButtonGroup>
         <ToggleButtonGroup
           className={classes.buttons}
           value={show}
           onChange={handleShowChange}
-          size="small"
-        >
+          size="small">
           <ToggleButton value="isNew" disabled={showAll !== 'isCustom'}>
             New
-            <span className={[classes.dot, classes.new].join(' ')} />
+            <span className={clsx(classes.dot, classes.new)} />
           </ToggleButton>
           <ToggleButton value="isLeaving" disabled={showAll !== 'isCustom'}>
             Leaving
-            <span className={[classes.dot, classes.leaving].join(' ')} />
+            <span className={clsx(classes.dot, classes.leaving)} />
           </ToggleButton>
           <ToggleButton value="isIncoming" disabled={showAll !== 'isCustom'}>
             Incoming
-            <span className={[classes.dot, classes.incoming].join(' ')} />
+            <span className={clsx(classes.dot, classes.incoming)} />
           </ToggleButton>
-          <ToggleButton value="isDonated">
-            Donated
-          </ToggleButton>
+          <ToggleButton value="isDonated">Donated</ToggleButton>
         </ToggleButtonGroup>
       </div>
       <div className={classes.searchRow}>
@@ -207,12 +204,7 @@ const Controls = ({ theme, toggleTheme, showAll, setShowAll, show, setShow, isNo
           />
           {clearIcon}
         </div>
-        <ToggleButtonGroup
-          value={theme}
-          size="small"
-          exclusive
-          onChange={handleThemeChange}
-        >
+        <ToggleButtonGroup value={colorScheme} size="small" exclusive onChange={handleThemeChange}>
           <ToggleButton value="light">
             <LightModeIcon />
           </ToggleButton>

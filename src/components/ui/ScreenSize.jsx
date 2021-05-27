@@ -1,4 +1,3 @@
-import React from 'react'
 import { makeStyles, useMediaQuery } from '@material-ui/core'
 
 const useStyles = makeStyles({
@@ -28,9 +27,7 @@ const ScreenSize = () => {
   if (useMediaQuery((theme) => theme.breakpoints.up('lg'))) screenSize = 'LG'
   if (useMediaQuery((theme) => theme.breakpoints.up('xl'))) screenSize = 'XL'
 
-  return (
-    <span className={classes.breakpoint}>{screenSize}</span>
-  )
+  return <span className={classes.breakpoint}>{screenSize}</span>
 }
 
 export default ScreenSize

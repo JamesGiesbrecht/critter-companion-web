@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { TableContainer, Table, TableBody, makeStyles } from '@material-ui/core'
-import EnhancedTableHead from './EnhancedTableHead'
-import CritterRow from './CritterRow'
+import EnhancedTableHead from 'components/critters/EnhancedTableHead'
+import CritterRow from 'components/critters/CritterRow'
 
 const useStyles = makeStyles((theme) => ({
   tableWrapper: {
@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
   table: {
     margin: '0 auto',
     width: '100%',
-    borderTop: `1px solid var(--border-${theme.palette.type})`,
+    borderTop: `1px solid var(--border-${theme.palette.mode})`,
   },
   critterImgCell: {
     padding: '0 10px',
@@ -30,11 +30,10 @@ const descendingComparator = (a, b, orderBy) => {
   return 0
 }
 
-const getComparator = (order, orderBy) => (
+const getComparator = (order, orderBy) =>
   order === 'desc'
     ? (a, b) => descendingComparator(a, b, orderBy)
     : (a, b) => -descendingComparator(a, b, orderBy)
-)
 
 const stableSort = (array, comparator) => {
   const stabilizedThis = array.map((el, index) => [el, index])
@@ -46,7 +45,7 @@ const stableSort = (array, comparator) => {
   return stabilizedThis.map((el) => el[0])
 }
 
-const CrittersTable = ({ critters, isNorthern, donatedCritters, setDonatedCritters }) => {
+const CrittersTable = ({ critters, donatedCritters, setDonatedCritters, isFish }) => {
   const classes = useStyles()
   const [order, setOrder] = useState('asc')
   const [orderBy, setOrderBy] = useState('name')
@@ -54,11 +53,14 @@ const CrittersTable = ({ critters, isNorthern, donatedCritters, setDonatedCritte
   const amOrPM = (hour) => {
     if (hour > 12 && hour < 24) {
       return `${hour - 12}pm`
-    } if (hour < 12 && hour > 0) {
+    }
+    if (hour < 12 && hour > 0) {
       return `${hour}am`
-    } if (hour === 12) {
+    }
+    if (hour === 12) {
       return 'Noon'
-    } if (hour === 24) {
+    }
+    if (hour === 24) {
       return 'Midnight'
     }
     throw Error(`Hour (${hour}) not in range (1-24)`)
@@ -74,7 +76,8 @@ const CrittersTable = ({ critters, isNorthern, donatedCritters, setDonatedCritte
         hours += `${amOrPM(start)} - ${amOrPM(endTime[index])}`
       })
       return hours
-    } if (startTime === endTime) {
+    }
+    if (startTime === endTime) {
       return 'All Day'
     }
     return `${amOrPM(startTime)} - ${amOrPM(endTime)}`
@@ -86,20 +89,19 @@ const CrittersTable = ({ critters, isNorthern, donatedCritters, setDonatedCritte
     setOrderBy(property)
   }
 
-  const rows = stableSort(critters, getComparator(order, orderBy))
-    .map((critter) => {
-      const hours = getHours(critter.start_time, critter.end_time)
-      return (
-        <CritterRow
-          key={critter.name}
-          critter={critter}
-          donatedCritters={donatedCritters}
-          setDonatedCritters={setDonatedCritters}
-          isNorthern={isNorthern}
-          hours={hours}
-        />
-      )
-    })
+  const rows = stableSort(critters, getComparator(order, orderBy)).map((critter) => {
+    const hours = getHours(critter.start_time, critter.end_time)
+    return (
+      <CritterRow
+        key={critter.name}
+        critter={critter}
+        donatedCritters={donatedCritters}
+        setDonatedCritters={setDonatedCritters}
+        hours={hours}
+        isFish={isFish}
+      />
+    )
+  })
 
   return (
     <TableContainer className={classes.tableWrapper}>
@@ -108,10 +110,9 @@ const CrittersTable = ({ critters, isNorthern, donatedCritters, setDonatedCritte
           order={order}
           orderBy={orderBy}
           onSortRequest={handleSortRequest}
+          isFish={isFish}
         />
-        <TableBody>
-          {rows}
-        </TableBody>
+        <TableBody>{rows}</TableBody>
       </Table>
     </TableContainer>
   )

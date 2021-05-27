@@ -1,6 +1,5 @@
-import React from 'react'
 import { makeStyles, Paper, Typography } from '@material-ui/core'
-import Footer from '../../components/Footer'
+import Footer from 'components/layout/Footer'
 
 const useStyles = makeStyles((theme) => ({
   layout: {
@@ -12,24 +11,28 @@ const useStyles = makeStyles((theme) => ({
     margin: '20px auto 0 auto',
     textAlign: 'center',
   },
-  title: {
+  titlePaper: {
     display: 'inline-block',
     padding: '0 10px',
     backgroundColor: 'var(--green)',
     color: 'white',
     [theme.breakpoints.down('sm')]: {
+      '& h1': {
+        fontSize: '24px',
+        lineHeight: '40px',
+      },
       height: '40px',
-      lineHeight: '40px',
-      fontSize: '24px',
     },
     [theme.breakpoints.up('sm')]: {
+      '& h1': {
+        fontSize: '38px',
+        lineHeight: '50px',
+      },
       height: '50px',
-      lineHeight: '50px',
-      fontSize: '38px',
     },
     [theme.breakpoints.up('md')]: {
+      '& h1': { lineHeight: '60px' },
       height: '60px',
-      lineHeight: '60px',
     },
   },
   footerMargin: {
@@ -42,8 +45,8 @@ const Layout = ({ children }) => {
 
   return (
     <div className={classes.layout}>
-      <Paper classes={{ root: classes.title }} elevation={3} square>
-        <Typography classes={{ h3: classes.title }} variant="h3">ACNH: Critter Companion</Typography>
+      <Paper classes={{ root: classes.titlePaper }} square>
+        <Typography variant="h1">ACNH: Critter Companion</Typography>
       </Paper>
       {children}
       <Footer />

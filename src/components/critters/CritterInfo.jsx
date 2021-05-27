@@ -1,8 +1,6 @@
-import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { Card, Modal, Avatar, CardHeader, CardContent, Typography } from '@material-ui/core'
-import blathersLogo from '../assets/images/blathersLogo.svg'
-import Months from './Months'
+import { Card, Modal, CardHeader, CardContent, Typography } from '@material-ui/core'
+import Months from 'components/critters/Months'
 
 const useStyles = makeStyles({
   critterInfo: {
@@ -57,8 +55,7 @@ const useStyles = makeStyles({
   },
 })
 
-// eslint-disable-next-line max-len
-const CritterInfo = ({ critter, modalOpen, handleModalClose, parentClasses, isDonated, handleDonatedCheck, isNorthern, hours }) => {
+const CritterInfo = ({ critter, modalOpen, handleModalClose, nameButton, hours }) => {
   const classes = useStyles()
 
   return (
@@ -66,57 +63,26 @@ const CritterInfo = ({ critter, modalOpen, handleModalClose, parentClasses, isDo
       aria-labelledby={critter.name}
       aria-describedby={`${critter.name} Details`}
       open={modalOpen}
-      onClose={handleModalClose}
-    >
-      <Card
-        className={[classes.critterInfo].join(' ')}
-        aria-labelledby={critter.name}
-      >
-        <CardHeader
-          className={[parentClasses.name, isDonated ? parentClasses.donated : parentClasses.notDonated].join(' ')}
-          avatar={(
-            <Avatar
-              className={[classes.blathers, parentClasses.blathers].join(' ')}
-              src={blathersLogo}
-              onClick={() => handleDonatedCheck(critter.name)}
-            />
-          )}
-          title={critter.name}
-          titleTypographyProps={{ variant: 'h6' }}
-        />
-        <CardContent
-          className={classes.content}
-          aria-describedby={`${critter.name} Details`}
-        >
-          <img
-            className={classes.critterImg}
-            src={critter.image_path}
-            alt={critter.name}
-          />
+      onClose={handleModalClose}>
+      <Card className={classes.critterInfo} aria-labelledby={critter.name}>
+        <CardHeader title={nameButton} />
+        <CardContent className={classes.content} aria-describedby={`${critter.name} Details`}>
+          <img className={classes.critterImg} src={critter.image_path} alt={critter.name} />
           <div className={classes.info}>
             <div>
-              <Typography
-                variant="subtitle2"
-                className={classes.infoTitle}
-              >
+              <Typography variant="subtitle2" className={classes.infoTitle}>
                 Price:
               </Typography>
               <Typography>{`${critter.value} bells`}</Typography>
             </div>
             <div>
-              <Typography
-                variant="subtitle2"
-                className={classes.infoTitle}
-              >
+              <Typography variant="subtitle2" className={classes.infoTitle}>
                 Location:
               </Typography>
               <Typography>{critter.location}</Typography>
             </div>
             <div className={classes.times}>
-              <Typography
-                variant="subtitle2"
-                className={classes.infoTitle}
-              >
+              <Typography variant="subtitle2" className={classes.infoTitle}>
                 Available Time:
               </Typography>
               <Typography>{hours}</Typography>
@@ -124,10 +90,7 @@ const CritterInfo = ({ critter, modalOpen, handleModalClose, parentClasses, isDo
           </div>
         </CardContent>
         <CardContent className={classes.months}>
-          <Months
-            className={classes.month}
-            months={isNorthern ? critter.northern_months : critter.southern_months}
-          />
+          <Months className={classes.month} months={critter.months} />
         </CardContent>
       </Card>
     </Modal>
