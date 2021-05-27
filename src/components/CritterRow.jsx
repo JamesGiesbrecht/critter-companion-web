@@ -141,8 +141,7 @@ const CritterRow = ({
           startIcon={
             <BlathersIcon className={clsx(classes.blathers, isDonated && classes.donated)} />
           }
-          onClick={() => handleDonatedCheck(critter.name)}
-          disableRipple>
+          onClick={() => handleDonatedCheck(critter.name)}>
           <Typography component="span" data-name="name">
             {critter.name}
             {critter.isNew && <span className={[classes.dot, classes.new].join(' ')} />}
