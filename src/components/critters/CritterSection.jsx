@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const CritterSection = ({ allCritters, type, showAll, show, isNorthern, search }) => {
+const CritterSection = ({ allCritters, type, showAll, show, search }) => {
   const classes = useStyles()
   const isSearch = search && search.length > 0
   const [expanded, setExpanded] = useState(isSearch)
@@ -122,7 +122,6 @@ const CritterSection = ({ allCritters, type, showAll, show, isNorthern, search }
     content = (
       <CrittersTable
         critters={critters}
-        isNorthern={isNorthern}
         donatedCritters={donatedCritters}
         setDonatedCritters={setDonatedCritters}
         isFish={type === 'Fish'}

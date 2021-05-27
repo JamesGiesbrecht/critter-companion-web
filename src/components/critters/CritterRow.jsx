@@ -88,14 +88,7 @@ const sizes = {
   6: 'Huge',
 }
 
-const CritterRow = ({
-  critter,
-  donatedCritters,
-  setDonatedCritters,
-  isNorthern,
-  hours,
-  isFish,
-}) => {
+const CritterRow = ({ critter, donatedCritters, setDonatedCritters, hours, isFish }) => {
   const classes = useStyles()
   const [isDonated, setIsDonated] = useState(donatedCritters.includes(critter.name))
   const [modalOpen, setModalOpen] = useState(false)
@@ -169,7 +162,7 @@ const CritterRow = ({
         {hours}
       </TableCell>
       <TableCell className={clsx(classes.months, classes.cell)} align="right">
-        <Months months={isNorthern ? critter.northern_months : critter.southern_months} />
+        <Months months={critter.months} />
       </TableCell>
       <CritterInfo
         critter={critter}
@@ -178,7 +171,6 @@ const CritterRow = ({
         nameButton={nameButton}
         isDonated={isDonated}
         handleDonatedCheck={handleDonatedCheck}
-        isNorthern={isNorthern}
         hours={hours}
       />
     </TableRow>

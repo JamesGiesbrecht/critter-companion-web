@@ -55,7 +55,7 @@ const useStyles = makeStyles({
   },
 })
 
-const CritterInfo = ({ critter, modalOpen, handleModalClose, nameButton, isNorthern, hours }) => {
+const CritterInfo = ({ critter, modalOpen, handleModalClose, nameButton, hours }) => {
   const classes = useStyles()
 
   return (
@@ -90,10 +90,7 @@ const CritterInfo = ({ critter, modalOpen, handleModalClose, nameButton, isNorth
           </div>
         </CardContent>
         <CardContent className={classes.months}>
-          <Months
-            className={classes.month}
-            months={isNorthern ? critter.northern_months : critter.southern_months}
-          />
+          <Months className={classes.month} months={critter.months} />
         </CardContent>
       </Card>
     </Modal>

@@ -13,8 +13,6 @@ const Critters = () => {
   const today = new Date()
   const curMonth = today.getMonth() + 1
 
-  const getMonths = (critter) => (isNorthern ? critter.northern_months : critter.southern_months)
-
   const hasPrevMonth = (months) => {
     // January
     if (curMonth === 1) {
@@ -40,9 +38,10 @@ const Critters = () => {
 
   const addProperties = (critters) =>
     critters.map((critter) => {
-      const critterMonths = getMonths(critter)
+      const critterMonths = isNorthern ? critter.northern_months : critter.southern_months
       return {
         ...critter,
+        months: critterMonths,
         isAvailableNow: isAvailableNow(critterMonths),
         isNew: isNew(critterMonths),
         isLeaving: isLeaving(critterMonths),
@@ -60,21 +59,18 @@ const Critters = () => {
             type="Bugs"
             showAll={showAll}
             show={show}
-            isNorthern={isNorthern}
           />
           <CritterSection
             allCritters={addProperties(fishData)}
             type="Fish"
             showAll={showAll}
             show={show}
-            isNorthern={isNorthern}
           />
           <CritterSection
             allCritters={addProperties(seaData)}
             type="Sea Creatures"
             showAll={showAll}
             show={show}
-            isNorthern={isNorthern}
           />
         </>
       )
@@ -85,7 +81,6 @@ const Critters = () => {
         type="Search"
         showAll={showAll}
         show={show}
-        isNorthern={isNorthern}
         search={search}
       />
     )
