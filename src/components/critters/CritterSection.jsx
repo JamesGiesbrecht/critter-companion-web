@@ -1,10 +1,9 @@
 import { useEffect, useState, useCallback } from 'react'
-import { Collapse, Paper, makeStyles, Typography, Button } from '@material-ui/core'
-import { ExpandMoreRounded } from '@material-ui/icons'
-import SearchIcon from '@material-ui/icons/Search'
 import clsx from 'clsx'
-import CrittersTable from './CrittersTable'
-import { removeItem } from '../assets/utility'
+import { Collapse, Paper, makeStyles, Typography, Button } from '@material-ui/core'
+import { ExpandMoreRounded as ExpandMoreIcon, Search as SearchIcon } from '@material-ui/icons'
+import CrittersTable from 'components/critters/CrittersTable'
+import { removeItem } from 'assets/utility'
 
 const useStyles = makeStyles((theme) => ({
   critters: {
@@ -143,7 +142,7 @@ const CritterSection = ({ allCritters, type, showAll, show, isNorthern, search }
           classes={{ root: classes.expandButton, endIcon: classes.expandIconSize }}
           onClick={() => setExpanded((prevExpanded) => !prevExpanded)}
           endIcon={
-            <ExpandMoreRounded className={clsx(classes.expandArrow, !expanded && classes.open)} />
+            <ExpandMoreIcon className={clsx(classes.expandArrow, !expanded && classes.open)} />
           }>
           {expanded ? 'Collapse' : 'Expand'}
         </Button>

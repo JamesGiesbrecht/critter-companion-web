@@ -1,5 +1,5 @@
 import { makeStyles, Paper, Typography } from '@material-ui/core'
-import Footer from '../Footer'
+import Footer from 'components/layout/Footer'
 
 const useStyles = makeStyles((theme) => ({
   layout: {

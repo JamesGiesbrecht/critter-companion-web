@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import Controls from '../Controls'
-import CritterSection from '../CritterSection'
-import bugsData from '../../assets/data/bugs.json'
-import fishData from '../../assets/data/fish.json'
-import seaData from '../../assets/data/sea.json'
+import CritterSection from 'components/critters/CritterSection'
+import Controls from 'components/layout/Controls'
+import bugsData from 'assets/data/bugs.json'
+import fishData from 'assets/data/fish.json'
+import seaData from 'assets/data/sea.json'
 
 const Critters = () => {
   const [showAll, setShowAll] = useState('showAll')

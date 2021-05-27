@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { TableContainer, Table, TableBody, makeStyles } from '@material-ui/core'
-import EnhancedTableHead from './EnhancedTableHead'
-import CritterRow from './CritterRow'
+import EnhancedTableHead from 'components/critters/EnhancedTableHead'
+import CritterRow from 'components/critters/CritterRow'
 
 const useStyles = makeStyles((theme) => ({
   tableWrapper: {

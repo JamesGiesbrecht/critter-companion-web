@@ -1,5 +1,5 @@
-import { Chip, makeStyles } from '@material-ui/core'
 import clsx from 'clsx'
+import { Chip, makeStyles } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
   chip: {

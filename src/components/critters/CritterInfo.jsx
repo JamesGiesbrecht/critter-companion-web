@@ -1,8 +1,8 @@
 import { makeStyles } from '@material-ui/core/styles'
-import { Card, Modal, Avatar, CardHeader, CardContent, Typography } from '@material-ui/core'
 import clsx from 'clsx'
-import blathersLogo from '../assets/images/blathersLogo.svg'
-import Months from './Months'
+import { Card, Modal, Avatar, CardHeader, CardContent, Typography } from '@material-ui/core'
+import Months from 'components/critters/Months'
+import blathersLogo from 'assets/images/blathersLogo.svg'
 
 const useStyles = makeStyles({
   critterInfo: {

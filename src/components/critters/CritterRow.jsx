@@ -1,10 +1,10 @@
 import { useRef, useState } from 'react'
-import { TableRow, TableCell, makeStyles, Typography, Button } from '@material-ui/core'
 import clsx from 'clsx'
-import CritterInfo from './CritterInfo'
-import Months from './Months'
-import { dot, hidden } from '../assets/cssClasses'
-import BlathersIcon from './icons/BlathersIcon'
+import { TableRow, TableCell, makeStyles, Typography, Button } from '@material-ui/core'
+import CritterInfo from 'components/critters/CritterInfo'
+import Months from 'components/critters/Months'
+import BlathersIcon from 'components/icons/BlathersIcon'
+import { dot, hidden } from 'assets/cssClasses'
 
 const useStyles = makeStyles((theme) => ({
   cell: {

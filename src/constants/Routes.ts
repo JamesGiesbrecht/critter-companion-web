@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import Critters from 'components/pages/Critters'
+import Critters from 'components/critters/Critters'
 
 interface Route {
   path: string
