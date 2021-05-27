@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { TableRow, TableCell, makeStyles, Typography, Button } from '@material-ui/core'
 import clsx from 'clsx'
 import CritterInfo from './CritterInfo'
@@ -99,9 +99,13 @@ const CritterRow = ({
   const classes = useStyles()
   const [isDonated, setIsDonated] = useState(donatedCritters.includes(critter.name))
   const [modalOpen, setModalOpen] = useState(false)
+  const nameButtonRef = useRef()
 
   const handleModalOpen = (e) => {
-    if (e.target.dataset.name === 'name') return
+    // Clicking the donate toggle
+    if (nameButtonRef.current === e.target || nameButtonRef.current.contains(e.target)) {
+      return
+    }
     setModalOpen(true)
   }
 
@@ -131,7 +135,7 @@ const CritterRow = ({
   ) : null
 
   return (
-    <TableRow hover type="button" onClick={(e) => handleModalOpen(e)}>
+    <TableRow hover type="button" onClick={handleModalOpen}>
       <TableCell className={[classes.critterImgCell, classes.cell].join(' ')}>
         <img className={classes.critterImg} src={critter.image_path} alt={critter.name} />
       </TableCell>
@@ -141,8 +145,9 @@ const CritterRow = ({
           startIcon={
             <BlathersIcon className={clsx(classes.blathers, isDonated && classes.donated)} />
           }
-          onClick={() => handleDonatedCheck(critter.name)}>
-          <Typography component="span" data-name="name">
+          onClick={() => handleDonatedCheck(critter.name)}
+          ref={nameButtonRef}>
+          <Typography component="span">
             {critter.name}
             {critter.isNew && <span className={[classes.dot, classes.new].join(' ')} />}
             {critter.isLeaving && <span className={[classes.dot, classes.leaving].join(' ')} />}
