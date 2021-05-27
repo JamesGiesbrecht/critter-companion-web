@@ -1,11 +1,11 @@
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback, memo } from 'react'
 import clsx from 'clsx'
 import { Collapse, Paper, makeStyles, Typography, Button } from '@material-ui/core'
 import { ExpandMoreRounded as ExpandMoreIcon, Search as SearchIcon } from '@material-ui/icons'
 import CrittersTable from 'components/critters/CrittersTable'
 import { removeItem } from 'assets/utility'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   critters: {
     padding: '10px 0',
     margin: '20px auto',
@@ -148,4 +148,4 @@ const CritterSection = ({ allCritters, type, showAll, show, search }) => {
   )
 }
 
-export default CritterSection
+export default memo(CritterSection)

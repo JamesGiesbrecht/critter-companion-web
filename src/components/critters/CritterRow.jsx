@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { memo, useRef, useState } from 'react'
 import clsx from 'clsx'
 import { TableRow, TableCell, makeStyles, Typography, Button } from '@material-ui/core'
 import CritterInfo from 'components/critters/CritterInfo'
@@ -176,4 +176,4 @@ const CritterRow = ({ critter, donatedCritters, setDonatedCritters, hours, isFis
   )
 }
 
-export default CritterRow
+export default memo(CritterRow)

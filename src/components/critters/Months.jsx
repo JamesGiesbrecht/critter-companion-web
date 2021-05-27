@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import clsx from 'clsx'
 import { Chip, makeStyles } from '@material-ui/core'
 
@@ -54,4 +55,4 @@ const Months = ({ months, className }) => {
   return chips
 }
 
-export default Months
+export default memo(Months)
