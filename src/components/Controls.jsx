@@ -4,6 +4,7 @@ import DarkModeIcon from '@material-ui/icons/Brightness3'
 import SearchIcon from '@material-ui/icons/Search'
 import ClearIcon from '@material-ui/icons/ClearRounded'
 import { useColorScheme } from 'context/Theme'
+import clsx from 'clsx'
 import { dot } from '../assets/cssClasses'
 import { removeItem } from '../assets/utility'
 
@@ -173,15 +174,15 @@ const Controls = ({
           size="small">
           <ToggleButton value="isNew" disabled={showAll !== 'isCustom'}>
             New
-            <span className={[classes.dot, classes.new].join(' ')} />
+            <span className={clsx(classes.dot, classes.new)} />
           </ToggleButton>
           <ToggleButton value="isLeaving" disabled={showAll !== 'isCustom'}>
             Leaving
-            <span className={[classes.dot, classes.leaving].join(' ')} />
+            <span className={clsx(classes.dot, classes.leaving)} />
           </ToggleButton>
           <ToggleButton value="isIncoming" disabled={showAll !== 'isCustom'}>
             Incoming
-            <span className={[classes.dot, classes.incoming].join(' ')} />
+            <span className={clsx(classes.dot, classes.incoming)} />
           </ToggleButton>
           <ToggleButton value="isDonated">Donated</ToggleButton>
         </ToggleButtonGroup>

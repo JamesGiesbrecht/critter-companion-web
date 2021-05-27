@@ -1,5 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles'
 import { Card, Modal, Avatar, CardHeader, CardContent, Typography } from '@material-ui/core'
+import clsx from 'clsx'
 import blathersLogo from '../assets/images/blathersLogo.svg'
 import Months from './Months'
 
@@ -74,15 +75,15 @@ const CritterInfo = ({
       aria-describedby={`${critter.name} Details`}
       open={modalOpen}
       onClose={handleModalClose}>
-      <Card className={[classes.critterInfo].join(' ')} aria-labelledby={critter.name}>
+      <Card className={classes.critterInfo} aria-labelledby={critter.name}>
         <CardHeader
-          className={[
+          className={clsx(
             parentClasses.name,
             isDonated ? parentClasses.donated : parentClasses.notDonated,
-          ].join(' ')}
+          )}
           avatar={
             <Avatar
-              className={[classes.blathers, parentClasses.blathers].join(' ')}
+              className={clsx(classes.blathers, parentClasses.blathers)}
               src={blathersLogo}
               onClick={() => handleDonatedCheck(critter.name)}
             />

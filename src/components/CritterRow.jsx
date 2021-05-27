@@ -129,17 +129,17 @@ const CritterRow = ({
   }
 
   const size = isFish ? (
-    <TableCell className={[classes.cell].join(' ')} align="right">
+    <TableCell className={classes.cell} align="right">
       {sizes[critter.size] || critter.size}
     </TableCell>
   ) : null
 
   return (
     <TableRow hover type="button" onClick={handleModalOpen}>
-      <TableCell className={[classes.critterImgCell, classes.cell].join(' ')}>
+      <TableCell className={clsx(classes.critterImgCell, classes.cell)}>
         <img className={classes.critterImg} src={critter.image_path} alt={critter.name} />
       </TableCell>
-      <TableCell className={[classes.nameWrapper, classes.cell].join(' ')}>
+      <TableCell className={clsx(classes.nameWrapper, classes.cell)}>
         <Button
           className={clsx(classes.name, !isDonated && classes.notDonated)}
           startIcon={
@@ -149,23 +149,23 @@ const CritterRow = ({
           ref={nameButtonRef}>
           <Typography component="span">
             {critter.name}
-            {critter.isNew && <span className={[classes.dot, classes.new].join(' ')} />}
-            {critter.isLeaving && <span className={[classes.dot, classes.leaving].join(' ')} />}
-            {critter.isIncoming && <span className={[classes.dot, classes.incoming].join(' ')} />}
+            {critter.isNew && <span className={clsx(classes.dot, classes.new)} />}
+            {critter.isLeaving && <span className={clsx(classes.dot, classes.leaving)} />}
+            {critter.isIncoming && <span className={clsx(classes.dot, classes.incoming)} />}
           </Typography>
         </Button>
       </TableCell>
       <TableCell className={classes.cell} align="right">
         {critter.value}
       </TableCell>
-      <TableCell className={[classes.cell, classes.location].join(' ')} align="right">
+      <TableCell className={clsx(classes.cell, classes.location)} align="right">
         {critter.location}
       </TableCell>
       {size}
-      <TableCell className={[classes.hours, classes.cell].join(' ')} align="right">
+      <TableCell className={clsx(classes.hours, classes.cell)} align="right">
         {hours}
       </TableCell>
-      <TableCell className={[classes.months, classes.cell].join(' ')} align="right">
+      <TableCell className={clsx(classes.months, classes.cell)} align="right">
         <Months months={isNorthern ? critter.northern_months : critter.southern_months} />
       </TableCell>
       <CritterInfo

@@ -1,4 +1,5 @@
 import { TableHead, TableRow, TableCell, TableSortLabel, makeStyles } from '@material-ui/core'
+import clsx from 'clsx'
 import { hidden } from '../assets/cssClasses'
 
 const useStyles = makeStyles((theme) => ({
@@ -60,7 +61,7 @@ const EnhancedTableHead = ({ order, orderBy, onSortRequest, isFish }) => {
 
     return headCell.id !== 'size' || isFish ? (
       <TableCell
-        className={[classes.headers, classes[headCell.id]].join(' ')}
+        className={clsx(classes.headers, classes[headCell.id])}
         key={headCell.id}
         align={headCell.align}
         sortDirection={orderBy === headCell.id ? order : false}>

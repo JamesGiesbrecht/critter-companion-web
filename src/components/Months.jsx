@@ -1,4 +1,5 @@
 import { Chip, makeStyles } from '@material-ui/core'
+import clsx from 'clsx'
 
 const useStyles = makeStyles((theme) => ({
   chip: {
@@ -40,7 +41,7 @@ const Months = ({ months, className }) => {
     const color = isActive ? { color: 'primary' } : { disabled: true }
     return (
       <Chip
-        className={[classes.chip, className || null].join(' ')}
+        className={clsx(classes.chip, className)}
         classes={{ colorPrimary: classes.green }}
         key={month}
         size="small"
