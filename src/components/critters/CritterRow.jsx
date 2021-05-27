@@ -103,7 +103,10 @@ const CritterRow = ({
 
   const handleModalOpen = (e) => {
     // Clicking the donate toggle
-    if (nameButtonRef.current === e.target || nameButtonRef.current.contains(e.target)) {
+    if (
+      nameButtonRef &&
+      (nameButtonRef.current === e.target || nameButtonRef.current.contains(e.target))
+    ) {
       return
     }
     setModalOpen(true)
@@ -134,27 +137,27 @@ const CritterRow = ({
     </TableCell>
   ) : null
 
+  const nameButton = (
+    <Button
+      className={clsx(classes.name, !isDonated && classes.notDonated)}
+      startIcon={<BlathersIcon className={clsx(classes.blathers, isDonated && classes.donated)} />}
+      onClick={() => handleDonatedCheck(critter.name)}
+      ref={nameButtonRef}>
+      <Typography component="span">
+        {critter.name}
+        {critter.isNew && <span className={clsx(classes.dot, classes.new)} />}
+        {critter.isLeaving && <span className={clsx(classes.dot, classes.leaving)} />}
+        {critter.isIncoming && <span className={clsx(classes.dot, classes.incoming)} />}
+      </Typography>
+    </Button>
+  )
+
   return (
     <TableRow hover type="button" onClick={handleModalOpen}>
       <TableCell className={clsx(classes.critterImgCell, classes.cell)}>
         <img className={classes.critterImg} src={critter.image_path} alt={critter.name} />
       </TableCell>
-      <TableCell className={clsx(classes.nameWrapper, classes.cell)}>
-        <Button
-          className={clsx(classes.name, !isDonated && classes.notDonated)}
-          startIcon={
-            <BlathersIcon className={clsx(classes.blathers, isDonated && classes.donated)} />
-          }
-          onClick={() => handleDonatedCheck(critter.name)}
-          ref={nameButtonRef}>
-          <Typography component="span">
-            {critter.name}
-            {critter.isNew && <span className={clsx(classes.dot, classes.new)} />}
-            {critter.isLeaving && <span className={clsx(classes.dot, classes.leaving)} />}
-            {critter.isIncoming && <span className={clsx(classes.dot, classes.incoming)} />}
-          </Typography>
-        </Button>
-      </TableCell>
+      <TableCell className={clsx(classes.nameWrapper, classes.cell)}>{nameButton}</TableCell>
       <TableCell className={classes.cell} align="right">
         {critter.value}
       </TableCell>
@@ -172,7 +175,7 @@ const CritterRow = ({
         critter={critter}
         modalOpen={modalOpen}
         handleModalClose={handleModalClose}
-        parentClasses={classes}
+        nameButton={nameButton}
         isDonated={isDonated}
         handleDonatedCheck={handleDonatedCheck}
         isNorthern={isNorthern}

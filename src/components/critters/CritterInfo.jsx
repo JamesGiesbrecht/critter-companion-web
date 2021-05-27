@@ -1,8 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles'
-import clsx from 'clsx'
-import { Card, Modal, Avatar, CardHeader, CardContent, Typography } from '@material-ui/core'
+import { Card, Modal, CardHeader, CardContent, Typography } from '@material-ui/core'
 import Months from 'components/critters/Months'
-import blathersLogo from 'assets/images/blathersLogo.svg'
 
 const useStyles = makeStyles({
   critterInfo: {
@@ -57,16 +55,7 @@ const useStyles = makeStyles({
   },
 })
 
-const CritterInfo = ({
-  critter,
-  modalOpen,
-  handleModalClose,
-  parentClasses,
-  isDonated,
-  handleDonatedCheck,
-  isNorthern,
-  hours,
-}) => {
+const CritterInfo = ({ critter, modalOpen, handleModalClose, nameButton, isNorthern, hours }) => {
   const classes = useStyles()
 
   return (
@@ -76,21 +65,7 @@ const CritterInfo = ({
       open={modalOpen}
       onClose={handleModalClose}>
       <Card className={classes.critterInfo} aria-labelledby={critter.name}>
-        <CardHeader
-          className={clsx(
-            parentClasses.name,
-            isDonated ? parentClasses.donated : parentClasses.notDonated,
-          )}
-          avatar={
-            <Avatar
-              className={clsx(classes.blathers, parentClasses.blathers)}
-              src={blathersLogo}
-              onClick={() => handleDonatedCheck(critter.name)}
-            />
-          }
-          title={critter.name}
-          titleTypographyProps={{ variant: 'h6' }}
-        />
+        <CardHeader title={nameButton} />
         <CardContent className={classes.content} aria-describedby={`${critter.name} Details`}>
           <img className={classes.critterImg} src={critter.image_path} alt={critter.name} />
           <div className={classes.info}>
