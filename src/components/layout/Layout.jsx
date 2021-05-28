@@ -1,14 +1,11 @@
-import { makeStyles, Paper, Typography } from '@material-ui/core'
+import { Container, makeStyles, Paper, Typography } from '@material-ui/core'
 import Footer from 'components/layout/Footer'
+import Header from './Header'
 
 const useStyles = makeStyles((theme) => ({
-  layout: {
-    [theme.breakpoints.up('md')]: {
-      width: '90%',
-      maxWidth: '1000px',
-    },
+  content: {
     width: '98%',
-    margin: '20px auto 0 auto',
+    margin: '0 auto',
     textAlign: 'center',
   },
   titlePaper: {
@@ -44,14 +41,15 @@ const Layout = ({ children }) => {
   const classes = useStyles()
 
   return (
-    <div className={classes.layout}>
+    <Container className={classes.content} disableGutters>
+      <Header />
       <Paper classes={{ root: classes.titlePaper }} square>
         <Typography variant="h1">ACNH: Critter Companion</Typography>
       </Paper>
       {children}
       <Footer />
       <footer className={classes.footerMargin} />
-    </div>
+    </Container>
   )
 }
 
