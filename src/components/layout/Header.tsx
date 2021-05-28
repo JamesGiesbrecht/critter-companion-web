@@ -1,14 +1,15 @@
-import { Box, makeStyles, Theme, Button } from '@material-ui/core'
+import { Box, makeStyles, Theme } from '@material-ui/core'
+import LoginSignUpForm from 'components/auth/LoginSignUpForm'
 
 const useStyles = makeStyles((theme: Theme) => ({
   appBar: {
     display: 'flex',
     justifyContent: 'flex-end',
     padding: theme.spacing(1),
-  },
-  button: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
+    '& > *': {
+      marginLeft: theme.spacing(1),
+      marginRight: theme.spacing(1),
+    },
   },
   grow: {
     flexGrow: 1,
@@ -20,12 +21,7 @@ const Header = () => {
 
   return (
     <Box className={classes.appBar}>
-      <Button className={classes.button} variant="contained">
-        Login
-      </Button>
-      <Button className={classes.button} variant="contained">
-        Sign Up
-      </Button>
+      <LoginSignUpForm />
     </Box>
   )
 }
