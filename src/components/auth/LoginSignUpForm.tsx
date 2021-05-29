@@ -5,6 +5,7 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
+  Link,
   makeStyles,
   TextField,
 } from '@material-ui/core'
@@ -61,6 +62,7 @@ const emailRegex =
 const LoginSignUpForm = () => {
   const classes = useStyles()
   const [formState, setFormState] = useState<any>(defaultFormState)
+  const [formIsValid, setFormIsValid] = useState<boolean>(false)
   const [activeForm, setActiveForm] = useState<ActiveForm | undefined>()
   const isLogin = activeForm === 'login'
 
@@ -110,7 +112,7 @@ const LoginSignUpForm = () => {
     return true
   }
 
-  const formIsValid = () => {
+  const validateForm = () => {
     let firstInvalidInput = ''
     const allInputsAreValid = !Object.keys(formState)
       .map((name: any) => {
@@ -124,6 +126,7 @@ const LoginSignUpForm = () => {
     if (firstInvalidInput) {
       document.getElementById(firstInvalidInput)?.focus()
     }
+    setFormIsValid(allInputsAreValid)
     return allInputsAreValid
   }
 
@@ -151,7 +154,7 @@ const LoginSignUpForm = () => {
   }
 
   const handleSubmit = async () => {
-    if (formIsValid()) {
+    if (validateForm()) {
       try {
         let result
         if (isLogin) {
@@ -190,8 +193,8 @@ const LoginSignUpForm = () => {
             type="email"
             fullWidth
             variant="filled"
-            error={Boolean(email.error && email.touched)}
-            helperText={email.error}
+            error={Boolean(email.error && (!formIsValid || email.touched))}
+            helperText={(!formIsValid || email.touched) && email.error}
             value={email.value}
             onChange={(e) => handleInputUpdate('email', e.target.value)}
             onBlur={() => handleInputBlur('email')}
@@ -203,13 +206,22 @@ const LoginSignUpForm = () => {
             type="password"
             fullWidth
             variant="filled"
-            error={Boolean(password.error && password.touched)}
-            helperText={password.error}
+            error={Boolean(password.error && (!formIsValid || password.touched))}
+            helperText={(!formIsValid || password.touched) && password.error}
             value={password.value}
             onChange={(e) => handleInputUpdate('password', e.target.value)}
             onBlur={() => handleInputBlur('password')}
           />
-          {isLogin && <Button size="small">Forgot Password?</Button>}
+          {isLogin && (
+            // eslint-disable-next-line jsx-a11y/anchor-is-valid
+            <Link
+              component="button"
+              variant="body2"
+              color="secondary"
+              onClick={() => setActiveForm('forgot password')}>
+              Forgot Password?
+            </Link>
+          )}
           {!isLogin && (
             <TextField
               margin="dense"
@@ -218,8 +230,8 @@ const LoginSignUpForm = () => {
               type="password"
               fullWidth
               variant="filled"
-              error={Boolean(confirmPassword.error && confirmPassword.touched)}
-              helperText={confirmPassword.error}
+              error={Boolean(confirmPassword.error && (!formIsValid || confirmPassword.touched))}
+              helperText={(!formIsValid || confirmPassword.touched) && confirmPassword.error}
               value={confirmPassword.value}
               onChange={(e) => handleInputUpdate('confirmPassword', e.target.value)}
               onBlur={() => handleInputBlur('confirmPassword')}
