@@ -1,10 +1,9 @@
 import { TextField } from '@material-ui/core'
-import { FC, ReactElement, useEffect, useReducer } from 'react'
+import { FC, useEffect, useReducer } from 'react'
 
 interface Props {
   [key: string]: any
   type?: string
-  onSubmit: () => void
 }
 
 enum FormActionType {
@@ -90,7 +89,7 @@ const formReducer = (state: any, action: FormAction) => {
   }
 }
 
-const Form: FC<Props> = ({ inputs, type, onSubmit }) => {
+const Form: FC<Props> = ({ inputs, type }) => {
   const [formState, formDispatch] = useReducer(formReducer, {
     inputs,
     type,
@@ -107,22 +106,25 @@ const Form: FC<Props> = ({ inputs, type, onSubmit }) => {
     const input = formState.inputs[name]
     const inputError = (!formState.formIsValid || input.touched) && input.error
     return (
-      <TextField
-        key={name}
-        margin="dense"
-        id={name}
-        label={input.label}
-        type={input.type}
-        fullWidth
-        variant="filled"
-        error={Boolean(inputError)}
-        helperText={inputError}
-        value={input.value || ''}
-        onChange={(e) =>
-          formDispatch({ type: FormActionType.INPUT_UPDATE, value: e.target.value, input: name })
-        }
-        onBlur={() => formDispatch({ type: FormActionType.INPUT_BLUR, input: name })}
-      />
+      <>
+        <TextField
+          key={name}
+          margin="dense"
+          id={name}
+          label={input.label}
+          type={input.type}
+          fullWidth
+          variant="filled"
+          error={Boolean(inputError)}
+          helperText={inputError}
+          value={input.value || ''}
+          onChange={(e) =>
+            formDispatch({ type: FormActionType.INPUT_UPDATE, value: e.target.value, input: name })
+          }
+          onBlur={() => formDispatch({ type: FormActionType.INPUT_BLUR, input: name })}
+        />
+        {input.after}
+      </>
     )
   })
   return <>{formElements}</>
