@@ -11,28 +11,78 @@ import { firebaseAuth } from 'firebase/config'
 
 type ActiveForm = 'login' | 'sign up'
 
+type FormInput = 'email' | 'password' | 'confirmPassword'
+
+const defaultFormState = {
+  email: {
+    value: '',
+    touched: false,
+    error: '',
+    validation: {
+      required: true,
+      email: true,
+    },
+  },
+  password: {
+    value: '',
+    touched: false,
+    error: '',
+    validation: {
+      required: true,
+      matches: 'confirmPassword',
+    },
+  },
+  confirmPassword: {
+    value: '',
+    touched: false,
+    error: '',
+    validation: {
+      required: true,
+      matches: 'password',
+    },
+  },
+  formIsValid: false,
+}
+
 const LoginSignUpForm = () => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
+  const [formState, setFormState] = useState(defaultFormState)
   const [activeForm, setActiveForm] = useState<ActiveForm | undefined>()
   const isLogin = activeForm === 'login'
 
+  const handleClose = () => setActiveForm(undefined)
+
   useEffect(() => {
-    setEmail('')
-    setPassword('')
-    setConfirmPassword('')
+    setFormState(defaultFormState)
   }, [activeForm])
 
-  const handleClose = () => setActiveForm(undefined)
+  const validateForm = () => {
+    const emailRegex =
+      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  }
+
+  const handleInputUpdate = (name: FormInput, value: string) => {
+    setFormState((prev) => ({
+      ...prev,
+      [name]: {
+        ...prev[name],
+        value,
+      },
+    }))
+  }
 
   const handleSubmit = async () => {
     try {
       let result
       if (isLogin) {
-        result = await firebaseAuth.signInWithEmailAndPassword(email, password)
+        result = await firebaseAuth.signInWithEmailAndPassword(
+          formState.email.value,
+          formState.password.value,
+        )
       } else {
-        result = await firebaseAuth.createUserWithEmailAndPassword(email, password)
+        result = await firebaseAuth.createUserWithEmailAndPassword(
+          formState.email.value,
+          formState.password.value,
+        )
       }
       console.log(result)
     } catch (e) {
@@ -62,8 +112,8 @@ const LoginSignUpForm = () => {
             type="email"
             fullWidth
             variant="filled"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={formState.email.value}
+            onChange={(e) => handleInputUpdate('email', e.target.value)}
           />
           <TextField
             margin="dense"
@@ -72,8 +122,8 @@ const LoginSignUpForm = () => {
             type="password"
             fullWidth
             variant="filled"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={formState.password.value}
+            onChange={(e) => handleInputUpdate('password', e.target.value)}
           />
           {!isLogin && (
             <TextField
@@ -83,8 +133,8 @@ const LoginSignUpForm = () => {
               type="password"
               fullWidth
               variant="filled"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
+              value={formState.confirmPassword.value}
+              onChange={(e) => handleInputUpdate('confirmPassword', e.target.value)}
             />
           )}
         </DialogContent>

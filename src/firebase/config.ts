@@ -15,7 +15,6 @@ const firebaseConfig = {
 }
 
 firebase.initializeApp(firebaseConfig)
-console.log(firebase)
 
 // eslint-disable-next-line import/prefer-default-export
 export const firebaseAuth = firebase.auth()
