@@ -8,8 +8,14 @@ import {
   Link,
   makeStyles,
 } from '@material-ui/core'
+import firebase from 'firebase'
 import { firebaseAuth } from 'firebase/config'
 import Form from 'components/common/Form'
+
+type FirebaseAuthFn = (
+  email: string,
+  password?: string,
+) => Promise<firebase.auth.UserCredential | void>
 
 const useStyles = makeStyles((theme) => ({
   dialogPaper: {
@@ -69,8 +75,7 @@ const LoginSignUpForm = () => {
       title: 'Welcome Back',
       submitText: 'Login',
       inputs: { email: inputs.email, password: { ...inputs.password, after: forgotPasswordLink } },
-      onSubmit: (email: string, password: string) =>
-        firebaseAuth.signInWithEmailAndPassword(email, password),
+      onSubmit: firebaseAuth.signInWithEmailAndPassword as FirebaseAuthFn,
     },
     signUp: {
       type: 'signUp',
@@ -81,15 +86,14 @@ const LoginSignUpForm = () => {
         password: inputs.password,
         confirmPassword: inputs.confirmPassword,
       },
-      onSubmit: (email: string, password: string) =>
-        firebaseAuth.createUserWithEmailAndPassword(email, password),
+      onSubmit: firebaseAuth.createUserWithEmailAndPassword as FirebaseAuthFn,
     },
     forgotPassword: {
       type: 'forgotPassword',
       title: 'Forgot Password',
       submitText: 'Send Password Reset Email',
       inputs: { email: inputs.email },
-      onSubmit: (email: string) => firebaseAuth.sendPasswordResetEmail(email),
+      onSubmit: firebaseAuth.sendPasswordResetEmail as FirebaseAuthFn,
     },
   }
 
@@ -99,11 +103,25 @@ const LoginSignUpForm = () => {
     setActiveFormName((prev: any) => (prev === 'login' ? 'signUp' : 'login'))
   }
 
-  const handleSubmit = (e: SyntheticEvent, form: any) => {
+  const activeForm = activeFormName && forms[activeFormName]
+
+  const handleSubmit = async (e: SyntheticEvent, form: any) => {
     console.log('Form is valid and submitting', form)
+    let result
+    const email = form.inputs.email.value
+    try {
+      if (activeFormName === 'forgotPassword') {
+        result = await activeForm?.onSubmit(email)
+      } else {
+        result = await activeForm?.onSubmit(email, form.inputs.password.value)
+      }
+      console.log(result)
+    } catch (error) {
+      console.log(error)
+      throw error
+    }
   }
 
-  const activeForm = activeFormName && forms[activeFormName]
   return (
     <>
       <Button variant="contained" onClick={() => setActiveFormName('login')}>
