@@ -96,7 +96,6 @@ const LoginSignUpForm = () => {
         ...prev,
         [name]: {
           ...prev[name],
-          touched: true,
           error,
         },
       }))
@@ -185,7 +184,7 @@ const LoginSignUpForm = () => {
             type="email"
             fullWidth
             variant="filled"
-            error={Boolean(email.error)}
+            error={Boolean(email.error && email.touched)}
             helperText={email.error}
             value={email.value}
             onChange={(e) => handleInputUpdate('email', e.target.value)}
@@ -198,7 +197,7 @@ const LoginSignUpForm = () => {
             type="password"
             fullWidth
             variant="filled"
-            error={Boolean(password.error)}
+            error={Boolean(password.error && password.touched)}
             helperText={password.error}
             value={password.value}
             onChange={(e) => handleInputUpdate('password', e.target.value)}
@@ -212,7 +211,7 @@ const LoginSignUpForm = () => {
               type="password"
               fullWidth
               variant="filled"
-              error={Boolean(confirmPassword.error)}
+              error={Boolean(confirmPassword.error && confirmPassword.touched)}
               helperText={confirmPassword.error}
               value={confirmPassword.value}
               onChange={(e) => handleInputUpdate('confirmPassword', e.target.value)}
