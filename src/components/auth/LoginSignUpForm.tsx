@@ -8,14 +8,9 @@ import {
   Link,
   makeStyles,
 } from '@material-ui/core'
-import firebase from 'firebase'
+import { LoadingButton } from '@material-ui/lab'
 import { firebaseAuth } from 'firebase/config'
 import Form from 'components/common/Form'
-
-type FirebaseAuthFn = (
-  email: string,
-  password?: string,
-) => Promise<firebase.auth.UserCredential | void>
 
 const useStyles = makeStyles((theme) => ({
   dialogPaper: {
@@ -57,6 +52,7 @@ const LoginSignUpForm = () => {
   const classes = useStyles()
   const [activeFormName, setActiveFormName] =
     useState<'login' | 'signUp' | 'forgotPassword' | undefined>()
+  const [isLoading, setIsLoading] = useState(false)
 
   const forgotPasswordLink = (
     // eslint-disable-next-line jsx-a11y/anchor-is-valid
@@ -75,7 +71,6 @@ const LoginSignUpForm = () => {
       title: 'Welcome Back',
       submitText: 'Login',
       inputs: { email: inputs.email, password: { ...inputs.password, after: forgotPasswordLink } },
-      onSubmit: firebaseAuth.signInWithEmailAndPassword as FirebaseAuthFn,
     },
     signUp: {
       type: 'signUp',
@@ -86,14 +81,12 @@ const LoginSignUpForm = () => {
         password: inputs.password,
         confirmPassword: inputs.confirmPassword,
       },
-      onSubmit: firebaseAuth.createUserWithEmailAndPassword as FirebaseAuthFn,
     },
     forgotPassword: {
       type: 'forgotPassword',
       title: 'Forgot Password',
       submitText: 'Send Password Reset Email',
       inputs: { email: inputs.email },
-      onSubmit: firebaseAuth.sendPasswordResetEmail as FirebaseAuthFn,
     },
   }
 
@@ -110,15 +103,25 @@ const LoginSignUpForm = () => {
     let result
     const email = form.inputs.email.value
     try {
-      if (activeFormName === 'forgotPassword') {
-        result = await activeForm?.onSubmit(email)
-      } else {
-        result = await activeForm?.onSubmit(email, form.inputs.password.value)
+      setIsLoading(true)
+      switch (activeFormName) {
+        case 'login':
+          result = await firebaseAuth.signInWithEmailAndPassword(email, form.inputs.email.value)
+          break
+        case 'signUp':
+          result = await firebaseAuth.createUserWithEmailAndPassword(email, form.inputs.email.value)
+          break
+        case 'forgotPassword':
+          result = await firebaseAuth.sendPasswordResetEmail(email)
+          break
+        default:
+          throw new Error(`Invalid Submission Method: ${activeFormName}`)
       }
       console.log(result)
     } catch (error) {
       console.log(error)
-      throw error
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -141,10 +144,10 @@ const LoginSignUpForm = () => {
             <DialogContent>
               <Form inputs={activeForm.inputs} type={activeForm.type} onSubmit={handleSubmit}>
                 <DialogActions className={classes.formActions}>
-                  <Button type="submit" color="primary" size="large">
+                  <LoadingButton loading={isLoading} type="submit" color="primary" size="large">
                     {activeForm.submitText}
-                  </Button>
-                  <Button onClick={toggleState} size="small" color="inherit">
+                  </LoadingButton>
+                  <Button onClick={toggleState} disabled={isLoading} size="small" color="inherit">
                     {`Switch to ${activeForm.type === 'login' ? 'Sign Up' : 'Login'}`}
                   </Button>
                 </DialogActions>
