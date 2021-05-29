@@ -33,6 +33,7 @@ const defaultFormState = {
     error: '',
     validation: {
       required: true,
+      minLength: 6,
     },
   },
   confirmPassword: {
@@ -44,6 +45,7 @@ const defaultFormState = {
     validation: {
       required: true,
       passwordMatch: true,
+      minLength: 6,
     },
   },
 }
@@ -68,22 +70,26 @@ const LoginSignUpForm = () => {
     // eslint-disable-next-line no-param-reassign
     if (!value) value = formState[name].value
     const { validation, label } = formState[name]
-    const { required, passwordMatch, isEmail } = validation
+    const { required, passwordMatch, isEmail, minLength } = validation
     let error = ''
     if (required && !value) {
       error = `${label} cannot be empty`
     } else if (isEmail && !emailRegex.test(value.toLowerCase())) {
       error = 'Enter a valid email address'
-    } else if (passwordMatch && value !== formState.password.value) {
-      error = 'Passwords must match'
-    } else if (name === 'password' && value === formState.confirmPassword.value) {
-      setFormState((prev: any) => ({
-        ...prev,
-        confirmPassword: {
-          ...prev.confirmPassword,
-          error: '',
-        },
-      }))
+    } else if (minLength && value.length < minLength) {
+      error = `${label} must be longer than ${minLength} characters`
+    } else if (activeForm === 'sign up') {
+      if (passwordMatch && value !== formState.password.value) {
+        error = 'Passwords must match'
+      } else if (name === 'password' && value === formState.confirmPassword.value) {
+        setFormState((prev: any) => ({
+          ...prev,
+          confirmPassword: {
+            ...prev.confirmPassword,
+            error: '',
+          },
+        }))
+      }
     }
     if (error) {
       setFormState((prev: any) => ({
