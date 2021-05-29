@@ -90,6 +90,7 @@ const formReducer = (state: any, action: FormAction) => {
     }
     case FormActionType.VALIDATE_FORM: {
       const updatedInputs: any = {}
+      let firstInvalidInput: string | null = null
       const formValidityState = Object.keys(inputs).map((name) => {
         const input = inputs[name]
         const error = validateInput(input)
@@ -98,9 +99,16 @@ const formReducer = (state: any, action: FormAction) => {
           touched: true,
           error,
         }
-        return error === ''
+        const isValid = error === ''
+        if (!isValid && !firstInvalidInput) {
+          firstInvalidInput = name
+        }
+        return isValid
       })
       const formIsValid = formValidityState.every((isValid) => isValid)
+      if (firstInvalidInput) {
+        document.getElementById(firstInvalidInput)?.focus()
+      }
       return {
         ...state,
         inputs: updatedInputs,
