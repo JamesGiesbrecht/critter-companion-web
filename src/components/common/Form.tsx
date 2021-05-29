@@ -26,7 +26,7 @@ const validateInput = (input: any, value?: any) => {
     // eslint-disable-next-line no-param-reassign
     value = input.value
   }
-  const { required, email, min, max, minLength } = validation
+  const { required, email, min, max, minLength, matches } = validation
   let error = ''
 
   const emailRegex =
@@ -42,6 +42,8 @@ const validateInput = (input: any, value?: any) => {
     error = `${label} must be less than ${max}`
   } else if (minLength != null && value.length < minLength) {
     error = `${label} must be at least ${minLength} characters`
+  } else if (matches && matches.value !== value) {
+    error = `${label} and ${matches.label} must match`
   }
   return error
 }
@@ -51,6 +53,14 @@ const formReducer = (state: any, action: FormAction) => {
   switch (action.type) {
     case FormActionType.INPUT_UPDATE: {
       const input = inputs[action.inputName]
+      const { matches } = input.validation
+      if (matches && inputs[matches.name]) {
+        input.validation.matches = {
+          ...matches,
+          value: inputs[matches.name].value || '',
+          label: inputs[matches.name].label,
+        }
+      }
       const updatedInputs = {
         ...inputs,
         [action.inputName]: {

@@ -41,7 +41,7 @@ const inputs = {
     type: 'password',
     validation: {
       required: true,
-      passwordMatch: true,
+      matches: { name: 'password' },
       minLength: 6,
     },
   },
