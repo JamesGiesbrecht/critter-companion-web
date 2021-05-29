@@ -1,15 +1,18 @@
 import { TextField } from '@material-ui/core'
-import { FC, useEffect, useReducer } from 'react'
+import { FC, Fragment, SyntheticEvent, useEffect, useReducer } from 'react'
 
 interface Props {
   [key: string]: any
+  children: any
   type?: string
+  onSubmit: (e: SyntheticEvent, state: any) => void
 }
 
 enum FormActionType {
   INPUT_UPDATE = 'INPUT_UPDATE',
   INPUT_BLUR = 'INPUT_BLUR',
   INITIALIZE_FORM = 'INITIALIZE_FORM',
+  VALIDATE_FORM = 'VALIDATE_FORM',
 }
 
 interface FormAction {
@@ -17,46 +20,47 @@ interface FormAction {
   [key: string]: any
 }
 
-const validateInput = (value: any, validation: any) => {
+const validateInput = (input: any, value?: any) => {
+  const { label, validation } = input
+  if (value === null || value === undefined) {
+    // eslint-disable-next-line no-param-reassign
+    value = input.value
+  }
   const { required, email, min, max, minLength } = validation
-  let isValid = true
+  let error = ''
 
   const emailRegex =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
-  if (required && value.trim().length === 0) {
-    isValid = false
+  if (required && (!value || value.trim().length === 0)) {
+    error = `${label} is required`
+  } else if (email && !emailRegex.test(value.toLowerCase())) {
+    error = 'Enter a valid email'
+  } else if (min != null && +value < min) {
+    error = `${label} must be at least ${min}`
+  } else if (max != null && +value > max) {
+    error = `${label} must be less than ${max}`
+  } else if (minLength != null && value.length < minLength) {
+    error = `${label} must be at least ${minLength} characters`
   }
-  if (email && !emailRegex.test(value.toLowerCase())) {
-    isValid = false
-  }
-  if (min != null && +value < min) {
-    isValid = false
-  }
-  if (max != null && +value > max) {
-    isValid = false
-  }
-  if (minLength != null && value.length < minLength) {
-    isValid = false
-  }
-
-  return isValid
+  return error
 }
 
 const formReducer = (state: any, action: FormAction) => {
   const { inputs } = state
   switch (action.type) {
     case FormActionType.INPUT_UPDATE: {
+      const input = inputs[action.inputName]
       const updatedInputs = {
         ...inputs,
-        [action.input]: {
-          ...inputs[action.input],
+        [action.inputName]: {
+          ...input,
           value: action.value,
-          isValid: validateInput(action.value, inputs[action.input].validation),
+          error: validateInput(input, action.value),
         },
       }
       const formIsValid = Object.keys(updatedInputs).every(
-        (inputName) => updatedInputs[inputName].isValid,
+        (inputName) => updatedInputs[inputName].error === '',
       )
       return {
         ...state,
@@ -67,8 +71,8 @@ const formReducer = (state: any, action: FormAction) => {
     case FormActionType.INPUT_BLUR: {
       const updatedInputs = {
         ...inputs,
-        [action.input]: {
-          ...inputs[action.input],
+        [action.inputName]: {
+          ...inputs[action.inputName],
           touched: true,
         },
       }
@@ -84,12 +88,31 @@ const formReducer = (state: any, action: FormAction) => {
         type: action.formType,
       }
     }
+    case FormActionType.VALIDATE_FORM: {
+      const updatedInputs: any = {}
+      const formValidityState = Object.keys(inputs).map((name) => {
+        const input = inputs[name]
+        const error = validateInput(input)
+        updatedInputs[name] = {
+          ...input,
+          touched: true,
+          error,
+        }
+        return error === ''
+      })
+      const formIsValid = formValidityState.every((isValid) => isValid)
+      return {
+        ...state,
+        inputs: updatedInputs,
+        formIsValid,
+      }
+    }
     default:
       return state
   }
 }
 
-const Form: FC<Props> = ({ inputs, type }) => {
+const Form: FC<Props> = ({ children, inputs, type, onSubmit }) => {
   const [formState, formDispatch] = useReducer(formReducer, {
     inputs,
     type,
@@ -102,13 +125,22 @@ const Form: FC<Props> = ({ inputs, type }) => {
     }
   }, [type, formState.type, inputs])
 
+  const handleSubmit = (e: SyntheticEvent) => {
+    e.preventDefault()
+    formDispatch({ type: FormActionType.VALIDATE_FORM })
+    if (formState.formIsValid) {
+      onSubmit(e, formState)
+    } else {
+      console.log('Form is invalid', formState)
+    }
+  }
+
   const formElements = Object.keys(formState.inputs).map((name: string) => {
     const input = formState.inputs[name]
-    const inputError = (!formState.formIsValid || input.touched) && input.error
+    const inputError = input.touched && input.error
     return (
-      <>
+      <Fragment key={name}>
         <TextField
-          key={name}
           margin="dense"
           id={name}
           label={input.label}
@@ -119,15 +151,24 @@ const Form: FC<Props> = ({ inputs, type }) => {
           helperText={inputError}
           value={input.value || ''}
           onChange={(e) =>
-            formDispatch({ type: FormActionType.INPUT_UPDATE, value: e.target.value, input: name })
+            formDispatch({
+              type: FormActionType.INPUT_UPDATE,
+              value: e.target.value,
+              inputName: name,
+            })
           }
-          onBlur={() => formDispatch({ type: FormActionType.INPUT_BLUR, input: name })}
+          onBlur={() => formDispatch({ type: FormActionType.INPUT_BLUR, inputName: name })}
         />
         {input.after}
-      </>
+      </Fragment>
     )
   })
-  return <>{formElements}</>
+  return (
+    <form noValidate onSubmit={handleSubmit}>
+      {formElements}
+      {children}
+    </form>
+  )
 }
 
 export default Form

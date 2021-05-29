@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { SyntheticEvent, useState } from 'react'
 import {
   Button,
   Dialog,
@@ -19,38 +19,38 @@ const useStyles = makeStyles((theme) => ({
   formActions: { display: 'flex', flexDirection: 'column' },
 }))
 
+const inputs = {
+  email: {
+    label: 'Email',
+    type: 'email',
+    validation: {
+      required: true,
+      email: true,
+    },
+  },
+  password: {
+    label: 'Password',
+    type: 'password',
+    validation: {
+      required: true,
+      minLength: 6,
+    },
+  },
+  confirmPassword: {
+    label: 'Confirm Password',
+    type: 'password',
+    validation: {
+      required: true,
+      passwordMatch: true,
+      minLength: 6,
+    },
+  },
+}
+
 const LoginSignUpForm = () => {
   const classes = useStyles()
   const [activeFormName, setActiveFormName] =
     useState<'login' | 'signUp' | 'forgotPassword' | undefined>()
-
-  const inputs = {
-    email: {
-      label: 'Email',
-      type: 'email',
-      validation: {
-        required: true,
-        isEmail: true,
-      },
-    },
-    password: {
-      label: 'Password',
-      type: 'password',
-      validation: {
-        required: true,
-        minLength: 6,
-      },
-    },
-    confirmPassword: {
-      label: 'Confirm Password',
-      type: 'password',
-      validation: {
-        required: true,
-        passwordMatch: true,
-        minLength: 6,
-      },
-    },
-  }
 
   const forgotPasswordLink = (
     // eslint-disable-next-line jsx-a11y/anchor-is-valid
@@ -99,6 +99,10 @@ const LoginSignUpForm = () => {
     setActiveFormName((prev: any) => (prev === 'login' ? 'signUp' : 'login'))
   }
 
+  const handleSubmit = (e: SyntheticEvent, form: any) => {
+    console.log('Form is valid and submitting', form)
+  }
+
   const activeForm = activeFormName && forms[activeFormName]
   return (
     <>
@@ -117,16 +121,17 @@ const LoginSignUpForm = () => {
           <>
             <DialogTitle id={activeForm.type}>{activeForm.title}</DialogTitle>
             <DialogContent>
-              <Form inputs={activeForm.inputs} type={activeForm.type} />
+              <Form inputs={activeForm.inputs} type={activeForm.type} onSubmit={handleSubmit}>
+                <DialogActions className={classes.formActions}>
+                  <Button type="submit" color="primary" size="large">
+                    {activeForm.submitText}
+                  </Button>
+                  <Button onClick={toggleState} size="small" color="inherit">
+                    {`Switch to ${activeForm.type === 'login' ? 'Sign Up' : 'Login'}`}
+                  </Button>
+                </DialogActions>
+              </Form>
             </DialogContent>
-            <DialogActions className={classes.formActions}>
-              <Button onClick={() => 'Submitting'} color="primary" size="large">
-                {activeForm.submitText}
-              </Button>
-              <Button onClick={toggleState} size="small" color="inherit">
-                {`Switch to ${activeForm.type === 'login' ? 'Sign Up' : 'Login'}`}
-              </Button>
-            </DialogActions>
           </>
         )}
       </Dialog>
