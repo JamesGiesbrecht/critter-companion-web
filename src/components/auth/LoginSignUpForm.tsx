@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import {
   Button,
   Dialog,
@@ -6,19 +6,39 @@ import {
   DialogContent,
   DialogTitle,
   TextField,
-  useTheme,
 } from '@material-ui/core'
+import { firebaseAuth } from 'firebase/config'
 
 type ActiveForm = 'login' | 'sign up'
 
 const LoginSignUpForm = () => {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
   const [activeForm, setActiveForm] = useState<ActiveForm | undefined>()
   const isLogin = activeForm === 'login'
 
+  useEffect(() => {
+    setEmail('')
+    setPassword('')
+    setConfirmPassword('')
+  }, [activeForm])
+
   const handleClose = () => setActiveForm(undefined)
 
-  const handleSubmit = () => {
-    console.log('Submitting')
+  const handleSubmit = async () => {
+    try {
+      let result
+      if (isLogin) {
+        result = await firebaseAuth.signInWithEmailAndPassword(email, password)
+      } else {
+        result = await firebaseAuth.createUserWithEmailAndPassword(email, password)
+      }
+      console.log(result)
+    } catch (e) {
+      console.log(e)
+      throw e
+    }
   }
 
   const toggleState = () => setActiveForm((prev) => (prev === 'sign up' ? 'login' : 'sign up'))
@@ -42,6 +62,8 @@ const LoginSignUpForm = () => {
             type="email"
             fullWidth
             variant="filled"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <TextField
             margin="dense"
@@ -50,6 +72,8 @@ const LoginSignUpForm = () => {
             type="password"
             fullWidth
             variant="filled"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
           {!isLogin && (
             <TextField
@@ -59,6 +83,8 @@ const LoginSignUpForm = () => {
               type="password"
               fullWidth
               variant="filled"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
             />
           )}
         </DialogContent>
