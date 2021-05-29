@@ -22,7 +22,7 @@ const Footer = () => {
   return (
     <Paper className={classes.footer} elevation={7}>
       <Tooltip title={tooltipText} placement="top">
-        <Button target="_blank" href="https://jamesgiesbrecht.ca">Created by James Giesbrecht</Button>
+        <Button target="_blank" href="https://jamesgiesbrecht.ca" color="inherit">Created by James Giesbrecht</Button>
       </Tooltip>
     </Paper>
   )

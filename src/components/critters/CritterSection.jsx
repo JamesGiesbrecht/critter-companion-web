@@ -136,6 +136,7 @@ const CritterSection = ({ allCritters, type, showAll, show, search }) => {
         <Button
           size="small"
           classes={{ endIcon: classes.expandIconSize }}
+          color="inherit"
           onClick={() => setExpanded((prevExpanded) => !prevExpanded)}
           endIcon={
             <ExpandMoreIcon className={clsx(classes.expandArrow, !expanded && classes.open)} />

@@ -134,6 +134,7 @@ const CritterRow = ({ critter, donatedCritters, setDonatedCritters, hours, isFis
     return (
       <Button
         className={clsx(classes.name, !isDonated && classes.notDonated)}
+        color="inherit"
         startIcon={
           <BlathersIcon className={clsx(classes.blathers, isDonated && classes.donated)} />
         }

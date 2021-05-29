@@ -5,13 +5,18 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
+  makeStyles,
   TextField,
 } from '@material-ui/core'
 import { firebaseAuth } from 'firebase/config'
 
-type ActiveForm = 'login' | 'sign up'
+type ActiveForm = 'login' | 'sign up' | 'forgot password'
 
 type FormInput = 'email' | 'password' | 'confirmPassword'
+
+const useStyles = makeStyles((theme) => ({
+  formActions: { display: 'flex', flexDirection: 'column' },
+}))
 
 const defaultFormState = {
   email: {
@@ -54,6 +59,7 @@ const emailRegex =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
 const LoginSignUpForm = () => {
+  const classes = useStyles()
   const [formState, setFormState] = useState<any>(defaultFormState)
   const [activeForm, setActiveForm] = useState<ActiveForm | undefined>()
   const isLogin = activeForm === 'login'
@@ -174,7 +180,7 @@ const LoginSignUpForm = () => {
         Sign Up
       </Button>
       <Dialog open={Boolean(activeForm)} onClose={handleClose} aria-labelledby={activeForm}>
-        <DialogTitle id={activeForm}>{isLogin ? 'Login' : 'Sign Up'}</DialogTitle>
+        <DialogTitle id={activeForm}>{isLogin ? 'Welcome Back' : 'Welcome New User'}</DialogTitle>
         <DialogContent>
           <TextField
             autoFocus
@@ -203,6 +209,7 @@ const LoginSignUpForm = () => {
             onChange={(e) => handleInputUpdate('password', e.target.value)}
             onBlur={() => handleInputBlur('password')}
           />
+          {isLogin && <Button size="small">Forgot Password?</Button>}
           {!isLogin && (
             <TextField
               margin="dense"
@@ -219,12 +226,12 @@ const LoginSignUpForm = () => {
             />
           )}
         </DialogContent>
-        <DialogActions sx={{ justifyContent: 'space-between', pl: 3, pr: 3 }}>
-          <Button onClick={toggleState} size="large">
-            {`Switch to ${isLogin ? 'Sign Up' : 'Login'}`}
+        <DialogActions className={classes.formActions}>
+          <Button onClick={handleSubmit} color="primary" size="large">
+            {isLogin ? 'Login' : 'Sign Up'}
           </Button>
-          <Button onClick={handleSubmit} size="large">
-            Submit
+          <Button onClick={toggleState} size="small" color="inherit">
+            {`Switch to ${isLogin ? 'Sign Up' : 'Login'}`}
           </Button>
         </DialogActions>
       </Dialog>
