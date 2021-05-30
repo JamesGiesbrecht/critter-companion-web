@@ -32,9 +32,9 @@ export const AuthContextProvider: FC = ({ children }) => {
 
   const store = {
     user,
-    login: firebaseAuth.signInWithEmailAndPassword,
-    signUp: firebaseAuth.createUserWithEmailAndPassword,
-    resetPassword: firebaseAuth.sendPasswordResetEmail,
+    login: firebaseAuth.signInWithEmailAndPassword.bind(firebaseAuth),
+    signUp: firebaseAuth.createUserWithEmailAndPassword.bind(firebaseAuth),
+    resetPassword: firebaseAuth.sendPasswordResetEmail.bind(firebaseAuth),
   }
   return <AuthContext.Provider value={store}>{children}</AuthContext.Provider>
 }

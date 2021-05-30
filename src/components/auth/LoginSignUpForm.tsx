@@ -1,4 +1,5 @@
 import { SyntheticEvent, useState } from 'react'
+import { useAuth } from 'context/Auth'
 import {
   Button,
   Dialog,
@@ -9,7 +10,6 @@ import {
   makeStyles,
 } from '@material-ui/core'
 import { LoadingButton } from '@material-ui/lab'
-import { firebaseAuth } from 'firebase/config'
 import Form from 'components/common/Form'
 
 const useStyles = makeStyles((theme) => ({
@@ -53,11 +53,13 @@ const LoginSignUpForm = () => {
   const [activeFormName, setActiveFormName] =
     useState<'login' | 'signUp' | 'forgotPassword' | undefined>()
   const [isLoading, setIsLoading] = useState(false)
+  const auth = useAuth()
 
   const forgotPasswordLink = (
     // eslint-disable-next-line jsx-a11y/anchor-is-valid
     <Link
       component="button"
+      type="button"
       variant="body1"
       color="secondary"
       onClick={() => setActiveFormName('forgotPassword')}>
@@ -106,13 +108,13 @@ const LoginSignUpForm = () => {
       setIsLoading(true)
       switch (activeFormName) {
         case 'login':
-          result = await firebaseAuth.signInWithEmailAndPassword(email, form.inputs.email.value)
+          result = await auth.login(email, form.inputs.email.value)
           break
         case 'signUp':
-          result = await firebaseAuth.createUserWithEmailAndPassword(email, form.inputs.email.value)
+          result = await auth.signUp(email, form.inputs.email.value)
           break
         case 'forgotPassword':
-          result = await firebaseAuth.sendPasswordResetEmail(email)
+          result = await auth.resetPassword(email)
           break
         default:
           throw new Error(`Invalid Submission Method: ${activeFormName}`)
@@ -147,8 +149,16 @@ const LoginSignUpForm = () => {
                   <LoadingButton loading={isLoading} type="submit" color="primary" size="large">
                     {activeForm.submitText}
                   </LoadingButton>
-                  <Button onClick={toggleState} disabled={isLoading} size="small" color="inherit">
+                  <Button
+                    type="button"
+                    size="small"
+                    color="inherit"
+                    disabled={isLoading}
+                    onClick={toggleState}>
                     {`Switch to ${activeForm.type === 'login' ? 'Sign Up' : 'Login'}`}
+                  </Button>
+                  <Button type="button" onClick={() => console.log(auth.user)}>
+                    Get user
                   </Button>
                 </DialogActions>
               </Form>
