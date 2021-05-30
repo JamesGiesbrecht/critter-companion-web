@@ -1,13 +1,17 @@
 import { useState, useEffect, useContext, createContext, FC } from 'react'
-import firebase from 'firebase'
-import { firebaseAuth } from 'firebase/config'
+
+const urls = {
+  login: 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=',
+  signUp: 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=',
+  resetPassword: 'https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=[API_KEY]',
+}
 
 interface AuthContextType {
-  user: firebase.User | null
-  login: typeof firebaseAuth.signInWithEmailAndPassword
-  logout: typeof firebaseAuth.signOut
-  signUp: typeof firebaseAuth.createUserWithEmailAndPassword
-  resetPassword: typeof firebaseAuth.sendPasswordResetEmail
+  user: any
+  login: any
+  logout: any
+  signUp: any
+  resetPassword: any
 }
 
 const noContextError = () => {
@@ -23,21 +27,14 @@ export const AuthContext = createContext<AuthContextType>({
 })
 
 export const AuthContextProvider: FC = ({ children }) => {
-  const [user, setUser] = useState<AuthContextType['user']>(null)
-
-  useEffect(() => {
-    const unlisten = firebaseAuth.onAuthStateChanged((authUser) => setUser(authUser))
-    return () => {
-      unlisten()
-    }
-  })
+  const [user, setUser] = useState<any>(null)
 
   const store = {
     user,
-    login: firebaseAuth.signInWithEmailAndPassword.bind(firebaseAuth),
-    logout: firebaseAuth.signOut.bind(firebaseAuth),
-    signUp: firebaseAuth.createUserWithEmailAndPassword.bind(firebaseAuth),
-    resetPassword: firebaseAuth.sendPasswordResetEmail.bind(firebaseAuth),
+    login: () => console.log('login'),
+    logout: () => console.log('logout'),
+    signUp: () => console.log('signUp'),
+    resetPassword: () => console.log('resetPassword'),
   }
   return <AuthContext.Provider value={store}>{children}</AuthContext.Provider>
 }
