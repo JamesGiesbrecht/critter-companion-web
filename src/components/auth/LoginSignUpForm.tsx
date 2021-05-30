@@ -2,6 +2,7 @@ import { SyntheticEvent, useEffect, useState } from 'react'
 import { useAuth } from 'context/Auth'
 import { AuthError } from 'firebase/error'
 import {
+  Alert,
   Button,
   Dialog,
   DialogActions,
@@ -9,9 +10,11 @@ import {
   DialogTitle,
   Link,
   makeStyles,
+  Slide,
+  Snackbar,
   Typography,
 } from '@material-ui/core'
-import { LoadingButton } from '@material-ui/lab'
+import { Color, LoadingButton } from '@material-ui/lab'
 import Form from 'components/common/Form'
 import AccountButton from 'components/auth/AccountButton'
 
@@ -61,6 +64,11 @@ const LoginSignUpForm = () => {
   const [activeFormName, setActiveFormName] = useState<FormType | undefined>()
   const [isLoading, setIsLoading] = useState(false)
   const [submitError, setSubmitError] = useState('')
+  const [snackbar, setSnackbar] = useState<{
+    open: boolean
+    content: string
+    severity: Color | undefined
+  }>({ open: false, content: '', severity: 'success' })
   const auth = useAuth()
 
   useEffect(() => {
@@ -112,6 +120,11 @@ const LoginSignUpForm = () => {
 
   const handleClose = () => setActiveFormName(undefined)
 
+  const handleSnackbarClose = (event?: SyntheticEvent, reason?: string) => {
+    if (reason === 'clickaway') return
+    setSnackbar((prev) => ({ ...prev, open: false }))
+  }
+
   const toggleState = () => {
     setActiveFormName((prev: any) => (prev === 'login' ? 'signUp' : 'login'))
   }
@@ -133,12 +146,17 @@ const LoginSignUpForm = () => {
           break
         case 'forgotPassword':
           result = await auth.resetPassword(email)
+          setSnackbar({
+            open: true,
+            content: 'Password reset email successfully sent',
+            severity: 'success',
+          })
           break
         default:
           throw new Error(`Invalid Submission Method: ${activeFormName}`)
       }
-      setSubmitError('')
       console.log(result)
+      setSubmitError('')
       setActiveFormName(undefined)
     } catch (error) {
       console.log(error)
@@ -244,6 +262,16 @@ const LoginSignUpForm = () => {
           </>
         )}
       </Dialog>
+      <Snackbar
+        open={snackbar.open}
+        autoHideDuration={6000}
+        onClose={handleSnackbarClose}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+        TransitionComponent={(props) => <Slide {...props} direction="up" />}>
+        <Alert onClose={handleSnackbarClose} severity={snackbar.severity} sx={{ width: '100%' }}>
+          {snackbar.content}
+        </Alert>
+      </Snackbar>
     </>
   )
 }
