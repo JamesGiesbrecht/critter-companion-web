@@ -5,6 +5,11 @@ export enum AuthError {
   UserNotFound = 'auth/user-not-found',
   WrongPassword = 'auth/wrong-password',
   EmailAlreadyInUse = 'auth/email-already-in-use',
-  OperationNotAllow = 'auth/operation-not-allowed',
+  OperationNotAllowed = 'auth/operation-not-allowed',
   WeakPassword = 'auth/weak-password',
+  MissingAndroidPkgName = 'auth/missing-android-pkg-name',
+  MissingContinueUri = 'auth/missing-continue-uri',
+  MissingIOSBundleId = 'auth/missing-ios-bundle-id',
+  InvalidContinueUri = 'auth/invalid-continue-uri',
+  UnauthorizedContinueUri = 'auth/unauthorized-continue-uri',
 }

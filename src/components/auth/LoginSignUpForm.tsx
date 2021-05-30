@@ -163,7 +163,12 @@ const LoginSignUpForm = () => {
             getFormLink('login', 'login?'),
           ]
           break
-        case AuthError.OperationNotAllow:
+        case AuthError.OperationNotAllowed:
+        case AuthError.MissingContinueUri:
+        case AuthError.MissingIOSBundleId:
+        case AuthError.MissingAndroidPkgName:
+        case AuthError.InvalidContinueUri:
+        case AuthError.UnauthorizedContinueUri:
           errorMessage =
             'There is an error with the app configuration, please notify the administrator.'
           break
