@@ -14,7 +14,7 @@ export enum ColorScheme {
 export const ColorSchemeContext = createContext<ColorSchemeType>({
   colorScheme: ColorScheme.Dark,
   toggleColorScheme: () => {
-    throw new Error('This component has not been wrapper with a ColorScheme Provider.')
+    throw new Error('This component has not been wrapper with a ColorScheme Context Provider.')
   },
 })
 
