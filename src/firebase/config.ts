@@ -5,13 +5,13 @@ import 'firebase/auth'
 import 'firebase/storage'
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyCYtc2ys7Yvv0-U0XBlKYjPJxxZrzDT9II',
-  authDomain: 'critter-companion.firebaseapp.com',
-  projectId: 'critter-companion',
-  storageBucket: 'critter-companion.appspot.com',
-  messagingSenderId: '816350896434',
-  appId: '1:816350896434:web:943213ff5e9b980780772b',
-  measurementId: 'G-GPTJMKME8Y',
+  apiKey: 'AIzaSyCV8AlfzoBhfBZ3ZUVyz76mYLjNjM571tc',
+  authDomain: 'critter-companion-cfda6.firebaseapp.com',
+  projectId: 'critter-companion-cfda6',
+  storageBucket: 'critter-companion-cfda6.appspot.com',
+  messagingSenderId: '501051862820',
+  appId: '1:501051862820:web:854f1b0b2ea46d23524db1',
+  measurementId: 'G-HB564H7EWC',
 }
 
 firebase.initializeApp(firebaseConfig)

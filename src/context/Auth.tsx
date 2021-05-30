@@ -5,6 +5,7 @@ import { firebaseAuth } from 'firebase/config'
 interface AuthContextType {
   user: firebase.User | null
   login: typeof firebaseAuth.signInWithEmailAndPassword
+  logout: typeof firebaseAuth.signOut
   signUp: typeof firebaseAuth.createUserWithEmailAndPassword
   resetPassword: typeof firebaseAuth.sendPasswordResetEmail
 }
@@ -16,6 +17,7 @@ const noContextError = () => {
 export const AuthContext = createContext<AuthContextType>({
   user: null,
   login: noContextError,
+  logout: noContextError,
   signUp: noContextError,
   resetPassword: noContextError,
 })
@@ -33,6 +35,7 @@ export const AuthContextProvider: FC = ({ children }) => {
   const store = {
     user,
     login: firebaseAuth.signInWithEmailAndPassword.bind(firebaseAuth),
+    logout: firebaseAuth.signOut.bind(firebaseAuth),
     signUp: firebaseAuth.createUserWithEmailAndPassword.bind(firebaseAuth),
     resetPassword: firebaseAuth.sendPasswordResetEmail.bind(firebaseAuth),
   }

@@ -160,6 +160,14 @@ const LoginSignUpForm = () => {
                   <Button type="button" onClick={() => console.log(auth.user)}>
                     Get user
                   </Button>
+                  <Button
+                    type="button"
+                    onClick={async () => {
+                      const result = await auth.logout()
+                      console.log(result)
+                    }}>
+                    Logout
+                  </Button>
                 </DialogActions>
               </Form>
             </DialogContent>
