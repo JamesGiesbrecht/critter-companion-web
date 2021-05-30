@@ -4,14 +4,23 @@ import 'firebase/firestore'
 import 'firebase/auth'
 import 'firebase/storage'
 
+const {
+  REACT_APP_FIREBASE_API_KEY,
+  REACT_APP_FIREBASE_PROJECT_ID,
+  REACT_APP_FIREBASE_SENDER_ID,
+  REACT_APP_FIREBASE_APP_ID,
+  REACT_APP_FIREBASE_MEASUREMENT_ID,
+} = process.env
+
 const firebaseConfig = {
-  apiKey: 'AIzaSyCV8AlfzoBhfBZ3ZUVyz76mYLjNjM571tc',
-  authDomain: 'critter-companion-cfda6.firebaseapp.com',
-  projectId: 'critter-companion-cfda6',
-  storageBucket: 'critter-companion-cfda6.appspot.com',
-  messagingSenderId: '501051862820',
-  appId: '1:501051862820:web:854f1b0b2ea46d23524db1',
-  measurementId: 'G-HB564H7EWC',
+  apiKey: REACT_APP_FIREBASE_API_KEY,
+  authDomain: `${REACT_APP_FIREBASE_PROJECT_ID}.firebaseapp.co`,
+  databaseURL: `https://${REACT_APP_FIREBASE_PROJECT_ID}.firebaseio.co`,
+  projectId: REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: `${REACT_APP_FIREBASE_PROJECT_ID}.appspot.com`,
+  messagingSenderId: REACT_APP_FIREBASE_SENDER_ID,
+  appId: REACT_APP_FIREBASE_APP_ID,
+  measurementId: `G-${REACT_APP_FIREBASE_MEASUREMENT_ID}`,
 }
 
 firebase.initializeApp(firebaseConfig)
