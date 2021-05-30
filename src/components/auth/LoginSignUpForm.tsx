@@ -139,6 +139,7 @@ const LoginSignUpForm = () => {
       }
       setSubmitError('')
       console.log(result)
+      setActiveFormName(undefined)
     } catch (error) {
       console.log(error)
       let errorMessage

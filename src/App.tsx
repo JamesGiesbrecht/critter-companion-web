@@ -8,7 +8,8 @@ import { useColorScheme } from 'context/Theme'
 
 const App = () => {
   const { colorScheme } = useColorScheme()
-  const routes = Routes.map((route) => {
+  const routes = Object.keys(Routes).map((name) => {
+    const route = Routes[name]
     const Page = route.component
     return (
       <Route key={route.path} exact={route.exact || false} path={route.path}>

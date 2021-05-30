@@ -1,11 +1,14 @@
 import { useState, MouseEvent } from 'react'
-import { Avatar, IconButton, Menu, MenuItem } from '@material-ui/core'
+import { useHistory } from 'react-router-dom'
 import { useAuth } from 'context/Auth'
 import { stringToColor } from 'utility/utility'
+import Routes from 'constants/Routes'
+import { Avatar, IconButton, Menu, MenuItem } from '@material-ui/core'
 
 const AccountButton = () => {
   const { user, logout } = useAuth()
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
+  const history = useHistory()
   const open = Boolean(anchorEl)
   if (!user) return null
 
@@ -15,6 +18,17 @@ const AccountButton = () => {
 
   const handleClose = () => {
     setAnchorEl(null)
+  }
+
+  const handleGoToAccount = () => {
+    handleClose()
+    history.push(Routes.account.path)
+  }
+
+  const handleLogout = () => {
+    handleClose()
+    history.push(Routes.home.path)
+    logout()
   }
 
   const avatarText = user.displayName || user.email
@@ -48,9 +62,8 @@ const AccountButton = () => {
           vertical: 'top',
           horizontal: 'left',
         }}>
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        <MenuItem onClick={handleGoToAccount}>My Account</MenuItem>
+        <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </Menu>
     </div>
   )

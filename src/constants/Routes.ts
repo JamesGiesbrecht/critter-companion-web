@@ -8,15 +8,19 @@ interface Route {
   exact?: boolean
 }
 
-export const routes: Route[] = [
-  {
+interface AppRoutes {
+  [name: string]: Route
+}
+
+export const Routes: AppRoutes = {
+  account: {
     path: '/account',
     component: Account,
   },
-  {
+  home: {
     path: '*',
     component: Critters,
   },
-]
+}
 
-export default routes
+export default Routes
