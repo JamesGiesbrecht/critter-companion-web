@@ -108,10 +108,10 @@ const LoginSignUpForm = () => {
       setIsLoading(true)
       switch (activeFormName) {
         case 'login':
-          result = await auth.login(email, form.inputs.email.value)
+          result = await auth.login(email, form.inputs.password.value)
           break
         case 'signUp':
-          result = await auth.signUp(email, form.inputs.email.value)
+          result = await auth.signUp(email, form.inputs.password.value)
           break
         case 'forgotPassword':
           result = await auth.resetPassword(email)
