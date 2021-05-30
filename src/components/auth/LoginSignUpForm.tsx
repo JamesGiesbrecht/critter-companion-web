@@ -1,5 +1,6 @@
-import { SyntheticEvent, useState } from 'react'
+import { SyntheticEvent, useEffect, useState } from 'react'
 import { useAuth } from 'context/Auth'
+import { AuthError } from 'firebase/error'
 import {
   Button,
   Dialog,
@@ -8,16 +9,22 @@ import {
   DialogTitle,
   Link,
   makeStyles,
+  Typography,
 } from '@material-ui/core'
 import { LoadingButton } from '@material-ui/lab'
 import Form from 'components/common/Form'
 
+type FormType = 'login' | 'signUp' | 'forgotPassword'
+
 const useStyles = makeStyles((theme) => ({
   dialogPaper: {
-    width: 500,
+    width: 600,
     margin: theme.spacing(1),
   },
   formActions: { display: 'flex', flexDirection: 'column' },
+  submitError: {
+    color: theme.palette.error.main,
+  },
 }))
 
 const inputs = {
@@ -50,20 +57,24 @@ const inputs = {
 
 const LoginSignUpForm = () => {
   const classes = useStyles()
-  const [activeFormName, setActiveFormName] =
-    useState<'login' | 'signUp' | 'forgotPassword' | undefined>()
+  const [activeFormName, setActiveFormName] = useState<FormType | undefined>()
   const [isLoading, setIsLoading] = useState(false)
+  const [submitError, setSubmitError] = useState('')
   const auth = useAuth()
 
-  const forgotPasswordLink = (
+  useEffect(() => {
+    setSubmitError('')
+  }, [activeFormName])
+
+  const getFormLink = (formName: FormType, label: string) => (
     // eslint-disable-next-line jsx-a11y/anchor-is-valid
     <Link
+      key={label}
       component="button"
       type="button"
       variant="body1"
-      color="secondary"
-      onClick={() => setActiveFormName('forgotPassword')}>
-      Forgot Password?
+      onClick={() => setActiveFormName(formName)}>
+      {label}
     </Link>
   )
 
@@ -72,7 +83,13 @@ const LoginSignUpForm = () => {
       type: 'login',
       title: 'Welcome Back',
       submitText: 'Login',
-      inputs: { email: inputs.email, password: { ...inputs.password, after: forgotPasswordLink } },
+      inputs: {
+        email: inputs.email,
+        password: {
+          ...inputs.password,
+          after: getFormLink('forgotPassword', 'Forgot Password?'),
+        },
+      },
     },
     signUp: {
       type: 'signUp',
@@ -119,9 +136,44 @@ const LoginSignUpForm = () => {
         default:
           throw new Error(`Invalid Submission Method: ${activeFormName}`)
       }
+      setSubmitError('')
       console.log(result)
     } catch (error) {
       console.log(error)
+      let errorMessage
+      switch (error.code) {
+        case AuthError.InvalidEmail:
+          errorMessage = 'Please enter a valid email address.'
+          break
+        case AuthError.UserDisabled:
+          errorMessage = `The account associated with ${email} has been disabled. Contact support for help with this issue.`
+          break
+        case AuthError.UserNotFound:
+          errorMessage = [
+            'An account with this email does not exist, did you mean to ',
+            getFormLink('signUp', 'sign up.'),
+          ]
+          break
+        case AuthError.WrongPassword:
+          errorMessage = 'Incorrect password provided.'
+          break
+        case AuthError.EmailAlreadyInUse:
+          errorMessage = [
+            'An account already exists with this email, did you mean to ',
+            getFormLink('login', 'login?'),
+          ]
+          break
+        case AuthError.OperationNotAllow:
+          errorMessage =
+            'There is an error with the app configuration, please notify the administrator.'
+          break
+        case AuthError.WeakPassword:
+          errorMessage = error.message
+          break
+        default:
+          errorMessage = 'Something went wrong, try again later.'
+      }
+      setSubmitError(errorMessage)
     } finally {
       setIsLoading(false)
     }
@@ -144,6 +196,11 @@ const LoginSignUpForm = () => {
           <>
             <DialogTitle id={activeForm.type}>{activeForm.title}</DialogTitle>
             <DialogContent>
+              {submitError && (
+                <Typography className={classes.submitError} align="center">
+                  {submitError}
+                </Typography>
+              )}
               <Form inputs={activeForm.inputs} type={activeForm.type} onSubmit={handleSubmit}>
                 <DialogActions className={classes.formActions}>
                   <LoadingButton loading={isLoading} type="submit" color="primary" size="large">

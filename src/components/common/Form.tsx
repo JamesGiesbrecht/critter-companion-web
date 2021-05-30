@@ -9,10 +9,10 @@ interface Props {
 }
 
 enum FormActionType {
-  INPUT_UPDATE = 'INPUT_UPDATE',
-  INPUT_BLUR = 'INPUT_BLUR',
-  INITIALIZE_FORM = 'INITIALIZE_FORM',
-  VALIDATE_FORM = 'VALIDATE_FORM',
+  InputUpdate,
+  InputBlur,
+  InitializeForm,
+  ValidateForm,
 }
 
 interface FormAction {
@@ -51,7 +51,7 @@ const validateInput = (input: any, value?: any) => {
 const formReducer = (state: any, action: FormAction) => {
   const { inputs } = state
   switch (action.type) {
-    case FormActionType.INPUT_UPDATE: {
+    case FormActionType.InputUpdate: {
       const input = inputs[action.inputName]
       const { matches } = input.validation
       if (matches && inputs[matches.name]) {
@@ -78,7 +78,7 @@ const formReducer = (state: any, action: FormAction) => {
         formIsValid,
       }
     }
-    case FormActionType.INPUT_BLUR: {
+    case FormActionType.InputBlur: {
       const updatedInputs = {
         ...inputs,
         [action.inputName]: {
@@ -91,14 +91,14 @@ const formReducer = (state: any, action: FormAction) => {
         inputs: updatedInputs,
       }
     }
-    case FormActionType.INITIALIZE_FORM: {
+    case FormActionType.InitializeForm: {
       return {
         ...state,
         inputs: action.inputs,
         type: action.formType,
       }
     }
-    case FormActionType.VALIDATE_FORM: {
+    case FormActionType.ValidateForm: {
       const updatedInputs: any = {}
       let firstInvalidInput: string | null = null
       const formValidityState = Object.keys(inputs).map((name) => {
@@ -139,13 +139,13 @@ const Form: FC<Props> = ({ children, inputs, type, onSubmit }) => {
 
   useEffect(() => {
     if (type && type !== formState.type) {
-      formDispatch({ type: FormActionType.INITIALIZE_FORM, inputs, formType: type })
+      formDispatch({ type: FormActionType.InitializeForm, inputs, formType: type })
     }
   }, [type, formState.type, inputs])
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault()
-    formDispatch({ type: FormActionType.VALIDATE_FORM })
+    formDispatch({ type: FormActionType.ValidateForm })
     if (formState.formIsValid) {
       onSubmit(e, formState)
     } else {
@@ -170,12 +170,12 @@ const Form: FC<Props> = ({ children, inputs, type, onSubmit }) => {
           value={input.value || ''}
           onChange={(e) =>
             formDispatch({
-              type: FormActionType.INPUT_UPDATE,
+              type: FormActionType.InputUpdate,
               value: e.target.value,
               inputName: name,
             })
           }
-          onBlur={() => formDispatch({ type: FormActionType.INPUT_BLUR, inputName: name })}
+          onBlur={() => formDispatch({ type: FormActionType.InputBlur, inputName: name })}
         />
         {input.after}
       </Fragment>

@@ -1,6 +1,6 @@
 import { createTheme, Theme } from '@material-ui/core/styles'
 import { PaletteMode } from '@material-ui/core'
-import { green } from '@material-ui/core/colors'
+import { blue, green } from '@material-ui/core/colors'
 
 // Edit this function for global theme overrides
 const getTheme = (colorScheme: PaletteMode): Theme => {
@@ -11,9 +11,18 @@ const getTheme = (colorScheme: PaletteMode): Theme => {
     palette: {
       mode: colorScheme,
       primary: {
-        light: green[400],
-        main: themeVars(green[700], green[500]),
-        dark: green[800],
+        light: green[500],
+        main: themeVars(green[800], green[400]),
+        dark: green[600],
+      },
+    },
+    components: {
+      MuiLink: {
+        styleOverrides: {
+          root: {
+            color: blue[600],
+          },
+        },
       },
     },
   })
