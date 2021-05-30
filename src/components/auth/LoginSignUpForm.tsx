@@ -13,6 +13,7 @@ import {
 } from '@material-ui/core'
 import { LoadingButton } from '@material-ui/lab'
 import Form from 'components/common/Form'
+import AccountButton from 'components/auth/AccountButton'
 
 type FormType = 'login' | 'signUp' | 'forgotPassword'
 
@@ -186,12 +187,18 @@ const LoginSignUpForm = () => {
 
   return (
     <>
-      <Button variant="contained" onClick={() => setActiveFormName('login')}>
-        Login
-      </Button>
-      <Button variant="contained" onClick={() => setActiveFormName('signUp')}>
-        Sign Up
-      </Button>
+      {auth.user ? (
+        <AccountButton />
+      ) : (
+        <>
+          <Button variant="contained" onClick={() => setActiveFormName('login')}>
+            Login
+          </Button>
+          <Button variant="contained" onClick={() => setActiveFormName('signUp')}>
+            Sign Up
+          </Button>
+        </>
+      )}
       <Dialog
         classes={{ paper: classes.dialogPaper }}
         open={Boolean(activeForm)}

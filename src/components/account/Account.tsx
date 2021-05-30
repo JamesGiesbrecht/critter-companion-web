@@ -6,7 +6,7 @@ const Account = () => {
   const { user } = useAuth()
 
   // Not logged in
-  if (user === null) return <Redirect to="/" />
+  if (!user) return <Redirect to="/" />
 
   return <Typography variant="h1">Account</Typography>
 }
