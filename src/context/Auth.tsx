@@ -3,7 +3,7 @@ import firebase from 'firebase'
 import { firebaseAuth } from 'firebase/config'
 
 interface AuthContextType {
-  user: firebase.User | null
+  user: firebase.User | null | undefined
   login: typeof firebaseAuth.signInWithEmailAndPassword
   logout: typeof firebaseAuth.signOut
   signUp: typeof firebaseAuth.createUserWithEmailAndPassword
@@ -23,7 +23,7 @@ export const AuthContext = createContext<AuthContextType>({
 })
 
 export const AuthContextProvider: FC = ({ children }) => {
-  const [user, setUser] = useState<AuthContextType['user']>(null)
+  const [user, setUser] = useState<AuthContextType['user']>()
 
   useEffect(() => {
     const unlisten = firebaseAuth.onAuthStateChanged((authUser) => setUser(authUser))
