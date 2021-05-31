@@ -4,6 +4,7 @@ import { Collapse, Paper, makeStyles, Typography, Button } from '@material-ui/co
 import { ExpandMoreRounded as ExpandMoreIcon, Search as SearchIcon } from '@material-ui/icons'
 import CrittersTable from 'components/critters/CrittersTable'
 import { removeItem } from 'assets/utility'
+import { MainFilter } from 'context/Filters'
 
 const useStyles = makeStyles(() => ({
   critters: {
@@ -75,10 +76,10 @@ const CritterSection = ({ allCritters, type, showAll, show, search }) => {
       return allCritters.filter((critter) => critter.name.toLowerCase().search(search) !== -1)
     }
 
-    if (showAll === 'showAll') {
+    if (showAll === MainFilter.All) {
       // Add all critters
       filteredCritters = allCritters
-    } else if (showAll === 'isAvailable') {
+    } else if (showAll === MainFilter.Available) {
       // add critters that are available now
       filteredCritters = allCritters.filter((critter) => critter.isAvailableNow)
     } else {

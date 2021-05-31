@@ -4,6 +4,7 @@ import Controls from 'components/layout/Controls'
 import bugsData from 'assets/data/bugs.json'
 import fishData from 'assets/data/fish.json'
 import seaData from 'assets/data/sea.json'
+import { useFilters } from 'context/Filters'
 
 const today = new Date()
 const curMonth = today.getMonth() + 1
@@ -27,10 +28,7 @@ const hasNextMonth = (months) => {
 const isAvailableNow = (months) => months.includes(curMonth)
 
 const Critters = () => {
-  const [showAll, setShowAll] = useState('showAll')
-  const [show, setShow] = useState(['isNew', 'isLeaving', 'isIncoming', 'isDonated'])
-  const [isNorthern, setIsNorthern] = useState(true)
-  const [search, setSearch] = useState('')
+  const { mainFilter, status, isNorthern, search } = useFilters()
 
   const getAvailability = (months) => {
     const availability = {}
@@ -69,13 +67,13 @@ const Critters = () => {
     if (search === '') {
       return (
         <>
-          <CritterSection allCritters={bugs} type="Bugs" showAll={showAll} show={show} />
-          <CritterSection allCritters={fish} type="Fish" showAll={showAll} show={show} />
+          <CritterSection allCritters={bugs} type="Bugs" showAll={mainFilter} show={status} />
+          <CritterSection allCritters={fish} type="Fish" showAll={mainFilter} show={status} />
           <CritterSection
             allCritters={seaCreatures}
             type="Sea Creatures"
-            showAll={showAll}
-            show={show}
+            showAll={mainFilter}
+            show={status}
           />
         </>
       )
@@ -84,8 +82,8 @@ const Critters = () => {
       <CritterSection
         allCritters={bugs.concat(fish, seaCreatures)}
         type="Search"
-        showAll={showAll}
-        show={show}
+        showAll={mainFilter}
+        show={status}
         search={search}
       />
     )
@@ -94,16 +92,7 @@ const Critters = () => {
 
   return (
     <>
-      <Controls
-        showAll={showAll}
-        setShowAll={setShowAll}
-        show={show}
-        setShow={setShow}
-        isNorthern={isNorthern}
-        setIsNorthern={setIsNorthern}
-        search={search}
-        setSearch={setSearch}
-      />
+      <Controls />
       {tables}
     </>
   )

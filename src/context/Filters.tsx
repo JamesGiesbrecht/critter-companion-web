@@ -1,7 +1,7 @@
 import { useState, useContext, createContext, FC, Dispatch, SetStateAction } from 'react'
 import { noProvider } from 'utility/contex'
 
-export enum MainFilters {
+export enum MainFilter {
   All = 'All',
   Available = 'Available',
   Custom = 'Custom',
@@ -14,9 +14,9 @@ export enum Statuses {
   Donated = 'Donated',
 }
 
-interface FormContextType {
-  mainFilter: MainFilters
-  setMainFilter: Dispatch<SetStateAction<MainFilters>>
+interface FiltersContextType {
+  mainFilter: MainFilter
+  setMainFilter: Dispatch<SetStateAction<MainFilter>>
   status: Array<Statuses>
   setStatus: Dispatch<SetStateAction<Array<Statuses>>>
   isNorthern: boolean
@@ -27,19 +27,19 @@ interface FormContextType {
 
 const noFiltersProvider = () => noProvider('Filters')
 
-export const FiltersContext = createContext<FormContextType>({
-  mainFilter: noFiltersProvider(),
+export const FiltersContext = createContext<FiltersContextType>({
+  mainFilter: MainFilter.All,
   setMainFilter: noFiltersProvider,
-  status: noFiltersProvider(),
+  status: [],
   setStatus: noFiltersProvider,
-  isNorthern: noFiltersProvider(),
+  isNorthern: true,
   setIsNorthern: noFiltersProvider,
-  search: noFiltersProvider(),
+  search: '',
   setSearch: noFiltersProvider,
 })
 
 export const FiltersContextProvider: FC = ({ children }) => {
-  const [mainFilter, setMainFilter] = useState<MainFilters>(MainFilters.All)
+  const [mainFilter, setMainFilter] = useState<MainFilter>(MainFilter.All)
   const [status, setStatus] = useState<Array<Statuses>>([
     Statuses.New,
     Statuses.Leaving,

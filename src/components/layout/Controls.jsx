@@ -7,6 +7,7 @@ import ClearIcon from '@material-ui/icons/ClearRounded'
 import { useColorScheme } from 'context/Theme'
 import { dot } from 'assets/cssClasses'
 import { removeItem } from 'assets/utility'
+import { MainFilter, useFilters } from 'context/Filters'
 
 const useStyles = makeStyles((theme) => ({
   controls: {
@@ -97,37 +98,38 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const Controls = ({
-  showAll,
-  setShowAll,
-  show,
-  setShow,
-  isNorthern,
-  setIsNorthern,
-  search,
-  setSearch,
-}) => {
+const Controls = () => {
   const classes = useStyles()
   const { colorScheme, toggleColorScheme } = useColorScheme()
+  const {
+    mainFilter,
+    setMainFilter,
+    status,
+    setStatus,
+    isNorthern,
+    setIsNorthern,
+    search,
+    setSearch,
+  } = useFilters()
 
   const handleShowAllChange = (e, curShowAll) => {
-    if (curShowAll === null || curShowAll === 'isCustom') {
-      setShowAll('isCustom')
+    if (curShowAll === null || curShowAll === MainFilter.Custom) {
+      setMainFilter(MainFilter.Custom)
     } else {
-      let newShow = show
+      let newShow = status
       if (!newShow.includes('isNew')) newShow.push('isNew')
       if (!newShow.includes('isLeaving')) newShow.push('isLeaving')
-      if (curShowAll === 'showAll') {
+      if (curShowAll === MainFilter.All) {
         if (!newShow.includes('isIncoming')) newShow.push('isIncoming')
-      } else if (curShowAll === 'isAvailable') {
+      } else if (curShowAll === MainFilter.Available) {
         if (newShow.includes('isIncoming')) newShow = removeItem(newShow, 'isIncoming')
       }
-      setShow(newShow)
-      setShowAll(curShowAll)
+      setStatus(newShow)
+      setMainFilter(curShowAll)
     }
   }
 
-  const handleShowChange = (e, newShow) => setShow(newShow)
+  const handleShowChange = (e, newShow) => setStatus(newShow)
 
   const handleThemeChange = (e, newTheme) => {
     if (newTheme !== colorScheme && newTheme !== null) toggleColorScheme()
@@ -159,28 +161,28 @@ const Controls = ({
         </ToggleButton>
         <ToggleButtonGroup
           className={classes.buttons}
-          value={showAll}
+          value={mainFilter}
           size="small"
           exclusive
           onChange={handleShowAllChange}>
-          <ToggleButton value="showAll">Show All</ToggleButton>
-          <ToggleButton value="isAvailable">Available Now</ToggleButton>
-          <ToggleButton value="isCustom">Custom</ToggleButton>
+          <ToggleButton value={MainFilter.All}>Show All</ToggleButton>
+          <ToggleButton value={MainFilter.Available}>Available Now</ToggleButton>
+          <ToggleButton value={MainFilter.Custom}>Custom</ToggleButton>
         </ToggleButtonGroup>
         <ToggleButtonGroup
           className={classes.buttons}
-          value={show}
+          value={status}
           onChange={handleShowChange}
           size="small">
-          <ToggleButton value="isNew" disabled={showAll !== 'isCustom'}>
+          <ToggleButton value="isNew" disabled={mainFilter !== MainFilter.Custom}>
             New
             <span className={clsx(classes.dot, classes.new)} />
           </ToggleButton>
-          <ToggleButton value="isLeaving" disabled={showAll !== 'isCustom'}>
+          <ToggleButton value="isLeaving" disabled={mainFilter !== MainFilter.Custom}>
             Leaving
             <span className={clsx(classes.dot, classes.leaving)} />
           </ToggleButton>
-          <ToggleButton value="isIncoming" disabled={showAll !== 'isCustom'}>
+          <ToggleButton value="isIncoming" disabled={mainFilter !== MainFilter.Custom}>
             Incoming
             <span className={clsx(classes.dot, classes.incoming)} />
           </ToggleButton>
