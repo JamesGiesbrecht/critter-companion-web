@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext, createContext, FC } from 'react'
 import firebase from 'firebase'
 import { firebaseAuth } from 'firebase/config'
+import { noProvider } from 'utility/contex'
 
 interface AuthContextType {
   user: firebase.User | null | undefined
@@ -10,16 +11,14 @@ interface AuthContextType {
   resetPassword: typeof firebaseAuth.sendPasswordResetEmail
 }
 
-const noContextError = () => {
-  throw new Error('This component has not been wrapper with a Auth Context Provider.')
-}
+const noAuthProvider = () => noProvider('Auth')
 
 export const AuthContext = createContext<AuthContextType>({
   user: null,
-  login: noContextError,
-  logout: noContextError,
-  signUp: noContextError,
-  resetPassword: noContextError,
+  login: noAuthProvider,
+  logout: noAuthProvider,
+  signUp: noAuthProvider,
+  resetPassword: noAuthProvider,
 })
 
 export const AuthContextProvider: FC = ({ children }) => {
