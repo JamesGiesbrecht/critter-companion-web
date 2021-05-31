@@ -1,5 +1,12 @@
 import clsx from 'clsx'
-import { Paper, InputBase, ToggleButtonGroup, ToggleButton, makeStyles } from '@material-ui/core'
+import {
+  Paper,
+  InputBase,
+  ToggleButtonGroup,
+  ToggleButton,
+  makeStyles,
+  IconButton,
+} from '@material-ui/core'
 import LightModeIcon from '@material-ui/icons/Brightness7'
 import DarkModeIcon from '@material-ui/icons/Brightness3'
 import SearchIcon from '@material-ui/icons/Search'
@@ -131,10 +138,6 @@ const Controls = () => {
 
   const handleShowChange = (e, newShow) => setStatus(newShow)
 
-  const handleThemeChange = (e, newTheme) => {
-    if (newTheme !== colorScheme && newTheme !== null) toggleColorScheme()
-  }
-
   let clearIcon = null
   if (search !== '') {
     clearIcon = (
@@ -206,14 +209,9 @@ const Controls = () => {
           />
           {clearIcon}
         </div>
-        <ToggleButtonGroup value={colorScheme} size="small" exclusive onChange={handleThemeChange}>
-          <ToggleButton value="light">
-            <LightModeIcon />
-          </ToggleButton>
-          <ToggleButton value="dark">
-            <DarkModeIcon />
-          </ToggleButton>
-        </ToggleButtonGroup>
+        <IconButton onClick={toggleColorScheme}>
+          {colorScheme === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
+        </IconButton>
       </div>
     </Paper>
   )
