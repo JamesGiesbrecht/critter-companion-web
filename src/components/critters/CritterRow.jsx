@@ -5,6 +5,7 @@ import CritterInfo from 'components/critters/CritterInfo'
 import Months from 'components/critters/Months'
 import BlathersIcon from 'components/icons/BlathersIcon'
 import { dot, hidden } from 'assets/cssClasses'
+import { Statuses } from 'context/Filters'
 
 const useStyles = makeStyles((theme) => ({
   cell: {
@@ -142,9 +143,9 @@ const CritterRow = ({ critter, donatedCritters, setDonatedCritters, hours, isFis
         {...ref}>
         <Typography component="span">
           {critter.name}
-          {critter.isNew && <span className={clsx(classes.dot, classes.new)} />}
-          {critter.isLeaving && <span className={clsx(classes.dot, classes.leaving)} />}
-          {critter.isIncoming && <span className={clsx(classes.dot, classes.incoming)} />}
+          {critter[Statuses.New] && <span className={clsx(classes.dot, classes.new)} />}
+          {critter[Statuses.Leaving] && <span className={clsx(classes.dot, classes.leaving)} />}
+          {critter[Statuses.Incoming] && <span className={clsx(classes.dot, classes.incoming)} />}
         </Typography>
       </Button>
     )

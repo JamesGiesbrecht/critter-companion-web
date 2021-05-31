@@ -7,7 +7,7 @@ import ClearIcon from '@material-ui/icons/ClearRounded'
 import { useColorScheme } from 'context/Theme'
 import { dot } from 'assets/cssClasses'
 import { removeItem } from 'assets/utility'
-import { MainFilter, useFilters } from 'context/Filters'
+import { MainFilter, Statuses, useFilters } from 'context/Filters'
 
 const useStyles = makeStyles((theme) => ({
   controls: {
@@ -117,12 +117,12 @@ const Controls = () => {
       setMainFilter(MainFilter.Custom)
     } else {
       let newShow = status
-      if (!newShow.includes('isNew')) newShow.push('isNew')
-      if (!newShow.includes('isLeaving')) newShow.push('isLeaving')
+      if (!newShow.includes(Statuses.New)) newShow.push(Statuses.New)
+      if (!newShow.includes(Statuses.Leaving)) newShow.push(Statuses.Leaving)
       if (curShowAll === MainFilter.All) {
-        if (!newShow.includes('isIncoming')) newShow.push('isIncoming')
+        if (!newShow.includes(Statuses.Incoming)) newShow.push(Statuses.Incoming)
       } else if (curShowAll === MainFilter.Available) {
-        if (newShow.includes('isIncoming')) newShow = removeItem(newShow, 'isIncoming')
+        if (newShow.includes(Statuses.Incoming)) newShow = removeItem(newShow, Statuses.Incoming)
       }
       setStatus(newShow)
       setMainFilter(curShowAll)
@@ -174,19 +174,19 @@ const Controls = () => {
           value={status}
           onChange={handleShowChange}
           size="small">
-          <ToggleButton value="isNew" disabled={mainFilter !== MainFilter.Custom}>
+          <ToggleButton value={Statuses.New} disabled={mainFilter !== MainFilter.Custom}>
             New
             <span className={clsx(classes.dot, classes.new)} />
           </ToggleButton>
-          <ToggleButton value="isLeaving" disabled={mainFilter !== MainFilter.Custom}>
+          <ToggleButton value={Statuses.Leaving} disabled={mainFilter !== MainFilter.Custom}>
             Leaving
             <span className={clsx(classes.dot, classes.leaving)} />
           </ToggleButton>
-          <ToggleButton value="isIncoming" disabled={mainFilter !== MainFilter.Custom}>
+          <ToggleButton value={Statuses.Incoming} disabled={mainFilter !== MainFilter.Custom}>
             Incoming
             <span className={clsx(classes.dot, classes.incoming)} />
           </ToggleButton>
-          <ToggleButton value="isDonated">Donated</ToggleButton>
+          <ToggleButton value={Statuses.Donated}>Donated</ToggleButton>
         </ToggleButtonGroup>
       </div>
       <div className={classes.searchRow}>

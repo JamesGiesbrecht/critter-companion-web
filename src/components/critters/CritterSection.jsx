@@ -4,7 +4,7 @@ import { Collapse, Paper, makeStyles, Typography, Button } from '@material-ui/co
 import { ExpandMoreRounded as ExpandMoreIcon, Search as SearchIcon } from '@material-ui/icons'
 import CrittersTable from 'components/critters/CrittersTable'
 import { removeItem } from 'assets/utility'
-import { MainFilter } from 'context/Filters'
+import { MainFilter, Statuses, useFilters } from 'context/Filters'
 
 const useStyles = makeStyles(() => ({
   critters: {
@@ -47,8 +47,9 @@ const useStyles = makeStyles(() => ({
   },
 }))
 
-const CritterSection = ({ allCritters, type, showAll, show, search }) => {
+const CritterSection = ({ allCritters, type }) => {
   const classes = useStyles()
+  const { mainFilter, status, search } = useFilters()
   const isSearch = search && search.length > 0
   const [expanded, setExpanded] = useState(isSearch)
   const [randomImg] = useState(
@@ -76,22 +77,22 @@ const CritterSection = ({ allCritters, type, showAll, show, search }) => {
       return allCritters.filter((critter) => critter.name.toLowerCase().search(search) !== -1)
     }
 
-    if (showAll === MainFilter.All) {
+    if (mainFilter === MainFilter.All) {
       // Add all critters
       filteredCritters = allCritters
-    } else if (showAll === MainFilter.Available) {
+    } else if (mainFilter === MainFilter.Available) {
       // add critters that are available now
       filteredCritters = allCritters.filter((critter) => critter.isAvailableNow)
     } else {
       //  Checking if any of the conditions in show are true properties on the critter
-      const tempShow = removeItem([...show], 'isDonated')
+      const tempStatusFilter = removeItem([...status], Statuses.Donated)
 
       filteredCritters = allCritters.filter((critter) =>
-        tempShow.some((condition) => critter[condition]),
+        tempStatusFilter.some((condition) => critter[condition]),
       )
     }
 
-    if (!show.includes('isDonated')) {
+    if (!status.includes(Statuses.Donated)) {
       // remove critters that are not donated
       filteredCritters = filteredCritters.filter(
         (critter) => !donatedCritters.includes(critter.name),
@@ -99,7 +100,7 @@ const CritterSection = ({ allCritters, type, showAll, show, search }) => {
     }
 
     return filteredCritters
-  }, [allCritters, show, showAll, donatedCritters, search])
+  }, [allCritters, status, mainFilter, donatedCritters, search])
 
   useEffect(() => {
     localStorage.setItem('donatedCritters', donatedCritters)
@@ -145,7 +146,7 @@ const CritterSection = ({ allCritters, type, showAll, show, search }) => {
           {expanded ? 'Collapse' : 'Expand'}
         </Button>
       </div>
-      <Collapse in={expanded}>{content}</Collapse>
+      <Collapse in={Boolean(expanded)}>{content}</Collapse>
     </Paper>
   )
 }

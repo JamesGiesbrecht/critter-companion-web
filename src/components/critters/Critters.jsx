@@ -1,10 +1,9 @@
-import { useState } from 'react'
 import CritterSection from 'components/critters/CritterSection'
 import Controls from 'components/layout/Controls'
 import bugsData from 'assets/data/bugs.json'
 import fishData from 'assets/data/fish.json'
 import seaData from 'assets/data/sea.json'
-import { useFilters } from 'context/Filters'
+import { Statuses, useFilters } from 'context/Filters'
 
 const today = new Date()
 const curMonth = today.getMonth() + 1
@@ -36,13 +35,13 @@ const Critters = () => {
     if (isAvailableNow(months)) {
       availability.isAvailableNow = true
       if (!hasPrevMonth(months)) {
-        availability.isNew = true
+        availability[Statuses.New] = true
       }
       if (!hasNextMonth(months)) {
-        availability.isLeaving = true
+        availability[Statuses.Leaving] = true
       }
     } else if (hasNextMonth(months)) {
-      availability.isIncoming = true
+      availability[Statuses.Incoming] = true
     }
 
     return availability
@@ -55,7 +54,7 @@ const Critters = () => {
         ...critter,
         months: critterMonths,
         ...getAvailability(critterMonths),
-        isDonated: false,
+        [Statuses.Donated]: false,
       }
     })
 
