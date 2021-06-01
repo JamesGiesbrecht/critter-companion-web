@@ -1,15 +1,15 @@
-import { makeStyles, Paper, Typography } from '@material-ui/core'
+import { CircularProgress, Container, makeStyles, Paper, Typography } from '@material-ui/core'
 import Footer from 'components/layout/Footer'
+import Centered from 'components/ui/Centered'
+import { useAuth } from 'context/Auth'
+import Header from './Header'
 
 const useStyles = makeStyles((theme) => ({
-  layout: {
-    [theme.breakpoints.up('md')]: {
-      width: '90%',
-      maxWidth: '1000px',
-    },
+  content: {
     width: '98%',
-    margin: '20px auto 0 auto',
+    margin: '0 auto',
     textAlign: 'center',
+    marginTop: theme.spacing(2),
   },
   titlePaper: {
     display: 'inline-block',
@@ -42,16 +42,27 @@ const useStyles = makeStyles((theme) => ({
 
 const Layout = ({ children }) => {
   const classes = useStyles()
+  const { user } = useAuth()
+
+  // User has not yet been initialized
+  // if (user === undefined) {
+  //   return (
+  //     <Centered>
+  //       <CircularProgress size={120} color="inherit" />
+  //     </Centered>
+  //   )
+  // }
 
   return (
-    <div className={classes.layout}>
+    <Container className={classes.content} disableGutters>
+      {/* <Header /> */}
       <Paper classes={{ root: classes.titlePaper }} square>
         <Typography variant="h1">ACNH: Critter Companion</Typography>
       </Paper>
       {children}
       <Footer />
       <footer className={classes.footerMargin} />
-    </div>
+    </Container>
   )
 }
 

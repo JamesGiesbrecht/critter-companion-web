@@ -5,6 +5,8 @@ import CritterInfo from 'components/critters/CritterInfo'
 import Months from 'components/critters/Months'
 import BlathersIcon from 'components/icons/BlathersIcon'
 import { dot, hidden } from 'assets/cssClasses'
+import { Statuses } from 'context/Filters'
+import { FishSizes } from 'constants/AppConstants'
 
 const useStyles = makeStyles((theme) => ({
   cell: {
@@ -72,28 +74,21 @@ const useStyles = makeStyles((theme) => ({
   months: {
     boxSizing: 'content-box',
     width: '180px',
+  },
+  hiddenMd: {
     [theme.breakpoints.down('md')]: {
       ...hidden,
     },
   },
 }))
 
-const sizes = {
-  1: 'Tiny',
-  2: 'Small',
-  3: 'Medium',
-  4: 'Large',
-  5: 'x-Large',
-  6: 'Huge',
-}
-
-const CritterRow = ({ critter, donatedCritters, setDonatedCritters, hours, isFish }) => {
+const CritterRow = ({ critter, donatedCritters, setDonatedCritters, hours }) => {
   const classes = useStyles()
   const [isDonated, setIsDonated] = useState(donatedCritters.includes(critter.name))
-  const [modalOpen, setModalOpen] = useState(false)
+  const [dialogOpen, setDialogOpen] = useState(false)
   const nameButtonRef = useRef()
 
-  const handleModalOpen = (e) => {
+  const handleDialogOpen = (e) => {
     // Clicking the donate toggle
     if (
       nameButtonRef.current &&
@@ -101,12 +96,12 @@ const CritterRow = ({ critter, donatedCritters, setDonatedCritters, hours, isFis
     ) {
       return
     }
-    setModalOpen(true)
+    setDialogOpen(true)
   }
 
-  const handleModalClose = () => {
+  const handleDialogClose = () => {
     window.setTimeout(() => {
-      setModalOpen(false)
+      setDialogOpen(false)
     }, 100)
   }
 
@@ -123,17 +118,12 @@ const CritterRow = ({ critter, donatedCritters, setDonatedCritters, hours, isFis
     }
   }
 
-  const size = isFish ? (
-    <TableCell className={classes.cell} align="right">
-      {sizes[critter.size] || critter.size}
-    </TableCell>
-  ) : null
-
   const nameButton = (includeRef) => {
     const ref = includeRef ? { ref: nameButtonRef } : {}
     return (
       <Button
         className={clsx(classes.name, !isDonated && classes.notDonated)}
+        color="inherit"
         startIcon={
           <BlathersIcon className={clsx(classes.blathers, isDonated && classes.donated)} />
         }
@@ -141,16 +131,16 @@ const CritterRow = ({ critter, donatedCritters, setDonatedCritters, hours, isFis
         {...ref}>
         <Typography component="span">
           {critter.name}
-          {critter.isNew && <span className={clsx(classes.dot, classes.new)} />}
-          {critter.isLeaving && <span className={clsx(classes.dot, classes.leaving)} />}
-          {critter.isIncoming && <span className={clsx(classes.dot, classes.incoming)} />}
+          {critter[Statuses.New] && <span className={clsx(classes.dot, classes.new)} />}
+          {critter[Statuses.Leaving] && <span className={clsx(classes.dot, classes.leaving)} />}
+          {critter[Statuses.Incoming] && <span className={clsx(classes.dot, classes.incoming)} />}
         </Typography>
       </Button>
     )
   }
 
   return (
-    <TableRow hover type="button" onClick={handleModalOpen}>
+    <TableRow hover type="button" onClick={handleDialogOpen}>
       <TableCell className={clsx(classes.critterImgCell, classes.cell)}>
         <img className={classes.critterImg} src={critter.image_path} alt={critter.name} />
       </TableCell>
@@ -161,17 +151,21 @@ const CritterRow = ({ critter, donatedCritters, setDonatedCritters, hours, isFis
       <TableCell className={clsx(classes.cell, classes.location)} align="right">
         {critter.location}
       </TableCell>
-      {size}
+      {critter.size && (
+        <TableCell className={clsx(classes.cell, classes.hiddenMd)} align="right">
+          {FishSizes[critter.size] || critter.size}
+        </TableCell>
+      )}
       <TableCell className={clsx(classes.hours, classes.cell)} align="right">
         {hours}
       </TableCell>
-      <TableCell className={clsx(classes.months, classes.cell)} align="right">
+      <TableCell className={clsx(classes.months, classes.hiddenMd, classes.cell)} align="right">
         <Months months={critter.months} />
       </TableCell>
       <CritterInfo
         critter={critter}
-        modalOpen={modalOpen}
-        handleModalClose={handleModalClose}
+        dialogOpen={dialogOpen}
+        handleDialogClose={handleDialogClose}
         nameButton={nameButton(false)}
         isDonated={isDonated}
         handleDonatedCheck={handleDonatedCheck}

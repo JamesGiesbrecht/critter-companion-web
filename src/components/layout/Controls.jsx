@@ -1,5 +1,12 @@
 import clsx from 'clsx'
-import { Paper, InputBase, ToggleButtonGroup, ToggleButton, makeStyles } from '@material-ui/core'
+import {
+  Paper,
+  InputBase,
+  ToggleButtonGroup,
+  ToggleButton,
+  makeStyles,
+  IconButton,
+} from '@material-ui/core'
 import LightModeIcon from '@material-ui/icons/Brightness7'
 import DarkModeIcon from '@material-ui/icons/Brightness3'
 import SearchIcon from '@material-ui/icons/Search'
@@ -7,6 +14,7 @@ import ClearIcon from '@material-ui/icons/ClearRounded'
 import { useColorScheme } from 'context/Theme'
 import { dot } from 'assets/cssClasses'
 import { removeItem } from 'assets/utility'
+import { MainFilter, Statuses, useFilters } from 'context/Filters'
 
 const useStyles = makeStyles((theme) => ({
   controls: {
@@ -97,41 +105,38 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const Controls = ({
-  showAll,
-  setShowAll,
-  show,
-  setShow,
-  isNorthern,
-  setIsNorthern,
-  search,
-  setSearch,
-}) => {
+const Controls = () => {
   const classes = useStyles()
   const { colorScheme, toggleColorScheme } = useColorScheme()
+  const {
+    mainFilter,
+    setMainFilter,
+    status,
+    setStatus,
+    isNorthern,
+    setIsNorthern,
+    search,
+    setSearch,
+  } = useFilters()
 
   const handleShowAllChange = (e, curShowAll) => {
-    if (curShowAll === null || curShowAll === 'isCustom') {
-      setShowAll('isCustom')
+    if (curShowAll === null || curShowAll === MainFilter.Custom) {
+      setMainFilter(MainFilter.Custom)
     } else {
-      let newShow = show
-      if (!newShow.includes('isNew')) newShow.push('isNew')
-      if (!newShow.includes('isLeaving')) newShow.push('isLeaving')
-      if (curShowAll === 'showAll') {
-        if (!newShow.includes('isIncoming')) newShow.push('isIncoming')
-      } else if (curShowAll === 'isAvailable') {
-        if (newShow.includes('isIncoming')) newShow = removeItem(newShow, 'isIncoming')
+      let newShow = status
+      if (!newShow.includes(Statuses.New)) newShow.push(Statuses.New)
+      if (!newShow.includes(Statuses.Leaving)) newShow.push(Statuses.Leaving)
+      if (curShowAll === MainFilter.All) {
+        if (!newShow.includes(Statuses.Incoming)) newShow.push(Statuses.Incoming)
+      } else if (curShowAll === MainFilter.Available) {
+        if (newShow.includes(Statuses.Incoming)) newShow = removeItem(newShow, Statuses.Incoming)
       }
-      setShow(newShow)
-      setShowAll(curShowAll)
+      setStatus(newShow)
+      setMainFilter(curShowAll)
     }
   }
 
-  const handleShowChange = (e, newShow) => setShow(newShow)
-
-  const handleThemeChange = (e, newTheme) => {
-    if (newTheme !== colorScheme && newTheme !== null) toggleColorScheme()
-  }
+  const handleShowChange = (e, newShow) => setStatus(newShow)
 
   let clearIcon = null
   if (search !== '') {
@@ -159,32 +164,32 @@ const Controls = ({
         </ToggleButton>
         <ToggleButtonGroup
           className={classes.buttons}
-          value={showAll}
+          value={mainFilter}
           size="small"
           exclusive
           onChange={handleShowAllChange}>
-          <ToggleButton value="showAll">Show All</ToggleButton>
-          <ToggleButton value="isAvailable">Available Now</ToggleButton>
-          <ToggleButton value="isCustom">Custom</ToggleButton>
+          <ToggleButton value={MainFilter.All}>Show All</ToggleButton>
+          <ToggleButton value={MainFilter.Available}>Available Now</ToggleButton>
+          <ToggleButton value={MainFilter.Custom}>Custom</ToggleButton>
         </ToggleButtonGroup>
         <ToggleButtonGroup
           className={classes.buttons}
-          value={show}
+          value={status}
           onChange={handleShowChange}
           size="small">
-          <ToggleButton value="isNew" disabled={showAll !== 'isCustom'}>
+          <ToggleButton value={Statuses.New} disabled={mainFilter !== MainFilter.Custom}>
             New
             <span className={clsx(classes.dot, classes.new)} />
           </ToggleButton>
-          <ToggleButton value="isLeaving" disabled={showAll !== 'isCustom'}>
+          <ToggleButton value={Statuses.Leaving} disabled={mainFilter !== MainFilter.Custom}>
             Leaving
             <span className={clsx(classes.dot, classes.leaving)} />
           </ToggleButton>
-          <ToggleButton value="isIncoming" disabled={showAll !== 'isCustom'}>
+          <ToggleButton value={Statuses.Incoming} disabled={mainFilter !== MainFilter.Custom}>
             Incoming
             <span className={clsx(classes.dot, classes.incoming)} />
           </ToggleButton>
-          <ToggleButton value="isDonated">Donated</ToggleButton>
+          <ToggleButton value={Statuses.Donated}>Donated</ToggleButton>
         </ToggleButtonGroup>
       </div>
       <div className={classes.searchRow}>
@@ -204,14 +209,9 @@ const Controls = ({
           />
           {clearIcon}
         </div>
-        <ToggleButtonGroup value={colorScheme} size="small" exclusive onChange={handleThemeChange}>
-          <ToggleButton value="light">
-            <LightModeIcon />
-          </ToggleButton>
-          <ToggleButton value="dark">
-            <DarkModeIcon />
-          </ToggleButton>
-        </ToggleButtonGroup>
+        <IconButton onClick={toggleColorScheme}>
+          {colorScheme === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
+        </IconButton>
       </div>
     </Paper>
   )

@@ -1,15 +1,11 @@
 import { makeStyles } from '@material-ui/core/styles'
-import { Card, Modal, CardHeader, CardContent, Typography } from '@material-ui/core'
+import { Card, CardHeader, CardContent, Typography, Dialog } from '@material-ui/core'
 import Months from 'components/critters/Months'
+import { FishSizes } from 'constants/AppConstants'
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   critterInfo: {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-    outline: '0',
+    width: 350,
   },
   content: {
     display: 'flex',
@@ -29,14 +25,15 @@ const useStyles = makeStyles({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
-    width: '190px',
-    paddingLeft: '16px',
+    width: 240,
+    paddingLeft: theme.spacing(2),
+    '& > *': {
+      marginBottom: theme.spacing(2),
+      width: 100,
+    },
   },
   infoTitle: {
     textDecoration: 'underline',
-  },
-  times: {
-    marginTop: '16px',
   },
   months: {
     width: '240px',
@@ -53,18 +50,19 @@ const useStyles = makeStyles({
       fontSize: '1em',
     },
   },
-})
+}))
 
-const CritterInfo = ({ critter, modalOpen, handleModalClose, nameButton, hours }) => {
+const CritterInfo = ({ critter, dialogOpen, handleDialogClose, nameButton, hours }) => {
   const classes = useStyles()
 
   return (
-    <Modal
+    <Dialog
+      classes={{ paper: classes.critterInfo }}
       aria-labelledby={critter.name}
       aria-describedby={`${critter.name} Details`}
-      open={modalOpen}
-      onClose={handleModalClose}>
-      <Card className={classes.critterInfo} aria-labelledby={critter.name}>
+      open={dialogOpen}
+      onClose={handleDialogClose}>
+      <Card aria-labelledby={critter.name}>
         <CardHeader title={nameButton} />
         <CardContent className={classes.content} aria-describedby={`${critter.name} Details`}>
           <img className={classes.critterImg} src={critter.image_path} alt={critter.name} />
@@ -81,19 +79,27 @@ const CritterInfo = ({ critter, modalOpen, handleModalClose, nameButton, hours }
               </Typography>
               <Typography>{critter.location}</Typography>
             </div>
-            <div className={classes.times}>
+            <div>
               <Typography variant="subtitle2" className={classes.infoTitle}>
                 Available Time:
               </Typography>
               <Typography>{hours}</Typography>
             </div>
+            {critter.size && (
+              <div>
+                <Typography variant="subtitle2" className={classes.infoTitle}>
+                  Size:
+                </Typography>
+                <Typography>{FishSizes[critter.size]}</Typography>
+              </div>
+            )}
           </div>
         </CardContent>
         <CardContent className={classes.months}>
           <Months className={classes.month} months={critter.months} />
         </CardContent>
       </Card>
-    </Modal>
+    </Dialog>
   )
 }
 

@@ -1,5 +1,6 @@
 import { useEffect, useState, useContext, createContext, FC } from 'react'
 import { PaletteMode, useMediaQuery } from '@material-ui/core'
+import { noProvider } from 'utility/contex'
 
 interface ColorSchemeType {
   colorScheme: PaletteMode
@@ -13,9 +14,7 @@ export enum ColorScheme {
 
 export const ColorSchemeContext = createContext<ColorSchemeType>({
   colorScheme: ColorScheme.Dark,
-  toggleColorScheme: () => {
-    throw new Error('This component has not been wrapper with a ColorScheme Provider.')
-  },
+  toggleColorScheme: () => noProvider('Color Scheme'),
 })
 
 const THEME_LS = 'THEME_LS'

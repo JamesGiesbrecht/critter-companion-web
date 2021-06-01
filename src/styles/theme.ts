@@ -1,18 +1,26 @@
 import { createTheme, Theme } from '@material-ui/core/styles'
 import { PaletteMode } from '@material-ui/core'
+import { blue, green } from '@material-ui/core/colors'
 
 // Edit this function for global theme overrides
 const getTheme = (colorScheme: PaletteMode): Theme => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const defaultTheme = createTheme({ palette: { mode: colorScheme } })
+  const themeVars = (light: any, dark: any) => (colorScheme === 'light' ? light : dark)
   return createTheme({
     palette: {
       mode: colorScheme,
+      primary: {
+        light: green[500],
+        main: themeVars(green[800], green[400]),
+        dark: green[600],
+      },
     },
     components: {
-      MuiButton: {
+      MuiLink: {
         styleOverrides: {
-          text: {
-            color: defaultTheme.palette.text.primary,
+          root: {
+            color: blue[600],
           },
         },
       },

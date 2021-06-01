@@ -45,7 +45,7 @@ const stableSort = (array, comparator) => {
   return stabilizedThis.map((el) => el[0])
 }
 
-const CrittersTable = ({ critters, donatedCritters, setDonatedCritters, isFish }) => {
+const CrittersTable = ({ critters, donatedCritters, setDonatedCritters }) => {
   const classes = useStyles()
   const [order, setOrder] = useState('asc')
   const [orderBy, setOrderBy] = useState('name')
@@ -98,7 +98,6 @@ const CrittersTable = ({ critters, donatedCritters, setDonatedCritters, isFish }
         donatedCritters={donatedCritters}
         setDonatedCritters={setDonatedCritters}
         hours={hours}
-        isFish={isFish}
       />
     )
   })
@@ -110,7 +109,7 @@ const CrittersTable = ({ critters, donatedCritters, setDonatedCritters, isFish }
           order={order}
           orderBy={orderBy}
           onSortRequest={handleSortRequest}
-          isFish={isFish}
+          isFish={Boolean(critters[0].size)}
         />
         <TableBody>{rows}</TableBody>
       </Table>
