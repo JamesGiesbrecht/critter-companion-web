@@ -123,7 +123,6 @@ const CritterSection = ({ allCritters, type }) => {
         critters={critters}
         donatedCritters={donatedCritters}
         setDonatedCritters={setDonatedCritters}
-        isFish={type === 'Fish'}
       />
     )
   }

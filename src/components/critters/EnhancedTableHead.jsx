@@ -22,6 +22,11 @@ const useStyles = makeStyles((theme) => ({
       ...hidden,
     },
   },
+  size: {
+    [theme.breakpoints.down('md')]: {
+      ...hidden,
+    },
+  },
 }))
 
 const headCells = [
