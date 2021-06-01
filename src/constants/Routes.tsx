@@ -1,10 +1,10 @@
-import { FC } from 'react'
 import Critters from 'components/critters/Critters'
+import { FiltersContextProvider } from 'context/Filters'
 import Account from 'components/account/Account'
 
 interface Route {
   path: string
-  component: FC<any>
+  component: JSX.Element
   exact?: boolean
 }
 
@@ -15,11 +15,15 @@ interface AppRoutes {
 export const Routes: AppRoutes = {
   account: {
     path: '/account',
-    component: Account,
+    component: <Account />,
   },
   home: {
     path: '*',
-    component: Critters,
+    component: (
+      <FiltersContextProvider>
+        <Critters />
+      </FiltersContextProvider>
+    ),
   },
 }
 
