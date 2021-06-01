@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { CircularProgress, Container, makeStyles, Paper, Typography } from '@material-ui/core'
 import Footer from 'components/layout/Footer'
 import Centered from 'components/ui/Centered'
 import { useAuth } from 'context/Auth'
-import Header from './Header'
+import Header from 'components/layout/Header'
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -55,7 +56,7 @@ const Layout = ({ children }) => {
 
   return (
     <Container className={classes.content} disableGutters>
-      {/* <Header /> */}
+      <Header />
       <Paper classes={{ root: classes.titlePaper }} square>
         <Typography variant="h1">ACNH: Critter Companion</Typography>
       </Paper>

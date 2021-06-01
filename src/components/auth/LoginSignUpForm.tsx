@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { SyntheticEvent, useEffect, useState } from 'react'
 import { useAuth } from 'context/Auth'
 import { AuthError } from 'firebase/error'
