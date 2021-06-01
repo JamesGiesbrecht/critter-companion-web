@@ -1,8 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import firebase from 'firebase/app'
-import 'firebase/firestore'
 import 'firebase/auth'
-import 'firebase/storage'
+import 'firebase/database'
 
 const {
   REACT_APP_FIREBASE_API_KEY,
@@ -27,3 +26,4 @@ firebase.initializeApp(firebaseConfig)
 
 // eslint-disable-next-line import/prefer-default-export
 export const firebaseAuth = firebase.auth()
+export const firebaseDb = firebase.database()
