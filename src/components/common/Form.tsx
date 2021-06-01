@@ -148,8 +148,6 @@ const Form: FC<Props> = ({ children, inputs, type, onSubmit }) => {
     formDispatch({ type: FormActionType.ValidateForm })
     if (formState.formIsValid) {
       onSubmit(e, formState)
-    } else {
-      console.log('Form is invalid', formState)
     }
   }
 
