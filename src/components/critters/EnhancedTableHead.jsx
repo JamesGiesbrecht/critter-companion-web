@@ -40,6 +40,7 @@ const EnhancedTableHead = ({ order, orderBy, onSortRequest, isFish }) => {
   }
 
   const headers = headCells.map((headCell) => {
+    if (headCell.id === 'size' && !isFish) return null
     let label
     if (headCell.id === 'months') {
       label = headCell.label
@@ -59,7 +60,7 @@ const EnhancedTableHead = ({ order, orderBy, onSortRequest, isFish }) => {
       )
     }
 
-    return headCell.id !== 'size' || isFish ? (
+    return (
       <TableCell
         className={clsx(classes.headers, classes[headCell.id])}
         key={headCell.id}
@@ -67,7 +68,7 @@ const EnhancedTableHead = ({ order, orderBy, onSortRequest, isFish }) => {
         sortDirection={orderBy === headCell.id ? order : false}>
         {label}
       </TableCell>
-    ) : null
+    )
   })
 
   return (
