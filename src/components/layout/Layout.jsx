@@ -9,6 +9,7 @@ const useStyles = makeStyles((theme) => ({
     width: '98%',
     margin: '0 auto',
     textAlign: 'center',
+    marginTop: theme.spacing(2),
   },
   titlePaper: {
     display: 'inline-block',
@@ -44,17 +45,17 @@ const Layout = ({ children }) => {
   const { user } = useAuth()
 
   // User has not yet been initialized
-  if (user === undefined) {
-    return (
-      <Centered>
-        <CircularProgress size={120} />
-      </Centered>
-    )
-  }
+  // if (user === undefined) {
+  //   return (
+  //     <Centered>
+  //       <CircularProgress size={120} color="inherit" />
+  //     </Centered>
+  //   )
+  // }
 
   return (
     <Container className={classes.content} disableGutters>
-      <Header />
+      {/* <Header /> */}
       <Paper classes={{ root: classes.titlePaper }} square>
         <Typography variant="h1">ACNH: Critter Companion</Typography>
       </Paper>
