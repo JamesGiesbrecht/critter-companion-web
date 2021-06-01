@@ -56,7 +56,7 @@ const Layout = ({ children }) => {
 
   return (
     <Container className={classes.content} disableGutters>
-      <Header />
+      {/* <Header /> */}
       <Paper classes={{ root: classes.titlePaper }} square>
         <Typography variant="h1">ACNH: Critter Companion</Typography>
       </Paper>
