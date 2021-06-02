@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { TableContainer, Table, TableBody, makeStyles } from '@material-ui/core'
 import EnhancedTableHead from 'components/critters/EnhancedTableHead'
 import CritterRow from 'components/critters/CritterRow'
+import { useFilters } from 'context/Filters'
 
 const useStyles = makeStyles((theme) => ({
   tableWrapper: {
@@ -45,7 +46,7 @@ const stableSort = (array, comparator) => {
   return stabilizedThis.map((el) => el[0])
 }
 
-const CrittersTable = ({ critters, donatedCritters, setDonatedCritters }) => {
+const CrittersTable = ({ critters }) => {
   const classes = useStyles()
   const [order, setOrder] = useState('asc')
   const [orderBy, setOrderBy] = useState('name')
@@ -91,15 +92,7 @@ const CrittersTable = ({ critters, donatedCritters, setDonatedCritters }) => {
 
   const rows = stableSort(critters, getComparator(order, orderBy)).map((critter) => {
     const hours = getHours(critter.start_time, critter.end_time)
-    return (
-      <CritterRow
-        key={critter.name}
-        critter={critter}
-        donatedCritters={donatedCritters}
-        setDonatedCritters={setDonatedCritters}
-        hours={hours}
-      />
-    )
+    return <CritterRow key={critter.name} critter={critter} hours={hours} />
   })
 
   return (

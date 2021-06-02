@@ -5,7 +5,7 @@ import CritterInfo from 'components/critters/CritterInfo'
 import Months from 'components/critters/Months'
 import BlathersIcon from 'components/icons/BlathersIcon'
 import { dot, hidden } from 'assets/cssClasses'
-import { Statuses } from 'context/Filters'
+import { Statuses, useFilters } from 'context/Filters'
 import { FishSizes } from 'constants/AppConstants'
 
 const useStyles = makeStyles((theme) => ({
@@ -82,9 +82,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const CritterRow = ({ critter, donatedCritters, setDonatedCritters, hours }) => {
+const CritterRow = ({ critter, hours }) => {
   const classes = useStyles()
-  const [isDonated, setIsDonated] = useState(donatedCritters.includes(critter.name))
+  const { donated, setDonated } = useFilters()
+  const [isDonated, setIsDonated] = useState(donated.includes(critter.name))
   const [dialogOpen, setDialogOpen] = useState(false)
   const nameButtonRef = useRef()
 
@@ -106,15 +107,15 @@ const CritterRow = ({ critter, donatedCritters, setDonatedCritters, hours }) => 
   }
 
   const handleDonatedCheck = (critterName) => {
-    const critterIndex = donatedCritters.indexOf(critterName)
+    const critterIndex = donated.indexOf(critterName)
     setIsDonated((prevChecked) => !prevChecked)
     if (critterIndex > -1) {
-      setDonatedCritters((prevCritters) => {
+      setDonated((prevCritters) => {
         prevCritters.splice(critterIndex, 1)
         return prevCritters
       })
     } else {
-      setDonatedCritters((prevCritters) => prevCritters.concat([critterName]))
+      setDonated((prevCritters) => prevCritters.concat([critterName]))
     }
   }
 

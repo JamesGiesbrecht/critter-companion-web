@@ -49,7 +49,7 @@ const useStyles = makeStyles(() => ({
 
 const CritterSection = ({ allCritters, type }) => {
   const classes = useStyles()
-  const { mainFilter, status, search } = useFilters()
+  const { mainFilter, status, search, donated } = useFilters()
   const isSearch = search && search.length > 0
   const [expanded, setExpanded] = useState(isSearch)
   const [randomImg] = useState(
@@ -64,11 +64,6 @@ const CritterSection = ({ allCritters, type }) => {
     ),
   )
   const [critters, setCritters] = useState([])
-  const [donatedCritters, setDonatedCritters] = useState(
-    localStorage.getItem('donatedCritters')
-      ? localStorage.getItem('donatedCritters').split(',')
-      : [],
-  )
   const [isLoading, setIsLoading] = useState(true)
 
   const filterCritters = useCallback(() => {
@@ -94,17 +89,11 @@ const CritterSection = ({ allCritters, type }) => {
 
     if (!status.includes(Statuses.Donated)) {
       // remove critters that are not donated
-      filteredCritters = filteredCritters.filter(
-        (critter) => !donatedCritters.includes(critter.name),
-      )
+      filteredCritters = filteredCritters.filter((critter) => !donated.includes(critter.name))
     }
 
     return filteredCritters
-  }, [allCritters, status, mainFilter, donatedCritters, search])
-
-  useEffect(() => {
-    localStorage.setItem('donatedCritters', donatedCritters)
-  }, [donatedCritters])
+  }, [allCritters, status, mainFilter, donated, search])
 
   useEffect(() => {
     setIsLoading(true)
@@ -118,13 +107,7 @@ const CritterSection = ({ allCritters, type }) => {
   } else if (critters.length === 0) {
     content = isSearch ? 'No search results' : `No ${type.toLowerCase()} to show`
   } else {
-    content = (
-      <CrittersTable
-        critters={critters}
-        donatedCritters={donatedCritters}
-        setDonatedCritters={setDonatedCritters}
-      />
-    )
+    content = <CrittersTable critters={critters} />
   }
 
   return (
