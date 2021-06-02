@@ -47,7 +47,7 @@ const useStyles = makeStyles(() => ({
   },
 }))
 
-const CritterSection = ({ allCritters, type }) => {
+const SearchSection = ({ allCritters, type }) => {
   const classes = useStyles()
   const { mainFilter, status, search, donated } = useFilters()
   const isSearch = search && search.length > 0
@@ -63,8 +63,10 @@ const CritterSection = ({ allCritters, type }) => {
       />
     ),
   )
+  const [critters, setCritters] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
 
-  const filterCritters = () => {
+  const filterCritters = useCallback(() => {
     let filteredCritters = []
     if (search) {
       return allCritters.filter((critter) => critter.name.toLowerCase().search(search) !== -1)
@@ -91,12 +93,18 @@ const CritterSection = ({ allCritters, type }) => {
     }
 
     return filteredCritters
-  }
+  }, [allCritters, status, mainFilter, donated, search])
 
-  const critters = filterCritters()
+  useEffect(() => {
+    setIsLoading(true)
+    setCritters(filterCritters())
+    setIsLoading(false)
+  }, [filterCritters])
 
   let content
-  if (critters.length === 0) {
+  if (isLoading) {
+    content = <div className="loader" />
+  } else if (critters.length === 0) {
     content = isSearch ? 'No search results' : `No ${type.toLowerCase()} to show`
   } else {
     content = <CrittersTable critters={critters} />
@@ -125,4 +133,4 @@ const CritterSection = ({ allCritters, type }) => {
   )
 }
 
-export default memo(CritterSection)
+export default memo(SearchSection)
