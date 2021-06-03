@@ -111,32 +111,33 @@ const Controls = () => {
   const {
     mainFilter,
     setMainFilter,
-    status,
-    setStatus,
+    statusFilters,
+    setStatusFilters,
     isNorthern,
     toggleIsNorthern,
     search,
     setSearch,
   } = useFiltersStore()
 
-  const handleShowAllChange = (e, curShowAll) => {
-    if (curShowAll === null || curShowAll === MainFilter.Custom) {
+  const handleMainFilterChange = (e, newMainFilter) => {
+    if (newMainFilter === null || newMainFilter === MainFilter.Custom) {
       setMainFilter(MainFilter.Custom)
     } else {
-      let newShow = status
-      if (!newShow.includes(Statuses.New)) newShow.push(Statuses.New)
-      if (!newShow.includes(Statuses.Leaving)) newShow.push(Statuses.Leaving)
-      if (curShowAll === MainFilter.All) {
-        if (!newShow.includes(Statuses.Incoming)) newShow.push(Statuses.Incoming)
-      } else if (curShowAll === MainFilter.Available) {
-        if (newShow.includes(Statuses.Incoming)) newShow = removeItem(newShow, Statuses.Incoming)
+      let newStatusFilters = statusFilters
+      if (!newStatusFilters.includes(Statuses.New)) newStatusFilters.push(Statuses.New)
+      if (!newStatusFilters.includes(Statuses.Leaving)) newStatusFilters.push(Statuses.Leaving)
+      if (newMainFilter === MainFilter.All) {
+        if (!newStatusFilters.includes(Statuses.Incoming)) newStatusFilters.push(Statuses.Incoming)
+      } else if (newMainFilter === MainFilter.Available) {
+        if (newStatusFilters.includes(Statuses.Incoming))
+          newStatusFilters = removeItem(newStatusFilters, Statuses.Incoming)
       }
-      setStatus(newShow)
-      setMainFilter(curShowAll)
+      setStatusFilters(newStatusFilters)
+      setMainFilter(newMainFilter)
     }
   }
 
-  const handleShowChange = (e, newShow) => setStatus(newShow)
+  const handleStatusFiltersChange = (e, newStatusFilters) => setStatusFilters(newStatusFilters)
 
   let clearIcon = null
   if (search !== '') {
@@ -163,15 +164,15 @@ const Controls = () => {
           value={mainFilter}
           size="small"
           exclusive
-          onChange={handleShowAllChange}>
+          onChange={handleMainFilterChange}>
           <ToggleButton value={MainFilter.All}>Show All</ToggleButton>
           <ToggleButton value={MainFilter.Available}>Available Now</ToggleButton>
           <ToggleButton value={MainFilter.Custom}>Custom</ToggleButton>
         </ToggleButtonGroup>
         <ToggleButtonGroup
           className={classes.buttons}
-          value={status}
-          onChange={handleShowChange}
+          value={statusFilters}
+          onChange={handleStatusFiltersChange}
           size="small">
           <ToggleButton value={Statuses.New} disabled={mainFilter !== MainFilter.Custom}>
             New

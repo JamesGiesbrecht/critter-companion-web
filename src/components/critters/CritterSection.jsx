@@ -45,7 +45,7 @@ const useStyles = makeStyles(() => ({
 const CritterSection = ({ allCritters, type }) => {
   const classes = useStyles()
   const mainFilter = useFiltersStore((state) => state.mainFilter)
-  const status = useFiltersStore((state) => state.status)
+  const statusFilters = useFiltersStore((state) => state.statusFilters)
   const search = useFiltersStore((state) => state.search)
   const donated = useFiltersStore((state) => state.donated)
 
@@ -70,14 +70,14 @@ const CritterSection = ({ allCritters, type }) => {
       filteredCritters = allCritters.filter((critter) => critter.isAvailableNow)
     } else {
       //  Checking if any of the conditions in show are true properties on the critter
-      const tempStatusFilter = removeItem([...status], Statuses.Donated)
+      const tempStatusFilter = removeItem([...statusFilters], Statuses.Donated)
 
       filteredCritters = allCritters.filter((critter) =>
         tempStatusFilter.some((condition) => critter[condition]),
       )
     }
 
-    if (!status.includes(Statuses.Donated)) {
+    if (!statusFilters.includes(Statuses.Donated)) {
       // remove critters that are not donated
       filteredCritters = filteredCritters.filter((critter) => !donated.includes(critter.name))
     }

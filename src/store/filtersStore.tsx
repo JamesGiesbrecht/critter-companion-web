@@ -15,9 +15,9 @@ export enum Statuses {
 
 const useFiltersStore = create((set) => ({
   mainFilter: MainFilter.All,
-  setMainFilter: (filter: MainFilter) => set({ mainFilter: filter }),
-  status: [Statuses.New, Statuses.Leaving, Statuses.Incoming, Statuses.Donated],
-  setStatus: (statuses: Array<Statuses>) => set({ status: statuses }),
+  setMainFilter: (newMainFilter: MainFilter) => set({ mainFilter: newMainFilter }),
+  statusFilters: [Statuses.New, Statuses.Leaving, Statuses.Incoming, Statuses.Donated],
+  setStatusFilters: (newStatusFilters: Array<Statuses>) => set({ statusFilters: newStatusFilters }),
   isNorthern: true,
   toggleIsNorthern: () => set((state: any) => ({ isNorthern: !state.isNorthern })),
   search: '',
