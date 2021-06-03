@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Paper, makeStyles, Typography } from '@material-ui/core'
 import { Search as SearchIcon } from '@material-ui/icons'
 import CrittersTable from 'components/critters/CrittersTable'
-import { useFilters } from 'context/Filters'
+import useFiltersStore from 'store/filtersStore'
 
 const useStyles = makeStyles(() => ({
   critters: {
@@ -30,7 +30,7 @@ const useStyles = makeStyles(() => ({
 
 const SearchSection = ({ allCritters }) => {
   const classes = useStyles()
-  const { search } = useFilters()
+  const search = useFiltersStore((state) => state.search)
   const [filteredCritters, setFilteredCritters] = useState(allCritters)
 
   useEffect(() => {

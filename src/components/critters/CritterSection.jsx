@@ -1,10 +1,10 @@
-import { useState, memo } from 'react'
+import { useState, memo, useMemo } from 'react'
 import clsx from 'clsx'
 import { Collapse, Paper, makeStyles, Typography, Button } from '@material-ui/core'
 import { ExpandMoreRounded as ExpandMoreIcon } from '@material-ui/icons'
 import CrittersTable from 'components/critters/CrittersTable'
 import { removeItem } from 'assets/utility'
-import { MainFilter, Statuses, useFilters } from 'context/Filters'
+import useFiltersStore, { MainFilter, Statuses } from 'store/filtersStore'
 
 const useStyles = makeStyles(() => ({
   critters: {
@@ -44,8 +44,17 @@ const useStyles = makeStyles(() => ({
 
 const CritterSection = ({ allCritters, type }) => {
   const classes = useStyles()
-  const { mainFilter, status, search, donated } = useFilters()
+  const mainFilter = useFiltersStore((state) => state.mainFilter)
+  const status = useFiltersStore((state) => state.status)
+  const search = useFiltersStore((state) => state.search)
+  const donated = useFiltersStore((state) => state.donated)
+
   const [expanded, setExpanded] = useState(false)
+
+  const randomImg = useMemo(
+    () => allCritters[Math.floor(Math.random() * allCritters.length)].image_path,
+    [allCritters],
+  )
 
   const filterCritters = () => {
     let filteredCritters = []
@@ -89,11 +98,7 @@ const CritterSection = ({ allCritters, type }) => {
     <Paper classes={{ root: classes.critters }} elevation={7}>
       <div className={classes.headingWrapper}>
         <div className={classes.heading}>
-          <img
-            className={classes.headingImg}
-            src={allCritters[Math.floor(Math.random() * allCritters.length)].image_path}
-            alt={type}
-          />
+          <img className={classes.headingImg} src={randomImg} alt={type} />
           <Typography variant="h4">{type}</Typography>
         </div>
         <Button

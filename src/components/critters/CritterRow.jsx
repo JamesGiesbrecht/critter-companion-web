@@ -1,11 +1,11 @@
 import { memo, useRef, useState } from 'react'
 import clsx from 'clsx'
 import { TableRow, TableCell, makeStyles, Typography, Button } from '@material-ui/core'
+import useFiltersStore, { Statuses } from 'store/filtersStore'
 import CritterInfo from 'components/critters/CritterInfo'
 import Months from 'components/critters/Months'
 import BlathersIcon from 'components/icons/BlathersIcon'
 import { dot, hidden } from 'assets/cssClasses'
-import { Statuses, useFilters } from 'context/Filters'
 import { FishSizes } from 'constants/AppConstants'
 
 const useStyles = makeStyles((theme) => ({
@@ -84,7 +84,8 @@ const useStyles = makeStyles((theme) => ({
 
 const CritterRow = ({ critter, hours }) => {
   const classes = useStyles()
-  const { donated, setDonated } = useFilters()
+  const donated = useFiltersStore((state) => state.donated)
+  const setDonated = useFiltersStore((state) => state.setDonated)
   const [isDonated, setIsDonated] = useState(donated.includes(critter.name))
   const [dialogOpen, setDialogOpen] = useState(false)
   const nameButtonRef = useRef()
@@ -110,12 +111,11 @@ const CritterRow = ({ critter, hours }) => {
     const critterIndex = donated.indexOf(critterName)
     setIsDonated((prevChecked) => !prevChecked)
     if (critterIndex > -1) {
-      setDonated((prevCritters) => {
-        prevCritters.splice(critterIndex, 1)
-        return prevCritters
-      })
+      const temp = [...donated]
+      temp.splice(critterIndex, 1)
+      setDonated(temp)
     } else {
-      setDonated((prevCritters) => prevCritters.concat([critterName]))
+      setDonated(donated.concat([critterName]))
     }
   }
 

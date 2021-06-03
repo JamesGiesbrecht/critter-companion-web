@@ -14,7 +14,7 @@ import ClearIcon from '@material-ui/icons/ClearRounded'
 import { useColorScheme } from 'context/Theme'
 import { dot } from 'assets/cssClasses'
 import { removeItem } from 'assets/utility'
-import { MainFilter, Statuses, useFilters } from 'context/Filters'
+import useFiltersStore, { MainFilter, Statuses } from 'store/filtersStore'
 
 const useStyles = makeStyles((theme) => ({
   controls: {
@@ -114,10 +114,10 @@ const Controls = () => {
     status,
     setStatus,
     isNorthern,
-    setIsNorthern,
+    toggleIsNorthern,
     search,
     setSearch,
-  } = useFilters()
+  } = useFiltersStore()
 
   const handleShowAllChange = (e, curShowAll) => {
     if (curShowAll === null || curShowAll === MainFilter.Custom) {
@@ -155,11 +155,7 @@ const Controls = () => {
   return (
     <Paper classes={{ root: classes.controls }} elevation={7}>
       <div className={classes.buttonGroup}>
-        <ToggleButton
-          value={isNorthern}
-          selected
-          onChange={() => setIsNorthern((prevIsNorthern) => !prevIsNorthern)}
-          size="small">
+        <ToggleButton value={isNorthern} selected onChange={toggleIsNorthern} size="small">
           {isNorthern ? 'Northern' : 'Southern'}
         </ToggleButton>
         <ToggleButtonGroup
@@ -189,7 +185,7 @@ const Controls = () => {
             Incoming
             <span className={clsx(classes.dot, classes.incoming)} />
           </ToggleButton>
-          <ToggleButton value={Statuses.Donated}>Donated</ToggleButton>
+          <ToggleButton value={Statuses.Donated}>Include Donated</ToggleButton>
         </ToggleButtonGroup>
       </div>
       <div className={classes.searchRow}>
