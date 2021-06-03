@@ -1,7 +1,7 @@
-import { useEffect, useState, useCallback, memo } from 'react'
+import { useState, memo } from 'react'
 import clsx from 'clsx'
 import { Collapse, Paper, makeStyles, Typography, Button } from '@material-ui/core'
-import { ExpandMoreRounded as ExpandMoreIcon, Search as SearchIcon } from '@material-ui/icons'
+import { ExpandMoreRounded as ExpandMoreIcon } from '@material-ui/icons'
 import CrittersTable from 'components/critters/CrittersTable'
 import { removeItem } from 'assets/utility'
 import { MainFilter, Statuses, useFilters } from 'context/Filters'
@@ -27,11 +27,6 @@ const useStyles = makeStyles(() => ({
     width: '55px',
     marginRight: '20px',
   },
-  searchIcon: {
-    height: '40px',
-    width: '40px',
-    marginRight: '15px',
-  },
   expandIconSize: {
     '& > *:first-child': {
       fontSize: 40,
@@ -50,19 +45,7 @@ const useStyles = makeStyles(() => ({
 const CritterSection = ({ allCritters, type }) => {
   const classes = useStyles()
   const { mainFilter, status, search, donated } = useFilters()
-  const isSearch = search && search.length > 0
-  const [expanded, setExpanded] = useState(isSearch)
-  const [randomImg] = useState(
-    isSearch ? (
-      <SearchIcon className={classes.searchIcon} />
-    ) : (
-      <img
-        className={classes.headingImg}
-        src={allCritters[Math.floor(Math.random() * allCritters.length)].image_path}
-        alt={type}
-      />
-    ),
-  )
+  const [expanded, setExpanded] = useState(false)
 
   const filterCritters = () => {
     let filteredCritters = []
@@ -97,7 +80,7 @@ const CritterSection = ({ allCritters, type }) => {
 
   let content
   if (critters.length === 0) {
-    content = isSearch ? 'No search results' : `No ${type.toLowerCase()} to show`
+    content = `No ${type.toLowerCase()} to show`
   } else {
     content = <CrittersTable critters={critters} />
   }
@@ -106,7 +89,11 @@ const CritterSection = ({ allCritters, type }) => {
     <Paper classes={{ root: classes.critters }} elevation={7}>
       <div className={classes.headingWrapper}>
         <div className={classes.heading}>
-          {randomImg}
+          <img
+            className={classes.headingImg}
+            src={allCritters[Math.floor(Math.random() * allCritters.length)].image_path}
+            alt={type}
+          />
           <Typography variant="h4">{type}</Typography>
         </div>
         <Button

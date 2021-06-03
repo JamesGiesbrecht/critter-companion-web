@@ -4,6 +4,7 @@ import bugsData from 'assets/data/bugs.json'
 import fishData from 'assets/data/fish.json'
 import seaData from 'assets/data/sea.json'
 import { Statuses, useFilters } from 'context/Filters'
+import SearchSection from 'components/critters/SearchSection'
 
 const today = new Date()
 const curMonth = today.getMonth() + 1
@@ -62,24 +63,20 @@ const Critters = () => {
   const fish = addProperties(fishData)
   const seaCreatures = addProperties(seaData)
 
-  const getTables = () => {
-    if (search === '') {
-      return (
-        <>
-          <CritterSection allCritters={bugs} type="Bugs" />
-          <CritterSection allCritters={fish} type="Fish" />
-          <CritterSection allCritters={seaCreatures} type="Sea Creatures" />
-        </>
-      )
-    }
-    return <CritterSection allCritters={bugs.concat(fish, seaCreatures)} type="Search" />
+  if (search) {
+    return (
+      <>
+        <Controls />
+        <SearchSection allCritters={bugs.concat(fish, seaCreatures)} />
+      </>
+    )
   }
-  const tables = getTables()
-
   return (
     <>
       <Controls />
-      {tables}
+      <CritterSection allCritters={bugs} type="Bugs" />
+      <CritterSection allCritters={fish} type="Fish" />
+      <CritterSection allCritters={seaCreatures} type="Sea Creatures" />
     </>
   )
 }
