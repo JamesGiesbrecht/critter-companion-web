@@ -23,7 +23,22 @@ const useFiltersStore = create((set) => ({
   search: '',
   setSearch: (newSearch: string) => set({ search: newSearch }),
   donated: [],
-  setDonated: (newDonated: Array<string>) => set({ donated: newDonated }),
+  toggleDonated: (critterName: string) => {
+    let isDonated
+    set((state: any) => {
+      const critterIndex = state.donated.indexOf(critterName)
+      isDonated = critterIndex > -1
+      let newDonated
+      if (isDonated) {
+        newDonated = [...state.donated]
+        newDonated.splice(critterIndex, 1)
+      } else {
+        newDonated = state.donated.concat([critterName])
+      }
+      return { donated: newDonated }
+    })
+    return !isDonated
+  },
 }))
 
 export default useFiltersStore

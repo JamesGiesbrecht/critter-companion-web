@@ -85,7 +85,7 @@ const useStyles = makeStyles((theme) => ({
 const CritterRow = ({ critter, hours }) => {
   const classes = useStyles()
   const donated = useFiltersStore((state) => state.donated)
-  const setDonated = useFiltersStore((state) => state.setDonated)
+  const toggleDonated = useFiltersStore((state) => state.toggleDonated)
   const [isDonated, setIsDonated] = useState(donated.includes(critter.name))
   const [dialogOpen, setDialogOpen] = useState(false)
   const nameButtonRef = useRef()
@@ -106,17 +106,8 @@ const CritterRow = ({ critter, hours }) => {
       setDialogOpen(false)
     }, 100)
   }
-
   const handleDonatedCheck = (critterName) => {
-    const critterIndex = donated.indexOf(critterName)
-    setIsDonated((prevChecked) => !prevChecked)
-    if (critterIndex > -1) {
-      const temp = [...donated]
-      temp.splice(critterIndex, 1)
-      setDonated(temp)
-    } else {
-      setDonated(donated.concat([critterName]))
-    }
+    setIsDonated(toggleDonated(critterName))
   }
 
   const nameButton = (includeRef) => {
