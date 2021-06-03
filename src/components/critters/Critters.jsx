@@ -3,8 +3,8 @@ import Controls from 'components/layout/Controls'
 import bugsData from 'assets/data/bugs.json'
 import fishData from 'assets/data/fish.json'
 import seaData from 'assets/data/sea.json'
-import { Statuses, useFilters } from 'context/Filters'
 import SearchSection from 'components/critters/SearchSection'
+import useFiltersStore, { Statuses } from 'store/filtersStore'
 
 const today = new Date()
 const curMonth = today.getMonth() + 1
@@ -28,7 +28,8 @@ const hasNextMonth = (months) => {
 const isAvailableNow = (months) => months.includes(curMonth)
 
 const Critters = () => {
-  const { isNorthern, search } = useFilters()
+  const isNorthern = useFiltersStore((state) => state.isNorthern)
+  const search = useFiltersStore((state) => state.search)
 
   const getAvailability = (months) => {
     const availability = {}
