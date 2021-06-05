@@ -5,6 +5,8 @@ import fishData from 'assets/data/fish.json'
 import seaData from 'assets/data/sea.json'
 import SearchSection from 'components/critters/SearchSection'
 import useFiltersStore, { Statuses } from 'store/filtersStore'
+import { useEffect } from 'react'
+import { useApi } from 'context/Api'
 
 const today = new Date()
 const curMonth = today.getMonth() + 1
@@ -30,6 +32,14 @@ const isAvailableNow = (months) => months.includes(curMonth)
 const Critters = () => {
   const isNorthern = useFiltersStore((state) => state.isNorthern)
   const search = useFiltersStore((state) => state.search)
+  const setDonated = useFiltersStore((state) => state.setDonated)
+  const { db } = useApi()
+
+  useEffect(() => {
+    const data = db.on('value', (snapshot) => snapshot).val()
+    setDonated(data.donated)
+    return () => db.off()
+  }, [db, setDonated])
 
   const getAvailability = (months) => {
     const availability = {}

@@ -23,6 +23,7 @@ const useFiltersStore = create((set) => ({
   search: '',
   setSearch: (newSearch: string) => set({ search: newSearch }),
   donated: [],
+  setDonated: (newDonated: Array<string>) => ({ donated: newDonated }),
   toggleDonated: (critterName: string) => {
     let isDonated
     set((state: any) => {

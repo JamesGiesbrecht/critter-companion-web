@@ -25,9 +25,9 @@ export const AuthContextProvider: FC = ({ children }) => {
   const [user, setUser] = useState<AuthContextType['user']>()
 
   useEffect(() => {
-    const unlisten = firebaseAuth.onAuthStateChanged((authUser) => setUser(authUser))
+    const unsubscribe = firebaseAuth.onAuthStateChanged((authUser) => setUser(authUser))
     return () => {
-      unlisten()
+      unsubscribe()
     }
   })
 
