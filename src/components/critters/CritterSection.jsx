@@ -6,9 +6,12 @@ import { Collapse, Paper, makeStyles, Typography, Button } from '@material-ui/co
 import { ExpandMoreRounded as ExpandMoreIcon } from '@material-ui/icons'
 import CrittersTable from 'components/critters/CrittersTable'
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   critters: {
     padding: '10px 0',
+    [theme.breakpoints.down('sm')]: {
+      borderRadius: 0,
+    },
   },
   headingWrapper: {
     display: 'flex',

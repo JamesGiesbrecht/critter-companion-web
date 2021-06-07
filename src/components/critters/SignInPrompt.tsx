@@ -2,10 +2,14 @@ import { makeStyles, Paper, Typography } from '@material-ui/core'
 import FormLink from 'components/auth/FormLink'
 import { FormType } from 'store'
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     padding: 15,
     display: 'inline-block',
+    [theme.breakpoints.down('sm')]: {
+      display: 'block',
+      borderRadius: 0,
+    },
   },
 }))
 

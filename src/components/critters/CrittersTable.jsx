@@ -6,6 +6,9 @@ import CritterRow from 'components/critters/CritterRow'
 const useStyles = makeStyles((theme) => ({
   tableWrapper: {
     padding: '10px',
+    [theme.breakpoints.down('sm')]: {
+      padding: 0,
+    },
   },
   table: {
     margin: '0 auto',

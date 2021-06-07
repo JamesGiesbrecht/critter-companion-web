@@ -6,6 +6,7 @@ import { useColorScheme } from 'context/Theme'
 import Layout from 'components/layout/Layout'
 import getTheme from 'styles/theme'
 import Routes from 'constants/Routes'
+import ScreenSize from 'components/ui/ScreenSize'
 
 const App = () => {
   const { colorScheme } = useColorScheme()
@@ -30,6 +31,7 @@ const App = () => {
               {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
               <CssBaseline />
               <Layout>
+                <ScreenSize />
                 <Switch>{routes}</Switch>
               </Layout>
             </ThemeProvider>

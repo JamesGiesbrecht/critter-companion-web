@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
       marginTop: '-20px',
       paddingTop: '35px',
+      borderRadius: 0,
     },
     [theme.breakpoints.up('sm')]: {
       marginTop: '-25px',

@@ -11,6 +11,9 @@ const useStyles = makeStyles((theme) => ({
     margin: '0 auto',
     textAlign: 'center',
     marginTop: theme.spacing(2),
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+    },
   },
   titlePaper: {
     display: 'inline-block',
