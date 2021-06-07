@@ -1,8 +1,9 @@
-import { CircularProgress, Container, makeStyles, Paper, Typography } from '@material-ui/core'
+import { Container, makeStyles, Paper, Typography } from '@material-ui/core'
 import Footer from 'components/layout/Footer'
 import Centered from 'components/ui/Centered'
 import { useAuth } from 'context/Auth'
 import Header from 'components/layout/Header'
+import Loading from 'components/ui/Loading'
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -48,7 +49,7 @@ const Layout = ({ children }) => {
   if (user === undefined) {
     return (
       <Centered>
-        <CircularProgress size={120} color="inherit" />
+        <Loading />
       </Centered>
     )
   }

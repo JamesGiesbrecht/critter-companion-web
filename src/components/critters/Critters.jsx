@@ -5,8 +5,11 @@ import fishData from 'assets/data/fish.json'
 import seaData from 'assets/data/sea.json'
 import SearchSection from 'components/critters/SearchSection'
 import useFiltersStore, { Statuses } from 'store/filtersStore'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useApi } from 'context/Api'
+import { CircularProgress } from '@material-ui/core'
+import Loading from 'components/ui/Loading'
+import Centered from 'components/ui/Centered'
 
 const today = new Date()
 const curMonth = today.getMonth() + 1
@@ -34,12 +37,14 @@ const Critters = () => {
   const search = useFiltersStore((state) => state.search)
   const setDonated = useFiltersStore((state) => state.setDonated)
   const { donatedRef } = useApi()
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
+    setIsLoading(true)
     donatedRef.on('value', (snapshot) => {
       const data = snapshot.val() || {}
-      console.log('on', data)
       setDonated(data)
+      setIsLoading(false)
     })
     return () => donatedRef.off()
   }, [donatedRef, setDonated])
@@ -76,20 +81,30 @@ const Critters = () => {
   const fish = addProperties(fishData)
   const seaCreatures = addProperties(seaData)
 
-  if (search) {
-    return (
+  let content
+
+  if (isLoading) {
+    content = (
+      <Centered relative>
+        <Loading />
+      </Centered>
+    )
+  } else if (search) {
+    content = <SearchSection allCritters={bugs.concat(fish, seaCreatures)} />
+  } else {
+    content = (
       <>
-        <Controls />
-        <SearchSection allCritters={bugs.concat(fish, seaCreatures)} />
+        <CritterSection allCritters={bugs} type="Bugs" />
+        <CritterSection allCritters={fish} type="Fish" />
+        <CritterSection allCritters={seaCreatures} type="Sea Creatures" />
       </>
     )
   }
+
   return (
     <>
       <Controls />
-      <CritterSection allCritters={bugs} type="Bugs" />
-      <CritterSection allCritters={fish} type="Fish" />
-      <CritterSection allCritters={seaCreatures} type="Sea Creatures" />
+      {content}
     </>
   )
 }

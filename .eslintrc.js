@@ -34,6 +34,7 @@ module.exports = {
     'object-curly-newline': ['error', { ObjectPattern: { multiline: true } }],
     semi: ['error', 'never'],
     'react/prop-types': 'off',
+    'react/require-default-props': 'off',
     'no-case-declarations': 'off',
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
