@@ -22,23 +22,17 @@ const useFiltersStore = create((set) => ({
   toggleIsNorthern: () => set((state: any) => ({ isNorthern: !state.isNorthern })),
   search: '',
   setSearch: (newSearch: string) => set({ search: newSearch }),
-  donated: [],
-  setDonated: (newDonated: Array<string>) => ({ donated: newDonated }),
-  toggleDonated: (critterName: string) => {
+  donated: {},
+  setDonated: (newDonated: { [x: number]: boolean }) => ({ donated: newDonated }),
+  toggleDonated: (critterId: number) => {
     let isDonated
     set((state: any) => {
-      const critterIndex = state.donated.indexOf(critterName)
-      isDonated = critterIndex > -1
-      let newDonated
-      if (isDonated) {
-        newDonated = [...state.donated]
-        newDonated.splice(critterIndex, 1)
-      } else {
-        newDonated = state.donated.concat([critterName])
-      }
-      return { donated: newDonated }
+      const tempDonated = { ...state.donated }
+      isDonated = !tempDonated[critterId]
+      tempDonated[critterId] = isDonated
+      return { donated: tempDonated }
     })
-    return !isDonated
+    return isDonated
   },
 }))
 

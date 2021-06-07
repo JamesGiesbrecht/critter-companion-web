@@ -7,6 +7,7 @@ import Months from 'components/critters/Months'
 import BlathersIcon from 'components/icons/BlathersIcon'
 import { dot, hidden } from 'assets/cssClasses'
 import { FishSizes } from 'constants/AppConstants'
+import { useApi } from 'context/Api'
 
 const useStyles = makeStyles((theme) => ({
   cell: {
@@ -86,9 +87,10 @@ const CritterRow = ({ critter, hours }) => {
   const classes = useStyles()
   const donated = useFiltersStore((state) => state.donated)
   const toggleDonated = useFiltersStore((state) => state.toggleDonated)
-  const [isDonated, setIsDonated] = useState(donated.includes(critter.name))
+  const { donatedRef } = useApi()
   const [dialogOpen, setDialogOpen] = useState(false)
   const nameButtonRef = useRef()
+  const isDonated = donated[critter.id]
 
   const handleDialogOpen = (e) => {
     // Clicking the donate toggle
@@ -106,8 +108,9 @@ const CritterRow = ({ critter, hours }) => {
       setDialogOpen(false)
     }, 100)
   }
-  const handleDonatedCheck = (critterName) => {
-    setIsDonated(toggleDonated(critterName))
+  const handleDonatedCheck = () => {
+    const newIsDonated = toggleDonated(critter.id)
+    donatedRef.update({ [critter.id]: newIsDonated })
   }
 
   const nameButton = (includeRef) => {
@@ -119,7 +122,7 @@ const CritterRow = ({ critter, hours }) => {
         startIcon={
           <BlathersIcon className={clsx(classes.blathers, isDonated && classes.donated)} />
         }
-        onClick={() => handleDonatedCheck(critter.name)}
+        onClick={handleDonatedCheck}
         {...ref}>
         <Typography component="span">
           {critter.name}

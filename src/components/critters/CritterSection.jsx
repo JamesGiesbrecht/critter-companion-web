@@ -79,7 +79,7 @@ const CritterSection = ({ allCritters, type }) => {
 
     if (!statusFilters.includes(Statuses.Donated)) {
       // remove critters that are not donated
-      filteredCritters = filteredCritters.filter((critter) => !donated.includes(critter.name))
+      filteredCritters = filteredCritters.filter((critter) => !donated[critter.id])
     }
 
     return filteredCritters

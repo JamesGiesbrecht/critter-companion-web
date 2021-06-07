@@ -34,20 +34,16 @@ const Critters = () => {
   const search = useFiltersStore((state) => state.search)
   const donated = useFiltersStore((state) => state.donated)
   const setDonated = useFiltersStore((state) => state.setDonated)
-  const { db } = useApi()
+  const { donatedRef } = useApi()
 
   useEffect(() => {
-    db.on('value', (snapshot) => {
-      const data = snapshot.val()
+    donatedRef.on('value', (snapshot) => {
+      const data = snapshot.val() || {}
       console.log('on', data)
       setDonated(data)
     })
-    return () => db.off()
-  }, [db, setDonated])
-
-  useEffect(() => {
-    console.log('set', db.set({ donated }))
-  }, [donated, db])
+    return () => donatedRef.off()
+  }, [donatedRef, setDonated])
 
   const getAvailability = (months) => {
     const availability = {}
@@ -74,7 +70,7 @@ const Critters = () => {
         ...critter,
         months: critterMonths,
         ...getAvailability(critterMonths),
-        [Statuses.Donated]: false,
+        [Statuses.Donated]: donated[critter.id],
       }
     })
 
