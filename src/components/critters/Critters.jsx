@@ -72,7 +72,11 @@ const Critters = () => {
     if (donatedRef) {
       setIsLoading(true)
       donatedRef.on('value', (snapshot) => {
-        const data = snapshot.val() || donated
+        let data = snapshot.val()
+        if (!data) {
+          data = donated
+          donatedRef.update(donated)
+        }
         setDonated(data)
         setIsLoading(false)
       })
