@@ -32,7 +32,6 @@ const isAvailableNow = (months) => months.includes(curMonth)
 const Critters = () => {
   const isNorthern = useFiltersStore((state) => state.isNorthern)
   const search = useFiltersStore((state) => state.search)
-  const donated = useFiltersStore((state) => state.donated)
   const setDonated = useFiltersStore((state) => state.setDonated)
   const { donatedRef } = useApi()
 
@@ -70,7 +69,6 @@ const Critters = () => {
         ...critter,
         months: critterMonths,
         ...getAvailability(critterMonths),
-        [Statuses.Donated]: donated[critter.id],
       }
     })
 
