@@ -82,6 +82,7 @@ const Critters = () => {
       })
     }
     return () => donatedRef?.off()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [donatedRef, setDonated])
 
   const addProperties = (critters) =>

@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { SyntheticEvent, useEffect, useState } from 'react'
 import { useAuth } from 'context/Auth'
 import { AuthError } from 'firebase/error'
@@ -125,7 +124,6 @@ const LoginSignUpForm = () => {
   const activeForm = activeFormName && forms[activeFormName]
 
   const handleSubmit = async (e: SyntheticEvent, form: any) => {
-    console.log('Form is valid and submitting', form)
     let result
     const email = form.inputs.email.value
     try {
@@ -148,11 +146,9 @@ const LoginSignUpForm = () => {
         default:
           throw new Error(`Invalid Submission Method: ${activeFormName}`)
       }
-      console.log(result)
       setSubmitError('')
       setActiveFormName(undefined)
     } catch (error) {
-      console.log(error)
       let errorMessage
       switch (error.code) {
         case AuthError.InvalidEmail:
