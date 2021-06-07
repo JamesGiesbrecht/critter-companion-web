@@ -1,6 +1,6 @@
 [
   {
-    "id": 81,
+    "id": "anchovy",
     "name": "Anchovy",
     "type": "Fish",
     "location": "Sea",
@@ -13,7 +13,7 @@
     "image_path": "/assets/images/critters/fish/anchovy.png"
   },
   {
-    "id": 82,
+    "id": "angelfish",
     "name": "Angelfish",
     "type": "Fish",
     "location": "River",
@@ -26,7 +26,7 @@
     "image_path": "/assets/images/critters/fish/angelfish.png"
   },
   {
-    "id": 83,
+    "id": "arapaima",
     "name": "Arapaima",
     "type": "Fish",
     "location": "River",
@@ -39,7 +39,7 @@
     "image_path": "/assets/images/critters/fish/arapaima.png"
   },
   {
-    "id": 84,
+    "id": "arowana",
     "name": "Arowana",
     "type": "Fish",
     "location": "River",
@@ -52,7 +52,7 @@
     "image_path": "/assets/images/critters/fish/arowana.png"
   },
   {
-    "id": 85,
+    "id": "barred-knifejaw",
     "name": "Barred Knifejaw",
     "type": "Fish",
     "location": "Sea",
@@ -65,7 +65,7 @@
     "image_path": "/assets/images/critters/fish/barred-knifejaw.png"
   },
   {
-    "id": 86,
+    "id": "barreleye",
     "name": "Barreleye",
     "type": "Fish",
     "location": "Sea",
@@ -78,7 +78,7 @@
     "image_path": "/assets/images/critters/fish/barreleye.png"
   },
   {
-    "id": 87,
+    "id": "betta",
     "name": "Betta",
     "type": "Fish",
     "location": "River",
@@ -91,7 +91,7 @@
     "image_path": "/assets/images/critters/fish/betta.png"
   },
   {
-    "id": 88,
+    "id": "bitterling",
     "name": "Bitterling",
     "type": "Fish",
     "location": "River",
@@ -104,7 +104,7 @@
     "image_path": "/assets/images/critters/fish/bitterling.png"
   },
   {
-    "id": 89,
+    "id": "black-bass",
     "name": "Black Bass",
     "type": "Fish",
     "location": "River",
@@ -117,7 +117,7 @@
     "image_path": "/assets/images/critters/fish/black-bass.png"
   },
   {
-    "id": 90,
+    "id": "blowfish",
     "name": "Blowfish",
     "type": "Fish",
     "location": "Sea",
@@ -130,7 +130,7 @@
     "image_path": "/assets/images/critters/fish/blowfish.png"
   },
   {
-    "id": 91,
+    "id": "blue-marlin",
     "name": "Blue Marlin",
     "type": "Fish",
     "location": "Pier",
@@ -143,7 +143,7 @@
     "image_path": "/assets/images/critters/fish/blue-marlin.png"
   },
   {
-    "id": 92,
+    "id": "bluegill",
     "name": "Bluegill",
     "type": "Fish",
     "location": "River",
@@ -156,7 +156,7 @@
     "image_path": "/assets/images/critters/fish/bluegill.png"
   },
   {
-    "id": 93,
+    "id": "butterfly-fish",
     "name": "Butterfly Fish",
     "type": "Fish",
     "location": "Sea",
@@ -169,7 +169,7 @@
     "image_path": "/assets/images/critters/fish/butterfly-fish.png"
   },
   {
-    "id": 94,
+    "id": "carp",
     "name": "Carp",
     "type": "Fish",
     "location": "Pond",
@@ -182,7 +182,7 @@
     "image_path": "/assets/images/critters/fish/carp.png"
   },
   {
-    "id": 95,
+    "id": "catfish",
     "name": "Catfish",
     "type": "Fish",
     "location": "Pond",
@@ -195,7 +195,7 @@
     "image_path": "/assets/images/critters/fish/catfish.png"
   },
   {
-    "id": 96,
+    "id": "char",
     "name": "Char",
     "type": "Fish",
     "location": "River (Clifftop)",
@@ -208,7 +208,7 @@
     "image_path": "/assets/images/critters/fish/char.png"
   },
   {
-    "id": 97,
+    "id": "cherry-salmon",
     "name": "Cherry Salmon",
     "type": "Fish",
     "location": "River (Clifftop)",
@@ -221,7 +221,7 @@
     "image_path": "/assets/images/critters/fish/cherry-salmon.png"
   },
   {
-    "id": 98,
+    "id": "clownfish",
     "name": "Clownfish",
     "type": "Fish",
     "location": "Sea",
@@ -234,7 +234,7 @@
     "image_path": "/assets/images/critters/fish/clownfish.png"
   },
   {
-    "id": 99,
+    "id": "coelacanth",
     "name": "Coelacanth",
     "type": "Fish",
     "location": "Sea (Rain)",
@@ -247,7 +247,7 @@
     "image_path": "/assets/images/critters/fish/coelacanth.png"
   },
   {
-    "id": 100,
+    "id": "crawfish",
     "name": "Crawfish",
     "type": "Fish",
     "location": "Pond",
@@ -260,7 +260,7 @@
     "image_path": "/assets/images/critters/fish/crawfish.png"
   },
   {
-    "id": 101,
+    "id": "crucian-carp",
     "name": "Crucian Carp",
     "type": "Fish",
     "location": "River",
@@ -273,7 +273,7 @@
     "image_path": "/assets/images/critters/fish/crucian-carp.png"
   },
   {
-    "id": 102,
+    "id": "dab",
     "name": "Dab",
     "type": "Fish",
     "location": "Sea",
@@ -286,7 +286,7 @@
     "image_path": "/assets/images/critters/fish/dab.png"
   },
   {
-    "id": 103,
+    "id": "dace",
     "name": "Dace",
     "type": "Fish",
     "location": "River",
@@ -299,7 +299,7 @@
     "image_path": "/assets/images/critters/fish/dace.png"
   },
   {
-    "id": 104,
+    "id": "dorado",
     "name": "Dorado",
     "type": "Fish",
     "location": "River",
@@ -312,7 +312,7 @@
     "image_path": "/assets/images/critters/fish/dorado.png"
   },
   {
-    "id": 105,
+    "id": "football-fish",
     "name": "Football Fish",
     "type": "Fish",
     "location": "Sea",
@@ -325,7 +325,7 @@
     "image_path": "/assets/images/critters/fish/football-fish.png"
   },
   {
-    "id": 106,
+    "id": "freshwater-goby",
     "name": "Freshwater Goby",
     "type": "Fish",
     "location": "River",
@@ -338,7 +338,7 @@
     "image_path": "/assets/images/critters/fish/freshwater-goby.png"
   },
   {
-    "id": 107,
+    "id": "frog",
     "name": "Frog",
     "type": "Fish",
     "location": "Pond",
@@ -351,7 +351,7 @@
     "image_path": "/assets/images/critters/fish/frog.png"
   },
   {
-    "id": 108,
+    "id": "gar",
     "name": "Gar",
     "type": "Fish",
     "location": "Pond",
@@ -364,7 +364,7 @@
     "image_path": "/assets/images/critters/fish/gar.png"
   },
   {
-    "id": 109,
+    "id": "giant-snakehead",
     "name": "Giant Snakehead",
     "type": "Fish",
     "location": "Pond",
@@ -377,7 +377,7 @@
     "image_path": "/assets/images/critters/fish/giant-snakehead.png"
   },
   {
-    "id": 110,
+    "id": "giant-trevally",
     "name": "Giant Trevally",
     "type": "Fish",
     "location": "Pier",
@@ -390,7 +390,7 @@
     "image_path": "/assets/images/critters/fish/giant-trevally.png"
   },
   {
-    "id": 111,
+    "id": "golden-trout",
     "name": "Golden Trout",
     "type": "Fish",
     "location": "River (Clifftop)",
@@ -403,7 +403,7 @@
     "image_path": "/assets/images/critters/fish/golden-trout.png"
   },
   {
-    "id": 112,
+    "id": "goldfish",
     "name": "Goldfish",
     "type": "Fish",
     "location": "Pond",
@@ -416,7 +416,7 @@
     "image_path": "/assets/images/critters/fish/goldfish.png"
   },
   {
-    "id": 113,
+    "id": "great-white-shark",
     "name": "Great White Shark",
     "type": "Fish",
     "location": "Sea",
@@ -429,7 +429,7 @@
     "image_path": "/assets/images/critters/fish/great-white-shark.png"
   },
   {
-    "id": 114,
+    "id": "guppy",
     "name": "Guppy",
     "type": "Fish",
     "location": "River",
@@ -442,7 +442,7 @@
     "image_path": "/assets/images/critters/fish/guppy.png"
   },
   {
-    "id": 115,
+    "id": "hammerhead-shark",
     "name": "Hammerhead Shark",
     "type": "Fish",
     "location": "Sea",
@@ -455,7 +455,7 @@
     "image_path": "/assets/images/critters/fish/hammerhead-shark.png"
   },
   {
-    "id": 116,
+    "id": "horse-mackerel",
     "name": "Horse Mackerel",
     "type": "Fish",
     "location": "Sea",
@@ -468,7 +468,7 @@
     "image_path": "/assets/images/critters/fish/horse-mackerel.png"
   },
   {
-    "id": 117,
+    "id": "killifish",
     "name": "Killifish",
     "type": "Fish",
     "location": "Pond",
@@ -481,7 +481,7 @@
     "image_path": "/assets/images/critters/fish/killifish.png"
   },
   {
-    "id": 118,
+    "id": "king-salmon",
     "name": "King Salmon",
     "type": "Fish",
     "location": "River (Mouth)",
@@ -494,7 +494,7 @@
     "image_path": "/assets/images/critters/fish/king-salmon.png"
   },
   {
-    "id": 119,
+    "id": "koi",
     "name": "Koi",
     "type": "Fish",
     "location": "Pond",
@@ -507,7 +507,7 @@
     "image_path": "/assets/images/critters/fish/koi.png"
   },
   {
-    "id": 120,
+    "id": "loach",
     "name": "Loach",
     "type": "Fish",
     "location": "River",
@@ -520,7 +520,7 @@
     "image_path": "/assets/images/critters/fish/loach.png"
   },
   {
-    "id": 121,
+    "id": "mahi-mahi",
     "name": "Mahi-mahi",
     "type": "Fish",
     "location": "Pier",
@@ -533,7 +533,7 @@
     "image_path": "/assets/images/critters/fish/mahi-mahi.png"
   },
   {
-    "id": 122,
+    "id": "mitten-crab",
     "name": "Mitten Crab",
     "type": "Fish",
     "location": "River",
@@ -546,7 +546,7 @@
     "image_path": "/assets/images/critters/fish/mitten-crab.png"
   },
   {
-    "id": 123,
+    "id": "moray-eel",
     "name": "Moray Eel",
     "type": "Fish",
     "location": "Sea",
@@ -559,7 +559,7 @@
     "image_path": "/assets/images/critters/fish/moray-eel.png"
   },
   {
-    "id": 124,
+    "id": "napoleonfish",
     "name": "Napoleonfish",
     "type": "Fish",
     "location": "Sea",
@@ -572,7 +572,7 @@
     "image_path": "/assets/images/critters/fish/napoleonfish.png"
   },
   {
-    "id": 125,
+    "id": "neon-tetra",
     "name": "Neon Tetra",
     "type": "Fish",
     "location": "River",
@@ -585,7 +585,7 @@
     "image_path": "/assets/images/critters/fish/neon-tetra.png"
   },
   {
-    "id": 126,
+    "id": "nibble-fish",
     "name": "Nibble Fish",
     "type": "Fish",
     "location": "River",
@@ -598,7 +598,7 @@
     "image_path": "/assets/images/critters/fish/nibble-fish.png"
   },
   {
-    "id": 127,
+    "id": "oarfish",
     "name": "Oarfish",
     "type": "Fish",
     "location": "Sea",
@@ -611,7 +611,7 @@
     "image_path": "/assets/images/critters/fish/oarfish.png"
   },
   {
-    "id": 128,
+    "id": "ocean-sunfish",
     "name": "Ocean Sunfish",
     "type": "Fish",
     "location": "Sea",
@@ -624,7 +624,7 @@
     "image_path": "/assets/images/critters/fish/ocean-sunfish.png"
   },
   {
-    "id": 129,
+    "id": "olive-flounder",
     "name": "Olive Flounder",
     "type": "Fish",
     "location": "Sea",
@@ -637,7 +637,7 @@
     "image_path": "/assets/images/critters/fish/olive-flounder.png"
   },
   {
-    "id": 130,
+    "id": "pale-chub",
     "name": "Pale Chub",
     "type": "Fish",
     "location": "River",
@@ -650,7 +650,7 @@
     "image_path": "/assets/images/critters/fish/pale-chub.png"
   },
   {
-    "id": 131,
+    "id": "pike",
     "name": "Pike",
     "type": "Fish",
     "location": "River",
@@ -663,7 +663,7 @@
     "image_path": "/assets/images/critters/fish/pike.png"
   },
   {
-    "id": 132,
+    "id": "piranha",
     "name": "Piranha",
     "type": "Fish",
     "location": "River",
@@ -676,7 +676,7 @@
     "image_path": "/assets/images/critters/fish/piranha.png"
   },
   {
-    "id": 133,
+    "id": "pond-smelt",
     "name": "Pond Smelt",
     "type": "Fish",
     "location": "River",
@@ -689,7 +689,7 @@
     "image_path": "/assets/images/critters/fish/pond-smelt.png"
   },
   {
-    "id": 134,
+    "id": "pop-eyed-goldfish",
     "name": "Pop-eyed Goldfish",
     "type": "Fish",
     "location": "Pond",
@@ -702,7 +702,7 @@
     "image_path": "/assets/images/critters/fish/pop-eyed-goldfish.png"
   },
   {
-    "id": 135,
+    "id": "puffer-fish",
     "name": "Puffer Fish",
     "type": "Fish",
     "location": "Sea",
@@ -715,7 +715,7 @@
     "image_path": "/assets/images/critters/fish/puffer-fish.png"
   },
   {
-    "id": 136,
+    "id": "rainbowfish",
     "name": "Rainbowfish",
     "type": "Fish",
     "location": "River",
@@ -728,7 +728,7 @@
     "image_path": "/assets/images/critters/fish/rainbowfish.png"
   },
   {
-    "id": 137,
+    "id": "ranchu-goldfish",
     "name": "Ranchu Goldfish",
     "type": "Fish",
     "location": "Pond",
@@ -741,7 +741,7 @@
     "image_path": "/assets/images/critters/fish/ranchu-goldfish.png"
   },
   {
-    "id": 138,
+    "id": "ray",
     "name": "Ray",
     "type": "Fish",
     "location": "Sea",
@@ -754,7 +754,7 @@
     "image_path": "/assets/images/critters/fish/ray.png"
   },
   {
-    "id": 139,
+    "id": "red-snapper",
     "name": "Red Snapper",
     "type": "Fish",
     "location": "Sea",
@@ -767,7 +767,7 @@
     "image_path": "/assets/images/critters/fish/red-snapper.png"
   },
   {
-    "id": 140,
+    "id": "ribbon-eel",
     "name": "Ribbon Eel",
     "type": "Fish",
     "location": "Sea",
@@ -780,7 +780,7 @@
     "image_path": "/assets/images/critters/fish/ribbon-eel.png"
   },
   {
-    "id": 141,
+    "id": "saddled-bichir",
     "name": "Saddled Bichir",
     "type": "Fish",
     "location": "River",
@@ -793,7 +793,7 @@
     "image_path": "/assets/images/critters/fish/saddled-bichir.png"
   },
   {
-    "id": 142,
+    "id": "salmon",
     "name": "Salmon",
     "type": "Fish",
     "location": "River (Mouth)",
@@ -806,7 +806,7 @@
     "image_path": "/assets/images/critters/fish/salmon.png"
   },
   {
-    "id": 143,
+    "id": "saw-shark",
     "name": "Saw Shark",
     "type": "Fish",
     "location": "Sea",
@@ -819,7 +819,7 @@
     "image_path": "/assets/images/critters/fish/saw-shark.png"
   },
   {
-    "id": 144,
+    "id": "sea-bass",
     "name": "Sea Bass",
     "type": "Fish",
     "location": "Sea",
@@ -832,7 +832,7 @@
     "image_path": "/assets/images/critters/fish/sea-bass.png"
   },
   {
-    "id": 145,
+    "id": "sea-butterfly",
     "name": "Sea Butterfly",
     "type": "Fish",
     "location": "Sea",
@@ -845,7 +845,7 @@
     "image_path": "/assets/images/critters/fish/sea-butterfly.png"
   },
   {
-    "id": 146,
+    "id": "seahorse",
     "name": "Seahorse",
     "type": "Fish",
     "location": "Sea",
@@ -858,7 +858,7 @@
     "image_path": "/assets/images/critters/fish/seahorse.png"
   },
   {
-    "id": 147,
+    "id": "snapping-turtle",
     "name": "Snapping Turtle",
     "type": "Fish",
     "location": "River",
@@ -871,7 +871,7 @@
     "image_path": "/assets/images/critters/fish/snapping-turtle.png"
   },
   {
-    "id": 148,
+    "id": "soft-shelled-turtle",
     "name": "Soft-shelled Turtle",
     "type": "Fish",
     "location": "River",
@@ -884,7 +884,7 @@
     "image_path": "/assets/images/critters/fish/soft-shelled-turtle.png"
   },
   {
-    "id": 149,
+    "id": "squid",
     "name": "Squid",
     "type": "Fish",
     "location": "Sea",
@@ -897,7 +897,7 @@
     "image_path": "/assets/images/critters/fish/squid.png"
   },
   {
-    "id": 150,
+    "id": "stringfish",
     "name": "Stringfish",
     "type": "Fish",
     "location": "River (Clifftop)",
@@ -910,7 +910,7 @@
     "image_path": "/assets/images/critters/fish/stringfish.png"
   },
   {
-    "id": 151,
+    "id": "sturgeon",
     "name": "Sturgeon",
     "type": "Fish",
     "location": "River (Mouth)",
@@ -923,7 +923,7 @@
     "image_path": "/assets/images/critters/fish/sturgeon.png"
   },
   {
-    "id": 152,
+    "id": "suckerfish",
     "name": "Suckerfish",
     "type": "Fish",
     "location": "Sea",
@@ -936,7 +936,7 @@
     "image_path": "/assets/images/critters/fish/suckerfish.png"
   },
   {
-    "id": 153,
+    "id": "surgeonfish",
     "name": "Surgeonfish",
     "type": "Fish",
     "location": "Sea",
@@ -949,7 +949,7 @@
     "image_path": "/assets/images/critters/fish/surgeonfish.png"
   },
   {
-    "id": 154,
+    "id": "sweetfish",
     "name": "Sweetfish",
     "type": "Fish",
     "location": "River",
@@ -962,7 +962,7 @@
     "image_path": "/assets/images/critters/fish/sweetfish.png"
   },
   {
-    "id": 155,
+    "id": "tadpole",
     "name": "Tadpole",
     "type": "Fish",
     "location": "Pond",
@@ -975,7 +975,7 @@
     "image_path": "/assets/images/critters/fish/tadpole.png"
   },
   {
-    "id": 156,
+    "id": "tilapia",
     "name": "Tilapia",
     "type": "Fish",
     "location": "River",
@@ -988,7 +988,7 @@
     "image_path": "/assets/images/critters/fish/tilapia.png"
   },
   {
-    "id": 157,
+    "id": "tuna",
     "name": "Tuna",
     "type": "Fish",
     "location": "Pier",
@@ -1001,7 +1001,7 @@
     "image_path": "/assets/images/critters/fish/tuna.png"
   },
   {
-    "id": 158,
+    "id": "whale-shark",
     "name": "Whale Shark",
     "type": "Fish",
     "location": "Sea",
@@ -1014,7 +1014,7 @@
     "image_path": "/assets/images/critters/fish/whale-shark.png"
   },
   {
-    "id": 159,
+    "id": "yellow-perch",
     "name": "Yellow Perch",
     "type": "Fish",
     "location": "River",
@@ -1027,7 +1027,7 @@
     "image_path": "/assets/images/critters/fish/yellow-perch.png"
   },
   {
-    "id": 160,
+    "id": "zebra-turkeyfish",
     "name": "Zebra Turkeyfish",
     "type": "Fish",
     "location": "Sea",
