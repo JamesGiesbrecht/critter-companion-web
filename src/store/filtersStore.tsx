@@ -24,6 +24,16 @@ const useFiltersStore = create((set) => ({
   setSearch: (newSearch: string) => set({ search: newSearch }),
   donated: {},
   setDonated: (newDonated: { [x: number]: boolean }) => set({ donated: newDonated }),
+  toggleDonated: (critterId: number) => {
+    let isDonated
+    set((state: any) => {
+      const tempDonated = { ...state.donated }
+      isDonated = !tempDonated[critterId]
+      tempDonated[critterId] = isDonated
+      return { donated: tempDonated }
+    })
+    return isDonated
+  },
 }))
 
 export default useFiltersStore

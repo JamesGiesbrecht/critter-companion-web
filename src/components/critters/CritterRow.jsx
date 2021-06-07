@@ -86,6 +86,7 @@ const useStyles = makeStyles((theme) => ({
 const CritterRow = ({ critter, hours }) => {
   const classes = useStyles()
   const isDonated = useFiltersStore((state) => state.donated[critter.id])
+  const toggleDonated = useFiltersStore((state) => state.toggleDonated)
   const { donatedRef } = useApi()
   const [dialogOpen, setDialogOpen] = useState(false)
   const nameButtonRef = useRef()
@@ -106,7 +107,13 @@ const CritterRow = ({ critter, hours }) => {
       setDialogOpen(false)
     }, 100)
   }
-  const handleDonatedCheck = () => donatedRef.update({ [critter.id]: !isDonated })
+  const handleDonatedCheck = () => {
+    if (donatedRef) {
+      donatedRef.update({ [critter.id]: !isDonated })
+    } else {
+      toggleDonated(critter.id)
+    }
+  }
 
   const nameButton = (includeRef) => {
     const ref = includeRef ? { ref: nameButtonRef } : {}

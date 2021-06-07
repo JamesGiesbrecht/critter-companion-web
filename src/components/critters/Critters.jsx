@@ -52,18 +52,21 @@ const getAvailability = (months) => {
 const Critters = () => {
   const isNorthern = useFiltersStore((state) => state.isNorthern)
   const search = useFiltersStore((state) => state.search)
+  const donated = useFiltersStore((state) => state.donated)
   const setDonated = useFiltersStore((state) => state.setDonated)
   const { donatedRef } = useApi()
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
-    setIsLoading(true)
-    donatedRef.on('value', (snapshot) => {
-      const data = snapshot.val() || {}
-      setDonated(data)
-      setIsLoading(false)
-    })
-    return () => donatedRef.off()
+    if (donatedRef) {
+      setIsLoading(true)
+      donatedRef.on('value', (snapshot) => {
+        const data = snapshot.val() || donated
+        setDonated(data)
+        setIsLoading(false)
+      })
+    }
+    return () => donatedRef?.off()
   }, [donatedRef, setDonated])
 
   const addProperties = (critters) =>

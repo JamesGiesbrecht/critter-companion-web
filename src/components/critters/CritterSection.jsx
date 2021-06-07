@@ -53,7 +53,7 @@ const CritterSection = ({ allCritters, type }) => {
 
   const randomImg = useMemo(
     () => allCritters[Math.floor(Math.random() * allCritters.length)].image_path,
-    [allCritters],
+    [],
   )
 
   const filterCritters = () => {
