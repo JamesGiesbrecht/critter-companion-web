@@ -9,7 +9,6 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  Link,
   makeStyles,
   Slide,
   Snackbar,
@@ -19,6 +18,7 @@ import { Color, LoadingButton } from '@material-ui/lab'
 import Form from 'components/common/Form'
 import AccountButton from 'components/auth/AccountButton'
 import useFiltersStore, { FormType } from 'store/filtersStore'
+import FormLink from './FormLink'
 
 const useStyles = makeStyles((theme) => ({
   dialogPaper: {
@@ -76,18 +76,6 @@ const LoginSignUpForm = () => {
     setSubmitError('')
   }, [activeFormName])
 
-  const getFormLink = (formName: FormType, label: string) => (
-    // eslint-disable-next-line jsx-a11y/anchor-is-valid
-    <Link
-      key={label}
-      component="button"
-      type="button"
-      variant="body1"
-      onClick={() => setActiveFormName(formName)}>
-      {label}
-    </Link>
-  )
-
   const forms = {
     [FormType.Login]: {
       type: FormType.Login,
@@ -97,7 +85,11 @@ const LoginSignUpForm = () => {
         email: inputs.email,
         password: {
           ...inputs.password,
-          after: getFormLink(FormType.ForgotPassword, 'Forgot Password?'),
+          after: (
+            <FormLink key="forgotPassword" to={FormType.ForgotPassword}>
+              Forgot Password?
+            </FormLink>
+          ),
         },
       },
     },
@@ -170,19 +162,23 @@ const LoginSignUpForm = () => {
           errorMessage = `The account associated with ${email} has been disabled. Contact support for help with this issue.`
           break
         case AuthError.UserNotFound:
-          errorMessage = [
-            'An account with this email does not exist, did you mean to ',
-            getFormLink(FormType.SignUp, 'sign up.'),
-          ]
+          errorMessage = (
+            <>
+              An account with this email does not exist, did you mean to{' '}
+              <FormLink to={FormType.SignUp}>sign up.</FormLink>
+            </>
+          )
           break
         case AuthError.WrongPassword:
           errorMessage = 'Incorrect password provided.'
           break
         case AuthError.EmailAlreadyInUse:
-          errorMessage = [
-            'An account already exists with this email, did you mean to ',
-            getFormLink(FormType.Login, 'login?'),
-          ]
+          errorMessage = (
+            <>
+              An account already exists with this email, did you mean to{' '}
+              <FormLink to={FormType.Login}>login?</FormLink>
+            </>
+          )
           break
         case AuthError.OperationNotAllowed:
         case AuthError.MissingContinueUri:
@@ -245,17 +241,6 @@ const LoginSignUpForm = () => {
                     disabled={isLoading}
                     onClick={toggleState}>
                     {`Switch to ${activeForm.type === FormType.Login ? 'Sign Up' : 'Login'}`}
-                  </Button>
-                  <Button type="button" onClick={() => console.log(auth.user)}>
-                    Get user
-                  </Button>
-                  <Button
-                    type="button"
-                    onClick={async () => {
-                      const result = await auth.logout()
-                      console.log(result)
-                    }}>
-                    Logout
                   </Button>
                 </DialogActions>
               </Form>
