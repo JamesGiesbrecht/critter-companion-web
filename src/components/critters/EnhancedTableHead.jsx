@@ -1,6 +1,6 @@
 import clsx from 'clsx'
-import { TableHead, TableRow, TableCell, TableSortLabel, makeStyles } from '@material-ui/core'
 import { hidden } from 'assets/cssClasses'
+import { TableHead, TableRow, TableCell, TableSortLabel, makeStyles } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
   hidden,

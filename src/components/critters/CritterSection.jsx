@@ -1,10 +1,10 @@
 import { useState, memo, useMemo } from 'react'
 import clsx from 'clsx'
+import useFiltersStore, { MainFilter, Statuses } from 'store/filtersStore'
+import { removeItem } from 'assets/utility'
 import { Collapse, Paper, makeStyles, Typography, Button } from '@material-ui/core'
 import { ExpandMoreRounded as ExpandMoreIcon } from '@material-ui/icons'
 import CrittersTable from 'components/critters/CrittersTable'
-import { removeItem } from 'assets/utility'
-import useFiltersStore, { MainFilter, Statuses } from 'store/filtersStore'
 
 const useStyles = makeStyles(() => ({
   critters: {

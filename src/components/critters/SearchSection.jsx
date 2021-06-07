@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
+import useFiltersStore from 'store/filtersStore'
 import { Paper, makeStyles, Typography } from '@material-ui/core'
 import { Search as SearchIcon } from '@material-ui/icons'
 import CrittersTable from 'components/critters/CrittersTable'
-import useFiltersStore from 'store/filtersStore'
 
 const useStyles = makeStyles(() => ({
   critters: {

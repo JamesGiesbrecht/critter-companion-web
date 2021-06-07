@@ -1,13 +1,12 @@
-import CritterSection from 'components/critters/CritterSection'
-import Controls from 'components/layout/Controls'
+import { useEffect, useState } from 'react'
+import { useApi } from 'context/Api'
+import useFiltersStore, { Statuses } from 'store/filtersStore'
 import bugsData from 'assets/data/bugs.json'
 import fishData from 'assets/data/fish.json'
 import seaData from 'assets/data/sea.json'
+import Controls from 'components/layout/Controls'
+import CritterSection from 'components/critters/CritterSection'
 import SearchSection from 'components/critters/SearchSection'
-import useFiltersStore, { Statuses } from 'store/filtersStore'
-import { useEffect, useState } from 'react'
-import { useApi } from 'context/Api'
-import { CircularProgress } from '@material-ui/core'
 import Loading from 'components/ui/Loading'
 import Centered from 'components/ui/Centered'
 
@@ -32,6 +31,24 @@ const hasNextMonth = (months) => {
 
 const isAvailableNow = (months) => months.includes(curMonth)
 
+const getAvailability = (months) => {
+  const availability = {}
+
+  if (isAvailableNow(months)) {
+    availability.isAvailableNow = true
+    if (!hasPrevMonth(months)) {
+      availability[Statuses.New] = true
+    }
+    if (!hasNextMonth(months)) {
+      availability[Statuses.Leaving] = true
+    }
+  } else if (hasNextMonth(months)) {
+    availability[Statuses.Incoming] = true
+  }
+
+  return availability
+}
+
 const Critters = () => {
   const isNorthern = useFiltersStore((state) => state.isNorthern)
   const search = useFiltersStore((state) => state.search)
@@ -48,24 +65,6 @@ const Critters = () => {
     })
     return () => donatedRef.off()
   }, [donatedRef, setDonated])
-
-  const getAvailability = (months) => {
-    const availability = {}
-
-    if (isAvailableNow(months)) {
-      availability.isAvailableNow = true
-      if (!hasPrevMonth(months)) {
-        availability[Statuses.New] = true
-      }
-      if (!hasNextMonth(months)) {
-        availability[Statuses.Leaving] = true
-      }
-    } else if (hasNextMonth(months)) {
-      availability[Statuses.Incoming] = true
-    }
-
-    return availability
-  }
 
   const addProperties = (critters) =>
     critters.map((critter) => {

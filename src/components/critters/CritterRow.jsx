@@ -1,13 +1,13 @@
 import { memo, useRef, useState } from 'react'
 import clsx from 'clsx'
-import { TableRow, TableCell, makeStyles, Typography, Button } from '@material-ui/core'
+import { useApi } from 'context/Api'
 import useFiltersStore, { Statuses } from 'store/filtersStore'
+import { dot, hidden } from 'assets/cssClasses'
+import { FishSizes } from 'constants/AppConstants'
+import { TableRow, TableCell, makeStyles, Typography, Button } from '@material-ui/core'
 import CritterInfo from 'components/critters/CritterInfo'
 import Months from 'components/critters/Months'
 import BlathersIcon from 'components/icons/BlathersIcon'
-import { dot, hidden } from 'assets/cssClasses'
-import { FishSizes } from 'constants/AppConstants'
-import { useApi } from 'context/Api'
 
 const useStyles = makeStyles((theme) => ({
   cell: {
