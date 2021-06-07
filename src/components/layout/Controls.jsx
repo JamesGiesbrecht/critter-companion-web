@@ -77,6 +77,11 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     marginRight: '10px',
   },
+  disabled: {
+    '& span': {
+      color: theme.palette.text.disabled,
+    },
+  },
   searchIcons: {
     padding: theme.spacing(0, 1),
     height: '100%',
@@ -175,15 +180,24 @@ const Controls = () => {
           value={statusFilters}
           onChange={handleStatusFiltersChange}
           size="small">
-          <ToggleButton value={Statuses.New} disabled={mainFilter !== MainFilter.Custom}>
+          <ToggleButton
+            value={Statuses.New}
+            classes={{ disabled: classes.disabled }}
+            disabled={mainFilter !== MainFilter.Custom}>
             New
             <span className={clsx(classes.dot, classes.new)} />
           </ToggleButton>
-          <ToggleButton value={Statuses.Leaving} disabled={mainFilter !== MainFilter.Custom}>
+          <ToggleButton
+            value={Statuses.Leaving}
+            classes={{ disabled: classes.disabled }}
+            disabled={mainFilter !== MainFilter.Custom}>
             Leaving
             <span className={clsx(classes.dot, classes.leaving)} />
           </ToggleButton>
-          <ToggleButton value={Statuses.Incoming} disabled={mainFilter !== MainFilter.Custom}>
+          <ToggleButton
+            value={Statuses.Incoming}
+            classes={{ disabled: classes.disabled }}
+            disabled={mainFilter !== MainFilter.Custom}>
             Incoming
             <span className={clsx(classes.dot, classes.incoming)} />
           </ToggleButton>
