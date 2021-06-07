@@ -1,10 +1,9 @@
 import { useState, memo, useMemo } from 'react'
-import clsx from 'clsx'
 import useStore, { MainFilter, Statuses } from 'store'
 import { removeItem } from 'assets/utility'
 import { Collapse, Paper, makeStyles, Typography, Button } from '@material-ui/core'
-import { ExpandMoreRounded as ExpandMoreIcon } from '@material-ui/icons'
 import CrittersTable from 'components/critters/CrittersTable'
+import ExpandMoreIcon from 'components/ui/ExpandMoreIcon'
 
 const useStyles = makeStyles((theme) => ({
   critters: {
@@ -29,19 +28,6 @@ const useStyles = makeStyles((theme) => ({
     width: '55px',
     marginRight: '20px',
   },
-  expandIconSize: {
-    '& > *:first-child': {
-      fontSize: 40,
-    },
-  },
-  expandArrow: {
-    transform: 'rotate(0deg)',
-    transition: 'transform 0.2s linear',
-  },
-  open: {
-    transform: 'rotate(180deg)',
-    transition: 'transform 0.2s linear',
-  },
 }))
 
 const CritterSection = ({ allCritters, type }) => {
@@ -52,6 +38,8 @@ const CritterSection = ({ allCritters, type }) => {
   const donated = useStore((state) => state.donated)
 
   const [expanded, setExpanded] = useState(false)
+
+  const handleToggleExpand = () => setExpanded((prevExpanded) => !prevExpanded)
 
   const randomImg = useMemo(
     () => allCritters[Math.floor(Math.random() * allCritters.length)].image_path,
@@ -105,13 +93,10 @@ const CritterSection = ({ allCritters, type }) => {
           <Typography variant="h4">{type}</Typography>
         </div>
         <Button
-          size="small"
-          classes={{ endIcon: classes.expandIconSize }}
+          size="large"
           color="inherit"
-          onClick={() => setExpanded((prevExpanded) => !prevExpanded)}
-          endIcon={
-            <ExpandMoreIcon className={clsx(classes.expandArrow, !expanded && classes.open)} />
-          }>
+          onClick={handleToggleExpand}
+          endIcon={<ExpandMoreIcon expand={expanded} />}>
           {expanded ? 'Collapse' : 'Expand'}
         </Button>
       </div>

@@ -10,11 +10,16 @@ import {
   ToggleButton,
   makeStyles,
   IconButton,
+  Button,
+  Collapse,
 } from '@material-ui/core'
 import LightModeIcon from '@material-ui/icons/Brightness7'
 import DarkModeIcon from '@material-ui/icons/Brightness3'
 import SearchIcon from '@material-ui/icons/Search'
 import ClearIcon from '@material-ui/icons/ClearRounded'
+import FilterIcon from '@material-ui/icons/FilterAlt'
+import { useState } from 'react'
+import ExpandMoreIcon from 'components/ui/ExpandMoreIcon'
 
 const useStyles = makeStyles((theme) => ({
   controls: {
@@ -113,6 +118,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Controls = () => {
   const classes = useStyles()
+  const [expanded, setExpanded] = useState(false)
   const { colorScheme, toggleColorScheme } = useColorScheme()
   const {
     mainFilter,
@@ -124,6 +130,20 @@ const Controls = () => {
     search,
     setSearch,
   } = useStore((state) => state.filters)
+
+  const getFilterText = (filter) => {
+    switch (filter) {
+      case MainFilter.All:
+        return 'Show All'
+      case MainFilter.Available:
+        return 'Available Now'
+      case MainFilter.Custom:
+        return 'Custom'
+      default:
+        return null
+    }
+  }
+  const currentFilter = getFilterText(mainFilter)
 
   const handleMainFilterChange = (e, newMainFilter) => {
     if (newMainFilter === null || newMainFilter === MainFilter.Custom) {
@@ -143,15 +163,21 @@ const Controls = () => {
     }
   }
 
+  const handleToggleExpand = () => setExpanded((prevExpanded) => !prevExpanded)
+
   const handleStatusFiltersChange = (e, newStatusFilters) => setStatusFilters(newStatusFilters)
+
+  const handleUpdateSearch = (e) => setSearch(e.target.value.toLowerCase())
+
+  const handleClearSearch = () => setSearch('')
 
   let clearIcon = null
   if (search !== '') {
     clearIcon = (
       <div
         className={classes.searchIcons}
-        onClick={() => setSearch('')}
-        onKeyPress={() => setSearch('')}
+        onClick={handleClearSearch}
+        onKeyPress={handleClearSearch}
         role="button"
         tabIndex={0}>
         <ClearIcon />
@@ -161,70 +187,80 @@ const Controls = () => {
 
   return (
     <Paper classes={{ root: classes.controls }} elevation={7}>
-      <div className={classes.buttonGroup}>
-        <ToggleButton value={isNorthern} selected onChange={toggleIsNorthern} size="small">
-          {isNorthern ? 'Northern' : 'Southern'}
-        </ToggleButton>
-        <ToggleButtonGroup
-          className={classes.buttons}
-          value={mainFilter}
-          size="small"
-          exclusive
-          onChange={handleMainFilterChange}>
-          <ToggleButton value={MainFilter.All}>Show All</ToggleButton>
-          <ToggleButton value={MainFilter.Available}>Available Now</ToggleButton>
-          <ToggleButton value={MainFilter.Custom}>Custom</ToggleButton>
-        </ToggleButtonGroup>
-        <ToggleButtonGroup
-          className={classes.buttons}
-          value={statusFilters}
-          onChange={handleStatusFiltersChange}
-          size="small">
-          <ToggleButton
-            value={Statuses.New}
-            classes={{ disabled: classes.disabled }}
-            disabled={mainFilter !== MainFilter.Custom}>
-            New
-            <span className={clsx(classes.dot, classes.new)} />
-          </ToggleButton>
-          <ToggleButton
-            value={Statuses.Leaving}
-            classes={{ disabled: classes.disabled }}
-            disabled={mainFilter !== MainFilter.Custom}>
-            Leaving
-            <span className={clsx(classes.dot, classes.leaving)} />
-          </ToggleButton>
-          <ToggleButton
-            value={Statuses.Incoming}
-            classes={{ disabled: classes.disabled }}
-            disabled={mainFilter !== MainFilter.Custom}>
-            Incoming
-            <span className={clsx(classes.dot, classes.incoming)} />
-          </ToggleButton>
-          <ToggleButton value={Statuses.Donated}>Include Donated</ToggleButton>
-        </ToggleButtonGroup>
+      <div>
+        <Button
+          startIcon={<FilterIcon />}
+          endIcon={<ExpandMoreIcon expand={expanded} />}
+          onClick={handleToggleExpand}>
+          {currentFilter}
+        </Button>
       </div>
-      <div className={classes.searchRow}>
-        <div className={classes.search}>
-          <div className={classes.searchIcons}>
-            <SearchIcon />
-          </div>
-          <InputBase
-            placeholder="Search…"
-            classes={{
-              root: classes.inputRoot,
-              input: classes.inputInput,
-            }}
-            inputProps={{ 'aria-label': 'search' }}
-            value={search}
-            onChange={(e) => setSearch(e.target.value.toLowerCase())}
-          />
-          {clearIcon}
+      <Collapse in={expanded}>
+        <div className={classes.buttonGroup}>
+          <ToggleButton value={isNorthern} selected onChange={toggleIsNorthern} size="small">
+            {isNorthern ? 'Northern' : 'Southern'}
+          </ToggleButton>
+          <ToggleButtonGroup
+            className={classes.buttons}
+            value={mainFilter}
+            size="small"
+            exclusive
+            onChange={handleMainFilterChange}>
+            <ToggleButton value={MainFilter.All}>Show All</ToggleButton>
+            <ToggleButton value={MainFilter.Available}>Available Now</ToggleButton>
+            <ToggleButton value={MainFilter.Custom}>Custom</ToggleButton>
+          </ToggleButtonGroup>
+          <ToggleButtonGroup
+            className={classes.buttons}
+            value={statusFilters}
+            onChange={handleStatusFiltersChange}
+            size="small">
+            <ToggleButton
+              value={Statuses.New}
+              classes={{ disabled: classes.disabled }}
+              disabled={mainFilter !== MainFilter.Custom}>
+              New
+              <span className={clsx(classes.dot, classes.new)} />
+            </ToggleButton>
+            <ToggleButton
+              value={Statuses.Leaving}
+              classes={{ disabled: classes.disabled }}
+              disabled={mainFilter !== MainFilter.Custom}>
+              Leaving
+              <span className={clsx(classes.dot, classes.leaving)} />
+            </ToggleButton>
+            <ToggleButton
+              value={Statuses.Incoming}
+              classes={{ disabled: classes.disabled }}
+              disabled={mainFilter !== MainFilter.Custom}>
+              Incoming
+              <span className={clsx(classes.dot, classes.incoming)} />
+            </ToggleButton>
+            <ToggleButton value={Statuses.Donated}>Include Donated</ToggleButton>
+          </ToggleButtonGroup>
         </div>
-        <IconButton onClick={toggleColorScheme}>
-          {colorScheme === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
-        </IconButton>
-      </div>
+        <div className={classes.searchRow}>
+          <div className={classes.search}>
+            <div className={classes.searchIcons}>
+              <SearchIcon />
+            </div>
+            <InputBase
+              placeholder="Search…"
+              classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput,
+              }}
+              inputProps={{ 'aria-label': 'search' }}
+              value={search}
+              onChange={handleUpdateSearch}
+            />
+            {clearIcon}
+          </div>
+          <IconButton onClick={toggleColorScheme}>
+            {colorScheme === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
+          </IconButton>
+        </div>
+      </Collapse>
     </Paper>
   )
 }
