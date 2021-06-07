@@ -4,11 +4,21 @@ import useFiltersStore, { Statuses } from 'store/filtersStore'
 import bugsData from 'assets/data/bugs.json'
 import fishData from 'assets/data/fish.json'
 import seaData from 'assets/data/sea.json'
+import { makeStyles } from '@material-ui/core'
 import Controls from 'components/layout/Controls'
+import SignInPrompt from 'components/critters/SignInPrompt'
 import CritterSection from 'components/critters/CritterSection'
 import SearchSection from 'components/critters/SearchSection'
 import Loading from 'components/ui/Loading'
 import Centered from 'components/ui/Centered'
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& > *:not(:last-child)': {
+      marginBottom: theme.spacing(2),
+    },
+  },
+}))
 
 const today = new Date()
 const curMonth = today.getMonth() + 1
@@ -50,6 +60,7 @@ const getAvailability = (months) => {
 }
 
 const Critters = () => {
+  const classes = useStyles()
   const isNorthern = useFiltersStore((state) => state.isNorthern)
   const search = useFiltersStore((state) => state.search)
   const donated = useFiltersStore((state) => state.donated)
@@ -104,10 +115,11 @@ const Critters = () => {
   }
 
   return (
-    <>
+    <div className={classes.root}>
       <Controls />
+      {!donatedRef && <SignInPrompt />}
       {content}
-    </>
+    </div>
   )
 }
 

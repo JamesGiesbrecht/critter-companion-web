@@ -9,7 +9,6 @@ import CrittersTable from 'components/critters/CrittersTable'
 const useStyles = makeStyles(() => ({
   critters: {
     padding: '10px 0',
-    margin: '20px auto',
   },
   headingWrapper: {
     display: 'flex',
@@ -53,6 +52,7 @@ const CritterSection = ({ allCritters, type }) => {
 
   const randomImg = useMemo(
     () => allCritters[Math.floor(Math.random() * allCritters.length)].image_path,
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [],
   )
 
