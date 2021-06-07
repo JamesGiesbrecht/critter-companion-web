@@ -63,8 +63,8 @@ const Critters = () => {
   const classes = useStyles()
   const isNorthern = useStore((state) => state.filters.isNorthern)
   const search = useStore((state) => state.filters.search)
-  const donated = useStore((state) => state.filters.donated)
-  const setDonated = useStore((state) => state.filters.setDonated)
+  const donated = useStore((state) => state.donated)
+  const setDonated = useStore((state) => state.setDonated)
   const { donatedRef } = useApi()
   const [isLoading, setIsLoading] = useState(false)
 
