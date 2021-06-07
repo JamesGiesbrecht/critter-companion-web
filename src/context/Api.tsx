@@ -1,7 +1,7 @@
 import { useContext, createContext, FC } from 'react'
 import firebase from 'firebase'
 import { firebaseDb } from 'firebase/config'
-import { noProvider } from 'utility/contex'
+import { noProvider } from 'utility/context'
 import { useAuth } from './Auth'
 
 interface ApiContextType {

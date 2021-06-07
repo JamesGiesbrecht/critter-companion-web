@@ -16,7 +16,7 @@ import {
 import { Color, LoadingButton } from '@material-ui/lab'
 import Form from 'components/common/Form'
 import AccountButton from 'components/auth/AccountButton'
-import useFiltersStore, { FormType } from 'store/filtersStore'
+import useStore, { FormType } from 'store'
 import FormLink from './FormLink'
 
 const useStyles = makeStyles((theme) => ({
@@ -60,8 +60,8 @@ const inputs = {
 
 const LoginSignUpForm = () => {
   const classes = useStyles()
-  const activeFormName = useFiltersStore<FormType>((state: any) => state.activeForm)
-  const setActiveFormName = useFiltersStore((state: any) => state.setActiveForm)
+  const activeFormName = useStore<FormType>((state: any) => state.activeForm)
+  const setActiveFormName = useStore((state: any) => state.setActiveForm)
   const [isLoading, setIsLoading] = useState(false)
   const [submitError, setSubmitError] = useState('')
   const [snackbar, setSnackbar] = useState<{

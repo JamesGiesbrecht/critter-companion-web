@@ -1,6 +1,6 @@
 import { makeStyles, Paper, Typography } from '@material-ui/core'
 import FormLink from 'components/auth/FormLink'
-import { FormType } from 'store/filtersStore'
+import { FormType } from 'store'
 
 const useStyles = makeStyles(() => ({
   root: {

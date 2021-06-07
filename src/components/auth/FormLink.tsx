@@ -1,8 +1,8 @@
-import useFiltersStore, { FormType } from 'store/filtersStore'
+import useStore, { FormType } from 'store'
 import { Link } from '@material-ui/core'
 
 const FormLink = ({ to, children }: { to?: FormType | undefined; children: any }) => {
-  const setActiveForm = useFiltersStore((state: any) => state.setActiveForm)
+  const setActiveForm = useStore((state: any) => state.setActiveForm)
 
   const handleSelectActiveForm = () => setActiveForm(to)
 

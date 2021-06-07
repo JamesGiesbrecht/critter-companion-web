@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useApi } from 'context/Api'
-import useFiltersStore, { Statuses } from 'store/filtersStore'
+import useStore, { Statuses } from 'store'
 import bugsData from 'assets/data/bugs.json'
 import fishData from 'assets/data/fish.json'
 import seaData from 'assets/data/sea.json'
@@ -61,10 +61,10 @@ const getAvailability = (months) => {
 
 const Critters = () => {
   const classes = useStyles()
-  const isNorthern = useFiltersStore((state) => state.isNorthern)
-  const search = useFiltersStore((state) => state.search)
-  const donated = useFiltersStore((state) => state.donated)
-  const setDonated = useFiltersStore((state) => state.setDonated)
+  const isNorthern = useStore((state) => state.filters.isNorthern)
+  const search = useStore((state) => state.filters.search)
+  const donated = useStore((state) => state.filters.donated)
+  const setDonated = useStore((state) => state.filters.setDonated)
   const { donatedRef } = useApi()
   const [isLoading, setIsLoading] = useState(false)
 

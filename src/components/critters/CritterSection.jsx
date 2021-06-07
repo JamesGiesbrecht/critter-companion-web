@@ -1,6 +1,6 @@
 import { useState, memo, useMemo } from 'react'
 import clsx from 'clsx'
-import useFiltersStore, { MainFilter, Statuses } from 'store/filtersStore'
+import useStore, { MainFilter, Statuses } from 'store'
 import { removeItem } from 'assets/utility'
 import { Collapse, Paper, makeStyles, Typography, Button } from '@material-ui/core'
 import { ExpandMoreRounded as ExpandMoreIcon } from '@material-ui/icons'
@@ -43,10 +43,10 @@ const useStyles = makeStyles(() => ({
 
 const CritterSection = ({ allCritters, type }) => {
   const classes = useStyles()
-  const mainFilter = useFiltersStore((state) => state.mainFilter)
-  const statusFilters = useFiltersStore((state) => state.statusFilters)
-  const search = useFiltersStore((state) => state.search)
-  const donated = useFiltersStore((state) => state.donated)
+  const mainFilter = useStore((state) => state.filters.mainFilter)
+  const statusFilters = useStore((state) => state.filters.statusFilters)
+  const search = useStore((state) => state.filters.search)
+  const donated = useStore((state) => state.donated)
 
   const [expanded, setExpanded] = useState(false)
 

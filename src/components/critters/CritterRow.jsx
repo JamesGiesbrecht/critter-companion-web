@@ -1,7 +1,7 @@
 import { memo, useRef, useState } from 'react'
 import clsx from 'clsx'
 import { useApi } from 'context/Api'
-import useFiltersStore, { Statuses } from 'store/filtersStore'
+import useStore, { Statuses } from 'store'
 import { dot, hidden } from 'assets/cssClasses'
 import { FishSizes } from 'constants/AppConstants'
 import { TableRow, TableCell, makeStyles, Typography, Button } from '@material-ui/core'
@@ -85,8 +85,8 @@ const useStyles = makeStyles((theme) => ({
 
 const CritterRow = ({ critter, hours }) => {
   const classes = useStyles()
-  const isDonated = useFiltersStore((state) => state.donated[critter.id])
-  const toggleDonated = useFiltersStore((state) => state.toggleDonated)
+  const isDonated = useStore((state) => state.donated[critter.id])
+  const toggleDonated = useStore((state) => state.toggleDonated)
   const { donatedRef } = useApi()
   const [dialogOpen, setDialogOpen] = useState(false)
   const nameButtonRef = useRef()

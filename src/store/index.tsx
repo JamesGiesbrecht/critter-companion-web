@@ -19,15 +19,23 @@ export enum FormType {
   ForgotPassword = 'ForgotPassword',
 }
 
-const useFiltersStore = create((set) => ({
-  mainFilter: MainFilter.All,
-  setMainFilter: (newMainFilter: MainFilter) => set({ mainFilter: newMainFilter }),
-  statusFilters: [Statuses.New, Statuses.Leaving, Statuses.Incoming, Statuses.Donated],
-  setStatusFilters: (newStatusFilters: Array<Statuses>) => set({ statusFilters: newStatusFilters }),
-  isNorthern: true,
-  toggleIsNorthern: () => set((state: any) => ({ isNorthern: !state.isNorthern })),
-  search: '',
-  setSearch: (newSearch: string) => set({ search: newSearch }),
+const useStore = create((set) => ({
+  filters: {
+    mainFilter: MainFilter.All,
+    setMainFilter: (newMainFilter: MainFilter) =>
+      set((state: any) => ({ filters: { ...state.filters, mainFilter: newMainFilter } })),
+    statusFilters: [Statuses.New, Statuses.Leaving, Statuses.Incoming, Statuses.Donated],
+    setStatusFilters: (newStatusFilters: Array<Statuses>) =>
+      set((state: any) => ({ filters: { ...state.filters, statusFilters: newStatusFilters } })),
+    isNorthern: true,
+    toggleIsNorthern: () =>
+      set((state: any) => ({
+        filters: { ...state.filters, isNorthern: !state.filters.isNorthern },
+      })),
+    search: '',
+    setSearch: (newSearch: string) =>
+      set((state: any) => ({ filters: { ...state.filters, search: newSearch } })),
+  },
   donated: {},
   setDonated: (newDonated: { [x: number]: boolean }) => set({ donated: newDonated }),
   toggleDonated: (critterId: number) => {
@@ -44,4 +52,4 @@ const useFiltersStore = create((set) => ({
   setActiveForm: (newActiveForm: FormType | undefined) => set({ activeForm: newActiveForm }),
 }))
 
-export default useFiltersStore
+export default useStore

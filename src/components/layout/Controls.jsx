@@ -1,4 +1,8 @@
 import clsx from 'clsx'
+import useStore, { MainFilter, Statuses } from 'store'
+import { useColorScheme } from 'context/Theme'
+import { dot } from 'assets/cssClasses'
+import { removeItem } from 'assets/utility'
 import {
   Paper,
   InputBase,
@@ -11,10 +15,6 @@ import LightModeIcon from '@material-ui/icons/Brightness7'
 import DarkModeIcon from '@material-ui/icons/Brightness3'
 import SearchIcon from '@material-ui/icons/Search'
 import ClearIcon from '@material-ui/icons/ClearRounded'
-import { useColorScheme } from 'context/Theme'
-import { dot } from 'assets/cssClasses'
-import { removeItem } from 'assets/utility'
-import useFiltersStore, { MainFilter, Statuses } from 'store/filtersStore'
 
 const useStyles = makeStyles((theme) => ({
   controls: {
@@ -117,7 +117,7 @@ const Controls = () => {
     toggleIsNorthern,
     search,
     setSearch,
-  } = useFiltersStore()
+  } = useStore((state) => state.filters)
 
   const handleMainFilterChange = (e, newMainFilter) => {
     if (newMainFilter === null || newMainFilter === MainFilter.Custom) {
