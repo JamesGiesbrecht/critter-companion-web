@@ -32,14 +32,22 @@ const isAvailableNow = (months) => months.includes(curMonth)
 const Critters = () => {
   const isNorthern = useFiltersStore((state) => state.isNorthern)
   const search = useFiltersStore((state) => state.search)
+  const donated = useFiltersStore((state) => state.donated)
   const setDonated = useFiltersStore((state) => state.setDonated)
   const { db } = useApi()
 
   useEffect(() => {
-    const data = db.on('value', (snapshot) => snapshot).val()
-    setDonated(data.donated)
+    db.on('value', (snapshot) => {
+      const data = snapshot.val()
+      console.log('on', data)
+      setDonated(data)
+    })
     return () => db.off()
   }, [db, setDonated])
+
+  useEffect(() => {
+    console.log('set', db.set({ donated }))
+  }, [donated, db])
 
   const getAvailability = (months) => {
     const availability = {}
