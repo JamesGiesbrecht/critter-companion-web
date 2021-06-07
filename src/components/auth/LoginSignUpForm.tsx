@@ -18,8 +18,7 @@ import {
 import { Color, LoadingButton } from '@material-ui/lab'
 import Form from 'components/common/Form'
 import AccountButton from 'components/auth/AccountButton'
-
-type FormType = 'login' | 'signUp' | 'forgotPassword'
+import useFiltersStore, { FormType } from 'store/filtersStore'
 
 const useStyles = makeStyles((theme) => ({
   dialogPaper: {
@@ -62,7 +61,8 @@ const inputs = {
 
 const LoginSignUpForm = () => {
   const classes = useStyles()
-  const [activeFormName, setActiveFormName] = useState<FormType | undefined>()
+  const activeFormName = useFiltersStore<FormType>((state: any) => state.activeForm)
+  const setActiveFormName = useFiltersStore((state: any) => state.setActiveForm)
   const [isLoading, setIsLoading] = useState(false)
   const [submitError, setSubmitError] = useState('')
   const [snackbar, setSnackbar] = useState<{
@@ -89,20 +89,20 @@ const LoginSignUpForm = () => {
   )
 
   const forms = {
-    login: {
-      type: 'login',
+    [FormType.Login]: {
+      type: FormType.Login,
       title: 'Welcome Back',
       submitText: 'Login',
       inputs: {
         email: inputs.email,
         password: {
           ...inputs.password,
-          after: getFormLink('forgotPassword', 'Forgot Password?'),
+          after: getFormLink(FormType.ForgotPassword, 'Forgot Password?'),
         },
       },
     },
-    signUp: {
-      type: 'signUp',
+    [FormType.SignUp]: {
+      type: FormType.SignUp,
       title: 'New User Sign Up',
       submitText: 'Sign Up',
       inputs: {
@@ -111,8 +111,8 @@ const LoginSignUpForm = () => {
         confirmPassword: inputs.confirmPassword,
       },
     },
-    forgotPassword: {
-      type: 'forgotPassword',
+    [FormType.ForgotPassword]: {
+      type: FormType.ForgotPassword,
       title: 'Forgot Password',
       submitText: 'Send Password Reset Email',
       inputs: { email: inputs.email },
@@ -127,7 +127,7 @@ const LoginSignUpForm = () => {
   }
 
   const toggleState = () => {
-    setActiveFormName((prev: any) => (prev === 'login' ? 'signUp' : 'login'))
+    setActiveFormName(activeFormName === FormType.Login ? FormType.SignUp : FormType.Login)
   }
 
   const activeForm = activeFormName && forms[activeFormName]
@@ -139,13 +139,13 @@ const LoginSignUpForm = () => {
     try {
       setIsLoading(true)
       switch (activeFormName) {
-        case 'login':
+        case FormType.Login:
           result = await auth.login(email, form.inputs.password.value)
           break
-        case 'signUp':
+        case FormType.SignUp:
           result = await auth.signUp(email, form.inputs.password.value)
           break
-        case 'forgotPassword':
+        case FormType.ForgotPassword:
           result = await auth.resetPassword(email)
           setSnackbar({
             open: true,
@@ -172,7 +172,7 @@ const LoginSignUpForm = () => {
         case AuthError.UserNotFound:
           errorMessage = [
             'An account with this email does not exist, did you mean to ',
-            getFormLink('signUp', 'sign up.'),
+            getFormLink(FormType.SignUp, 'sign up.'),
           ]
           break
         case AuthError.WrongPassword:
@@ -181,7 +181,7 @@ const LoginSignUpForm = () => {
         case AuthError.EmailAlreadyInUse:
           errorMessage = [
             'An account already exists with this email, did you mean to ',
-            getFormLink('login', 'login?'),
+            getFormLink(FormType.Login, 'login?'),
           ]
           break
         case AuthError.OperationNotAllowed:
@@ -211,10 +211,10 @@ const LoginSignUpForm = () => {
         <AccountButton />
       ) : (
         <>
-          <Button variant="contained" onClick={() => setActiveFormName('login')}>
+          <Button variant="contained" onClick={() => setActiveFormName(FormType.Login)}>
             Login
           </Button>
-          <Button variant="contained" onClick={() => setActiveFormName('signUp')}>
+          <Button variant="contained" onClick={() => setActiveFormName(FormType.SignUp)}>
             Sign Up
           </Button>
         </>
@@ -244,7 +244,7 @@ const LoginSignUpForm = () => {
                     color="inherit"
                     disabled={isLoading}
                     onClick={toggleState}>
-                    {`Switch to ${activeForm.type === 'login' ? 'Sign Up' : 'Login'}`}
+                    {`Switch to ${activeForm.type === FormType.Login ? 'Sign Up' : 'Login'}`}
                   </Button>
                   <Button type="button" onClick={() => console.log(auth.user)}>
                     Get user

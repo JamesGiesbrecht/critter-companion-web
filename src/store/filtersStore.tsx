@@ -13,6 +13,12 @@ export enum Statuses {
   Donated = 'Donated',
 }
 
+export enum FormType {
+  Login = 'Login',
+  SignUp = 'SignUp',
+  ForgotPassword = 'ForgotPassword',
+}
+
 const useFiltersStore = create((set) => ({
   mainFilter: MainFilter.All,
   setMainFilter: (newMainFilter: MainFilter) => set({ mainFilter: newMainFilter }),
@@ -34,6 +40,8 @@ const useFiltersStore = create((set) => ({
     })
     return isDonated
   },
+  activeForm: undefined,
+  setActiveForm: (newActiveForm: FormType | undefined) => set({ activeForm: newActiveForm }),
 }))
 
 export default useFiltersStore
