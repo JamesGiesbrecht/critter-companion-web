@@ -1,7 +1,6 @@
-import { makeStyles } from '@material-ui/core/styles'
-import { Card, CardHeader, CardContent, Typography, Dialog } from '@material-ui/core'
-import Months from 'components/critters/Months'
+import { Card, CardHeader, CardContent, Typography, Dialog, makeStyles } from '@material-ui/core'
 import { FishSizes } from 'constants/AppConstants'
+import Months from 'components/critters/Months'
 
 const useStyles = makeStyles((theme) => ({
   critterInfo: {

@@ -1,4 +1,8 @@
 import clsx from 'clsx'
+import useStore, { MainFilter, Statuses } from 'store'
+import { useColorScheme } from 'context/Theme'
+import { dot } from 'assets/cssClasses'
+import { removeItem } from 'assets/utility'
 import {
   Paper,
   InputBase,
@@ -11,10 +15,6 @@ import LightModeIcon from '@material-ui/icons/Brightness7'
 import DarkModeIcon from '@material-ui/icons/Brightness3'
 import SearchIcon from '@material-ui/icons/Search'
 import ClearIcon from '@material-ui/icons/ClearRounded'
-import { useColorScheme } from 'context/Theme'
-import { dot } from 'assets/cssClasses'
-import { removeItem } from 'assets/utility'
-import { MainFilter, Statuses, useFilters } from 'context/Filters'
 
 const useStyles = makeStyles((theme) => ({
   controls: {
@@ -111,32 +111,33 @@ const Controls = () => {
   const {
     mainFilter,
     setMainFilter,
-    status,
-    setStatus,
+    statusFilters,
+    setStatusFilters,
     isNorthern,
-    setIsNorthern,
+    toggleIsNorthern,
     search,
     setSearch,
-  } = useFilters()
+  } = useStore((state) => state.filters)
 
-  const handleShowAllChange = (e, curShowAll) => {
-    if (curShowAll === null || curShowAll === MainFilter.Custom) {
+  const handleMainFilterChange = (e, newMainFilter) => {
+    if (newMainFilter === null || newMainFilter === MainFilter.Custom) {
       setMainFilter(MainFilter.Custom)
     } else {
-      let newShow = status
-      if (!newShow.includes(Statuses.New)) newShow.push(Statuses.New)
-      if (!newShow.includes(Statuses.Leaving)) newShow.push(Statuses.Leaving)
-      if (curShowAll === MainFilter.All) {
-        if (!newShow.includes(Statuses.Incoming)) newShow.push(Statuses.Incoming)
-      } else if (curShowAll === MainFilter.Available) {
-        if (newShow.includes(Statuses.Incoming)) newShow = removeItem(newShow, Statuses.Incoming)
+      let newStatusFilters = statusFilters
+      if (!newStatusFilters.includes(Statuses.New)) newStatusFilters.push(Statuses.New)
+      if (!newStatusFilters.includes(Statuses.Leaving)) newStatusFilters.push(Statuses.Leaving)
+      if (newMainFilter === MainFilter.All) {
+        if (!newStatusFilters.includes(Statuses.Incoming)) newStatusFilters.push(Statuses.Incoming)
+      } else if (newMainFilter === MainFilter.Available) {
+        if (newStatusFilters.includes(Statuses.Incoming))
+          newStatusFilters = removeItem(newStatusFilters, Statuses.Incoming)
       }
-      setStatus(newShow)
-      setMainFilter(curShowAll)
+      setStatusFilters(newStatusFilters)
+      setMainFilter(newMainFilter)
     }
   }
 
-  const handleShowChange = (e, newShow) => setStatus(newShow)
+  const handleStatusFiltersChange = (e, newStatusFilters) => setStatusFilters(newStatusFilters)
 
   let clearIcon = null
   if (search !== '') {
@@ -155,11 +156,7 @@ const Controls = () => {
   return (
     <Paper classes={{ root: classes.controls }} elevation={7}>
       <div className={classes.buttonGroup}>
-        <ToggleButton
-          value={isNorthern}
-          selected
-          onChange={() => setIsNorthern((prevIsNorthern) => !prevIsNorthern)}
-          size="small">
+        <ToggleButton value={isNorthern} selected onChange={toggleIsNorthern} size="small">
           {isNorthern ? 'Northern' : 'Southern'}
         </ToggleButton>
         <ToggleButtonGroup
@@ -167,15 +164,15 @@ const Controls = () => {
           value={mainFilter}
           size="small"
           exclusive
-          onChange={handleShowAllChange}>
+          onChange={handleMainFilterChange}>
           <ToggleButton value={MainFilter.All}>Show All</ToggleButton>
           <ToggleButton value={MainFilter.Available}>Available Now</ToggleButton>
           <ToggleButton value={MainFilter.Custom}>Custom</ToggleButton>
         </ToggleButtonGroup>
         <ToggleButtonGroup
           className={classes.buttons}
-          value={status}
-          onChange={handleShowChange}
+          value={statusFilters}
+          onChange={handleStatusFiltersChange}
           size="small">
           <ToggleButton value={Statuses.New} disabled={mainFilter !== MainFilter.Custom}>
             New
@@ -189,7 +186,7 @@ const Controls = () => {
             Incoming
             <span className={clsx(classes.dot, classes.incoming)} />
           </ToggleButton>
-          <ToggleButton value={Statuses.Donated}>Donated</ToggleButton>
+          <ToggleButton value={Statuses.Donated}>Include Donated</ToggleButton>
         </ToggleButtonGroup>
       </div>
       <div className={classes.searchRow}>

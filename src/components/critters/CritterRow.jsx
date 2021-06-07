@@ -1,12 +1,13 @@
 import { memo, useRef, useState } from 'react'
 import clsx from 'clsx'
+import { useApi } from 'context/Api'
+import useStore, { Statuses } from 'store'
+import { dot, hidden } from 'assets/cssClasses'
+import { FishSizes } from 'constants/AppConstants'
 import { TableRow, TableCell, makeStyles, Typography, Button } from '@material-ui/core'
 import CritterInfo from 'components/critters/CritterInfo'
 import Months from 'components/critters/Months'
 import BlathersIcon from 'components/icons/BlathersIcon'
-import { dot, hidden } from 'assets/cssClasses'
-import { Statuses } from 'context/Filters'
-import { FishSizes } from 'constants/AppConstants'
 
 const useStyles = makeStyles((theme) => ({
   cell: {
@@ -82,9 +83,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const CritterRow = ({ critter, donatedCritters, setDonatedCritters, hours }) => {
+const CritterRow = ({ critter, hours }) => {
   const classes = useStyles()
-  const [isDonated, setIsDonated] = useState(donatedCritters.includes(critter.name))
+  const isDonated = useStore((state) => state.donated[critter.id])
+  const toggleDonated = useStore((state) => state.toggleDonated)
+  const { donatedRef } = useApi()
   const [dialogOpen, setDialogOpen] = useState(false)
   const nameButtonRef = useRef()
 
@@ -104,17 +107,11 @@ const CritterRow = ({ critter, donatedCritters, setDonatedCritters, hours }) => 
       setDialogOpen(false)
     }, 100)
   }
-
-  const handleDonatedCheck = (critterName) => {
-    const critterIndex = donatedCritters.indexOf(critterName)
-    setIsDonated((prevChecked) => !prevChecked)
-    if (critterIndex > -1) {
-      setDonatedCritters((prevCritters) => {
-        prevCritters.splice(critterIndex, 1)
-        return prevCritters
-      })
+  const handleDonatedCheck = () => {
+    if (donatedRef) {
+      donatedRef.update({ [critter.id]: !isDonated })
     } else {
-      setDonatedCritters((prevCritters) => prevCritters.concat([critterName]))
+      toggleDonated(critter.id)
     }
   }
 
@@ -127,7 +124,7 @@ const CritterRow = ({ critter, donatedCritters, setDonatedCritters, hours }) => 
         startIcon={
           <BlathersIcon className={clsx(classes.blathers, isDonated && classes.donated)} />
         }
-        onClick={() => handleDonatedCheck(critter.name)}
+        onClick={handleDonatedCheck}
         {...ref}>
         <Typography component="span">
           {critter.name}

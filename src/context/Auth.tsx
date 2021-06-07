@@ -1,7 +1,8 @@
 import { useState, useEffect, useContext, createContext, FC } from 'react'
 import firebase from 'firebase'
 import { firebaseAuth } from 'firebase/config'
-import { noProvider } from 'utility/contex'
+import { noProvider } from 'utility/context'
+import useStore from 'store'
 
 interface AuthContextType {
   user: firebase.User | null | undefined
@@ -23,18 +24,22 @@ export const AuthContext = createContext<AuthContextType>({
 
 export const AuthContextProvider: FC = ({ children }) => {
   const [user, setUser] = useState<AuthContextType['user']>()
+  const setDonated = useStore((state: any) => state.setDonated)
 
   useEffect(() => {
-    const unlisten = firebaseAuth.onAuthStateChanged((authUser) => setUser(authUser))
+    const unsubscribe = firebaseAuth.onAuthStateChanged((authUser) => setUser(authUser))
     return () => {
-      unlisten()
+      unsubscribe()
     }
   })
 
   const store = {
     user,
     login: firebaseAuth.signInWithEmailAndPassword.bind(firebaseAuth),
-    logout: firebaseAuth.signOut.bind(firebaseAuth),
+    logout: () => {
+      setDonated({})
+      return firebaseAuth.signOut()
+    },
     signUp: firebaseAuth.createUserWithEmailAndPassword.bind(firebaseAuth),
     resetPassword: firebaseAuth.sendPasswordResetEmail.bind(firebaseAuth),
   }

@@ -1,9 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { CircularProgress, Container, makeStyles, Paper, Typography } from '@material-ui/core'
+import { Container, makeStyles, Paper, Typography } from '@material-ui/core'
 import Footer from 'components/layout/Footer'
 import Centered from 'components/ui/Centered'
 import { useAuth } from 'context/Auth'
 import Header from 'components/layout/Header'
+import Loading from 'components/ui/Loading'
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -46,17 +46,17 @@ const Layout = ({ children }) => {
   const { user } = useAuth()
 
   // User has not yet been initialized
-  // if (user === undefined) {
-  //   return (
-  //     <Centered>
-  //       <CircularProgress size={120} color="inherit" />
-  //     </Centered>
-  //   )
-  // }
+  if (user === undefined) {
+    return (
+      <Centered>
+        <Loading />
+      </Centered>
+    )
+  }
 
   return (
     <Container className={classes.content} disableGutters>
-      {/* <Header /> */}
+      <Header />
       <Paper classes={{ root: classes.titlePaper }} square>
         <Typography variant="h1">ACNH: Critter Companion</Typography>
       </Paper>

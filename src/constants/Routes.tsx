@@ -1,5 +1,4 @@
 import Critters from 'components/critters/Critters'
-import { FiltersContextProvider } from 'context/Filters'
 import Account from 'components/account/Account'
 
 interface Route {
@@ -19,11 +18,7 @@ export const Routes: AppRoutes = {
   },
   home: {
     path: '*',
-    component: (
-      <FiltersContextProvider>
-        <Critters />
-      </FiltersContextProvider>
-    ),
+    component: <Critters />,
   },
 }
 
