@@ -1,25 +1,16 @@
-import clsx from 'clsx'
-import useStore, { MainFilter, Statuses } from 'store'
+import useStore, { MainFilter } from 'store'
 import { useColorScheme } from 'context/Theme'
-import { dot } from 'assets/cssClasses'
-import { removeItem } from 'assets/utility'
+import { Paper, makeStyles, IconButton, Button, Collapse } from '@material-ui/core'
 import {
-  Paper,
-  ToggleButtonGroup,
-  ToggleButton,
-  makeStyles,
-  IconButton,
-  Button,
-  Collapse,
-  useMediaQuery,
-} from '@material-ui/core'
-import LightModeIcon from '@material-ui/icons/Brightness7'
-import DarkModeIcon from '@material-ui/icons/Brightness3'
-import FilterIcon from '@material-ui/icons/FilterAlt'
-import SearchIcon from '@material-ui/icons/Search'
+  Brightness7 as LightModeIcon,
+  Brightness3 as DarkModeIcon,
+  FilterAlt as FilterIcon,
+  Search as SearchIcon,
+} from '@material-ui/icons'
 import { useRef, useState } from 'react'
 import ExpandMoreIcon from 'components/ui/ExpandMoreIcon'
 import Search from 'components/layout/controls/components/Search'
+import FilterButtons from 'components/layout/controls/components/FilterButtons'
 
 const useStyles = makeStyles((theme) => ({
   controls: {
@@ -40,69 +31,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   mainControls: {},
-  buttons: {
-    display: 'flex',
-    '& > *': {
-      flexGrow: '1',
-    },
-  },
-  buttonGroup: {
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    marginTop: theme.spacing(1),
-    [theme.breakpoints.down('md')]: {
-      '& > *': {
-        marginBottom: '10px',
-      },
-    },
-    [theme.breakpoints.up('md')]: {
-      alignItems: 'center',
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      flexWrap: 'wrap',
-      textAlign: 'center',
-      '& > *:not(:last-child)': {
-        marginRight: '10px',
-      },
-    },
-  },
-  toggleGroup: {
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  isNorthernToggle: {
-    [theme.breakpoints.down('md')]: {
-      flexGrow: 5,
-    },
-  },
-  donatedToggle: {
-    marginLeft: theme.spacing(1),
-    [theme.breakpoints.down('md')]: {
-      flexGrow: 1,
-    },
-  },
-  collapse: {
-    marginTop: theme.spacing(1),
-  },
-  disabled: {
-    '& span': {
-      color: theme.palette.text.disabled,
-    },
-  },
-  dot,
-  new: {
-    backgroundColor: theme.palette.success.light,
-  },
-  leaving: {
-    backgroundColor: theme.palette.error.light,
-  },
-  incoming: {
-    backgroundColor: theme.palette.info.light,
-  },
 }))
 
 const Controls = () => {
@@ -112,14 +40,6 @@ const Controls = () => {
   const searchRef = useRef()
   const { colorScheme, toggleColorScheme } = useColorScheme()
   const mainFilter = useStore((state) => state.filters.mainFilter)
-  const setMainFilter = useStore((state) => state.filters.setMainFilter)
-  const statusFilters = useStore((state) => state.filters.statusFilters)
-  const setStatusFilters = useStore((state) => state.filters.setStatusFilters)
-  const isNorthern = useStore((state) => state.filters.isNorthern)
-  const toggleIsNorthern = useStore((state) => state.filters.toggleIsNorthern)
-  const showDonated = useStore((state) => state.filters.showDonated)
-  const toggleShowDonated = useStore((state) => state.filters.toggleShowDonated)
-  const isDesktop = useMediaQuery((theme) => theme.breakpoints.up('md'))
 
   const getFilterText = (filter) => {
     switch (filter) {
@@ -135,28 +55,6 @@ const Controls = () => {
   }
   const currentFilter = getFilterText(mainFilter)
 
-  const handleIsNorthernChange = (e, newIsNorthern) => {
-    if (newIsNorthern !== isNorthern) toggleIsNorthern()
-  }
-
-  const handleMainFilterChange = (e, newMainFilter) => {
-    if (newMainFilter === null || newMainFilter === MainFilter.Custom) {
-      setMainFilter(MainFilter.Custom)
-    } else {
-      let newStatusFilters = statusFilters
-      if (!newStatusFilters.includes(Statuses.New)) newStatusFilters.push(Statuses.New)
-      if (!newStatusFilters.includes(Statuses.Leaving)) newStatusFilters.push(Statuses.Leaving)
-      if (newMainFilter === MainFilter.All) {
-        if (!newStatusFilters.includes(Statuses.Incoming)) newStatusFilters.push(Statuses.Incoming)
-      } else if (newMainFilter === MainFilter.Available) {
-        if (newStatusFilters.includes(Statuses.Incoming))
-          newStatusFilters = removeItem(newStatusFilters, Statuses.Incoming)
-      }
-      setStatusFilters(newStatusFilters)
-      setMainFilter(newMainFilter)
-    }
-  }
-
   const handleToggleFilterExpand = () => {
     setFiltersExpanded((prevExpanded) => !prevExpanded)
     setSearchExpanded(false)
@@ -171,31 +69,6 @@ const Controls = () => {
     })
     setFiltersExpanded(false)
   }
-
-  const handleStatusFiltersChange = (e, newStatusFilters) => setStatusFilters(newStatusFilters)
-
-  const toggles = (
-    <>
-      <ToggleButtonGroup
-        className={clsx(classes.buttons, classes.isNorthernToggle)}
-        value={isNorthern}
-        size="small"
-        exclusive
-        onChange={handleIsNorthernChange}>
-        {/* eslint-disable-next-line react/jsx-boolean-value */}
-        <ToggleButton value={true}>Northern</ToggleButton>
-        <ToggleButton value={false}>Southern</ToggleButton>
-      </ToggleButtonGroup>
-      <ToggleButton
-        size="small"
-        className={classes.donatedToggle}
-        value={showDonated}
-        selected={showDonated}
-        onChange={toggleShowDonated}>
-        Include Donated
-      </ToggleButton>
-    </>
-  )
 
   return (
     <Paper classes={{ root: classes.controls }} elevation={7}>
@@ -217,46 +90,7 @@ const Controls = () => {
         <Search inputRef={searchRef} />
       </Collapse>
       <Collapse in={filtersExpanded}>
-        <div className={classes.buttonGroup}>
-          {isDesktop ? toggles : <div className={classes.toggleGroup}>{toggles}</div>}
-          <ToggleButtonGroup
-            className={classes.buttons}
-            value={mainFilter}
-            size="small"
-            exclusive
-            onChange={handleMainFilterChange}>
-            <ToggleButton value={MainFilter.All}>Show All</ToggleButton>
-            <ToggleButton value={MainFilter.Available}>Available Now</ToggleButton>
-            <ToggleButton value={MainFilter.Custom}>Custom</ToggleButton>
-          </ToggleButtonGroup>
-          <ToggleButtonGroup
-            className={classes.buttons}
-            value={statusFilters}
-            onChange={handleStatusFiltersChange}
-            size="small">
-            <ToggleButton
-              value={Statuses.New}
-              classes={{ disabled: classes.disabled }}
-              disabled={mainFilter !== MainFilter.Custom}>
-              New
-              <span className={clsx(classes.dot, classes.new)} />
-            </ToggleButton>
-            <ToggleButton
-              value={Statuses.Leaving}
-              classes={{ disabled: classes.disabled }}
-              disabled={mainFilter !== MainFilter.Custom}>
-              Leaving
-              <span className={clsx(classes.dot, classes.leaving)} />
-            </ToggleButton>
-            <ToggleButton
-              value={Statuses.Incoming}
-              classes={{ disabled: classes.disabled }}
-              disabled={mainFilter !== MainFilter.Custom}>
-              Incoming
-              <span className={clsx(classes.dot, classes.incoming)} />
-            </ToggleButton>
-          </ToggleButtonGroup>
-        </div>
+        <FilterButtons />
       </Collapse>
     </Paper>
   )

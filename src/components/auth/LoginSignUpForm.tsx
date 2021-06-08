@@ -136,6 +136,7 @@ const LoginSignUpForm = () => {
           result = await auth.signUp(email, form.inputs.password.value)
           break
         case FormType.ForgotPassword:
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
           result = await auth.resetPassword(email)
           setSnackbar({
             open: true,

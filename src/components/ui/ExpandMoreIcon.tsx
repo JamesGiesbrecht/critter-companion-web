@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core'
 import ExpandMore from '@material-ui/icons/ExpandMore'
 import clsx from 'clsx'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   closed: {
     transform: 'rotate(0deg)',
     transition: 'transform 0.2s linear',
