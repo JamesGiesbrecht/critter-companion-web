@@ -42,8 +42,8 @@ const useStyles = makeStyles((theme) => ({
 
 const Search: FC<Props> = ({ inputRef }) => {
   const classes = useStyles()
-  const search = useStore((state: any) => state.filters.search)
-  const setSearch = useStore((state: any) => state.filters.setSearch)
+  const search = useStore((state) => state.filters.search)
+  const setSearch = useStore((state) => state.filters.setSearch)
 
   const handleUpdateSearch = (e: ChangeEvent<HTMLInputElement>) =>
     setSearch(e.target.value.toLowerCase())

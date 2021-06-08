@@ -24,7 +24,7 @@ export const AuthContext = createContext<AuthContextType>({
 
 export const AuthContextProvider: FC = ({ children }) => {
   const [user, setUser] = useState<AuthContextType['user']>()
-  const setDonated = useStore((state: any) => state.setDonated)
+  const setDonated = useStore((state) => state.setDonated)
 
   useEffect(() => {
     const unsubscribe = firebaseAuth.onAuthStateChanged((authUser) => setUser(authUser))
