@@ -34,6 +34,7 @@ const CritterSection = ({ allCritters, type }) => {
   const classes = useStyles()
   const mainFilter = useStore((state) => state.filters.mainFilter)
   const statusFilters = useStore((state) => state.filters.statusFilters)
+  const showDonated = useStore((state) => state.filters.showDonated)
   const search = useStore((state) => state.filters.search)
   const donated = useStore((state) => state.donated)
 
@@ -61,14 +62,12 @@ const CritterSection = ({ allCritters, type }) => {
       filteredCritters = allCritters.filter((critter) => critter.isAvailableNow)
     } else {
       //  Checking if any of the conditions in show are true properties on the critter
-      const tempStatusFilter = removeItem([...statusFilters], Statuses.Donated)
-
       filteredCritters = allCritters.filter((critter) =>
-        tempStatusFilter.some((condition) => critter[condition]),
+        statusFilters.some((condition) => critter[condition]),
       )
     }
 
-    if (!statusFilters.includes(Statuses.Donated)) {
+    if (!showDonated) {
       // remove critters that are not donated
       filteredCritters = filteredCritters.filter((critter) => !donated[critter.id])
     }

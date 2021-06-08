@@ -12,6 +12,7 @@ import {
   IconButton,
   Button,
   Collapse,
+  useMediaQuery,
 } from '@material-ui/core'
 import LightModeIcon from '@material-ui/icons/Brightness7'
 import DarkModeIcon from '@material-ui/icons/Brightness3'
@@ -66,6 +67,23 @@ const useStyles = makeStyles((theme) => ({
       '& > *:not(:last-child)': {
         marginRight: '10px',
       },
+    },
+  },
+  toggleGroup: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  isNorthernToggle: {
+    [theme.breakpoints.down('md')]: {
+      flexGrow: 5,
+    },
+  },
+  donatedToggle: {
+    marginLeft: theme.spacing(1),
+    [theme.breakpoints.down('md')]: {
+      flexGrow: 1,
     },
   },
   search: {
@@ -129,9 +147,12 @@ const Controls = () => {
     setStatusFilters,
     isNorthern,
     toggleIsNorthern,
+    showDonated,
+    toggleShowDonated,
     search,
     setSearch,
   } = useStore((state) => state.filters)
+  const isDesktop = useMediaQuery((theme) => theme.breakpoints.up('md'))
 
   const getFilterText = (filter) => {
     switch (filter) {
@@ -146,6 +167,14 @@ const Controls = () => {
     }
   }
   const currentFilter = getFilterText(mainFilter)
+
+  const handleIsNorthernChange = (e, newIsNorthern) => {
+    if (newIsNorthern !== isNorthern) toggleIsNorthern()
+  }
+
+  const handleShowDonatedChange = (e) => {
+    if (e.target.checked !== showDonated) toggleShowDonated()
+  }
 
   const handleMainFilterChange = (e, newMainFilter) => {
     if (newMainFilter === null || newMainFilter === MainFilter.Custom) {
@@ -195,6 +224,29 @@ const Controls = () => {
     )
   }
 
+  const toggles = (
+    <>
+      <ToggleButtonGroup
+        className={clsx(classes.buttons, classes.isNorthernToggle)}
+        value={isNorthern}
+        size="small"
+        exclusive
+        onChange={handleIsNorthernChange}>
+        {/* eslint-disable-next-line react/jsx-boolean-value */}
+        <ToggleButton value={true}>Northern</ToggleButton>
+        <ToggleButton value={false}>Southern</ToggleButton>
+      </ToggleButtonGroup>
+      <ToggleButton
+        size="small"
+        className={classes.donatedToggle}
+        value={handleShowDonatedChange}
+        selected={showDonated}
+        onChange={toggleShowDonated}>
+        Include Donated
+      </ToggleButton>
+    </>
+  )
+
   return (
     <Paper classes={{ root: classes.controls }} elevation={7}>
       <div className={classes.mainControls}>
@@ -231,9 +283,7 @@ const Controls = () => {
       </Collapse>
       <Collapse in={filtersExpanded}>
         <div className={classes.buttonGroup}>
-          <ToggleButton value={isNorthern} selected onChange={toggleIsNorthern} size="small">
-            {isNorthern ? 'Northern' : 'Southern'}
-          </ToggleButton>
+          {isDesktop ? toggles : <div className={classes.toggleGroup}>{toggles}</div>}
           <ToggleButtonGroup
             className={classes.buttons}
             value={mainFilter}
@@ -270,7 +320,6 @@ const Controls = () => {
               Incoming
               <span className={clsx(classes.dot, classes.incoming)} />
             </ToggleButton>
-            <ToggleButton value={Statuses.Donated}>Include Donated</ToggleButton>
           </ToggleButtonGroup>
         </div>
       </Collapse>

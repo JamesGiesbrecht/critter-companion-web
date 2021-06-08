@@ -10,7 +10,6 @@ export enum Statuses {
   New = 'New',
   Leaving = 'Leaving',
   Incoming = 'Incoming',
-  Donated = 'Donated',
 }
 
 export enum FormType {
@@ -24,13 +23,18 @@ const useStore = create((set) => ({
     mainFilter: MainFilter.All,
     setMainFilter: (newMainFilter: MainFilter) =>
       set((state: any) => ({ filters: { ...state.filters, mainFilter: newMainFilter } })),
-    statusFilters: [Statuses.New, Statuses.Leaving, Statuses.Incoming, Statuses.Donated],
+    statusFilters: [Statuses.New, Statuses.Leaving, Statuses.Incoming],
     setStatusFilters: (newStatusFilters: Array<Statuses>) =>
       set((state: any) => ({ filters: { ...state.filters, statusFilters: newStatusFilters } })),
     isNorthern: true,
     toggleIsNorthern: () =>
       set((state: any) => ({
         filters: { ...state.filters, isNorthern: !state.filters.isNorthern },
+      })),
+    showDonated: true,
+    toggleShowDonated: () =>
+      set((state: any) => ({
+        filters: { ...state.filters, showDonated: !state.filters.showDonated },
       })),
     search: '',
     setSearch: (newSearch: string) =>
