@@ -39,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
       paddingTop: '45px',
     },
   },
+  mainControls: {},
   buttons: {
     display: 'flex',
     '& > *': {
@@ -50,8 +51,11 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',
-    '& > *': {
-      marginBottom: '10px',
+    marginTop: theme.spacing(1),
+    [theme.breakpoints.down('md')]: {
+      '& > *': {
+        marginBottom: '10px',
+      },
     },
     [theme.breakpoints.up('md')]: {
       alignItems: 'center',
@@ -64,11 +68,6 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
-  searchRow: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
   search: {
     display: 'flex',
     flexDirection: 'row',
@@ -80,16 +79,18 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: `rgba(${theme.palette.mode === 'light' ? '0, 0, 0' : '255, 255, 255'}, 0.2)`,
     },
     width: '100%',
-    marginRight: '10px',
+    marginTop: theme.spacing(1),
+  },
+  collapse: {
+    marginTop: theme.spacing(1),
   },
   disabled: {
     '& span': {
       color: theme.palette.text.disabled,
     },
   },
-  searchIcons: {
+  searchIcon: {
     padding: theme.spacing(0, 1),
-    height: '100%',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -118,7 +119,8 @@ const useStyles = makeStyles((theme) => ({
 
 const Controls = () => {
   const classes = useStyles()
-  const [expanded, setExpanded] = useState(false)
+  const [filtersExpanded, setFiltersExpanded] = useState(false)
+  const [searchExpanded, setSearchExpanded] = useState(false)
   const { colorScheme, toggleColorScheme } = useColorScheme()
   const {
     mainFilter,
@@ -163,7 +165,15 @@ const Controls = () => {
     }
   }
 
-  const handleToggleExpand = () => setExpanded((prevExpanded) => !prevExpanded)
+  const handleToggleFilterExpand = () => {
+    setFiltersExpanded((prevExpanded) => !prevExpanded)
+    setSearchExpanded(false)
+  }
+
+  const handleToggleSearchExpand = () => {
+    setSearchExpanded((prevExpanded) => !prevExpanded)
+    setFiltersExpanded(false)
+  }
 
   const handleStatusFiltersChange = (e, newStatusFilters) => setStatusFilters(newStatusFilters)
 
@@ -187,15 +197,39 @@ const Controls = () => {
 
   return (
     <Paper classes={{ root: classes.controls }} elevation={7}>
-      <div>
+      <div className={classes.mainControls}>
+        <IconButton onClick={handleToggleSearchExpand}>
+          <SearchIcon />
+        </IconButton>
         <Button
           startIcon={<FilterIcon />}
-          endIcon={<ExpandMoreIcon expand={expanded} />}
-          onClick={handleToggleExpand}>
+          endIcon={<ExpandMoreIcon expand={filtersExpanded} />}
+          onClick={handleToggleFilterExpand}>
           {currentFilter}
         </Button>
+        <IconButton onClick={toggleColorScheme}>
+          {colorScheme === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
+        </IconButton>
       </div>
-      <Collapse in={expanded}>
+      <Collapse in={searchExpanded}>
+        <div className={classes.search}>
+          <div className={classes.searchIcon}>
+            <SearchIcon />
+          </div>
+          <InputBase
+            placeholder="Search…"
+            classes={{
+              root: classes.inputRoot,
+              input: classes.inputInput,
+            }}
+            inputProps={{ 'aria-label': 'search' }}
+            value={search}
+            onChange={handleUpdateSearch}
+          />
+          {clearIcon}
+        </div>
+      </Collapse>
+      <Collapse in={filtersExpanded}>
         <div className={classes.buttonGroup}>
           <ToggleButton value={isNorthern} selected onChange={toggleIsNorthern} size="small">
             {isNorthern ? 'Northern' : 'Southern'}
@@ -238,27 +272,6 @@ const Controls = () => {
             </ToggleButton>
             <ToggleButton value={Statuses.Donated}>Include Donated</ToggleButton>
           </ToggleButtonGroup>
-        </div>
-        <div className={classes.searchRow}>
-          <div className={classes.search}>
-            <div className={classes.searchIcons}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-              value={search}
-              onChange={handleUpdateSearch}
-            />
-            {clearIcon}
-          </div>
-          <IconButton onClick={toggleColorScheme}>
-            {colorScheme === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
-          </IconButton>
         </div>
       </Collapse>
     </Paper>
