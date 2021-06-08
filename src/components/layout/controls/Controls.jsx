@@ -5,7 +5,6 @@ import { dot } from 'assets/cssClasses'
 import { removeItem } from 'assets/utility'
 import {
   Paper,
-  InputBase,
   ToggleButtonGroup,
   ToggleButton,
   makeStyles,
@@ -16,11 +15,11 @@ import {
 } from '@material-ui/core'
 import LightModeIcon from '@material-ui/icons/Brightness7'
 import DarkModeIcon from '@material-ui/icons/Brightness3'
-import SearchIcon from '@material-ui/icons/Search'
-import ClearIcon from '@material-ui/icons/ClearRounded'
 import FilterIcon from '@material-ui/icons/FilterAlt'
+import SearchIcon from '@material-ui/icons/Search'
 import { useRef, useState } from 'react'
 import ExpandMoreIcon from 'components/ui/ExpandMoreIcon'
+import Search from 'components/layout/controls/components/Search'
 
 const useStyles = makeStyles((theme) => ({
   controls: {
@@ -86,19 +85,6 @@ const useStyles = makeStyles((theme) => ({
       flexGrow: 1,
     },
   },
-  search: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: `rgba(${theme.palette.mode === 'light' ? '0, 0, 0' : '255, 255, 255'}, 0.15)`,
-    '&:hover': {
-      backgroundColor: `rgba(${theme.palette.mode === 'light' ? '0, 0, 0' : '255, 255, 255'}, 0.2)`,
-    },
-    width: '100%',
-    marginTop: theme.spacing(1),
-  },
   collapse: {
     marginTop: theme.spacing(1),
   },
@@ -106,22 +92,6 @@ const useStyles = makeStyles((theme) => ({
     '& span': {
       color: theme.palette.text.disabled,
     },
-  },
-  searchIcon: {
-    padding: theme.spacing(0, 1),
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    color: `rgba(${theme.palette.mode === 'light' ? '0, 0, 0' : '255, 255, 255'}, 0.54)`,
-  },
-  inputRoot: {
-    color: 'inherit',
-    width: '100%',
-  },
-  inputInput: {
-    padding: theme.spacing(1, 0, 1, 0),
-    transition: theme.transitions.create('width'),
-    width: '100%',
   },
   dot,
   new: {
@@ -141,18 +111,14 @@ const Controls = () => {
   const [searchExpanded, setSearchExpanded] = useState(false)
   const searchRef = useRef()
   const { colorScheme, toggleColorScheme } = useColorScheme()
-  const {
-    mainFilter,
-    setMainFilter,
-    statusFilters,
-    setStatusFilters,
-    isNorthern,
-    toggleIsNorthern,
-    showDonated,
-    toggleShowDonated,
-    search,
-    setSearch,
-  } = useStore((state) => state.filters)
+  const mainFilter = useStore((state) => state.filters.mainFilter)
+  const setMainFilter = useStore((state) => state.filters.setMainFilter)
+  const statusFilters = useStore((state) => state.filters.statusFilters)
+  const setStatusFilters = useStore((state) => state.filters.setStatusFilters)
+  const isNorthern = useStore((state) => state.filters.isNorthern)
+  const toggleIsNorthern = useStore((state) => state.filters.toggleIsNorthern)
+  const showDonated = useStore((state) => state.filters.showDonated)
+  const toggleShowDonated = useStore((state) => state.filters.toggleShowDonated)
   const isDesktop = useMediaQuery((theme) => theme.breakpoints.up('md'))
 
   const getFilterText = (filter) => {
@@ -208,24 +174,6 @@ const Controls = () => {
 
   const handleStatusFiltersChange = (e, newStatusFilters) => setStatusFilters(newStatusFilters)
 
-  const handleUpdateSearch = (e) => setSearch(e.target.value.toLowerCase())
-
-  const handleClearSearch = () => setSearch('')
-
-  let clearIcon = null
-  if (search !== '') {
-    clearIcon = (
-      <div
-        className={classes.searchIcons}
-        onClick={handleClearSearch}
-        onKeyPress={handleClearSearch}
-        role="button"
-        tabIndex={0}>
-        <ClearIcon />
-      </div>
-    )
-  }
-
   const toggles = (
     <>
       <ToggleButtonGroup
@@ -266,23 +214,7 @@ const Controls = () => {
         </IconButton>
       </div>
       <Collapse in={searchExpanded}>
-        <div className={classes.search}>
-          <div className={classes.searchIcon}>
-            <SearchIcon />
-          </div>
-          <InputBase
-            placeholder="Search…"
-            inputRef={searchRef}
-            classes={{
-              root: classes.inputRoot,
-              input: classes.inputInput,
-            }}
-            inputProps={{ 'aria-label': 'search' }}
-            value={search}
-            onChange={handleUpdateSearch}
-          />
-          {clearIcon}
-        </div>
+        <Search inputRef={searchRef} />
       </Collapse>
       <Collapse in={filtersExpanded}>
         <div className={classes.buttonGroup}>

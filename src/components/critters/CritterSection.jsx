@@ -1,6 +1,5 @@
 import { useState, memo, useMemo } from 'react'
-import useStore, { MainFilter, Statuses } from 'store'
-import { removeItem } from 'assets/utility'
+import useStore, { MainFilter } from 'store'
 import { Collapse, Paper, makeStyles, Typography, Button } from '@material-ui/core'
 import CrittersTable from 'components/critters/CrittersTable'
 import ExpandMoreIcon from 'components/ui/ExpandMoreIcon'
