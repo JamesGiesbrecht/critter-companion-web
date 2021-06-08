@@ -19,7 +19,7 @@ import DarkModeIcon from '@material-ui/icons/Brightness3'
 import SearchIcon from '@material-ui/icons/Search'
 import ClearIcon from '@material-ui/icons/ClearRounded'
 import FilterIcon from '@material-ui/icons/FilterAlt'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import ExpandMoreIcon from 'components/ui/ExpandMoreIcon'
 
 const useStyles = makeStyles((theme) => ({
@@ -139,6 +139,7 @@ const Controls = () => {
   const classes = useStyles()
   const [filtersExpanded, setFiltersExpanded] = useState(false)
   const [searchExpanded, setSearchExpanded] = useState(false)
+  const searchRef = useRef()
   const { colorScheme, toggleColorScheme } = useColorScheme()
   const {
     mainFilter,
@@ -172,10 +173,6 @@ const Controls = () => {
     if (newIsNorthern !== isNorthern) toggleIsNorthern()
   }
 
-  const handleShowDonatedChange = (e) => {
-    if (e.target.checked !== showDonated) toggleShowDonated()
-  }
-
   const handleMainFilterChange = (e, newMainFilter) => {
     if (newMainFilter === null || newMainFilter === MainFilter.Custom) {
       setMainFilter(MainFilter.Custom)
@@ -200,7 +197,12 @@ const Controls = () => {
   }
 
   const handleToggleSearchExpand = () => {
-    setSearchExpanded((prevExpanded) => !prevExpanded)
+    setSearchExpanded((prevExpanded) => {
+      if (!prevExpanded) {
+        setTimeout(() => searchRef.current.focus(), 100)
+      }
+      return !prevExpanded
+    })
     setFiltersExpanded(false)
   }
 
@@ -239,7 +241,7 @@ const Controls = () => {
       <ToggleButton
         size="small"
         className={classes.donatedToggle}
-        value={handleShowDonatedChange}
+        value={showDonated}
         selected={showDonated}
         onChange={toggleShowDonated}>
         Include Donated
@@ -270,6 +272,7 @@ const Controls = () => {
           </div>
           <InputBase
             placeholder="Search…"
+            inputRef={searchRef}
             classes={{
               root: classes.inputRoot,
               input: classes.inputInput,
