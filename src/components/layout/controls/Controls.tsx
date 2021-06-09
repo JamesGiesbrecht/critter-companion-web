@@ -1,6 +1,6 @@
 import useStore, { MainFilter } from 'store'
 import { useColorScheme } from 'context/Theme'
-import { Paper, makeStyles, IconButton, Button, Collapse } from '@material-ui/core'
+import { Paper, makeStyles, IconButton, Button, Collapse, Divider } from '@material-ui/core'
 import {
   Brightness7 as LightModeIcon,
   Brightness3 as DarkModeIcon,
@@ -37,11 +37,11 @@ const Controls = () => {
   const classes = useStyles()
   const [filtersExpanded, setFiltersExpanded] = useState(false)
   const [searchExpanded, setSearchExpanded] = useState(false)
-  const searchRef = useRef()
+  const searchRef = useRef<HTMLInputElement>(null)
   const { colorScheme, toggleColorScheme } = useColorScheme()
   const mainFilter = useStore((state) => state.filters.mainFilter)
 
-  const getFilterText = (filter) => {
+  const getFilterText = (filter: MainFilter) => {
     switch (filter) {
       case MainFilter.All:
         return 'Show All'
@@ -63,7 +63,11 @@ const Controls = () => {
   const handleToggleSearchExpand = () => {
     setSearchExpanded((prevExpanded) => {
       if (!prevExpanded) {
-        setTimeout(() => searchRef.current.focus(), 100)
+        setTimeout(() => {
+          if (searchRef.current !== null) {
+            searchRef.current.focus()
+          }
+        }, 100)
       }
       return !prevExpanded
     })
@@ -86,6 +90,7 @@ const Controls = () => {
           {colorScheme === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
         </IconButton>
       </div>
+      {(searchExpanded || filtersExpanded) && <Divider />}
       <Collapse in={searchExpanded}>
         <Search inputRef={searchRef} />
       </Collapse>

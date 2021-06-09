@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'flex-start',
     marginTop: theme.spacing(1),
     [theme.breakpoints.down('md')]: {
-      '& > *': {
+      '& > *:not(:last-child)': {
         marginBottom: '10px',
       },
     },

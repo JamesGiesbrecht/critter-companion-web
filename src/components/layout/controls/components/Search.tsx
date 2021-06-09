@@ -2,10 +2,10 @@ import useStore from 'store'
 import { InputBase, makeStyles } from '@material-ui/core'
 import SearchIcon from '@material-ui/icons/Search'
 import ClearIcon from '@material-ui/icons/ClearRounded'
-import { ChangeEvent, FC, MutableRefObject } from 'react'
+import { ChangeEvent, FC, Ref } from 'react'
 
 interface Props {
-  inputRef: MutableRefObject<undefined>
+  inputRef: Ref<any> | undefined
 }
 
 const useStyles = makeStyles((theme) => ({

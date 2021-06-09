@@ -1,9 +1,14 @@
+import { FC, ReactNode } from 'react'
 import { Container, makeStyles, Paper, Typography } from '@material-ui/core'
 import Footer from 'components/layout/Footer'
 import Centered from 'components/ui/Centered'
 import { useAuth } from 'context/Auth'
 import Header from 'components/layout/Header'
 import Loading from 'components/ui/Loading'
+
+interface Props {
+  children: ReactNode
+}
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -44,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const Layout = ({ children }) => {
+const Layout: FC<Props> = ({ children }) => {
   const classes = useStyles()
   const { user } = useAuth()
 
