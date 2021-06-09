@@ -1,5 +1,5 @@
 import { FC, ReactNode } from 'react'
-import { Container, makeStyles, Paper, Typography } from '@material-ui/core'
+import { Container, makeStyles } from '@material-ui/core'
 import Footer from 'components/layout/Footer'
 import Centered from 'components/ui/Centered'
 import { useAuth } from 'context/Auth'
@@ -18,30 +18,6 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
     [theme.breakpoints.down('sm')]: {
       width: '100%',
-    },
-  },
-  titlePaper: {
-    display: 'inline-block',
-    padding: '0 10px',
-    backgroundColor: 'var(--green)',
-    color: 'white',
-    [theme.breakpoints.down('sm')]: {
-      '& h1': {
-        fontSize: '24px',
-        lineHeight: '40px',
-      },
-      height: '40px',
-    },
-    [theme.breakpoints.up('sm')]: {
-      '& h1': {
-        fontSize: '38px',
-        lineHeight: '50px',
-      },
-      height: '50px',
-    },
-    [theme.breakpoints.up('md')]: {
-      '& h1': { lineHeight: '60px' },
-      height: '60px',
     },
   },
   footerMargin: {
@@ -65,9 +41,6 @@ const Layout: FC<Props> = ({ children }) => {
   return (
     <Container className={classes.content} disableGutters>
       <Header />
-      <Paper classes={{ root: classes.titlePaper }} square>
-        <Typography variant="h1">ACNH: Critter Companion</Typography>
-      </Paper>
       {children}
       <Footer />
       <footer className={classes.footerMargin} />

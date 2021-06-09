@@ -1,3 +1,5 @@
+import { useRef, useState } from 'react'
+import clsx from 'clsx'
 import useStore, { MainFilter } from 'store'
 import { useColorScheme } from 'context/Theme'
 import { Paper, makeStyles, IconButton, Button, Collapse, Divider } from '@material-ui/core'
@@ -7,30 +9,45 @@ import {
   FilterAlt as FilterIcon,
   Search as SearchIcon,
 } from '@material-ui/icons'
-import { useRef, useState } from 'react'
 import ExpandMoreIcon from 'components/ui/ExpandMoreIcon'
 import Search from 'components/layout/controls/components/Search'
 import FilterButtons from 'components/layout/controls/components/FilterButtons'
+import logo from 'assets/images/app-logo.png'
 
-const useStyles = makeStyles((theme) => ({
+const logoWidth = 300
+
+const useStyles = makeStyles(() => ({
   controls: {
     padding: '15px',
     textAlign: 'center',
-    [theme.breakpoints.down('sm')]: {
-      marginTop: '-20px',
-      paddingTop: '35px',
-      borderRadius: 0,
-    },
-    [theme.breakpoints.up('sm')]: {
-      marginTop: '-25px',
-      paddingTop: '40px',
-    },
-    [theme.breakpoints.up('md')]: {
-      marginTop: '-30px',
-      paddingTop: '45px',
-    },
+    marginTop: 40,
   },
-  mainControls: {},
+  mainControls: {
+    position: 'relative',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  subControls: {
+    display: 'flex',
+    justifyContent: 'space-around',
+    width: `calc((100% - ${logoWidth}px) / 2)`,
+  },
+  leftControls: {},
+  rightControls: {},
+  logoPlaceholder: {
+    width: logoWidth,
+  },
+  logo: {
+    position: 'absolute',
+    top: '-10%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: logoWidth,
+  },
+  divider: {
+    marginTop: 55,
+  },
 }))
 
 const Controls = () => {
@@ -75,29 +92,44 @@ const Controls = () => {
   }
 
   return (
-    <Paper classes={{ root: classes.controls }} elevation={7}>
-      <div className={classes.mainControls}>
-        <IconButton onClick={handleToggleSearchExpand}>
-          <SearchIcon />
-        </IconButton>
-        <Button
-          startIcon={<FilterIcon />}
-          endIcon={<ExpandMoreIcon expand={filtersExpanded} />}
-          onClick={handleToggleFilterExpand}>
-          {currentFilter}
-        </Button>
-        <IconButton onClick={toggleColorScheme}>
-          {colorScheme === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
-        </IconButton>
-      </div>
-      {(searchExpanded || filtersExpanded) && <Divider />}
-      <Collapse in={searchExpanded}>
-        <Search inputRef={searchRef} />
+    <div>
+      <Paper classes={{ root: classes.controls }} elevation={7}>
+        <div className={classes.mainControls}>
+          <div className={clsx(classes.subControls, classes.leftControls)}>
+            <IconButton onClick={handleToggleSearchExpand}>
+              <SearchIcon />
+            </IconButton>
+            <Button
+              startIcon={<FilterIcon />}
+              endIcon={<ExpandMoreIcon expand={filtersExpanded} />}
+              onClick={handleToggleFilterExpand}>
+              {currentFilter}
+            </Button>
+          </div>
+          <div className={classes.logoPlaceholder} />
+          <img className={classes.logo} src={logo} alt="Critter Companion" />
+          <div className={clsx(classes.subControls, classes.rightControls)}>
+            <IconButton onClick={toggleColorScheme}>
+              {colorScheme === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
+            </IconButton>
+          </div>
+        </div>
+        {/* Image smooth bottom margin */}
+        <Collapse in={searchExpanded || filtersExpanded}>
+          <Divider className={classes.divider} />
+        </Collapse>
+        <Collapse in={searchExpanded}>
+          <Search inputRef={searchRef} />
+        </Collapse>
+        <Collapse in={filtersExpanded}>
+          <FilterButtons />
+        </Collapse>
+      </Paper>
+      {/* Smooth bottom margin */}
+      <Collapse in={!searchExpanded && !filtersExpanded}>
+        <div style={{ height: 24 }} />
       </Collapse>
-      <Collapse in={filtersExpanded}>
-        <FilterButtons />
-      </Collapse>
-    </Paper>
+    </div>
   )
 }
 
