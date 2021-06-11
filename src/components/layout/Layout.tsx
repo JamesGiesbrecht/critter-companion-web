@@ -1,10 +1,10 @@
 import { FC, ReactNode } from 'react'
+import { useAuth } from 'context/Auth'
 import { Container, makeStyles } from '@material-ui/core'
 import Footer from 'components/layout/Footer'
 import Centered from 'components/ui/Centered'
-import { useAuth } from 'context/Auth'
-import Header from 'components/layout/Header'
 import Loading from 'components/ui/Loading'
+import LoginSignUpForm from 'components/auth/LoginSignUpForm'
 
 interface Props {
   children: ReactNode
@@ -40,7 +40,7 @@ const Layout: FC<Props> = ({ children }) => {
 
   return (
     <Container className={classes.content} disableGutters>
-      <Header />
+      <LoginSignUpForm />
       {children}
       <Footer />
       <footer className={classes.footerMargin} />

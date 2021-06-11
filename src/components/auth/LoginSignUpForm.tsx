@@ -1,5 +1,6 @@
 import { SyntheticEvent, useEffect, useState } from 'react'
 import { useAuth } from 'context/Auth'
+import useStore, { FormType } from 'store'
 import { AuthError } from 'firebase/error'
 import {
   Alert,
@@ -15,9 +16,7 @@ import {
 } from '@material-ui/core'
 import { Color, LoadingButton } from '@material-ui/lab'
 import Form from 'components/common/Form'
-import AccountButton from 'components/auth/AccountButton'
-import useStore, { FormType } from 'store'
-import FormLink from './FormLink'
+import FormLink from 'components/auth/FormLink'
 
 const useStyles = makeStyles((theme) => ({
   dialogPaper: {
@@ -200,18 +199,6 @@ const LoginSignUpForm = () => {
 
   return (
     <>
-      {auth.user ? (
-        <AccountButton />
-      ) : (
-        <>
-          <Button variant="contained" onClick={() => setActiveFormName(FormType.Login)}>
-            Login
-          </Button>
-          <Button variant="contained" onClick={() => setActiveFormName(FormType.SignUp)}>
-            Sign Up
-          </Button>
-        </>
-      )}
       <Dialog
         classes={{ paper: classes.dialogPaper }}
         open={Boolean(activeForm)}

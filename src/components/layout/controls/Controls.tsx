@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 import clsx from 'clsx'
-import useStore, { MainFilter } from 'store'
+import useStore, { FormType, MainFilter } from 'store'
 import { useColorScheme } from 'context/Theme'
 import { Paper, makeStyles, IconButton, Button, Collapse, Divider } from '@material-ui/core'
 import {
@@ -13,6 +13,8 @@ import ExpandMoreIcon from 'components/ui/ExpandMoreIcon'
 import Search from 'components/layout/controls/components/Search'
 import FilterButtons from 'components/layout/controls/components/FilterButtons'
 import logo from 'assets/images/app-logo.png'
+import { useAuth } from 'context/Auth'
+import AccountButton from 'components/auth/AccountButton'
 
 const logoWidth = 300
 
@@ -20,7 +22,7 @@ const useStyles = makeStyles(() => ({
   controls: {
     padding: '15px',
     textAlign: 'center',
-    marginTop: 40,
+    marginTop: 100,
   },
   mainControls: {
     position: 'relative',
@@ -35,6 +37,14 @@ const useStyles = makeStyles(() => ({
   },
   leftControls: {},
   rightControls: {},
+  loginButton: {
+    borderTopRightRadius: 0,
+    borderBottomRightRadius: 0,
+  },
+  signUpButton: {
+    borderTopLeftRadius: 0,
+    borderBottomLeftRadius: 0,
+  },
   logoPlaceholder: {
     width: logoWidth,
   },
@@ -57,6 +67,8 @@ const Controls = () => {
   const searchRef = useRef<HTMLInputElement>(null)
   const { colorScheme, toggleColorScheme } = useColorScheme()
   const mainFilter = useStore((state) => state.filters.mainFilter)
+  const setActiveFormName = useStore((state) => state.setActiveForm)
+  const { user } = useAuth()
 
   const getFilterText = (filter: MainFilter) => {
     switch (filter) {
@@ -71,6 +83,14 @@ const Controls = () => {
     }
   }
   const currentFilter = getFilterText(mainFilter)
+
+  const handleOpenLogin = () => {
+    setActiveFormName(FormType.Login)
+  }
+
+  const handleOpenSignUp = () => {
+    setActiveFormName(FormType.SignUp)
+  }
 
   const handleToggleFilterExpand = () => {
     setFiltersExpanded((prevExpanded) => !prevExpanded)
@@ -100,6 +120,7 @@ const Controls = () => {
               <SearchIcon />
             </IconButton>
             <Button
+              color="inherit"
               startIcon={<FilterIcon />}
               endIcon={<ExpandMoreIcon expand={filtersExpanded} />}
               onClick={handleToggleFilterExpand}>
@@ -109,6 +130,25 @@ const Controls = () => {
           <div className={classes.logoPlaceholder} />
           <img className={classes.logo} src={logo} alt="Critter Companion" />
           <div className={clsx(classes.subControls, classes.rightControls)}>
+            {user ? (
+              <AccountButton />
+            ) : (
+              <div>
+                <Button
+                  variant="contained"
+                  onClick={handleOpenLogin}
+                  className={classes.loginButton}>
+                  Login
+                </Button>
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  onClick={handleOpenSignUp}
+                  className={classes.signUpButton}>
+                  Sign up
+                </Button>
+              </div>
+            )}
             <IconButton onClick={toggleColorScheme}>
               {colorScheme === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
             </IconButton>
