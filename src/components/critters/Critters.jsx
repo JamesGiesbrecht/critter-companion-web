@@ -11,6 +11,7 @@ import CritterSection from 'components/critters/CritterSection'
 import SearchSection from 'components/critters/SearchSection'
 import Loading from 'components/ui/Loading'
 import Centered from 'components/ui/Centered'
+import { useAuth } from 'context/Auth'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -66,6 +67,7 @@ const Critters = () => {
   const donated = useStore((state) => state.donated)
   const setDonated = useStore((state) => state.setDonated)
   const { donatedRef } = useApi()
+  const { user } = useAuth()
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
@@ -122,7 +124,7 @@ const Critters = () => {
   return (
     <div className={classes.root}>
       <Controls />
-      {!donatedRef && <SignInPrompt />}
+      {!user && <SignInPrompt />}
       {content}
     </div>
   )
