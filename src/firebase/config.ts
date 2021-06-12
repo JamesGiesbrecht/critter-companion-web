@@ -26,5 +26,8 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig)
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const analytics = firebase.analytics()
+
 export const firebaseAuth = firebase.auth()
 export const firebaseDb = firebase.database()
