@@ -22,23 +22,23 @@ const App = () => {
   const theme = getTheme(colorScheme)
 
   return (
-    <AuthContextProvider>
-      <ApiContextProvider>
-        <BrowserRouter>
-          {/* TODO v5: remove once migration to emotion is completed */}
-          <StyledEngineProvider injectFirst>
-            <ThemeProvider theme={theme}>
+    <ApiContextProvider>
+      <BrowserRouter>
+        {/* TODO v5: remove once migration to emotion is completed */}
+        <StyledEngineProvider injectFirst>
+          <ThemeProvider theme={theme}>
+            <AuthContextProvider>
               {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
               <CssBaseline />
               <Layout>
                 <ScreenSize />
                 <Switch>{routes}</Switch>
               </Layout>
-            </ThemeProvider>
-          </StyledEngineProvider>
-        </BrowserRouter>
-      </ApiContextProvider>
-    </AuthContextProvider>
+            </AuthContextProvider>
+          </ThemeProvider>
+        </StyledEngineProvider>
+      </BrowserRouter>
+    </ApiContextProvider>
   )
 }
 

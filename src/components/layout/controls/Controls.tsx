@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
       borderRadius: 0,
     },
     [theme.breakpoints.down('md')]: {
-      marginTop: 180,
+      marginTop: 190,
     },
   },
   mainControls: {
@@ -36,11 +36,12 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     flexWrap: 'wrap-reverse',
     [theme.breakpoints.down('md')]: {
-      paddingTop: 30,
+      paddingTop: 5,
     },
   },
   subControls: {
     display: 'flex',
+    alignItems: 'center',
     justifyContent: 'space-around',
     width: `calc((100% - ${logoWidth}px) / 2)`,
     [theme.breakpoints.down('md')]: {
@@ -64,16 +65,16 @@ const useStyles = makeStyles((theme) => ({
   },
   logo: {
     position: 'absolute',
-    top: '-10%',
+    top: 5,
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: logoWidth,
     [theme.breakpoints.down('md')]: {
-      top: -80,
+      top: -90,
     },
   },
   divider: {
-    marginTop: 55,
+    marginTop: 45,
     [theme.breakpoints.down('md')]: {
       marginTop: theme.spacing(1),
     },
