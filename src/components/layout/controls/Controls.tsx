@@ -1,5 +1,4 @@
 import { useRef, useState } from 'react'
-import clsx from 'clsx'
 import useStore, { FormType, MainFilter } from 'store'
 import { useColorScheme } from 'context/Theme'
 import { Paper, makeStyles, IconButton, Button, Collapse, Divider } from '@material-ui/core'
@@ -18,25 +17,37 @@ import AccountButton from 'components/auth/AccountButton'
 
 const logoWidth = 300
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   controls: {
     padding: '15px',
     textAlign: 'center',
     marginTop: 100,
+    [theme.breakpoints.down('sm')]: {
+      borderRadius: 0,
+    },
+    [theme.breakpoints.down('md')]: {
+      marginTop: 180,
+    },
   },
   mainControls: {
     position: 'relative',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
+    flexWrap: 'wrap-reverse',
+    [theme.breakpoints.down('md')]: {
+      paddingTop: 30,
+    },
   },
   subControls: {
     display: 'flex',
     justifyContent: 'space-around',
     width: `calc((100% - ${logoWidth}px) / 2)`,
+    [theme.breakpoints.down('md')]: {
+      flexGrow: 1,
+      minWidth: 250,
+    },
   },
-  leftControls: {},
-  rightControls: {},
   loginButton: {
     borderTopRightRadius: 0,
     borderBottomRightRadius: 0,
@@ -47,6 +58,9 @@ const useStyles = makeStyles(() => ({
   },
   logoPlaceholder: {
     width: logoWidth,
+    [theme.breakpoints.down('md')]: {
+      display: 'none',
+    },
   },
   logo: {
     position: 'absolute',
@@ -54,9 +68,21 @@ const useStyles = makeStyles(() => ({
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: logoWidth,
+    [theme.breakpoints.down('md')]: {
+      top: -80,
+    },
   },
   divider: {
     marginTop: 55,
+    [theme.breakpoints.down('md')]: {
+      marginTop: theme.spacing(1),
+    },
+  },
+  smoothBottomMargin: {
+    height: 24,
+    [theme.breakpoints.down('md')]: {
+      height: 0,
+    },
   },
 }))
 
@@ -115,10 +141,10 @@ const Controls = () => {
     <div>
       <Paper classes={{ root: classes.controls }} elevation={7}>
         <div className={classes.mainControls}>
-          <div className={clsx(classes.subControls, classes.leftControls)}>
-            <IconButton onClick={handleToggleSearchExpand}>
-              <SearchIcon />
-            </IconButton>
+          <div className={classes.subControls}>
+            <Button color="inherit" startIcon={<SearchIcon />} onClick={handleToggleSearchExpand}>
+              Search
+            </Button>
             <Button
               color="inherit"
               startIcon={<FilterIcon />}
@@ -129,7 +155,10 @@ const Controls = () => {
           </div>
           <div className={classes.logoPlaceholder} />
           <img className={classes.logo} src={logo} alt="Critter Companion" />
-          <div className={clsx(classes.subControls, classes.rightControls)}>
+          <div className={classes.subControls}>
+            <IconButton onClick={toggleColorScheme}>
+              {colorScheme === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
+            </IconButton>
             {user ? (
               <AccountButton />
             ) : (
@@ -149,9 +178,6 @@ const Controls = () => {
                 </Button>
               </div>
             )}
-            <IconButton onClick={toggleColorScheme}>
-              {colorScheme === 'light' ? <DarkModeIcon /> : <LightModeIcon />}
-            </IconButton>
           </div>
         </div>
         {/* Image smooth bottom margin */}
@@ -165,9 +191,8 @@ const Controls = () => {
           <FilterButtons />
         </Collapse>
       </Paper>
-      {/* Smooth bottom margin */}
       <Collapse in={!searchExpanded && !filtersExpanded}>
-        <div style={{ height: 24 }} />
+        <div className={classes.smoothBottomMargin} />
       </Collapse>
     </div>
   )

@@ -24,12 +24,12 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     marginTop: theme.spacing(1),
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       '& > *:not(:last-child)': {
         marginBottom: '10px',
       },
     },
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('lg')]: {
       alignItems: 'center',
       flexDirection: 'row',
       justifyContent: 'space-between',
@@ -47,13 +47,13 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
   },
   isNorthernToggle: {
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       flexGrow: 5,
     },
   },
   donatedToggle: {
     marginLeft: theme.spacing(1),
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('lg')]: {
       flexGrow: 1,
     },
   },
@@ -84,7 +84,7 @@ const FilterButtons = () => {
   const toggleIsNorthern = useStore((state) => state.filters.toggleIsNorthern)
   const showDonated = useStore((state) => state.filters.showDonated)
   const toggleShowDonated = useStore((state) => state.filters.toggleShowDonated)
-  const isDesktop = useMediaQuery((theme: Theme) => theme.breakpoints.up('md'))
+  const isDesktop = useMediaQuery((theme: Theme) => theme.breakpoints.up('lg'))
 
   const handleIsNorthernChange = (e: MouseEvent<HTMLElement>, newIsNorthern: boolean) => {
     if (newIsNorthern !== isNorthern) toggleIsNorthern()

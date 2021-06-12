@@ -114,7 +114,7 @@ const Critters = () => {
       <>
         <CritterSection allCritters={bugs} type="Bugs" />
         <CritterSection allCritters={fish} type="Fish" />
-        <CritterSection allCritters={seaCreatures} type="Sea Creatures" />
+        <CritterSection allCritters={seaCreatures} type="Sea" />
       </>
     )
   }
