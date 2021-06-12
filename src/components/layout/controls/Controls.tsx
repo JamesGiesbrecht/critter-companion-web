@@ -74,13 +74,13 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   divider: {
-    marginTop: 45,
+    marginTop: 65,
     [theme.breakpoints.down('md')]: {
       marginTop: theme.spacing(1),
     },
   },
   smoothBottomMargin: {
-    height: 24,
+    height: 30,
     [theme.breakpoints.down('md')]: {
       height: 0,
     },
