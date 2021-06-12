@@ -20,10 +20,10 @@ const AccountButton = () => {
     setAnchorEl(null)
   }
 
-  const handleGoToAccount = () => {
-    handleClose()
-    history.push(Routes.account.path)
-  }
+  // const handleGoToAccount = () => {
+  //   handleClose()
+  //   history.push(Routes.account.path)
+  // }
 
   const handleLogout = () => {
     handleClose()
@@ -62,7 +62,7 @@ const AccountButton = () => {
           vertical: 'top',
           horizontal: 'left',
         }}>
-        <MenuItem onClick={handleGoToAccount}>My Account</MenuItem>
+        {/* <MenuItem onClick={handleGoToAccount}>My Account</MenuItem> */}
         <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </Menu>
     </div>

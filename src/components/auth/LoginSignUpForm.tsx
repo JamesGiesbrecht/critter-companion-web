@@ -1,6 +1,6 @@
-/* eslint-disable no-console */
 import { SyntheticEvent, useEffect, useState } from 'react'
 import { useAuth } from 'context/Auth'
+import useStore, { FormType } from 'store'
 import { AuthError } from 'firebase/error'
 import {
   Alert,
@@ -9,7 +9,6 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  Link,
   makeStyles,
   Slide,
   Snackbar,
@@ -17,9 +16,7 @@ import {
 } from '@material-ui/core'
 import { Color, LoadingButton } from '@material-ui/lab'
 import Form from 'components/common/Form'
-import AccountButton from 'components/auth/AccountButton'
-
-type FormType = 'login' | 'signUp' | 'forgotPassword'
+import FormLink from 'components/auth/FormLink'
 
 const useStyles = makeStyles((theme) => ({
   dialogPaper: {
@@ -62,7 +59,8 @@ const inputs = {
 
 const LoginSignUpForm = () => {
   const classes = useStyles()
-  const [activeFormName, setActiveFormName] = useState<FormType | undefined>()
+  const activeFormName = useStore<FormType | undefined>((state) => state.activeForm)
+  const setActiveFormName = useStore((state) => state.setActiveForm)
   const [isLoading, setIsLoading] = useState(false)
   const [submitError, setSubmitError] = useState('')
   const [snackbar, setSnackbar] = useState<{
@@ -76,33 +74,25 @@ const LoginSignUpForm = () => {
     setSubmitError('')
   }, [activeFormName])
 
-  const getFormLink = (formName: FormType, label: string) => (
-    // eslint-disable-next-line jsx-a11y/anchor-is-valid
-    <Link
-      key={label}
-      component="button"
-      type="button"
-      variant="body1"
-      onClick={() => setActiveFormName(formName)}>
-      {label}
-    </Link>
-  )
-
   const forms = {
-    login: {
-      type: 'login',
+    [FormType.Login]: {
+      type: FormType.Login,
       title: 'Welcome Back',
       submitText: 'Login',
       inputs: {
         email: inputs.email,
         password: {
           ...inputs.password,
-          after: getFormLink('forgotPassword', 'Forgot Password?'),
+          after: (
+            <FormLink key="forgotPassword" to={FormType.ForgotPassword}>
+              Forgot Password?
+            </FormLink>
+          ),
         },
       },
     },
-    signUp: {
-      type: 'signUp',
+    [FormType.SignUp]: {
+      type: FormType.SignUp,
       title: 'New User Sign Up',
       submitText: 'Sign Up',
       inputs: {
@@ -111,8 +101,8 @@ const LoginSignUpForm = () => {
         confirmPassword: inputs.confirmPassword,
       },
     },
-    forgotPassword: {
-      type: 'forgotPassword',
+    [FormType.ForgotPassword]: {
+      type: FormType.ForgotPassword,
       title: 'Forgot Password',
       submitText: 'Send Password Reset Email',
       inputs: { email: inputs.email },
@@ -127,25 +117,25 @@ const LoginSignUpForm = () => {
   }
 
   const toggleState = () => {
-    setActiveFormName((prev: any) => (prev === 'login' ? 'signUp' : 'login'))
+    setActiveFormName(activeFormName === FormType.Login ? FormType.SignUp : FormType.Login)
   }
 
   const activeForm = activeFormName && forms[activeFormName]
 
   const handleSubmit = async (e: SyntheticEvent, form: any) => {
-    console.log('Form is valid and submitting', form)
     let result
     const email = form.inputs.email.value
     try {
       setIsLoading(true)
       switch (activeFormName) {
-        case 'login':
+        case FormType.Login:
           result = await auth.login(email, form.inputs.password.value)
           break
-        case 'signUp':
+        case FormType.SignUp:
           result = await auth.signUp(email, form.inputs.password.value)
           break
-        case 'forgotPassword':
+        case FormType.ForgotPassword:
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
           result = await auth.resetPassword(email)
           setSnackbar({
             open: true,
@@ -156,11 +146,9 @@ const LoginSignUpForm = () => {
         default:
           throw new Error(`Invalid Submission Method: ${activeFormName}`)
       }
-      console.log(result)
       setSubmitError('')
       setActiveFormName(undefined)
     } catch (error) {
-      console.log(error)
       let errorMessage
       switch (error.code) {
         case AuthError.InvalidEmail:
@@ -170,19 +158,23 @@ const LoginSignUpForm = () => {
           errorMessage = `The account associated with ${email} has been disabled. Contact support for help with this issue.`
           break
         case AuthError.UserNotFound:
-          errorMessage = [
-            'An account with this email does not exist, did you mean to ',
-            getFormLink('signUp', 'sign up.'),
-          ]
+          errorMessage = (
+            <>
+              An account with this email does not exist, did you mean to{' '}
+              <FormLink to={FormType.SignUp}>sign up.</FormLink>
+            </>
+          )
           break
         case AuthError.WrongPassword:
           errorMessage = 'Incorrect password provided.'
           break
         case AuthError.EmailAlreadyInUse:
-          errorMessage = [
-            'An account already exists with this email, did you mean to ',
-            getFormLink('login', 'login?'),
-          ]
+          errorMessage = (
+            <>
+              An account already exists with this email, did you mean to{' '}
+              <FormLink to={FormType.Login}>login?</FormLink>
+            </>
+          )
           break
         case AuthError.OperationNotAllowed:
         case AuthError.MissingContinueUri:
@@ -207,18 +199,6 @@ const LoginSignUpForm = () => {
 
   return (
     <>
-      {auth.user ? (
-        <AccountButton />
-      ) : (
-        <>
-          <Button variant="contained" onClick={() => setActiveFormName('login')}>
-            Login
-          </Button>
-          <Button variant="contained" onClick={() => setActiveFormName('signUp')}>
-            Sign Up
-          </Button>
-        </>
-      )}
       <Dialog
         classes={{ paper: classes.dialogPaper }}
         open={Boolean(activeForm)}
@@ -244,18 +224,7 @@ const LoginSignUpForm = () => {
                     color="inherit"
                     disabled={isLoading}
                     onClick={toggleState}>
-                    {`Switch to ${activeForm.type === 'login' ? 'Sign Up' : 'Login'}`}
-                  </Button>
-                  <Button type="button" onClick={() => console.log(auth.user)}>
-                    Get user
-                  </Button>
-                  <Button
-                    type="button"
-                    onClick={async () => {
-                      const result = await auth.logout()
-                      console.log(result)
-                    }}>
-                    Logout
+                    {`Switch to ${activeForm.type === FormType.Login ? 'Sign Up' : 'Login'}`}
                   </Button>
                 </DialogActions>
               </Form>

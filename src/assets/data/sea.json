@@ -1,6 +1,6 @@
 [
   {
-    "id": 1,
+    "id": "seaweed",
     "name": "Seaweed",
     "type": "Sea",
     "location": "Sea",
@@ -14,7 +14,7 @@
     "image_path": "/assets/images/critters/sea/seaweed.png"
   },
   {
-    "id": 2,
+    "id": "sea-grapes",
     "name": "Sea Grapes",
     "type": "Sea",
     "location": "Sea",
@@ -28,7 +28,7 @@
     "image_path": "/assets/images/critters/sea/sea-grapes.png"
   },
   {
-    "id": 3,
+    "id": "sea-cucumber",
     "name": "Sea Cucumber",
     "type": "Sea",
     "location": "Sea",
@@ -42,7 +42,7 @@
     "image_path": "/assets/images/critters/sea/sea-cucumber.png"
   },
   {
-    "id": 4,
+    "id": "sea-pig",
     "name": "Sea Pig",
     "type": "Sea",
     "location": "Sea",
@@ -56,7 +56,7 @@
     "image_path": "/assets/images/critters/sea/sea-pig.png"
   },
   {
-    "id": 5,
+    "id": "sea-star",
     "name": "Sea Star",
     "type": "Sea",
     "location": "Sea",
@@ -70,7 +70,7 @@
     "image_path": "/assets/images/critters/sea/sea-star.png"
   },
   {
-    "id": 6,
+    "id": "sea-urchin",
     "name": "Sea Urchin",
     "type": "Sea",
     "location": "Sea",
@@ -84,7 +84,7 @@
     "image_path": "/assets/images/critters/sea/sea-urchin.png"
   },
   {
-    "id": 7,
+    "id": "slate-pencil-urchin",
     "name": "Slate Pencil Urchin",
     "type": "Sea",
     "location": "Sea",
@@ -98,7 +98,7 @@
     "image_path": "/assets/images/critters/sea/slate-pencil-urchin.png"
   },
   {
-    "id": 8,
+    "id": "sea-anemone",
     "name": "Sea Anemone",
     "type": "Sea",
     "location": "Sea",
@@ -112,7 +112,7 @@
     "image_path": "/assets/images/critters/sea/sea-anemone.png"
   },
   {
-    "id": 9,
+    "id": "moon-jellyfish",
     "name": "Moon Jellyfish",
     "type": "Sea",
     "location": "Sea",
@@ -126,7 +126,7 @@
     "image_path": "/assets/images/critters/sea/moon-jellyfish.png"
   },
   {
-    "id": 10,
+    "id": "sea-slug",
     "name": "Sea Slug",
     "type": "Sea",
     "location": "Sea",
@@ -140,7 +140,7 @@
     "image_path": "/assets/images/critters/sea/sea-slug.png"
   },
   {
-    "id": 11,
+    "id": "pearl-oyster",
     "name": "Pearl Oyster",
     "type": "Sea",
     "location": "Sea",
@@ -154,7 +154,7 @@
     "image_path": "/assets/images/critters/sea/pearl-oyster.png"
   },
   {
-    "id": 12,
+    "id": "mussel",
     "name": "Mussel",
     "type": "Sea",
     "location": "Sea",
@@ -168,7 +168,7 @@
     "image_path": "/assets/images/critters/sea/mussel.png"
   },
   {
-    "id": 13,
+    "id": "oyster",
     "name": "Oyster",
     "type": "Sea",
     "location": "Sea",
@@ -182,7 +182,7 @@
     "image_path": "/assets/images/critters/sea/oyster.png"
   },
   {
-    "id": 14,
+    "id": "scallop",
     "name": "Scallop",
     "type": "Sea",
     "location": "Sea",
@@ -196,7 +196,7 @@
     "image_path": "/assets/images/critters/sea/scallop.png"
   },
   {
-    "id": 15,
+    "id": "whelk",
     "name": "Whelk",
     "type": "Sea",
     "location": "Sea",
@@ -210,7 +210,7 @@
     "image_path": "/assets/images/critters/sea/whelk.png"
   },
   {
-    "id": 16,
+    "id": "turban-shell",
     "name": "Turban Shell",
     "type": "Sea",
     "location": "Sea",
@@ -224,7 +224,7 @@
     "image_path": "/assets/images/critters/sea/turban-shell.png"
   },
   {
-    "id": 17,
+    "id": "abalone",
     "name": "Abalone",
     "type": "Sea",
     "location": "Sea",
@@ -238,7 +238,7 @@
     "image_path": "/assets/images/critters/sea/abalone.png"
   },
   {
-    "id": 18,
+    "id": "gigas-giant-clam",
     "name": "Gigas Giant Clam",
     "type": "Sea",
     "location": "Sea",
@@ -252,7 +252,7 @@
     "image_path": "/assets/images/critters/sea/gigas-giant-clam.png"
   },
   {
-    "id": 19,
+    "id": "chambered-nautilus",
     "name": "Chambered Nautilus",
     "type": "Sea",
     "location": "Sea",
@@ -266,7 +266,7 @@
     "image_path": "/assets/images/critters/sea/chambered-nautilus.png"
   },
   {
-    "id": 20,
+    "id": "octopus",
     "name": "Octopus",
     "type": "Sea",
     "location": "Sea",
@@ -280,7 +280,7 @@
     "image_path": "/assets/images/critters/sea/octopus.png"
   },
   {
-    "id": 21,
+    "id": "umbrella-octopus",
     "name": "Umbrella Octopus",
     "type": "Sea",
     "location": "Sea",
@@ -294,7 +294,7 @@
     "image_path": "/assets/images/critters/sea/umbrella-octopus.png"
   },
   {
-    "id": 22,
+    "id": "vampire-squid",
     "name": "Vampire Squid",
     "type": "Sea",
     "location": "Sea",
@@ -308,7 +308,7 @@
     "image_path": "/assets/images/critters/sea/vampire-squid.png"
   },
   {
-    "id": 23,
+    "id": "firefly-squid",
     "name": "Firefly Squid",
     "type": "Sea",
     "location": "Sea",
@@ -322,7 +322,7 @@
     "image_path": "/assets/images/critters/sea/firefly-squid.png"
   },
   {
-    "id": 24,
+    "id": "gazami-crab",
     "name": "Gazami Crab",
     "type": "Sea",
     "location": "Sea",
@@ -336,7 +336,7 @@
     "image_path": "/assets/images/critters/sea/gazami-crab.png"
   },
   {
-    "id": 25,
+    "id": "dungeness-crab",
     "name": "Dungeness Crab",
     "type": "Sea",
     "location": "Sea",
@@ -350,7 +350,7 @@
     "image_path": "/assets/images/critters/sea/dungeness-crab.png"
   },
   {
-    "id": 26,
+    "id": "snow-crab",
     "name": "Snow Crab",
     "type": "Sea",
     "location": "Sea",
@@ -364,7 +364,7 @@
     "image_path": "/assets/images/critters/sea/snow-crab.png"
   },
   {
-    "id": 27,
+    "id": "red-king-crab",
     "name": "Red King Crab",
     "type": "Sea",
     "location": "Sea",
@@ -378,7 +378,7 @@
     "image_path": "/assets/images/critters/sea/red-king-crab.png"
   },
   {
-    "id": 28,
+    "id": "acorn-barnacle",
     "name": "Acorn Barnacle",
     "type": "Sea",
     "location": "Sea",
@@ -392,7 +392,7 @@
     "image_path": "/assets/images/critters/sea/acorn-barnacle.png"
   },
   {
-    "id": 29,
+    "id": "spider-crab",
     "name": "Spider Crab",
     "type": "Sea",
     "location": "Sea",
@@ -406,7 +406,7 @@
     "image_path": "/assets/images/critters/sea/spider-crab.png"
   },
   {
-    "id": 30,
+    "id": "tiger-prawn",
     "name": "Tiger Prawn",
     "type": "Sea",
     "location": "Sea",
@@ -420,7 +420,7 @@
     "image_path": "/assets/images/critters/sea/tiger-prawn.png"
   },
   {
-    "id": 31,
+    "id": "sweet-shrimp",
     "name": "Sweet Shrimp",
     "type": "Sea",
     "location": "Sea",
@@ -434,7 +434,7 @@
     "image_path": "/assets/images/critters/sea/sweet-shrimp.png"
   },
   {
-    "id": 32,
+    "id": "mantis-shrimp",
     "name": "Mantis Shrimp",
     "type": "Sea",
     "location": "Sea",
@@ -448,7 +448,7 @@
     "image_path": "/assets/images/critters/sea/mantis-shrimp.png"
   },
   {
-    "id": 33,
+    "id": "spiny-lobster",
     "name": "Spiny Lobster",
     "type": "Sea",
     "location": "Sea",
@@ -462,7 +462,7 @@
     "image_path": "/assets/images/critters/sea/spiny-lobster.png"
   },
   {
-    "id": 34,
+    "id": "lobster",
     "name": "Lobster",
     "type": "Sea",
     "location": "Sea",
@@ -476,7 +476,7 @@
     "image_path": "/assets/images/critters/sea/lobster.png"
   },
   {
-    "id": 35,
+    "id": "giant-isopod",
     "name": "Giant Isopod",
     "type": "Sea",
     "location": "Sea",
@@ -490,7 +490,7 @@
     "image_path": "/assets/images/critters/sea/giant-isopod.png"
   },
   {
-    "id": 36,
+    "id": "horseshoe-crab",
     "name": "Horseshoe Crab",
     "type": "Sea",
     "location": "Sea",
@@ -504,7 +504,7 @@
     "image_path": "/assets/images/critters/sea/horseshoe-crab.png"
   },
   {
-    "id": 37,
+    "id": "sea-pineapple",
     "name": "Sea Pineapple",
     "type": "Sea",
     "location": "Sea",
@@ -518,7 +518,7 @@
     "image_path": "/assets/images/critters/sea/sea-pineapple.png"
   },
   {
-    "id": 38,
+    "id": "spotted-garden-eel",
     "name": "Spotted Garden Eel",
     "type": "Sea",
     "location": "Sea",
@@ -532,7 +532,7 @@
     "image_path": "/assets/images/critters/sea/spotted-garden-eel.png"
   },
   {
-    "id": 39,
+    "id": "flatworm",
     "name": "Flatworm",
     "type": "Sea",
     "location": "Sea",
@@ -546,7 +546,7 @@
     "image_path": "/assets/images/critters/sea/flatworm.png"
   },
   {
-    "id": 40,
+    "id": "venus-flower-basket",
     "name": "Venus' Flower Basket",
     "type": "Sea",
     "location": "Sea",
