@@ -109,7 +109,9 @@ const CritterRow = ({ critter, hours }) => {
   }
   const handleDonatedCheck = () => {
     if (donatedRef) {
-      console.log(updateCritters({ [critter.id]: !isDonated }))
+      if (!updateCritters({ [critter.id]: !isDonated })) {
+        toggleDonated(critter.id)
+      }
     } else {
       toggleDonated(critter.id)
     }

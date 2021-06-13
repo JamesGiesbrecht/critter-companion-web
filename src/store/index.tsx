@@ -1,3 +1,5 @@
+import { Color } from '@material-ui/lab'
+import { ReactNode } from 'react'
 import create from 'zustand'
 
 export enum MainFilter {
@@ -37,6 +39,8 @@ export interface StoreState {
   toggleDonated: (id: string) => boolean
   activeForm: FormType | undefined
   setActiveForm: (newActiveForm: FormType | undefined) => void
+  snackbar: { open: boolean; text: ReactNode; severity: Color }
+  setSnackbar: (newError?: StoreState['snackbar']) => void
 }
 
 const useStore = create<StoreState>((set) => ({
@@ -75,6 +79,9 @@ const useStore = create<StoreState>((set) => ({
   },
   activeForm: undefined,
   setActiveForm: (newActiveForm: FormType | undefined) => set({ activeForm: newActiveForm }),
+  snackbar: { open: false, text: '', severity: 'success' },
+  setSnackbar: (newSnackbar) =>
+    set((state) => ({ snackbar: newSnackbar || { ...state.snackbar, open: false } })),
 }))
 
 export default useStore

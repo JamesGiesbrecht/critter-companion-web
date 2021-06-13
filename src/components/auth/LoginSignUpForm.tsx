@@ -2,8 +2,7 @@ import { SyntheticEvent, useEffect, useState } from 'react'
 import { useAuth } from 'context/Auth'
 import useStore, { FormType } from 'store'
 import { AuthError } from 'firebase/error'
-import { Alert, Dialog, makeStyles, Slide, Snackbar } from '@material-ui/core'
-import { Color } from '@material-ui/lab'
+import { Dialog, makeStyles } from '@material-ui/core'
 import FormLink from 'components/auth/FormLink'
 import Login from 'components/auth/forms/Login'
 import SignUp from 'components/auth/forms/SignUp'
@@ -53,13 +52,10 @@ const LoginSignUpForm = () => {
   const classes = useStyles()
   const activeFormName = useStore<FormType | undefined>((state) => state.activeForm)
   const setActiveFormName = useStore((state) => state.setActiveForm)
+  const setSnackbar = useStore((state) => state.setSnackbar)
   const [isLoading, setIsLoading] = useState(false)
   const [submitError, setSubmitError] = useState('')
-  const [snackbar, setSnackbar] = useState<{
-    open: boolean
-    content: string
-    severity: Color | undefined
-  }>({ open: false, content: '', severity: 'success' })
+
   const auth = useAuth()
 
   useEffect(() => {
@@ -74,11 +70,6 @@ const LoginSignUpForm = () => {
   }
 
   const handleClose = () => setActiveFormName(undefined)
-
-  const handleSnackbarClose = (event?: SyntheticEvent, reason?: string) => {
-    if (reason === 'clickaway') return
-    setSnackbar((prev) => ({ ...prev, open: false }))
-  }
 
   const ActiveForm = activeFormName && forms[activeFormName]
 
@@ -100,7 +91,7 @@ const LoginSignUpForm = () => {
           result = await auth.resetPassword(form.inputs.email.value)
           setSnackbar({
             open: true,
-            content: 'Password reset email successfully sent',
+            text: 'Password reset email successfully sent',
             severity: 'success',
           })
           break
@@ -108,7 +99,7 @@ const LoginSignUpForm = () => {
           result = await auth.user?.sendEmailVerification()
           setSnackbar({
             open: true,
-            content: 'Verification Email successfully sent',
+            text: 'Verification Email successfully sent',
             severity: 'success',
           })
           return
@@ -183,16 +174,6 @@ const LoginSignUpForm = () => {
           />
         )}
       </Dialog>
-      <Snackbar
-        open={snackbar.open}
-        autoHideDuration={6000}
-        onClose={handleSnackbarClose}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-        TransitionComponent={(props) => <Slide {...props} direction="up" />}>
-        <Alert onClose={handleSnackbarClose} severity={snackbar.severity} sx={{ width: '100%' }}>
-          {snackbar.content}
-        </Alert>
-      </Snackbar>
     </>
   )
 }

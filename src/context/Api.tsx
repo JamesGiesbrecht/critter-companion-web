@@ -2,12 +2,13 @@ import { useContext, createContext, FC } from 'react'
 import firebase from 'firebase'
 import { firebaseDb } from 'firebase/config'
 import { noProvider } from 'utility/context'
+import useStore from 'store'
 import { useAuth } from './Auth'
 
 interface ApiContextType {
   userRef: firebase.database.Reference | undefined
   donatedRef: firebase.database.Reference | undefined
-  updateCritters: (data: any) => Promise<any> | undefined
+  updateCritters: (data: any) => Promise<any> | undefined | boolean
   on: (
     cb: any,
   ) =>
@@ -25,6 +26,8 @@ export const ApiContext = createContext<ApiContextType>({
 })
 
 export const ApiContextProvider: FC = ({ children }) => {
+  const setSnackbar = useStore((state) => state.setSnackbar)
+
   const { user } = useAuth()
   let userRef: firebase.database.Reference | undefined
   let donatedRef: firebase.database.Reference | undefined
@@ -33,7 +36,14 @@ export const ApiContextProvider: FC = ({ children }) => {
   if (user) {
     userRef = firebaseDb.ref(`users/${user.uid}`)
     donatedRef = firebaseDb.ref(`users/${user.uid}/donated`)
-    updateCritters = (data: any) => donatedRef?.update(data)
+    updateCritters = (data: any) => {
+      if (!user.emailVerified) {
+        console.log('Not Verified')
+        setSnackbar({ open: true, text: 'Email not verified', severity: 'error' })
+        return false
+      }
+      return donatedRef?.update(data)
+    }
     on = (cb: any) => userRef?.on('value', cb)
   } else {
     updateCritters = () => {
