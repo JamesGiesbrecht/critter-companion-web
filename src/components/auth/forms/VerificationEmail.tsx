@@ -8,6 +8,7 @@ const VerificationEmail: FC<AuthFormProps> = (props) => {
   return (
     <AuthDialog
       {...props}
+      disableSwitchButton
       inputs={{}}
       submitText="Resend Email"
       title="Verification Email Sent"

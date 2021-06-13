@@ -7,6 +7,7 @@ export enum AuthError {
   EmailAlreadyInUse = 'auth/email-already-in-use',
   OperationNotAllowed = 'auth/operation-not-allowed',
   WeakPassword = 'auth/weak-password',
+  TooManyRequests = 'auth/too-many-requests',
   MissingAndroidPkgName = 'auth/missing-android-pkg-name',
   MissingContinueUri = 'auth/missing-continue-uri',
   MissingIOSBundleId = 'auth/missing-ios-bundle-id',

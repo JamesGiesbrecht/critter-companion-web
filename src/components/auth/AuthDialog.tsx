@@ -13,6 +13,7 @@ import Form from 'components/common/Form'
 
 interface AuthDialogProps {
   children?: ReactNode
+  disableSwitchButton?: boolean
   error?: boolean
   helperText?: ReactNode | string
   inputs: any
@@ -36,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
 
 const AuthDialog: FC<AuthDialogProps> = ({
   children,
+  disableSwitchButton,
   error,
   helperText,
   inputs,
@@ -68,14 +70,16 @@ const AuthDialog: FC<AuthDialogProps> = ({
             <LoadingButton loading={isLoading} type="submit" color="primary" size="large">
               {submitText}
             </LoadingButton>
-            <Button
-              type="button"
-              size="small"
-              color="inherit"
-              disabled={isLoading}
-              onClick={toggleState}>
-              {`Switch to ${type === FormType.Login ? 'Sign Up' : 'Login'}`}
-            </Button>
+            {!disableSwitchButton && (
+              <Button
+                type="button"
+                size="small"
+                color="inherit"
+                disabled={isLoading}
+                onClick={toggleState}>
+                {`Switch to ${type === FormType.Login ? 'Sign Up' : 'Login'}`}
+              </Button>
+            )}
           </DialogActions>
         </Form>
       </DialogContent>

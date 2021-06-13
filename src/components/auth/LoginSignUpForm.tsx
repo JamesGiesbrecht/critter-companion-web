@@ -84,19 +84,20 @@ const LoginSignUpForm = () => {
 
   const handleSubmit = async (e: SyntheticEvent, form: any) => {
     let result
-    const email = form.inputs.email.value
     try {
+      setSubmitError('')
       setIsLoading(true)
       switch (activeFormName) {
         case FormType.Login:
-          result = await auth.login(email, form.inputs.password.value)
+          result = await auth.login(form.inputs.email.value, form.inputs.password.value)
           break
         case FormType.SignUp:
-          result = await auth.signUp(email, form.inputs.password.value)
-          break
+          result = await auth.signUp(form.inputs.email.value, form.inputs.password.value)
+          await result.user?.sendEmailVerification()
+          setActiveFormName(FormType.VerificationEmail)
+          return
         case FormType.ForgotPassword:
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          result = await auth.resetPassword(email)
+          result = await auth.resetPassword(form.inputs.email.value)
           setSnackbar({
             open: true,
             content: 'Password reset email successfully sent',
@@ -105,11 +106,15 @@ const LoginSignUpForm = () => {
           break
         case FormType.VerificationEmail:
           result = await auth.user?.sendEmailVerification()
-          break
+          setSnackbar({
+            open: true,
+            content: 'Verification Email successfully sent',
+            severity: 'success',
+          })
+          return
         default:
           throw new Error(`Invalid Submission Method: ${activeFormName}`)
       }
-      setSubmitError('')
       setActiveFormName(undefined)
     } catch (error) {
       let errorMessage
@@ -118,7 +123,7 @@ const LoginSignUpForm = () => {
           errorMessage = 'Please enter a valid email address.'
           break
         case AuthError.UserDisabled:
-          errorMessage = `The account associated with ${email} has been disabled. Contact support for help with this issue.`
+          errorMessage = `The account associated with ${form.inputs.email.value} has been disabled. Contact support for help with this issue.`
           break
         case AuthError.UserNotFound:
           errorMessage = (
@@ -138,6 +143,9 @@ const LoginSignUpForm = () => {
               <FormLink to={FormType.Login}>login?</FormLink>
             </>
           )
+          break
+        case AuthError.TooManyRequests:
+          errorMessage = 'You have made too many requests, try again later.'
           break
         case AuthError.OperationNotAllowed:
         case AuthError.MissingContinueUri:
