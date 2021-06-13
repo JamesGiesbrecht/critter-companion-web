@@ -16,6 +16,7 @@ export enum FormType {
   Login = 'Login',
   SignUp = 'SignUp',
   ForgotPassword = 'ForgotPassword',
+  VerificationEmail = 'VerificationEmail',
 }
 
 export interface StoreState {

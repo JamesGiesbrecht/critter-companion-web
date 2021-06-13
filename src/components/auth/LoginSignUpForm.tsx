@@ -2,21 +2,13 @@ import { SyntheticEvent, useEffect, useState } from 'react'
 import { useAuth } from 'context/Auth'
 import useStore, { FormType } from 'store'
 import { AuthError } from 'firebase/error'
-import {
-  Alert,
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  makeStyles,
-  Slide,
-  Snackbar,
-  Typography,
-} from '@material-ui/core'
-import { Color, LoadingButton } from '@material-ui/lab'
-import Form from 'components/common/Form'
+import { Alert, Dialog, makeStyles, Slide, Snackbar } from '@material-ui/core'
+import { Color } from '@material-ui/lab'
 import FormLink from 'components/auth/FormLink'
+import Login from 'components/auth/forms/Login'
+import SignUp from 'components/auth/forms/SignUp'
+import ForgotPassword from 'components/auth/forms/ForgotPassword'
+import VerificationEmail from 'components/auth/forms/VerificationEmail'
 
 const useStyles = makeStyles((theme) => ({
   dialogPaper: {
@@ -29,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const inputs = {
+export const authInputs = {
   email: {
     label: 'Email',
     type: 'email',
@@ -75,38 +67,10 @@ const LoginSignUpForm = () => {
   }, [activeFormName])
 
   const forms = {
-    [FormType.Login]: {
-      type: FormType.Login,
-      title: 'Welcome Back',
-      submitText: 'Login',
-      inputs: {
-        email: inputs.email,
-        password: {
-          ...inputs.password,
-          after: (
-            <FormLink key="forgotPassword" to={FormType.ForgotPassword}>
-              Forgot Password?
-            </FormLink>
-          ),
-        },
-      },
-    },
-    [FormType.SignUp]: {
-      type: FormType.SignUp,
-      title: 'New User Sign Up',
-      submitText: 'Sign Up',
-      inputs: {
-        email: inputs.email,
-        password: inputs.password,
-        confirmPassword: inputs.confirmPassword,
-      },
-    },
-    [FormType.ForgotPassword]: {
-      type: FormType.ForgotPassword,
-      title: 'Forgot Password',
-      submitText: 'Send Password Reset Email',
-      inputs: { email: inputs.email },
-    },
+    [FormType.Login]: Login,
+    [FormType.SignUp]: SignUp,
+    [FormType.ForgotPassword]: ForgotPassword,
+    [FormType.VerificationEmail]: VerificationEmail,
   }
 
   const handleClose = () => setActiveFormName(undefined)
@@ -116,11 +80,7 @@ const LoginSignUpForm = () => {
     setSnackbar((prev) => ({ ...prev, open: false }))
   }
 
-  const toggleState = () => {
-    setActiveFormName(activeFormName === FormType.Login ? FormType.SignUp : FormType.Login)
-  }
-
-  const activeForm = activeFormName && forms[activeFormName]
+  const ActiveForm = activeFormName && forms[activeFormName]
 
   const handleSubmit = async (e: SyntheticEvent, form: any) => {
     let result
@@ -201,35 +161,15 @@ const LoginSignUpForm = () => {
     <>
       <Dialog
         classes={{ paper: classes.dialogPaper }}
-        open={Boolean(activeForm)}
-        onClose={handleClose}
-        aria-labelledby={activeForm?.type}>
-        {activeForm && (
-          <>
-            <DialogTitle id={activeForm.type}>{activeForm.title}</DialogTitle>
-            <DialogContent>
-              {submitError && (
-                <Typography className={classes.submitError} align="center">
-                  {submitError}
-                </Typography>
-              )}
-              <Form inputs={activeForm.inputs} type={activeForm.type} onSubmit={handleSubmit}>
-                <DialogActions className={classes.formActions}>
-                  <LoadingButton loading={isLoading} type="submit" color="primary" size="large">
-                    {activeForm.submitText}
-                  </LoadingButton>
-                  <Button
-                    type="button"
-                    size="small"
-                    color="inherit"
-                    disabled={isLoading}
-                    onClick={toggleState}>
-                    {`Switch to ${activeForm.type === FormType.Login ? 'Sign Up' : 'Login'}`}
-                  </Button>
-                </DialogActions>
-              </Form>
-            </DialogContent>
-          </>
+        open={Boolean(ActiveForm)}
+        onClose={handleClose}>
+        {ActiveForm && (
+          <ActiveForm
+            error={Boolean(submitError)}
+            helperText={submitError}
+            isLoading={isLoading}
+            onSubmit={handleSubmit}
+          />
         )}
       </Dialog>
       <Snackbar
