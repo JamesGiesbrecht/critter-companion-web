@@ -14,10 +14,6 @@ const useStyles = makeStyles((theme) => ({
     width: 600,
     margin: theme.spacing(1),
   },
-  formActions: { display: 'flex', flexDirection: 'column' },
-  submitError: {
-    color: theme.palette.error.main,
-  },
 }))
 
 export const authInputs = {
