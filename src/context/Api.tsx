@@ -2,7 +2,7 @@ import { useContext, createContext, FC } from 'react'
 import firebase from 'firebase'
 import { firebaseDb } from 'firebase/config'
 import { noProvider } from 'utility/context'
-import useStore from 'store'
+import useStore, { FormType } from 'store'
 import { Button, Link } from '@material-ui/core'
 import { useAuth } from './Auth'
 
@@ -27,8 +27,9 @@ export const ApiContext = createContext<ApiContextType>({
 })
 
 export const ApiContextProvider: FC = ({ children }) => {
-  const { user } = useAuth()
+  const { user, logout } = useAuth()
   const setSnackbar = useStore((state) => state.setSnackbar)
+  const setActiveForm = useStore((state) => state.setActiveForm)
   const handleSendVerificationEmail = async () => {
     try {
       await user?.sendEmailVerification()
@@ -53,7 +54,7 @@ export const ApiContextProvider: FC = ({ children }) => {
   if (user) {
     userRef = firebaseDb.ref(`users/${user.uid}`)
     donatedRef = firebaseDb.ref(`users/${user.uid}/donated`)
-    updateCritters = (data: any, showError?: boolean) => {
+    updateCritters = async (data: any, showError?: boolean) => {
       if (!user.emailVerified) {
         if (showError !== false) {
           setSnackbar({
@@ -74,7 +75,26 @@ export const ApiContextProvider: FC = ({ children }) => {
         }
         return false
       }
-      return donatedRef?.update(data)
+      try {
+        return await donatedRef?.update(data)
+      } catch (e) {
+        if (e.code === 'PERMISSION_DENIED') {
+          logout()
+          setActiveForm(FormType.Login)
+          setSnackbar({
+            open: true,
+            text: 'Re-authentication need. Please log in again.',
+            severity: 'warning',
+          })
+          return false
+        }
+        setSnackbar({
+          open: true,
+          text: 'Something went wrong. Try again later',
+          severity: 'error',
+        })
+        return false
+      }
     }
     on = (cb: any) => userRef?.on('value', cb)
   } else {
