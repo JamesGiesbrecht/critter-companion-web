@@ -66,7 +66,7 @@ const Critters = () => {
   const search = useStore((state) => state.filters.search)
   const donated = useStore((state) => state.donated)
   const setDonated = useStore((state) => state.setDonated)
-  const { donatedRef } = useApi()
+  const { donatedRef, updateCritters } = useApi()
   const { user } = useAuth()
   const [isLoading, setIsLoading] = useState(false)
 
@@ -77,7 +77,7 @@ const Critters = () => {
         let data = snapshot.val()
         if (!data) {
           data = donated
-          donatedRef.update(donated)
+          updateCritters(donated)
         }
         setDonated(data)
         setIsLoading(false)
@@ -85,7 +85,7 @@ const Critters = () => {
     }
     return () => donatedRef?.off()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [donatedRef, setDonated])
+  }, [donatedRef, setDonated, updateCritters])
 
   const addProperties = (critters) =>
     critters.map((critter) => {

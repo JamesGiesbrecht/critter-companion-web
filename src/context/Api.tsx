@@ -7,7 +7,7 @@ import { useAuth } from './Auth'
 interface ApiContextType {
   userRef: firebase.database.Reference | undefined
   donatedRef: firebase.database.Reference | undefined
-  write: (data: any) => Promise<any> | undefined
+  updateCritters: (data: any) => Promise<any> | undefined
   on: (
     cb: any,
   ) =>
@@ -20,7 +20,7 @@ const noApiProvider = () => noProvider('API')
 export const ApiContext = createContext<ApiContextType>({
   userRef: undefined,
   donatedRef: undefined,
-  write: noApiProvider,
+  updateCritters: noApiProvider,
   on: noApiProvider,
 })
 
@@ -28,15 +28,15 @@ export const ApiContextProvider: FC = ({ children }) => {
   const { user } = useAuth()
   let userRef: firebase.database.Reference | undefined
   let donatedRef: firebase.database.Reference | undefined
-  let write
+  let updateCritters
   let on
   if (user) {
     userRef = firebaseDb.ref(`users/${user.uid}`)
     donatedRef = firebaseDb.ref(`users/${user.uid}/donated`)
-    write = (data: any) => userRef?.set(data)
+    updateCritters = (data: any) => donatedRef?.update(data)
     on = (cb: any) => userRef?.on('value', cb)
   } else {
-    write = () => {
+    updateCritters = () => {
       throw new Error('User not authenticated')
     }
     on = () => {
@@ -46,7 +46,7 @@ export const ApiContextProvider: FC = ({ children }) => {
   const store = {
     userRef,
     donatedRef,
-    write,
+    updateCritters,
     on,
   }
   return <ApiContext.Provider value={store}>{children}</ApiContext.Provider>
