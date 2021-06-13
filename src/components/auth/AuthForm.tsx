@@ -2,17 +2,31 @@ import { SyntheticEvent, useEffect, useState } from 'react'
 import { useAuth } from 'context/Auth'
 import useStore, { FormType } from 'store'
 import { AuthError } from 'firebase/error'
-import { Button, Dialog, makeStyles } from '@material-ui/core'
+import { Dialog, makeStyles } from '@material-ui/core'
 import FormLink from 'components/auth/FormLink'
 import Login from 'components/auth/forms/Login'
 import SignUp from 'components/auth/forms/SignUp'
 import ForgotPassword from 'components/auth/forms/ForgotPassword'
 import VerificationEmail from 'components/auth/forms/VerificationEmail'
+import { grey } from '@material-ui/core/colors'
+import GoogleIcon from 'components/icons/GoogleIcon'
+import { LoadingButton } from '@material-ui/lab'
+
+enum SubmitType {
+  Google = 'Google',
+}
 
 const useStyles = makeStyles((theme) => ({
   dialogPaper: {
     width: 600,
     margin: theme.spacing(1),
+  },
+  googleButton: {
+    color: theme.palette.getContrastText('#FFF'),
+    backgroundColor: '#FFF',
+    '&:hover': {
+      backgroundColor: grey[100],
+    },
   },
 }))
 
@@ -49,7 +63,7 @@ const AuthForm = () => {
   const activeFormName = useStore<FormType | undefined>((state) => state.activeForm)
   const setActiveFormName = useStore((state) => state.setActiveForm)
   const setSnackbar = useStore((state) => state.setSnackbar)
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState<SubmitType | boolean>(false)
   const [submitError, setSubmitError] = useState('')
 
   const auth = useAuth()
@@ -67,19 +81,18 @@ const AuthForm = () => {
 
   const handleClose = () => setActiveFormName(undefined)
 
-  const handleSignInWithGoogle = async () => {
-    const result = await auth.signInWithGoogle()
-    console.log(result)
-  }
-
   const ActiveForm = activeFormName && forms[activeFormName]
 
-  const handleSubmit = async (e: SyntheticEvent, form: any) => {
+  const handleSubmit = async (e: SyntheticEvent, form?: any, submitType?: SubmitType) => {
     let result
+    const submitMethod = submitType || activeFormName
     try {
       setSubmitError('')
-      setIsLoading(true)
-      switch (activeFormName) {
+      setIsLoading(submitType || true)
+      switch (submitMethod) {
+        case SubmitType.Google:
+          result = await auth.signInWithGoogle()
+          break
         case FormType.Login:
           result = await auth.login(form.inputs.email.value, form.inputs.password.value)
           break
@@ -168,23 +181,35 @@ const AuthForm = () => {
     }
   }
 
+  const handleSignInWithGoogle = (e: SyntheticEvent) =>
+    handleSubmit(e, undefined, SubmitType.Google)
+
   return (
-    <>
-      <Dialog
-        classes={{ paper: classes.dialogPaper }}
-        open={Boolean(ActiveForm)}
-        onClose={handleClose}>
-        {ActiveForm && (
-          <ActiveForm
-            error={Boolean(submitError)}
-            helperText={submitError}
-            isLoading={isLoading}
-            onSubmit={handleSubmit}
-          />
-        )}
-        <Button onClick={handleSignInWithGoogle}>Sign in with Google</Button>
-      </Dialog>
-    </>
+    <Dialog
+      classes={{ paper: classes.dialogPaper }}
+      open={Boolean(ActiveForm)}
+      onClose={handleClose}>
+      {ActiveForm && (
+        <ActiveForm
+          error={Boolean(submitError)}
+          helperText={submitError}
+          isLoading={isLoading}
+          providerButtons={
+            <LoadingButton
+              loading={isLoading === SubmitType.Google}
+              loadingPosition="start"
+              disabled={Boolean(isLoading)}
+              className={classes.googleButton}
+              variant="contained"
+              startIcon={<GoogleIcon />}
+              onClick={handleSignInWithGoogle}>
+              Sign in with Google
+            </LoadingButton>
+          }
+          onSubmit={handleSubmit}
+        />
+      )}
+    </Dialog>
   )
 }
 
