@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     margin: 'auto',
-    maxWidth: 250,
+    maxWidth: 280,
     paddingTop: theme.spacing(3),
     '& > *': { margin: 0, marginBottom: theme.spacing(2), width: '100%' },
   },
@@ -78,11 +78,10 @@ const AuthDialog: FC<AuthDialogProps> = ({
               disabled={Boolean(isLoading)}
               variant="contained"
               type="submit"
-              color="primary"
-              size="large">
+              color="primary">
               {submitText}
             </LoadingButton>
-            {providerButtons}
+            {(type === FormType.Login || type === FormType.SignUp) && providerButtons}
             {!disableSwitchButton && (
               <Button
                 type="button"

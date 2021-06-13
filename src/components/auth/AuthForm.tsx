@@ -12,7 +12,7 @@ import { grey } from '@material-ui/core/colors'
 import GoogleIcon from 'components/icons/GoogleIcon'
 import { LoadingButton } from '@material-ui/lab'
 
-enum SubmitType {
+enum Providers {
   Google = 'Google',
 }
 
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.getContrastText('#FFF'),
     backgroundColor: '#FFF',
     '&:hover': {
-      backgroundColor: grey[100],
+      backgroundColor: grey[200],
     },
   },
 }))
@@ -63,9 +63,8 @@ const AuthForm = () => {
   const activeFormName = useStore<FormType | undefined>((state) => state.activeForm)
   const setActiveFormName = useStore((state) => state.setActiveForm)
   const setSnackbar = useStore((state) => state.setSnackbar)
-  const [isLoading, setIsLoading] = useState<SubmitType | boolean>(false)
+  const [isLoading, setIsLoading] = useState<Providers | boolean>(false)
   const [submitError, setSubmitError] = useState('')
-
   const auth = useAuth()
 
   useEffect(() => {
@@ -79,18 +78,21 @@ const AuthForm = () => {
     [FormType.VerificationEmail]: VerificationEmail,
   }
 
+  const getProviderButtonText = (provider: Providers) =>
+    activeFormName === FormType.SignUp ? `Sign up with ${provider}` : `Sign in with ${provider}`
+
   const handleClose = () => setActiveFormName(undefined)
 
   const ActiveForm = activeFormName && forms[activeFormName]
 
-  const handleSubmit = async (e: SyntheticEvent, form?: any, submitType?: SubmitType) => {
+  const handleSubmit = async (e: SyntheticEvent, form?: any, submitType?: Providers) => {
     let result
     const submitMethod = submitType || activeFormName
     try {
       setSubmitError('')
       setIsLoading(submitType || true)
       switch (submitMethod) {
-        case SubmitType.Google:
+        case Providers.Google:
           result = await auth.signInWithGoogle()
           break
         case FormType.Login:
@@ -181,8 +183,7 @@ const AuthForm = () => {
     }
   }
 
-  const handleSignInWithGoogle = (e: SyntheticEvent) =>
-    handleSubmit(e, undefined, SubmitType.Google)
+  const handleSignInWithGoogle = (e: SyntheticEvent) => handleSubmit(e, undefined, Providers.Google)
 
   return (
     <Dialog
@@ -196,14 +197,14 @@ const AuthForm = () => {
           isLoading={isLoading}
           providerButtons={
             <LoadingButton
-              loading={isLoading === SubmitType.Google}
+              loading={isLoading === Providers.Google}
               loadingPosition="start"
               disabled={Boolean(isLoading)}
               className={classes.googleButton}
               variant="contained"
               startIcon={<GoogleIcon />}
               onClick={handleSignInWithGoogle}>
-              Sign in with Google
+              {getProviderButtonText(Providers.Google)}
             </LoadingButton>
           }
           onSubmit={handleSubmit}
