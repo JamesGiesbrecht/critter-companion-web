@@ -10,6 +10,7 @@ interface AuthContextType {
   logout: typeof firebaseAuth.signOut
   signUp: typeof firebaseAuth.createUserWithEmailAndPassword
   resetPassword: typeof firebaseAuth.sendPasswordResetEmail
+  signInWithGoogle: () => Promise<firebase.auth.UserCredential>
 }
 
 const noAuthProvider = () => noProvider('Auth')
@@ -20,11 +21,13 @@ export const AuthContext = createContext<AuthContextType>({
   logout: noAuthProvider,
   signUp: noAuthProvider,
   resetPassword: noAuthProvider,
+  signInWithGoogle: noAuthProvider,
 })
 
 export const AuthContextProvider: FC = ({ children }) => {
   const [user, setUser] = useState<AuthContextType['user']>()
   const setDonated = useStore((state) => state.setDonated)
+  const googleAuthProvider = new firebase.auth.GoogleAuthProvider()
 
   useEffect(() => {
     const unsubscribe = firebaseAuth.onAuthStateChanged((authUser) => setUser(authUser))
@@ -42,6 +45,7 @@ export const AuthContextProvider: FC = ({ children }) => {
     },
     signUp: firebaseAuth.createUserWithEmailAndPassword.bind(firebaseAuth),
     resetPassword: firebaseAuth.sendPasswordResetEmail.bind(firebaseAuth),
+    signInWithGoogle: async () => firebaseAuth.signInWithPopup(googleAuthProvider),
   }
   return <AuthContext.Provider value={store}>{children}</AuthContext.Provider>
 }

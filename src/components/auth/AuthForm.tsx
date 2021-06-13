@@ -2,7 +2,7 @@ import { SyntheticEvent, useEffect, useState } from 'react'
 import { useAuth } from 'context/Auth'
 import useStore, { FormType } from 'store'
 import { AuthError } from 'firebase/error'
-import { Dialog, makeStyles } from '@material-ui/core'
+import { Button, Dialog, makeStyles } from '@material-ui/core'
 import FormLink from 'components/auth/FormLink'
 import Login from 'components/auth/forms/Login'
 import SignUp from 'components/auth/forms/SignUp'
@@ -67,6 +67,11 @@ const AuthForm = () => {
 
   const handleClose = () => setActiveFormName(undefined)
 
+  const handleSignInWithGoogle = async () => {
+    const result = await auth.signInWithGoogle()
+    console.log(result)
+  }
+
   const ActiveForm = activeFormName && forms[activeFormName]
 
   const handleSubmit = async (e: SyntheticEvent, form: any) => {
@@ -121,13 +126,21 @@ const AuthForm = () => {
           )
           break
         case AuthError.WrongPassword:
-          errorMessage = 'Incorrect password provided.'
+          errorMessage = (
+            <>
+              Incorrect password provided.{' '}
+              <FormLink to={FormType.ForgotPassword}>Reset your password</FormLink>, or try signing
+              in with another provider like Google.
+            </>
+          )
           break
         case AuthError.EmailAlreadyInUse:
           errorMessage = (
             <>
               An account already exists with this email, did you mean to{' '}
               <FormLink to={FormType.Login}>login?</FormLink>
+              <br />
+              An account may also already exist with another provider like Google.
             </>
           )
           break
@@ -169,6 +182,7 @@ const AuthForm = () => {
             onSubmit={handleSubmit}
           />
         )}
+        <Button onClick={handleSignInWithGoogle}>Sign in with Google</Button>
       </Dialog>
     </>
   )
