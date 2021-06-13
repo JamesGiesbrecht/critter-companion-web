@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { FormType } from 'store'
-import { authInputs } from 'components/auth/LoginSignUpForm'
+import { authInputs } from 'components/auth/AuthForm'
 import AuthDialog, { AuthFormProps } from 'components/auth/AuthDialog'
 
 const SignUp: FC<AuthFormProps> = (props) => (

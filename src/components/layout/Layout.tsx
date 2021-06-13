@@ -4,7 +4,7 @@ import { Alert, Container, makeStyles, Slide, Snackbar } from '@material-ui/core
 import Footer from 'components/layout/Footer'
 import Centered from 'components/ui/Centered'
 import Loading from 'components/ui/Loading'
-import LoginSignUpForm from 'components/auth/LoginSignUpForm'
+import AuthForm from 'components/auth/AuthForm'
 import useStore from 'store'
 
 interface Props {
@@ -48,7 +48,7 @@ const Layout: FC<Props> = ({ children }) => {
 
   return (
     <Container className={classes.content} disableGutters>
-      <LoginSignUpForm />
+      <AuthForm />
       {children}
       <Footer />
       <footer className={classes.footerMargin} />

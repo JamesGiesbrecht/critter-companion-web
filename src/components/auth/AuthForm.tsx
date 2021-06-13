@@ -44,7 +44,7 @@ export const authInputs = {
   },
 }
 
-const LoginSignUpForm = () => {
+const AuthForm = () => {
   const classes = useStyles()
   const activeFormName = useStore<FormType | undefined>((state) => state.activeForm)
   const setActiveFormName = useStore((state) => state.setActiveForm)
@@ -174,4 +174,4 @@ const LoginSignUpForm = () => {
   )
 }
 
-export default LoginSignUpForm
+export default AuthForm
