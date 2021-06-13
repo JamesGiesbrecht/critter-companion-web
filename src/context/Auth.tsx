@@ -10,6 +10,7 @@ interface AuthContextType {
   logout: typeof firebaseAuth.signOut
   signUp: typeof firebaseAuth.createUserWithEmailAndPassword
   resetPassword: typeof firebaseAuth.sendPasswordResetEmail
+  sendVerificationEmail: typeof firebaseAuth.sendSignInLinkToEmail
 }
 
 const noAuthProvider = () => noProvider('Auth')
@@ -20,6 +21,7 @@ export const AuthContext = createContext<AuthContextType>({
   logout: noAuthProvider,
   signUp: noAuthProvider,
   resetPassword: noAuthProvider,
+  sendVerificationEmail: noAuthProvider,
 })
 
 export const AuthContextProvider: FC = ({ children }) => {
@@ -42,6 +44,7 @@ export const AuthContextProvider: FC = ({ children }) => {
     },
     signUp: firebaseAuth.createUserWithEmailAndPassword.bind(firebaseAuth),
     resetPassword: firebaseAuth.sendPasswordResetEmail.bind(firebaseAuth),
+    sendVerificationEmail: firebaseAuth.sendSignInLinkToEmail.bind(firebaseAuth),
   }
   return <AuthContext.Provider value={store}>{children}</AuthContext.Provider>
 }

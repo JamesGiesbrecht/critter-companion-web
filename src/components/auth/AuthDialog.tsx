@@ -12,6 +12,7 @@ import { LoadingButton } from '@material-ui/lab'
 import Form from 'components/common/Form'
 
 interface AuthDialogProps {
+  children?: ReactNode
   error?: boolean
   helperText?: ReactNode | string
   inputs: any
@@ -34,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const AuthDialog: FC<AuthDialogProps> = ({
+  children,
   error,
   helperText,
   inputs,
@@ -60,6 +62,7 @@ const AuthDialog: FC<AuthDialogProps> = ({
             {helperText}
           </Typography>
         )}
+        {children && <Typography>{children}</Typography>}
         <Form inputs={inputs} type={type} onSubmit={onSubmit}>
           <DialogActions className={classes.formActions}>
             <LoadingButton loading={isLoading} type="submit" color="primary" size="large">

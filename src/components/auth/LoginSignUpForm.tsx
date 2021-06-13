@@ -103,6 +103,9 @@ const LoginSignUpForm = () => {
             severity: 'success',
           })
           break
+        case FormType.VerificationEmail:
+          result = await auth.user?.sendEmailVerification()
+          break
         default:
           throw new Error(`Invalid Submission Method: ${activeFormName}`)
       }
