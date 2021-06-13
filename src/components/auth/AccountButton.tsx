@@ -3,12 +3,13 @@ import { useHistory } from 'react-router-dom'
 import { useAuth } from 'context/Auth'
 import { stringToColor } from 'utility/utility'
 import Routes from 'constants/Routes'
-import { Avatar, IconButton, Menu, MenuItem } from '@material-ui/core'
+import { Avatar, IconButton, Menu, MenuItem, useTheme } from '@material-ui/core'
 
 const AccountButton = () => {
   const { user, logout } = useAuth()
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const history = useHistory()
+  const theme = useTheme()
   const open = Boolean(anchorEl)
   if (!user) return null
 
@@ -42,7 +43,7 @@ const AccountButton = () => {
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}>
         <Avatar
-          sx={{ bgcolor: stringToColor(avatarText as string) }}
+          sx={{ bgcolor: stringToColor(avatarText as string, theme.palette.mode) }}
           alt={user.email || undefined}
           src={user.photoURL || undefined}>
           {avatarText?.charAt(0).toUpperCase()}
