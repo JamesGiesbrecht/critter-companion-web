@@ -2,34 +2,21 @@ import { SyntheticEvent, useEffect, useState } from 'react'
 import { useAuth } from 'context/Auth'
 import useStore, { FormType } from 'store'
 import { AuthError } from 'firebase/error'
-import {
-  Alert,
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  makeStyles,
-  Slide,
-  Snackbar,
-  Typography,
-} from '@material-ui/core'
-import { Color, LoadingButton } from '@material-ui/lab'
-import Form from 'components/common/Form'
+import { Dialog, makeStyles } from '@material-ui/core'
 import FormLink from 'components/auth/FormLink'
+import Login from 'components/auth/forms/Login'
+import SignUp from 'components/auth/forms/SignUp'
+import ForgotPassword from 'components/auth/forms/ForgotPassword'
+import VerificationEmail from 'components/auth/forms/VerificationEmail'
 
 const useStyles = makeStyles((theme) => ({
   dialogPaper: {
     width: 600,
     margin: theme.spacing(1),
   },
-  formActions: { display: 'flex', flexDirection: 'column' },
-  submitError: {
-    color: theme.palette.error.main,
-  },
 }))
 
-const inputs = {
+export const authInputs = {
   email: {
     label: 'Email',
     type: 'email',
@@ -61,13 +48,10 @@ const LoginSignUpForm = () => {
   const classes = useStyles()
   const activeFormName = useStore<FormType | undefined>((state) => state.activeForm)
   const setActiveFormName = useStore((state) => state.setActiveForm)
+  const setSnackbar = useStore((state) => state.setSnackbar)
   const [isLoading, setIsLoading] = useState(false)
   const [submitError, setSubmitError] = useState('')
-  const [snackbar, setSnackbar] = useState<{
-    open: boolean
-    content: string
-    severity: Color | undefined
-  }>({ open: false, content: '', severity: 'success' })
+
   const auth = useAuth()
 
   useEffect(() => {
@@ -75,78 +59,49 @@ const LoginSignUpForm = () => {
   }, [activeFormName])
 
   const forms = {
-    [FormType.Login]: {
-      type: FormType.Login,
-      title: 'Welcome Back',
-      submitText: 'Login',
-      inputs: {
-        email: inputs.email,
-        password: {
-          ...inputs.password,
-          after: (
-            <FormLink key="forgotPassword" to={FormType.ForgotPassword}>
-              Forgot Password?
-            </FormLink>
-          ),
-        },
-      },
-    },
-    [FormType.SignUp]: {
-      type: FormType.SignUp,
-      title: 'New User Sign Up',
-      submitText: 'Sign Up',
-      inputs: {
-        email: inputs.email,
-        password: inputs.password,
-        confirmPassword: inputs.confirmPassword,
-      },
-    },
-    [FormType.ForgotPassword]: {
-      type: FormType.ForgotPassword,
-      title: 'Forgot Password',
-      submitText: 'Send Password Reset Email',
-      inputs: { email: inputs.email },
-    },
+    [FormType.Login]: Login,
+    [FormType.SignUp]: SignUp,
+    [FormType.ForgotPassword]: ForgotPassword,
+    [FormType.VerificationEmail]: VerificationEmail,
   }
 
   const handleClose = () => setActiveFormName(undefined)
 
-  const handleSnackbarClose = (event?: SyntheticEvent, reason?: string) => {
-    if (reason === 'clickaway') return
-    setSnackbar((prev) => ({ ...prev, open: false }))
-  }
-
-  const toggleState = () => {
-    setActiveFormName(activeFormName === FormType.Login ? FormType.SignUp : FormType.Login)
-  }
-
-  const activeForm = activeFormName && forms[activeFormName]
+  const ActiveForm = activeFormName && forms[activeFormName]
 
   const handleSubmit = async (e: SyntheticEvent, form: any) => {
     let result
-    const email = form.inputs.email.value
     try {
+      setSubmitError('')
       setIsLoading(true)
       switch (activeFormName) {
         case FormType.Login:
-          result = await auth.login(email, form.inputs.password.value)
+          result = await auth.login(form.inputs.email.value, form.inputs.password.value)
           break
         case FormType.SignUp:
-          result = await auth.signUp(email, form.inputs.password.value)
-          break
+          result = await auth.signUp(form.inputs.email.value, form.inputs.password.value)
+          await result.user?.sendEmailVerification()
+          setActiveFormName(FormType.VerificationEmail)
+          return
         case FormType.ForgotPassword:
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          result = await auth.resetPassword(email)
+          result = await auth.resetPassword(form.inputs.email.value)
           setSnackbar({
             open: true,
-            content: 'Password reset email successfully sent',
+            text: 'Password reset email successfully sent',
             severity: 'success',
           })
           break
+        case FormType.VerificationEmail:
+          result = await auth.user?.sendEmailVerification()
+          setSnackbar({
+            open: true,
+            text: 'Verification email successfully sent',
+            severity: 'success',
+          })
+          return
         default:
           throw new Error(`Invalid Submission Method: ${activeFormName}`)
       }
-      setSubmitError('')
       setActiveFormName(undefined)
     } catch (error) {
       let errorMessage
@@ -155,7 +110,7 @@ const LoginSignUpForm = () => {
           errorMessage = 'Please enter a valid email address.'
           break
         case AuthError.UserDisabled:
-          errorMessage = `The account associated with ${email} has been disabled. Contact support for help with this issue.`
+          errorMessage = `The account associated with ${form.inputs.email.value} has been disabled. Contact support for help with this issue.`
           break
         case AuthError.UserNotFound:
           errorMessage = (
@@ -175,6 +130,9 @@ const LoginSignUpForm = () => {
               <FormLink to={FormType.Login}>login?</FormLink>
             </>
           )
+          break
+        case AuthError.TooManyRequests:
+          errorMessage = 'You have made too many requests, try again later.'
           break
         case AuthError.OperationNotAllowed:
         case AuthError.MissingContinueUri:
@@ -201,47 +159,17 @@ const LoginSignUpForm = () => {
     <>
       <Dialog
         classes={{ paper: classes.dialogPaper }}
-        open={Boolean(activeForm)}
-        onClose={handleClose}
-        aria-labelledby={activeForm?.type}>
-        {activeForm && (
-          <>
-            <DialogTitle id={activeForm.type}>{activeForm.title}</DialogTitle>
-            <DialogContent>
-              {submitError && (
-                <Typography className={classes.submitError} align="center">
-                  {submitError}
-                </Typography>
-              )}
-              <Form inputs={activeForm.inputs} type={activeForm.type} onSubmit={handleSubmit}>
-                <DialogActions className={classes.formActions}>
-                  <LoadingButton loading={isLoading} type="submit" color="primary" size="large">
-                    {activeForm.submitText}
-                  </LoadingButton>
-                  <Button
-                    type="button"
-                    size="small"
-                    color="inherit"
-                    disabled={isLoading}
-                    onClick={toggleState}>
-                    {`Switch to ${activeForm.type === FormType.Login ? 'Sign Up' : 'Login'}`}
-                  </Button>
-                </DialogActions>
-              </Form>
-            </DialogContent>
-          </>
+        open={Boolean(ActiveForm)}
+        onClose={handleClose}>
+        {ActiveForm && (
+          <ActiveForm
+            error={Boolean(submitError)}
+            helperText={submitError}
+            isLoading={isLoading}
+            onSubmit={handleSubmit}
+          />
         )}
       </Dialog>
-      <Snackbar
-        open={snackbar.open}
-        autoHideDuration={6000}
-        onClose={handleSnackbarClose}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-        TransitionComponent={(props) => <Slide {...props} direction="up" />}>
-        <Alert onClose={handleSnackbarClose} severity={snackbar.severity} sx={{ width: '100%' }}>
-          {snackbar.content}
-        </Alert>
-      </Snackbar>
     </>
   )
 }

@@ -87,7 +87,7 @@ const CritterRow = ({ critter, hours }) => {
   const classes = useStyles()
   const isDonated = useStore((state) => state.donated[critter.id])
   const toggleDonated = useStore((state) => state.toggleDonated)
-  const { donatedRef } = useApi()
+  const { donatedRef, updateCritters } = useApi()
   const [dialogOpen, setDialogOpen] = useState(false)
   const nameButtonRef = useRef()
 
@@ -109,7 +109,9 @@ const CritterRow = ({ critter, hours }) => {
   }
   const handleDonatedCheck = () => {
     if (donatedRef) {
-      donatedRef.update({ [critter.id]: !isDonated })
+      if (!updateCritters({ [critter.id]: !isDonated })) {
+        toggleDonated(critter.id)
+      }
     } else {
       toggleDonated(critter.id)
     }
