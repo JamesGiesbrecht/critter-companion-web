@@ -3,7 +3,7 @@ import firebase from 'firebase'
 import { firebaseDb } from 'firebase/config'
 import { noProvider } from 'utility/context'
 import useStore from 'store'
-import { Link } from '@material-ui/core'
+import { Button, Link } from '@material-ui/core'
 import { useAuth } from './Auth'
 
 interface ApiContextType {
@@ -64,13 +64,9 @@ export const ApiContextProvider: FC = ({ children }) => {
                 critters.
                 <br />
                 {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                <Link
-                  component="button"
-                  type="button"
-                  variant="body1"
-                  onClick={handleSendVerificationEmail}>
+                <Button color="inherit" onClick={handleSendVerificationEmail}>
                   Resend Verification Email.
-                </Link>
+                </Button>
               </>
             ),
             severity: 'error',
