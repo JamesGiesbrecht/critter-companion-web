@@ -3,6 +3,7 @@ import firebase from 'firebase'
 import { firebaseDb } from 'firebase/config'
 import { noProvider } from 'utility/context'
 import useStore from 'store'
+import { Link } from '@material-ui/core'
 import { useAuth } from './Auth'
 
 interface ApiContextType {
@@ -26,9 +27,25 @@ export const ApiContext = createContext<ApiContextType>({
 })
 
 export const ApiContextProvider: FC = ({ children }) => {
-  const setSnackbar = useStore((state) => state.setSnackbar)
-
   const { user } = useAuth()
+  const setSnackbar = useStore((state) => state.setSnackbar)
+  const handleSendVerificationEmail = async () => {
+    try {
+      await user?.sendEmailVerification()
+      setSnackbar({
+        open: true,
+        text: 'Verification email successfully sent',
+        severity: 'success',
+      })
+    } catch (e) {
+      setSnackbar({
+        open: true,
+        text: 'Error sending verification email. Try again later.',
+        severity: 'error',
+      })
+    }
+  }
+
   let userRef: firebase.database.Reference | undefined
   let donatedRef: firebase.database.Reference | undefined
   let updateCritters
@@ -36,10 +53,29 @@ export const ApiContextProvider: FC = ({ children }) => {
   if (user) {
     userRef = firebaseDb.ref(`users/${user.uid}`)
     donatedRef = firebaseDb.ref(`users/${user.uid}/donated`)
-    updateCritters = (data: any) => {
+    updateCritters = (data: any, showError?: boolean) => {
       if (!user.emailVerified) {
-        console.log('Not Verified')
-        setSnackbar({ open: true, text: 'Email not verified', severity: 'error' })
+        if (showError !== false) {
+          setSnackbar({
+            open: true,
+            text: (
+              <>
+                Email not verified. Verify email address ({user.email}) to synchronize your
+                critters.
+                <br />
+                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                <Link
+                  component="button"
+                  type="button"
+                  variant="body1"
+                  onClick={handleSendVerificationEmail}>
+                  Resend Verification Email.
+                </Link>
+              </>
+            ),
+            severity: 'error',
+          })
+        }
         return false
       }
       return donatedRef?.update(data)

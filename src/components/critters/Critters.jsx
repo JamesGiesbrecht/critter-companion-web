@@ -77,7 +77,7 @@ const Critters = () => {
         let data = snapshot.val()
         if (!data) {
           data = donated
-          updateCritters(donated)
+          updateCritters(donated, false)
         }
         setDonated(data)
         setIsLoading(false)

@@ -99,7 +99,7 @@ const LoginSignUpForm = () => {
           result = await auth.user?.sendEmailVerification()
           setSnackbar({
             open: true,
-            text: 'Verification Email successfully sent',
+            text: 'Verification email successfully sent',
             severity: 'success',
           })
           return
