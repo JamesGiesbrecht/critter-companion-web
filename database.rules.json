@@ -1,0 +1,10 @@
+{
+  "rules": {
+    "users": {
+      "$uid": {
+        ".write": "$uid === auth.uid && auth.token.email_verified == true",
+        ".read": "$uid === auth.uid"
+      }
+    }
+  }
+}

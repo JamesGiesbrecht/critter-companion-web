@@ -15,7 +15,7 @@ const {
 
 const firebaseConfig = {
   apiKey: REACT_APP_FIREBASE_API_KEY,
-  authDomain: `${REACT_APP_FIREBASE_PROJECT_ID}.firebaseapp.com`,
+  authDomain: 'crittercompanion.app',
   databaseURL: `https://${REACT_APP_FIREBASE_DATABASE}.firebaseio.com`,
   projectId: REACT_APP_FIREBASE_PROJECT_ID,
   storageBucket: `${REACT_APP_FIREBASE_PROJECT_ID}.appspot.com`,
