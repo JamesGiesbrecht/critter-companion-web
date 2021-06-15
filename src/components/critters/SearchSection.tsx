@@ -1,8 +1,12 @@
-import { useEffect, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import useStore from 'store'
 import { Paper, makeStyles, Typography } from '@material-ui/core'
 import { Search as SearchIcon } from '@material-ui/icons'
 import CrittersTable from 'components/critters/CrittersTable'
+
+interface Props {
+  [x: string]: any
+}
 
 const useStyles = makeStyles(() => ({
   critters: {
@@ -28,14 +32,14 @@ const useStyles = makeStyles(() => ({
   },
 }))
 
-const SearchSection = ({ allCritters }) => {
+const SearchSection: FC<Props> = ({ allCritters }) => {
   const classes = useStyles()
   const search = useStore((state) => state.filters.search)
   const [filteredCritters, setFilteredCritters] = useState(allCritters)
 
   useEffect(() => {
     setFilteredCritters(
-      allCritters.filter((critter) => critter.name.toLowerCase().search(search) !== -1),
+      allCritters.filter((critter: any) => critter.name.toLowerCase().search(search) !== -1),
     )
   }, [allCritters, search])
 

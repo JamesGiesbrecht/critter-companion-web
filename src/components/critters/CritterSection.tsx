@@ -1,8 +1,12 @@
-import { useState, memo, useMemo } from 'react'
+import { useState, memo, useMemo, FC } from 'react'
 import useStore, { MainFilter } from 'store'
 import { Collapse, Paper, makeStyles, Typography, Button } from '@material-ui/core'
 import CrittersTable from 'components/critters/CrittersTable'
 import ExpandMoreIcon from 'components/ui/ExpandMoreIcon'
+
+interface Props {
+  [x: string]: any
+}
 
 const useStyles = makeStyles((theme) => ({
   critters: {
@@ -29,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const CritterSection = ({ allCritters, type }) => {
+const CritterSection: FC<Props> = ({ allCritters, type }) => {
   const classes = useStyles()
   const mainFilter = useStore((state) => state.filters.mainFilter)
   const statusFilters = useStore((state) => state.filters.statusFilters)
@@ -50,7 +54,7 @@ const CritterSection = ({ allCritters, type }) => {
   const filterCritters = () => {
     let filteredCritters = []
     if (search) {
-      return allCritters.filter((critter) => critter.name.toLowerCase().search(search) !== -1)
+      return allCritters.filter((critter: any) => critter.name.toLowerCase().search(search) !== -1)
     }
 
     if (mainFilter === MainFilter.All) {
@@ -58,17 +62,17 @@ const CritterSection = ({ allCritters, type }) => {
       filteredCritters = allCritters
     } else if (mainFilter === MainFilter.Available) {
       // add critters that are available now
-      filteredCritters = allCritters.filter((critter) => critter.isAvailableNow)
+      filteredCritters = allCritters.filter((critter: any) => critter.isAvailableNow)
     } else {
       //  Checking if any of the conditions in show are true properties on the critter
-      filteredCritters = allCritters.filter((critter) =>
+      filteredCritters = allCritters.filter((critter: any) =>
         statusFilters.some((condition) => critter[condition]),
       )
     }
 
     if (!showDonated) {
       // remove critters that are not donated
-      filteredCritters = filteredCritters.filter((critter) => !donated[critter.id])
+      filteredCritters = filteredCritters.filter((critter: any) => !donated[critter.id])
     }
 
     return filteredCritters

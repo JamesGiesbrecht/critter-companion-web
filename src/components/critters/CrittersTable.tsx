@@ -1,7 +1,11 @@
-import { useState } from 'react'
+import { FC, useState } from 'react'
 import { TableContainer, Table, TableBody, makeStyles } from '@material-ui/core'
 import EnhancedTableHead from 'components/critters/EnhancedTableHead'
 import CritterRow from 'components/critters/CritterRow'
+
+interface Props {
+  [x: string]: any
+}
 
 const useStyles = makeStyles((theme) => ({
   tableWrapper: {
@@ -23,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const descendingComparator = (a, b, orderBy) => {
+const descendingComparator = (a: any, b: any, orderBy: any) => {
   if (b[orderBy] < a[orderBy]) {
     return -1
   }
@@ -33,27 +37,27 @@ const descendingComparator = (a, b, orderBy) => {
   return 0
 }
 
-const getComparator = (order, orderBy) =>
+const getComparator = (order: any, orderBy: any) =>
   order === 'desc'
-    ? (a, b) => descendingComparator(a, b, orderBy)
-    : (a, b) => -descendingComparator(a, b, orderBy)
+    ? (a: any, b: any) => descendingComparator(a, b, orderBy)
+    : (a: any, b: any) => -descendingComparator(a, b, orderBy)
 
-const stableSort = (array, comparator) => {
-  const stabilizedThis = array.map((el, index) => [el, index])
-  stabilizedThis.sort((a, b) => {
+const stableSort = (array: any, comparator: any) => {
+  const stabilizedThis = array.map((el: any, index: any) => [el, index])
+  stabilizedThis.sort((a: any, b: any) => {
     const order = comparator(a[0], b[0])
     if (order !== 0) return order
     return a[1] - b[1]
   })
-  return stabilizedThis.map((el) => el[0])
+  return stabilizedThis.map((el: any) => el[0])
 }
 
-const CrittersTable = ({ critters }) => {
+const CrittersTable: FC<Props> = ({ critters }) => {
   const classes = useStyles()
   const [order, setOrder] = useState('asc')
   const [orderBy, setOrderBy] = useState('name')
 
-  const amOrPM = (hour) => {
+  const amOrPM = (hour: number) => {
     if (hour > 12 && hour < 24) {
       return `${hour - 12}pm`
     }
@@ -69,7 +73,7 @@ const CrittersTable = ({ critters }) => {
     throw Error(`Hour (${hour}) not in range (1-24)`)
   }
 
-  const getHours = (startTime, endTime) => {
+  const getHours = (startTime: any, endTime: any) => {
     if (Array.isArray(startTime)) {
       let hours = ''
       startTime.forEach((start, index) => {
@@ -86,13 +90,13 @@ const CrittersTable = ({ critters }) => {
     return `${amOrPM(startTime)} - ${amOrPM(endTime)}`
   }
 
-  const handleSortRequest = (event, property) => {
+  const handleSortRequest = (event: any, property: any) => {
     const isAsc = orderBy === property && order === 'asc'
     setOrder(isAsc ? 'desc' : 'asc')
     setOrderBy(property)
   }
 
-  const rows = stableSort(critters, getComparator(order, orderBy)).map((critter) => {
+  const rows = stableSort(critters, getComparator(order, orderBy)).map((critter: any) => {
     const hours = getHours(critter.start_time, critter.end_time)
     return <CritterRow key={critter.name} critter={critter} hours={hours} />
   })

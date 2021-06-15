@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
 const today = new Date()
 const curMonth = today.getMonth() + 1
 
-const hasPrevMonth = (months) => {
+const hasPrevMonth = (months: any) => {
   // January
   if (curMonth === 1) {
     return months.includes(12)
@@ -32,7 +32,7 @@ const hasPrevMonth = (months) => {
   return months.includes(curMonth - 1)
 }
 
-const hasNextMonth = (months) => {
+const hasNextMonth = (months: any) => {
   // December
   if (curMonth === 12) {
     return months.includes(1)
@@ -40,10 +40,10 @@ const hasNextMonth = (months) => {
   return months.includes(curMonth + 1)
 }
 
-const isAvailableNow = (months) => months.includes(curMonth)
+const isAvailableNow = (months: any) => months.includes(curMonth)
 
-const getAvailability = (months) => {
-  const availability = {}
+const getAvailability = (months: any) => {
+  const availability: any = {}
 
   if (isAvailableNow(months)) {
     availability.isAvailableNow = true
@@ -87,8 +87,8 @@ const Critters = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [donatedRef, setDonated, updateCritters])
 
-  const addProperties = (critters) =>
-    critters.map((critter) => {
+  const addProperties = (critters: any) =>
+    critters.map((critter: any) => {
       const critterMonths = isNorthern ? critter.northern_months : critter.southern_months
       return {
         ...critter,

@@ -1,13 +1,17 @@
-import { memo, useRef, useState } from 'react'
+import { FC, memo, useRef, useState } from 'react'
 import clsx from 'clsx'
 import { useApi } from 'context/Api'
 import useStore, { Statuses } from 'store'
-import { dot, hidden } from 'assets/cssClasses'
+import { dot, hidden } from 'styles/cssClasses'
 import { FishSizes } from 'constants/AppConstants'
 import { TableRow, TableCell, makeStyles, Typography, Button } from '@material-ui/core'
 import CritterInfo from 'components/critters/CritterInfo'
 import Months from 'components/critters/Months'
 import BlathersIcon from 'components/icons/BlathersIcon'
+
+interface Props {
+  [x: string]: any
+}
 
 const useStyles = makeStyles((theme) => ({
   cell: {
@@ -83,7 +87,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const CritterRow = ({ critter, hours }) => {
+const CritterRow: FC<Props> = ({ critter, hours }) => {
   const classes = useStyles()
   const isDonated = useStore((state) => state.donated[critter.id])
   const toggleDonated = useStore((state) => state.toggleDonated)
@@ -91,10 +95,11 @@ const CritterRow = ({ critter, hours }) => {
   const [dialogOpen, setDialogOpen] = useState(false)
   const nameButtonRef = useRef()
 
-  const handleDialogOpen = (e) => {
+  const handleDialogOpen = (e: any) => {
     // Clicking the donate toggle
     if (
       nameButtonRef.current &&
+      // @ts-ignore
       (nameButtonRef.current === e.target || nameButtonRef.current.contains(e.target))
     ) {
       return
@@ -117,9 +122,11 @@ const CritterRow = ({ critter, hours }) => {
     }
   }
 
-  const nameButton = (includeRef) => {
+  const nameButton = (includeRef: any) => {
+    // TODO fix this ref problem, dialog always opens
     const ref = includeRef ? { ref: nameButtonRef } : {}
     return (
+      // @ts-ignore
       <Button
         className={clsx(classes.name, !isDonated && classes.notDonated)}
         color="inherit"
@@ -127,7 +134,7 @@ const CritterRow = ({ critter, hours }) => {
           <BlathersIcon className={clsx(classes.blathers, isDonated && classes.donated)} />
         }
         onClick={handleDonatedCheck}
-        {...ref}>
+        ref={ref}>
         <Typography component="span">
           {critter.name}
           {critter[Statuses.New] && <span className={clsx(classes.dot, classes.new)} />}
@@ -139,7 +146,7 @@ const CritterRow = ({ critter, hours }) => {
   }
 
   return (
-    <TableRow hover type="button" onClick={handleDialogOpen}>
+    <TableRow hover onClick={handleDialogOpen}>
       <TableCell className={clsx(classes.critterImgCell, classes.cell)}>
         <img className={classes.critterImg} src={critter.image_path} alt={critter.name} />
       </TableCell>
@@ -152,6 +159,7 @@ const CritterRow = ({ critter, hours }) => {
       </TableCell>
       {critter.size && (
         <TableCell className={clsx(classes.cell, classes.hiddenMd)} align="right">
+          {/* @ts-ignore */}
           {FishSizes[critter.size] || critter.size}
         </TableCell>
       )}

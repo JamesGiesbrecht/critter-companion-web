@@ -1,8 +1,8 @@
 import { MouseEvent } from 'react'
 import clsx from 'clsx'
 import useStore, { MainFilter, Statuses } from 'store'
-import { removeItem } from 'assets/utility'
-import { dot } from 'assets/cssClasses'
+import { removeItem } from 'utility/utility'
+import { dot } from 'styles/cssClasses'
 import {
   ToggleButtonGroup,
   ToggleButton,

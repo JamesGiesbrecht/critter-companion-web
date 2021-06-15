@@ -1,6 +1,11 @@
+import { FC } from 'react'
 import { Card, CardHeader, CardContent, Typography, Dialog, makeStyles } from '@material-ui/core'
 import { FishSizes } from 'constants/AppConstants'
 import Months from 'components/critters/Months'
+
+interface Props {
+  [x: string]: any
+}
 
 const useStyles = makeStyles((theme) => ({
   critterInfo: {
@@ -51,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const CritterInfo = ({ critter, dialogOpen, handleDialogClose, nameButton, hours }) => {
+const CritterInfo: FC<Props> = ({ critter, dialogOpen, handleDialogClose, nameButton, hours }) => {
   const classes = useStyles()
 
   return (
@@ -89,6 +94,7 @@ const CritterInfo = ({ critter, dialogOpen, handleDialogClose, nameButton, hours
                 <Typography variant="subtitle2" className={classes.infoTitle}>
                   Size:
                 </Typography>
+                {/* @ts-ignore */}
                 <Typography>{FishSizes[critter.size]}</Typography>
               </div>
             )}

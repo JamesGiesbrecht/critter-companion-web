@@ -1,3 +1,5 @@
+import { CSSProperties } from '@material-ui/styles'
+
 export const dot = {
   height: '.75em',
   width: '.75em',
@@ -5,7 +7,7 @@ export const dot = {
   borderRadius: '50%',
   display: 'inline-block',
   marginLeft: '5px',
-}
+} as CSSProperties
 
 export const hidden = {
   border: 0,
@@ -17,4 +19,4 @@ export const hidden = {
   position: 'absolute',
   top: 20,
   width: 1,
-}
+} as CSSProperties

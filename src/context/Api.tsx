@@ -10,7 +10,7 @@ import { useAuth } from './Auth'
 interface ApiContextType {
   userRef: firebase.database.Reference | undefined
   donatedRef: firebase.database.Reference | undefined
-  updateCritters: (data: any) => Promise<any> | undefined | boolean
+  updateCritters: (data: any, showError?: boolean) => Promise<any> | undefined | boolean
   on: (
     cb: any,
   ) =>

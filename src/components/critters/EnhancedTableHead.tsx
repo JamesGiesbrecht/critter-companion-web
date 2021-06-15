@@ -1,28 +1,30 @@
+import { FC } from 'react'
 import clsx from 'clsx'
-import { hidden } from 'assets/cssClasses'
-import { TableHead, TableRow, TableCell, TableSortLabel, makeStyles } from '@material-ui/core'
+import { hidden } from 'styles/cssClasses'
+import {
+  TableHead,
+  TableRow,
+  TableCell,
+  TableSortLabel,
+  makeStyles,
+  TableCellProps,
+} from '@material-ui/core'
+
+interface Props {
+  [x: string]: any
+}
 
 const useStyles = makeStyles((theme) => ({
   hidden,
   headers: {
     whiteSpace: 'nowrap',
   },
-  location: {
+  hiddenSm: {
     [theme.breakpoints.down('sm')]: {
       ...hidden,
     },
   },
-  start_time: {
-    [theme.breakpoints.down('sm')]: {
-      ...hidden,
-    },
-  },
-  months: {
-    [theme.breakpoints.down('md')]: {
-      ...hidden,
-    },
-  },
-  size: {
+  hiddenMd: {
     [theme.breakpoints.down('md')]: {
       ...hidden,
     },
@@ -32,15 +34,15 @@ const useStyles = makeStyles((theme) => ({
 const headCells = [
   { id: 'name', numeric: false, align: 'center', label: 'Name' },
   { id: 'value', numeric: true, align: 'right', label: 'Price' },
-  { id: 'location', numeric: false, align: 'right', label: 'Location' },
-  { id: 'size', numeric: true, align: 'right', label: 'Size' },
-  { id: 'start_time', numeric: false, align: 'right', label: 'Active Hours' },
-  { id: 'months', numeric: false, align: 'right', label: 'Active Months' },
+  { id: 'location', hidden: 'sm', numeric: false, align: 'right', label: 'Location' },
+  { id: 'size', hidden: 'md', numeric: true, align: 'right', label: 'Size' },
+  { id: 'start_time', hidden: 'sm', numeric: false, align: 'right', label: 'Active Hours' },
+  { id: 'months', hidden: 'md', numeric: false, align: 'right', label: 'Active Months' },
 ]
 
-const EnhancedTableHead = ({ order, orderBy, onSortRequest, isFish }) => {
+const EnhancedTableHead: FC<Props> = ({ order, orderBy, onSortRequest, isFish }) => {
   const classes = useStyles()
-  const createSortHandler = (property) => (event) => {
+  const createSortHandler = (property: any) => (event: any) => {
     onSortRequest(event, property)
   }
 
@@ -67,9 +69,13 @@ const EnhancedTableHead = ({ order, orderBy, onSortRequest, isFish }) => {
 
     return (
       <TableCell
-        className={clsx(classes.headers, classes[headCell.id])}
+        className={clsx(
+          classes.headers,
+          headCell.hidden === 'sm' && classes.hiddenSm,
+          headCell.hidden === 'md' && classes.hiddenMd,
+        )}
         key={headCell.id}
-        align={headCell.align}
+        align={headCell.align as TableCellProps['align']}
         sortDirection={orderBy === headCell.id ? order : false}>
         {label}
       </TableCell>
