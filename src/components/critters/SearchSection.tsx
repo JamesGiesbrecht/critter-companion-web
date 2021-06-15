@@ -3,9 +3,10 @@ import useStore from 'store'
 import { Paper, makeStyles, Typography } from '@material-ui/core'
 import { Search as SearchIcon } from '@material-ui/icons'
 import CrittersTable from 'components/critters/CrittersTable'
+import { Critter } from 'typescript/types'
 
 interface Props {
-  [x: string]: any
+  critters: Array<Critter>
 }
 
 const useStyles = makeStyles(() => ({
@@ -32,16 +33,16 @@ const useStyles = makeStyles(() => ({
   },
 }))
 
-const SearchSection: FC<Props> = ({ allCritters }) => {
+const SearchSection: FC<Props> = ({ critters }) => {
   const classes = useStyles()
   const search = useStore((state) => state.filters.search)
-  const [filteredCritters, setFilteredCritters] = useState(allCritters)
+  const [filteredCritters, setFilteredCritters] = useState(critters)
 
   useEffect(() => {
     setFilteredCritters(
-      allCritters.filter((critter: any) => critter.name.toLowerCase().search(search) !== -1),
+      critters.filter((critter) => critter.name.toLowerCase().search(search) !== -1),
     )
-  }, [allCritters, search])
+  }, [critters, search])
 
   let content
   if (filteredCritters.length === 0) {

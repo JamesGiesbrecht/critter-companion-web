@@ -3,9 +3,11 @@ import useStore, { MainFilter } from 'store'
 import { Collapse, Paper, makeStyles, Typography, Button } from '@material-ui/core'
 import CrittersTable from 'components/critters/CrittersTable'
 import ExpandMoreIcon from 'components/ui/ExpandMoreIcon'
+import { Critter, CritterType } from 'typescript/types'
 
 interface Props {
-  [x: string]: any
+  allCritters: Array<Critter>
+  type: CritterType
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -54,7 +56,7 @@ const CritterSection: FC<Props> = ({ allCritters, type }) => {
   const filterCritters = () => {
     let filteredCritters = []
     if (search) {
-      return allCritters.filter((critter: any) => critter.name.toLowerCase().search(search) !== -1)
+      return allCritters.filter((critter) => critter.name.toLowerCase().search(search) !== -1)
     }
 
     if (mainFilter === MainFilter.All) {
@@ -62,17 +64,17 @@ const CritterSection: FC<Props> = ({ allCritters, type }) => {
       filteredCritters = allCritters
     } else if (mainFilter === MainFilter.Available) {
       // add critters that are available now
-      filteredCritters = allCritters.filter((critter: any) => critter.isAvailableNow)
+      filteredCritters = allCritters.filter((critter) => critter.isAvailableNow)
     } else {
       //  Checking if any of the conditions in show are true properties on the critter
-      filteredCritters = allCritters.filter((critter: any) =>
+      filteredCritters = allCritters.filter((critter) =>
         statusFilters.some((condition) => critter[condition]),
       )
     }
 
     if (!showDonated) {
       // remove critters that are not donated
-      filteredCritters = filteredCritters.filter((critter: any) => !donated[critter.id])
+      filteredCritters = filteredCritters.filter((critter) => !donated[critter.id])
     }
 
     return filteredCritters

@@ -94,7 +94,7 @@ const Critters = () => {
   }, [donatedRef, setDonated, updateCritters])
 
   const addProperties = (critters: Array<JsonCritter>): Array<Critter> =>
-    critters.map((critter: JsonCritter) => {
+    critters.map((critter) => {
       const critterMonths = isNorthern ? critter.northernMonths : critter.southernMonths
       return {
         ...critter,
@@ -116,7 +116,8 @@ const Critters = () => {
       </Centered>
     )
   } else if (search) {
-    content = <SearchSection allCritters={bugs.concat(fish, seaCreatures)} />
+    const allCritters = bugs.concat(fish, seaCreatures)
+    content = <SearchSection critters={allCritters} />
   } else {
     content = (
       <>

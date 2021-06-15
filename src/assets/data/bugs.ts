@@ -4,7 +4,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'agrias-butterfly',
     name: 'Agrias Butterfly',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'Flying',
     startTime: 8,
     endTime: 17,
@@ -16,7 +16,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'ant',
     name: 'Ant',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'Rotten Food',
     startTime: 24,
     endTime: 24,
@@ -28,7 +28,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'atlas-moth',
     name: 'Atlas Moth',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'On Trees',
     startTime: 19,
     endTime: 4,
@@ -40,7 +40,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'bagworm',
     name: 'Bagworm',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'In Trees',
     startTime: 24,
     endTime: 24,
@@ -52,7 +52,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'banded-dragonfly',
     name: 'Banded Dragonfly',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'Flying',
     startTime: 8,
     endTime: 17,
@@ -64,7 +64,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'bell-cricket',
     name: 'Bell Cricket',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'Ground',
     startTime: 17,
     endTime: 8,
@@ -76,7 +76,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'blue-weevil-beetle',
     name: 'Blue Weevil Beetle',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'Tree Stumps',
     startTime: 24,
     endTime: 24,
@@ -88,7 +88,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'brown-cicada',
     name: 'Brown Cicada',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'On Trees',
     startTime: 8,
     endTime: 17,
@@ -100,7 +100,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'centipede',
     name: 'Centipede',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'In Rocks',
     startTime: 17,
     endTime: 23,
@@ -112,7 +112,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'cicada-shell',
     name: 'Cicada Shell',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'On Trees',
     startTime: 24,
     endTime: 24,
@@ -124,7 +124,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'citrus-long-horned-beetle',
     name: 'Citrus Long-horned Beetle',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'Tree Stumps',
     startTime: 24,
     endTime: 24,
@@ -136,7 +136,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'common-bluebottle',
     name: 'Common Bluebottle',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'Flying',
     startTime: 4,
     endTime: 19,
@@ -148,7 +148,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'common-butterfly',
     name: 'Common Butterfly',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'Flying',
     startTime: 4,
     endTime: 19,
@@ -160,7 +160,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'cricket',
     name: 'Cricket',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'Ground',
     startTime: 17,
     endTime: 8,
@@ -172,7 +172,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'cyclommatus-stag',
     name: 'Cyclommatus Stag',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'On Trees',
     startTime: 17,
     endTime: 8,
@@ -184,7 +184,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'damselfly',
     name: 'Damselfly',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'Flying',
     startTime: 24,
     endTime: 24,
@@ -196,7 +196,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'darner-dragonfly',
     name: 'Darner Dragonfly',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'Flying',
     startTime: 8,
     endTime: 17,
@@ -208,7 +208,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'diving-beetle',
     name: 'Diving Beetle',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'Ponds & Rivers',
     startTime: 8,
     endTime: 19,
@@ -220,7 +220,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'drone-beetle',
     name: 'Drone Beetle',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'On Trees',
     startTime: 24,
     endTime: 24,
@@ -232,7 +232,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'dung-beetle',
     name: 'Dung Beetle',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'Ground',
     startTime: 24,
     endTime: 24,
@@ -244,7 +244,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'earth-boring-dung-beetle',
     name: 'Earth-boring Dung Beetle',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'Ground',
     startTime: 24,
     endTime: 24,
@@ -256,7 +256,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'emperor-butterfly',
     name: 'Emperor Butterfly',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'Flying',
     startTime: 17,
     endTime: 8,
@@ -268,7 +268,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'evening-cicada',
     name: 'Evening Cicada',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'On Trees',
     startTime: [4, 16],
     endTime: [8, 19],
@@ -280,7 +280,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'firefly',
     name: 'Firefly',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'Flying',
     startTime: 19,
     endTime: 4,
@@ -292,7 +292,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'flea',
     name: 'Flea',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'On Villagers',
     startTime: 24,
     endTime: 24,
@@ -304,7 +304,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'fly',
     name: 'Fly',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'Rotten Food & Garbage',
     startTime: 24,
     endTime: 24,
@@ -316,7 +316,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'giant-cicada',
     name: 'Giant Cicada',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'On Trees',
     startTime: 8,
     endTime: 17,
@@ -328,7 +328,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'giant-stag',
     name: 'Giant Stag',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'On Trees',
     startTime: 23,
     endTime: 8,
@@ -340,7 +340,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'giant-water-bug',
     name: 'Giant Water Bug',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'Ponds & Rivers',
     startTime: 19,
     endTime: 8,
@@ -352,7 +352,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'giraffe-stag',
     name: 'Giraffe Stag',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'On Trees',
     startTime: 17,
     endTime: 8,
@@ -364,7 +364,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'golden-stag',
     name: 'Golden Stag',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'On Trees',
     startTime: 17,
     endTime: 8,
@@ -376,7 +376,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'goliath-beetle',
     name: 'Goliath Beetle',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'Coconut Trees',
     startTime: 17,
     endTime: 8,
@@ -388,7 +388,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'grasshopper',
     name: 'Grasshopper',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'Ground',
     startTime: 8,
     endTime: 17,
@@ -400,7 +400,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'great-purple-emperor',
     name: 'Great Purple Emperor',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'Flying',
     startTime: 4,
     endTime: 19,
@@ -412,7 +412,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'hermit-crab',
     name: 'Hermit Crab',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'On Beach',
     startTime: 19,
     endTime: 8,
@@ -424,7 +424,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'honeybee',
     name: 'Honeybee',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'Flying',
     startTime: 8,
     endTime: 17,
@@ -436,7 +436,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'horned-atlas',
     name: 'Horned Atlas',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'On Trees',
     startTime: 17,
     endTime: 8,
@@ -448,7 +448,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'horned-dynastid',
     name: 'Horned Dynastid',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'On Trees',
     startTime: 17,
     endTime: 8,
@@ -460,7 +460,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'horned-elephant',
     name: 'Horned Elephant',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'On Trees',
     startTime: 17,
     endTime: 8,
@@ -472,7 +472,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'horned-hercules',
     name: 'Horned Hercules',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'On Trees',
     startTime: 17,
     endTime: 8,
@@ -484,7 +484,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'jewel-beetle',
     name: 'Jewel Beetle',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'Tree Stumps',
     startTime: 24,
     endTime: 24,
@@ -496,7 +496,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'ladybug',
     name: 'Ladybug',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'Flowers',
     startTime: 8,
     endTime: 17,
@@ -508,7 +508,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'long-locust',
     name: 'Long Locust',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'Ground',
     startTime: 8,
     endTime: 19,
@@ -520,7 +520,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'madagascan-sunset-moth',
     name: 'Madagascan Sunset Moth',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'Flying',
     startTime: 8,
     endTime: 16,
@@ -532,7 +532,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'man-faced-stinkbug',
     name: 'Man-faced Stinkbug',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'Flowers',
     startTime: 19,
     endTime: 8,
@@ -544,7 +544,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'mantis',
     name: 'Mantis',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'Flowers',
     startTime: 8,
     endTime: 17,
@@ -556,7 +556,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'migratory-locust',
     name: 'Migratory Locust',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'Ground',
     startTime: 8,
     endTime: 19,
@@ -568,7 +568,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'miyama-stag',
     name: 'Miyama Stag',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'On Trees',
     startTime: 24,
     endTime: 24,
@@ -580,7 +580,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'mole-cricket',
     name: 'Mole Cricket',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'Underground',
     startTime: 24,
     endTime: 24,
@@ -592,7 +592,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'monarch-butterfly',
     name: 'Monarch Butterfly',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'Flying',
     startTime: 4,
     endTime: 17,
@@ -604,7 +604,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'mosquito',
     name: 'Mosquito',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'Flying',
     startTime: 17,
     endTime: 4,
@@ -616,7 +616,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'moth',
     name: 'Moth',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'Flying Around Light',
     startTime: 19,
     endTime: 4,
@@ -628,7 +628,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'orchid-mantis',
     name: 'Orchid Mantis',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'Flowers (White)',
     startTime: 8,
     endTime: 17,
@@ -640,7 +640,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'paper-kite-butterfly',
     name: 'Paper Kite Butterfly',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'Flying',
     startTime: 8,
     endTime: 19,
@@ -652,7 +652,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'peacock-butterfly',
     name: 'Peacock Butterfly',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'Near Hybrid Flowers',
     startTime: 4,
     endTime: 19,
@@ -664,7 +664,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'pill-bug',
     name: 'Pill Bug',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'In Rocks',
     startTime: 23,
     endTime: 16,
@@ -676,7 +676,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'pondskater',
     name: 'Pondskater',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'Ponds & Rivers',
     startTime: 8,
     endTime: 19,
@@ -688,7 +688,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'queen-alexandras-birdwing',
     name: "Queen Alexandra's Birdwing",
-    type: 'Bug',
+    type: 'Bugs',
     location: 'Flying',
     startTime: 8,
     endTime: 16,
@@ -700,7 +700,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'rainbow-stag',
     name: 'Rainbow Stag',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'On Trees',
     startTime: 19,
     endTime: 8,
@@ -712,7 +712,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'rajah-brookes-birdwing',
     name: "Rajah Brooke's Birdwing",
-    type: 'Bug',
+    type: 'Bugs',
     location: 'Flying',
     startTime: 8,
     endTime: 17,
@@ -724,7 +724,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'red-dragonfly',
     name: 'Red Dragonfly',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'Flying',
     startTime: 8,
     endTime: 19,
@@ -736,7 +736,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'rice-grasshopper',
     name: 'Rice Grasshopper',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'Ground',
     startTime: 8,
     endTime: 19,
@@ -748,7 +748,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'robust-cicada',
     name: 'Robust Cicada',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'On Trees',
     startTime: 8,
     endTime: 17,
@@ -760,7 +760,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'rosalia-batesi-beetle',
     name: 'Rosalia Batesi Beetle',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'Tree Stumps',
     startTime: 24,
     endTime: 24,
@@ -772,7 +772,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'saw-stag',
     name: 'Saw Stag',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'On Trees',
     startTime: 24,
     endTime: 24,
@@ -784,7 +784,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'scarab-beetle',
     name: 'Scarab Beetle',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'On Trees',
     startTime: 23,
     endTime: 8,
@@ -796,7 +796,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'scorpion',
     name: 'Scorpion',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'Ground',
     startTime: 19,
     endTime: 4,
@@ -808,7 +808,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'snail',
     name: 'Snail',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'On Rocks (Rain)',
     startTime: 24,
     endTime: 24,
@@ -820,7 +820,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'spider',
     name: 'Spider',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'In Trees',
     startTime: 19,
     endTime: 8,
@@ -832,7 +832,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'stinkbug',
     name: 'Stinkbug',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'Flowers',
     startTime: 24,
     endTime: 24,
@@ -844,7 +844,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'tarantula',
     name: 'Tarantula',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'Ground',
     startTime: 19,
     endTime: 4,
@@ -856,7 +856,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'tiger-beetle',
     name: 'Tiger Beetle',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'Flying',
     startTime: 24,
     endTime: 24,
@@ -868,7 +868,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'tiger-butterfly',
     name: 'Tiger Butterfly',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'Flying',
     startTime: 4,
     endTime: 19,
@@ -880,7 +880,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'violin-beetle',
     name: 'Violin Beetle',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'On Trees',
     startTime: 24,
     endTime: 24,
@@ -892,7 +892,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'walker-cicada',
     name: 'Walker Cicada',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'On Trees',
     startTime: 8,
     endTime: 16,
@@ -904,7 +904,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'walking-leaf',
     name: 'Walking Leaf',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'Ground (Beneath Trees)',
     startTime: 24,
     endTime: 24,
@@ -916,7 +916,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'walking-stick',
     name: 'Walking Stick',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'On Trees',
     startTime: [4, 17],
     endTime: [8, 19],
@@ -928,7 +928,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'wasp',
     name: 'Wasp',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'In Trees',
     startTime: 24,
     endTime: 24,
@@ -940,7 +940,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'wharf-roach',
     name: 'Wharf Roach',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'Beach Rocks',
     startTime: 24,
     endTime: 24,
@@ -952,7 +952,7 @@ const bugs: Array<JsonCritter> = [
   {
     id: 'yellow-butterfly',
     name: 'Yellow Butterfly',
-    type: 'Bug',
+    type: 'Bugs',
     location: 'Flying',
     startTime: 4,
     endTime: 19,

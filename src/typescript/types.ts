@@ -1,6 +1,6 @@
 import { Statuses } from 'store'
 
-type CritterType = 'Bug' | 'Fish' | 'Sea'
+export type CritterType = 'Bugs' | 'Fish' | 'Sea'
 type CritterSize = 'Tiny' | 'Small' | 'Medium' | 'Large' | 'X-Large' | 'Huge' | 'Long'
 type CritterSpeed = 'Stationary' | 'Very slow' | 'Slow' | 'Medium' | 'Fast' | 'Very fast'
 // eslint-disable-next-line prettier/prettier
