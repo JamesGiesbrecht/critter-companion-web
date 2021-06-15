@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
+import { useAuth } from 'context/Auth'
 import { useApi } from 'context/Api'
 import useStore, { Statuses } from 'store'
+import { Critter, JsonCritter, Month } from 'typescript/types'
 import bugsData from 'assets/data/bugs'
 import fishData from 'assets/data/fish'
 import seaData from 'assets/data/sea'
@@ -11,7 +13,6 @@ import CritterSection from 'components/critters/CritterSection'
 import SearchSection from 'components/critters/SearchSection'
 import Loading from 'components/ui/Loading'
 import Centered from 'components/ui/Centered'
-import { useAuth } from 'context/Auth'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,28 +23,33 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const today = new Date()
-const curMonth = today.getMonth() + 1
+const curMonth = (today.getMonth() + 1) as Month
 
-const hasPrevMonth = (months: any) => {
+const hasPrevMonth = (months: Array<Month>) => {
   // January
   if (curMonth === 1) {
     return months.includes(12)
   }
-  return months.includes(curMonth - 1)
+  return months.includes(((curMonth as number) - 1) as Month)
 }
 
-const hasNextMonth = (months: any) => {
+const hasNextMonth = (months: Array<Month>) => {
   // December
   if (curMonth === 12) {
     return months.includes(1)
   }
-  return months.includes(curMonth + 1)
+  return months.includes(((curMonth as number) + 1) as Month)
 }
 
-const isAvailableNow = (months: any) => months.includes(curMonth)
+const isAvailableNow = (months: Array<Month>) => months.includes(curMonth)
 
-const getAvailability = (months: any) => {
-  const availability: any = {}
+const getAvailability = (months: Array<Month>) => {
+  const availability: {
+    isAvailableNow?: boolean
+    [Statuses.New]?: boolean
+    [Statuses.Leaving]?: boolean
+    [Statuses.Incoming]?: boolean
+  } = {}
 
   if (isAvailableNow(months)) {
     availability.isAvailableNow = true
@@ -87,8 +93,8 @@ const Critters = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [donatedRef, setDonated, updateCritters])
 
-  const addProperties = (critters: any) =>
-    critters.map((critter: any) => {
+  const addProperties = (critters: Array<JsonCritter>): Array<Critter> =>
+    critters.map((critter: JsonCritter) => {
       const critterMonths = isNorthern ? critter.northernMonths : critter.southernMonths
       return {
         ...critter,
