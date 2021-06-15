@@ -36,7 +36,7 @@ const headCells = [
   { id: 'value', numeric: true, align: 'right', label: 'Price' },
   { id: 'location', hidden: 'sm', numeric: false, align: 'right', label: 'Location' },
   { id: 'size', hidden: 'md', numeric: true, align: 'right', label: 'Size' },
-  { id: 'start_time', hidden: 'sm', numeric: false, align: 'right', label: 'Active Hours' },
+  { id: 'startTime', hidden: 'sm', numeric: false, align: 'right', label: 'Active Hours' },
   { id: 'months', hidden: 'md', numeric: false, align: 'right', label: 'Active Months' },
 ]
 

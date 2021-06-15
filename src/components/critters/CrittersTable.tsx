@@ -97,7 +97,7 @@ const CrittersTable: FC<Props> = ({ critters }) => {
   }
 
   const rows = stableSort(critters, getComparator(order, orderBy)).map((critter: any) => {
-    const hours = getHours(critter.start_time, critter.end_time)
+    const hours = getHours(critter.startTime, critter.endTime)
     return <CritterRow key={critter.name} critter={critter} hours={hours} />
   })
 

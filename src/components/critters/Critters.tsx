@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useApi } from 'context/Api'
 import useStore, { Statuses } from 'store'
-import bugsData from 'assets/data/bugs.json'
-import fishData from 'assets/data/fish.json'
-import seaData from 'assets/data/sea.json'
+import bugsData from 'assets/data/bugs'
+import fishData from 'assets/data/fish'
+import seaData from 'assets/data/sea'
 import { makeStyles } from '@material-ui/core'
 import Controls from 'components/layout/controls/Controls'
 import SignInPrompt from 'components/critters/SignInPrompt'
@@ -89,7 +89,7 @@ const Critters = () => {
 
   const addProperties = (critters: any) =>
     critters.map((critter: any) => {
-      const critterMonths = isNorthern ? critter.northern_months : critter.southern_months
+      const critterMonths = isNorthern ? critter.northernMonths : critter.southernMonths
       return {
         ...critter,
         months: critterMonths,

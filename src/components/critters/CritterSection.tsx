@@ -46,7 +46,7 @@ const CritterSection: FC<Props> = ({ allCritters, type }) => {
   const handleToggleExpand = () => setExpanded((prevExpanded) => !prevExpanded)
 
   const randomImg = useMemo(
-    () => allCritters[Math.floor(Math.random() * allCritters.length)].image_path,
+    () => allCritters[Math.floor(Math.random() * allCritters.length)].imagePath,
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [],
   )

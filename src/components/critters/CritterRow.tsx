@@ -148,7 +148,7 @@ const CritterRow: FC<Props> = ({ critter, hours }) => {
   return (
     <TableRow hover onClick={handleDialogOpen}>
       <TableCell className={clsx(classes.critterImgCell, classes.cell)}>
-        <img className={classes.critterImg} src={critter.image_path} alt={critter.name} />
+        <img className={classes.critterImg} src={critter.imagePath} alt={critter.name} />
       </TableCell>
       <TableCell className={clsx(classes.nameWrapper, classes.cell)}>{nameButton(true)}</TableCell>
       <TableCell className={classes.cell} align="right">

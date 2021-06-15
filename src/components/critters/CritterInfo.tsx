@@ -69,7 +69,7 @@ const CritterInfo: FC<Props> = ({ critter, dialogOpen, handleDialogClose, nameBu
       <Card aria-labelledby={critter.name}>
         <CardHeader title={nameButton} />
         <CardContent className={classes.content} aria-describedby={`${critter.name} Details`}>
-          <img className={classes.critterImg} src={critter.image_path} alt={critter.name} />
+          <img className={classes.critterImg} src={critter.imagePath} alt={critter.name} />
           <div className={classes.info}>
             <div>
               <Typography variant="subtitle2" className={classes.infoTitle}>
