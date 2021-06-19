@@ -1,7 +1,7 @@
 import { FC, SyntheticEvent, useState } from 'react'
 import { Critter, Hour } from 'typescript/types'
 import { TableContainer, Table, TableBody, makeStyles } from '@material-ui/core'
-import EnhancedTableHead from 'components/critters/EnhancedTableHead'
+import CritterTableHead from 'components/critters/CritterTableHead'
 import CritterRow from 'components/critters/CritterRow'
 
 interface Props {
@@ -109,7 +109,7 @@ const CrittersTable: FC<Props> = ({ critters }) => {
   return (
     <TableContainer className={classes.tableWrapper}>
       <Table className={classes.table}>
-        <EnhancedTableHead
+        <CritterTableHead
           order={order}
           orderBy={orderBy}
           onSortRequest={handleSortRequest}

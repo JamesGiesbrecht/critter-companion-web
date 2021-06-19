@@ -40,7 +40,7 @@ const headCells = [
   { id: 'months', hidden: 'md', numeric: false, align: 'right', label: 'Active Months' },
 ]
 
-const EnhancedTableHead: FC<Props> = ({ order, orderBy, onSortRequest, isFish }) => {
+const CritterTableHead: FC<Props> = ({ order, orderBy, onSortRequest, isFish }) => {
   const classes = useStyles()
   const createSortHandler = (property: any) => (event: any) => {
     onSortRequest(event, property)
@@ -92,4 +92,4 @@ const EnhancedTableHead: FC<Props> = ({ order, orderBy, onSortRequest, isFish })
   )
 }
 
-export default EnhancedTableHead
+export default CritterTableHead
