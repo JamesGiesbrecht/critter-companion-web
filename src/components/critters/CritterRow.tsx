@@ -1,13 +1,16 @@
 import { FC, memo, SyntheticEvent, useRef, useState } from 'react'
 import clsx from 'clsx'
+
 import { useApi } from 'context/Api'
-import useStore, { Statuses } from 'store'
+import useStore from 'store'
 import { dot, hidden } from 'styles/cssClasses'
+import { Statuses } from 'typescript/enums'
+import { Critter } from 'typescript/types'
+
 import { TableRow, TableCell, makeStyles, Typography, Button, ButtonProps } from '@material-ui/core'
 import CritterInfo from 'components/critters/CritterInfo'
 import Months from 'components/critters/Months'
 import BlathersIcon from 'components/icons/BlathersIcon'
-import { Critter } from 'typescript/types'
 
 interface Props {
   critter: Critter

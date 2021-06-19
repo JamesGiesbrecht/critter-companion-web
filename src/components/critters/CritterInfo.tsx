@@ -1,7 +1,9 @@
 import { FC, ReactNode } from 'react'
+
+import { Critter } from 'typescript/types'
+
 import { Card, CardHeader, CardContent, Typography, Dialog, makeStyles } from '@material-ui/core'
 import Months from 'components/critters/Months'
-import { Critter } from 'typescript/types'
 
 interface Props {
   critter: Critter

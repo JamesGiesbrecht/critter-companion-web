@@ -1,5 +1,8 @@
 import { FC, ReactNode } from 'react'
-import useStore, { FormType } from 'store'
+
+import useStore from 'store'
+import { FormType } from 'typescript/enums'
+
 import { Link } from '@material-ui/core'
 
 interface Props {

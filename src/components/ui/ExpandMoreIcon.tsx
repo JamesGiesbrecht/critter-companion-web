@@ -1,7 +1,8 @@
 import { FC } from 'react'
+import clsx from 'clsx'
+
 import { makeStyles, SvgIconProps } from '@material-ui/core'
 import ExpandMore from '@material-ui/icons/ExpandMore'
-import clsx from 'clsx'
 
 interface Props extends SvgIconProps {
   expand: boolean

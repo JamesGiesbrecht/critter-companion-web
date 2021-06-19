@@ -1,20 +1,18 @@
 import { SyntheticEvent, useEffect, useState } from 'react'
+
 import { useAuth } from 'context/Auth'
-import useStore, { FormType } from 'store'
-import { AuthError } from 'firebase/error'
+import useStore from 'store'
+import { Providers, AuthError, FormType } from 'typescript/enums'
+
 import { Dialog, makeStyles } from '@material-ui/core'
+import { grey } from '@material-ui/core/colors'
+import { LoadingButton } from '@material-ui/lab'
 import FormLink from 'components/auth/FormLink'
 import Login from 'components/auth/forms/Login'
 import SignUp from 'components/auth/forms/SignUp'
 import ForgotPassword from 'components/auth/forms/ForgotPassword'
 import VerificationEmail from 'components/auth/forms/VerificationEmail'
-import { grey } from '@material-ui/core/colors'
 import GoogleIcon from 'components/icons/GoogleIcon'
-import { LoadingButton } from '@material-ui/lab'
-
-enum Providers {
-  Google = 'Google',
-}
 
 const useStyles = makeStyles((theme) => ({
   dialogPaper: {

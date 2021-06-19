@@ -1,9 +1,11 @@
 import { StrictMode } from 'react'
 import ReactDOM from 'react-dom'
+import reportWebVitals from 'reportWebVitals'
+
 import { ColorSchemeContextProvider } from 'context/Theme'
 import 'styles/index.css'
+
 import App from 'App'
-import reportWebVitals from 'reportWebVitals'
 
 ReactDOM.render(
   <StrictMode>

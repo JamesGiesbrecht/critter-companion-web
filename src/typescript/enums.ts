@@ -1,4 +1,38 @@
-// eslint-disable-next-line import/prefer-default-export
+export enum ColorScheme {
+  Light = 'light',
+  Dark = 'dark',
+}
+
+export enum MainFilter {
+  All = 'All',
+  Available = 'Available',
+  Custom = 'Custom',
+}
+
+export enum Statuses {
+  New = 'New',
+  Leaving = 'Leaving',
+  Incoming = 'Incoming',
+}
+
+export enum FormType {
+  Login = 'Login',
+  SignUp = 'SignUp',
+  ForgotPassword = 'ForgotPassword',
+  VerificationEmail = 'VerificationEmail',
+}
+
+export enum Providers {
+  Google = 'Google',
+}
+
+export enum FormActionType {
+  InputUpdate,
+  InputBlur,
+  InitializeForm,
+  ValidateForm,
+}
+
 export enum AuthError {
   InvalidEmail = 'auth/invalid-email',
   UserDisabled = 'auth/user-disabled',

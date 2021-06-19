@@ -1,5 +1,8 @@
 import { FC, ReactNode, SyntheticEvent } from 'react'
-import useStore, { FormType } from 'store'
+
+import useStore from 'store'
+import { FormType } from 'typescript/enums'
+
 import { Button, DialogContent, DialogTitle, makeStyles, Typography } from '@material-ui/core'
 import { LoadingButton } from '@material-ui/lab'
 import Form from 'components/common/Form'

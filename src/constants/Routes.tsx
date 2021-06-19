@@ -1,5 +1,5 @@
-import Critters from 'components/critters/Critters'
 import Account from 'components/account/Account'
+import Critters from 'components/critters/Critters'
 
 interface Route {
   path: string

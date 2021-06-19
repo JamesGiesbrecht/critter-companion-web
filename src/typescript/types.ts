@@ -1,5 +1,5 @@
 import { Breakpoint, TableCellProps } from '@material-ui/core'
-import { Statuses } from 'store'
+import { Statuses } from 'typescript/enums'
 
 export type CritterType = 'Bugs' | 'Fish' | 'Sea'
 type CritterSize = 'Tiny' | 'Small' | 'Medium' | 'Large' | 'X-Large' | 'Huge' | 'Long'

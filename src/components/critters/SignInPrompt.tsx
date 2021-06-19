@@ -1,6 +1,7 @@
+import { FormType } from 'typescript/enums'
+
 import { makeStyles, Paper, Typography } from '@material-ui/core'
 import FormLink from 'components/auth/FormLink'
-import { FormType } from 'store'
 
 const useStyles = makeStyles((theme) => ({
   root: {

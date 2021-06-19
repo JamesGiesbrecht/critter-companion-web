@@ -1,11 +1,13 @@
-import { ThemeProvider, CssBaseline, StyledEngineProvider } from '@material-ui/core'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
+
+import Routes from 'constants/Routes'
 import { AuthContextProvider } from 'context/Auth'
 import { ApiContextProvider } from 'context/Api'
 import { useColorScheme } from 'context/Theme'
-import Layout from 'components/layout/Layout'
 import getTheme from 'styles/theme'
-import Routes from 'constants/Routes'
+
+import { ThemeProvider, CssBaseline, StyledEngineProvider } from '@material-ui/core'
+import Layout from 'components/layout/Layout'
 
 const App = () => {
   const { colorScheme } = useColorScheme()

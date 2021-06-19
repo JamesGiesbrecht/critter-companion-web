@@ -1,15 +1,13 @@
 import { useEffect, useState, useContext, createContext, FC } from 'react'
-import { PaletteMode, useMediaQuery } from '@material-ui/core'
+
+import { ColorScheme } from 'typescript/enums'
 import { noProvider } from 'utility/context'
+
+import { PaletteMode, useMediaQuery } from '@material-ui/core'
 
 interface ColorSchemeType {
   colorScheme: PaletteMode
   toggleColorScheme: () => void
-}
-
-export enum ColorScheme {
-  Light = 'light',
-  Dark = 'dark',
 }
 
 export const ColorSchemeContext = createContext<ColorSchemeType>({

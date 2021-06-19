@@ -1,5 +1,8 @@
-import { TextField } from '@material-ui/core'
 import { FC, Fragment, SyntheticEvent, useEffect, useReducer } from 'react'
+
+import { FormActionType } from 'typescript/enums'
+
+import { TextField } from '@material-ui/core'
 
 interface Props {
   [key: string]: any
@@ -7,14 +10,6 @@ interface Props {
   type?: string
   onSubmit: (e: SyntheticEvent, state: any) => void
 }
-
-enum FormActionType {
-  InputUpdate,
-  InputBlur,
-  InitializeForm,
-  ValidateForm,
-}
-
 interface FormAction {
   type: FormActionType
   [key: string]: any

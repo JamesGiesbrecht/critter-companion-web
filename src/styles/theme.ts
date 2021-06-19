@@ -1,6 +1,6 @@
-import { createTheme, Theme } from '@material-ui/core/styles'
 import { PaletteMode } from '@material-ui/core'
 import { blue, green, yellow } from '@material-ui/core/colors'
+import { createTheme, Theme } from '@material-ui/core/styles'
 
 // Edit this function for global theme overrides
 const getTheme = (colorScheme: PaletteMode): Theme => {

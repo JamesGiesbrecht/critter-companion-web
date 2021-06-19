@@ -1,7 +1,9 @@
 import { FC, SyntheticEvent } from 'react'
 import clsx from 'clsx'
-import { Critter, TableHeadCell } from 'typescript/types'
+
 import { hidden } from 'styles/cssClasses'
+import { Critter, TableHeadCell } from 'typescript/types'
+
 import { TableHead, TableRow, TableCell, TableSortLabel, makeStyles } from '@material-ui/core'
 import { Order } from 'components/critters/CrittersTable'
 

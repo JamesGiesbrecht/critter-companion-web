@@ -1,5 +1,7 @@
 import { Redirect } from 'react-router-dom'
+
 import { useAuth } from 'context/Auth'
+
 import { Typography } from '@material-ui/core'
 
 const Account = () => {

@@ -1,8 +1,9 @@
 import { useState, useEffect, useContext, createContext, FC } from 'react'
 import firebase from 'firebase'
+
 import { firebaseAuth } from 'firebase/config'
-import { noProvider } from 'utility/context'
 import useStore from 'store'
+import { noProvider } from 'utility/context'
 
 interface AuthContextType {
   user: firebase.User | null | undefined

@@ -1,8 +1,11 @@
 import { MouseEvent } from 'react'
 import clsx from 'clsx'
-import useStore, { MainFilter, Statuses } from 'store'
-import { removeItem } from 'utility/utility'
+
+import useStore from 'store'
 import { dot } from 'styles/cssClasses'
+import { MainFilter, Statuses } from 'typescript/enums'
+import { removeItem } from 'utility/utility'
+
 import {
   ToggleButtonGroup,
   ToggleButton,

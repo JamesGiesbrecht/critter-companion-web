@@ -1,6 +1,9 @@
 import { useState, memo, useMemo, FC } from 'react'
+
+import useStore from 'store'
+import { MainFilter } from 'typescript/enums'
 import { Critter, CritterType } from 'typescript/types'
-import useStore, { MainFilter } from 'store'
+
 import { Collapse, Paper, makeStyles, Typography, Button } from '@material-ui/core'
 import CrittersTable from 'components/critters/CrittersTable'
 import ExpandMoreIcon from 'components/ui/ExpandMoreIcon'

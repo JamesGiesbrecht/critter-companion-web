@@ -1,6 +1,11 @@
 import { useRef, useState } from 'react'
-import useStore, { FormType, MainFilter } from 'store'
+
+import logo from 'assets/images/app-logo.png'
+import { useAuth } from 'context/Auth'
 import { useColorScheme } from 'context/Theme'
+import useStore from 'store'
+import { FormType, MainFilter } from 'typescript/enums'
+
 import { Paper, makeStyles, IconButton, Button, Collapse, Divider } from '@material-ui/core'
 import {
   Brightness7 as LightModeIcon,
@@ -8,12 +13,10 @@ import {
   FilterAlt as FilterIcon,
   Search as SearchIcon,
 } from '@material-ui/icons'
-import ExpandMoreIcon from 'components/ui/ExpandMoreIcon'
-import Search from 'components/layout/controls/components/Search'
-import FilterButtons from 'components/layout/controls/components/FilterButtons'
-import logo from 'assets/images/app-logo.png'
-import { useAuth } from 'context/Auth'
 import AccountButton from 'components/auth/AccountButton'
+import FilterButtons from 'components/layout/controls/components/FilterButtons'
+import Search from 'components/layout/controls/components/Search'
+import ExpandMoreIcon from 'components/ui/ExpandMoreIcon'
 
 const logoWidth = 300
 

@@ -1,9 +1,11 @@
 import { FC, useEffect, useState } from 'react'
+
 import useStore from 'store'
+import { Critter } from 'typescript/types'
+
 import { Paper, makeStyles, Typography } from '@material-ui/core'
 import { Search as SearchIcon } from '@material-ui/icons'
 import CrittersTable from 'components/critters/CrittersTable'
-import { Critter } from 'typescript/types'
 
 interface Props {
   critters: Critter[]

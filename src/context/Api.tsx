@@ -1,11 +1,14 @@
 import { useContext, createContext, FC } from 'react'
 import firebase from 'firebase'
+
+import { useAuth } from 'context/Auth'
 import { firebaseDb } from 'firebase/config'
+import useStore from 'store'
+import { FormType } from 'typescript/enums'
 import { noProvider } from 'utility/context'
-import useStore, { FormType } from 'store'
+
 import { Button } from '@material-ui/core'
 import { blue } from '@material-ui/core/colors'
-import { useAuth } from './Auth'
 
 interface ApiContextType {
   userRef: firebase.database.Reference | undefined

@@ -1,7 +1,9 @@
 import { memo, FC } from 'react'
 import clsx from 'clsx'
-import { Chip, makeStyles } from '@material-ui/core'
+
 import { Month } from 'typescript/types'
+
+import { Chip, makeStyles } from '@material-ui/core'
 
 interface Props {
   months: Month[]

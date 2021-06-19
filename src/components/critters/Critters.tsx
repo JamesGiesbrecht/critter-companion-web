@@ -1,18 +1,21 @@
 import { useEffect, useState } from 'react'
-import { useAuth } from 'context/Auth'
-import { useApi } from 'context/Api'
-import useStore, { Statuses } from 'store'
-import { Critter, JsonCritter, Month } from 'typescript/types'
+
 import bugsData from 'assets/data/bugs'
 import fishData from 'assets/data/fish'
 import seaData from 'assets/data/sea'
+import { useApi } from 'context/Api'
+import { useAuth } from 'context/Auth'
+import useStore from 'store'
+import { Statuses } from 'typescript/enums'
+import { Critter, JsonCritter, Month } from 'typescript/types'
+
 import { makeStyles } from '@material-ui/core'
-import Controls from 'components/layout/controls/Controls'
-import SignInPrompt from 'components/critters/SignInPrompt'
 import CritterSection from 'components/critters/CritterSection'
 import SearchSection from 'components/critters/SearchSection'
-import Loading from 'components/ui/Loading'
+import SignInPrompt from 'components/critters/SignInPrompt'
+import Controls from 'components/layout/controls/Controls'
 import Centered from 'components/ui/Centered'
+import Loading from 'components/ui/Loading'
 
 const useStyles = makeStyles((theme) => ({
   root: {

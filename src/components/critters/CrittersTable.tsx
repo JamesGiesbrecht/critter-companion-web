@@ -1,8 +1,10 @@
 import { FC, SyntheticEvent, useState } from 'react'
+
 import { Critter, Hour, TableHeadCell } from 'typescript/types'
+
 import { TableContainer, Table, TableBody, makeStyles } from '@material-ui/core'
-import CritterTableHead from 'components/critters/CritterTableHead'
 import CritterRow from 'components/critters/CritterRow'
+import CritterTableHead from 'components/critters/CritterTableHead'
 
 interface Props {
   critters: Critter[]

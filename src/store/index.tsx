@@ -1,25 +1,9 @@
-import { Color } from '@material-ui/lab'
 import { ReactNode } from 'react'
 import create from 'zustand'
 
-export enum MainFilter {
-  All = 'All',
-  Available = 'Available',
-  Custom = 'Custom',
-}
+import { FormType, Statuses, MainFilter } from 'typescript/enums'
 
-export enum Statuses {
-  New = 'New',
-  Leaving = 'Leaving',
-  Incoming = 'Incoming',
-}
-
-export enum FormType {
-  Login = 'Login',
-  SignUp = 'SignUp',
-  ForgotPassword = 'ForgotPassword',
-  VerificationEmail = 'VerificationEmail',
-}
+import { Color } from '@material-ui/lab'
 
 export interface StoreState {
   filters: {
