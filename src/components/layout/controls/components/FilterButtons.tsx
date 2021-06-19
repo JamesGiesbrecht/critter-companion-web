@@ -60,6 +60,12 @@ const useStyles = makeStyles((theme) => ({
       flexGrow: 1,
     },
   },
+  donatedSelected: {
+    backgroundColor: `${theme.palette.primary.main}75!important`,
+    '&:hover': {
+      backgroundColor: `${theme.palette.primary.main}50!important`,
+    },
+  },
   disabled: {
     '& span': {
       color: theme.palette.text.disabled,
@@ -129,6 +135,7 @@ const FilterButtons = () => {
       <ToggleButton
         size="small"
         className={classes.donatedToggle}
+        classes={{ selected: classes.donatedSelected }}
         value={showDonated}
         selected={showDonated}
         onChange={toggleShowDonated}>
