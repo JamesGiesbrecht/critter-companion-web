@@ -10,9 +10,12 @@ import { useAuth } from './Auth'
 interface ApiContextType {
   userRef: firebase.database.Reference | undefined
   donatedRef: firebase.database.Reference | undefined
-  updateCritters: (data: any, showError?: boolean) => Promise<any> | undefined | boolean
+  updateCritters: (
+    data: { [id: string]: boolean },
+    showError?: boolean,
+  ) => Promise<any> | undefined | boolean
   on: (
-    cb: any,
+    cb: () => void,
   ) =>
     | ((a: firebase.database.DataSnapshot | null, b?: string | null | undefined) => any)
     | undefined
@@ -55,7 +58,7 @@ export const ApiContextProvider: FC = ({ children }) => {
   if (user) {
     userRef = firebaseDb.ref(`users/${user.uid}`)
     donatedRef = firebaseDb.ref(`users/${user.uid}/donated`)
-    updateCritters = async (data: any, showError?: boolean) => {
+    updateCritters = async (data: { [id: string]: boolean }, showError?: boolean) => {
       if (!user.emailVerified) {
         if (showError !== false) {
           setSnackbar({
@@ -97,7 +100,7 @@ export const ApiContextProvider: FC = ({ children }) => {
         return false
       }
     }
-    on = (cb: any) => userRef?.on('value', cb)
+    on = (cb: () => void) => userRef?.on('value', cb)
   } else {
     updateCritters = () => {
       throw new Error('User not authenticated')

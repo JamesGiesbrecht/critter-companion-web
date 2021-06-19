@@ -1,4 +1,10 @@
+import { FC, ReactNode } from 'react'
 import { makeStyles } from '@material-ui/core'
+
+interface Props {
+  relative?: boolean
+  children: ReactNode
+}
 
 const useStyles = makeStyles((theme) => ({
   absoluteCenter: {
@@ -15,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const Centered = ({ relative = false, children }: { relative?: boolean; children: any }) => {
+const Centered: FC<Props> = ({ relative = false, children }) => {
   const classes = useStyles()
   return (
     <div className={relative ? classes.relativeCenter : classes.absoluteCenter}>{children}</div>

@@ -1,17 +1,15 @@
-import { FC } from 'react'
+import { FC, SyntheticEvent } from 'react'
 import clsx from 'clsx'
+import { Critter, TableHeadCell } from 'typescript/types'
 import { hidden } from 'styles/cssClasses'
-import {
-  TableHead,
-  TableRow,
-  TableCell,
-  TableSortLabel,
-  makeStyles,
-  TableCellProps,
-} from '@material-ui/core'
+import { TableHead, TableRow, TableCell, TableSortLabel, makeStyles } from '@material-ui/core'
+import { Order } from 'components/critters/CrittersTable'
 
 interface Props {
-  [x: string]: any
+  headCells: Array<TableHeadCell | null>
+  order: Order
+  orderBy: keyof Critter
+  onSortRequest: (e: SyntheticEvent, property: keyof Critter) => void
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -31,23 +29,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const headCells = [
-  { id: 'name', numeric: false, align: 'center', label: 'Name' },
-  { id: 'value', numeric: true, align: 'right', label: 'Price' },
-  { id: 'location', hidden: 'sm', numeric: false, align: 'right', label: 'Location' },
-  { id: 'size', hidden: 'md', numeric: true, align: 'right', label: 'Size' },
-  { id: 'startTime', hidden: 'sm', numeric: false, align: 'right', label: 'Active Hours' },
-  { id: 'months', hidden: 'md', numeric: false, align: 'right', label: 'Active Months' },
-]
-
-const CritterTableHead: FC<Props> = ({ order, orderBy, onSortRequest, isFish }) => {
+const CritterTableHead: FC<Props> = ({ headCells, order, orderBy, onSortRequest }) => {
   const classes = useStyles()
-  const createSortHandler = (property: any) => (event: any) => {
+  const createSortHandler = (property: keyof Critter) => (event: SyntheticEvent) => {
     onSortRequest(event, property)
   }
 
   const headers = headCells.map((headCell) => {
-    if (headCell.id === 'size' && !isFish) return null
+    if (!headCell) return null
     let label
     if (headCell.id === 'months') {
       label = headCell.label
@@ -75,7 +64,7 @@ const CritterTableHead: FC<Props> = ({ order, orderBy, onSortRequest, isFish }) 
           headCell.hidden === 'md' && classes.hiddenMd,
         )}
         key={headCell.id}
-        align={headCell.align as TableCellProps['align']}
+        align={headCell.align}
         sortDirection={orderBy === headCell.id ? order : false}>
         {label}
       </TableCell>

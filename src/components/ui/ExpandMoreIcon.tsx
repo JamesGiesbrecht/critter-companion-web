@@ -1,6 +1,11 @@
-import { makeStyles } from '@material-ui/core'
+import { FC } from 'react'
+import { makeStyles, SvgIconProps } from '@material-ui/core'
 import ExpandMore from '@material-ui/icons/ExpandMore'
 import clsx from 'clsx'
+
+interface Props extends SvgIconProps {
+  expand: boolean
+}
 
 const useStyles = makeStyles(() => ({
   closed: {
@@ -13,7 +18,7 @@ const useStyles = makeStyles(() => ({
   },
 }))
 
-const ExpandMoreIcon = (props: any) => {
+const ExpandMoreIcon: FC<Props> = (props) => {
   const classes = useStyles()
   const { expand, ...other } = props
   return <ExpandMore className={clsx(classes.closed, !expand && classes.open)} {...other} />

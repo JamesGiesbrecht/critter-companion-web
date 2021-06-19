@@ -1,3 +1,4 @@
+import { Breakpoint, TableCellProps } from '@material-ui/core'
 import { Statuses } from 'store'
 
 export type CritterType = 'Bugs' | 'Fish' | 'Sea'
@@ -28,4 +29,11 @@ export type Critter = JsonCritter & {
   [Statuses.New]?: boolean
   [Statuses.Incoming]?: boolean
   months: Month[]
+}
+
+export type TableHeadCell = {
+  id: keyof Critter
+  hidden?: Breakpoint
+  align: TableCellProps['align']
+  label: string
 }

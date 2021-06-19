@@ -1,9 +1,11 @@
 import { memo, FC } from 'react'
 import clsx from 'clsx'
 import { Chip, makeStyles } from '@material-ui/core'
+import { Month } from 'typescript/types'
 
 interface Props {
-  [x: string]: any
+  months: Month[]
+  className?: string
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -42,8 +44,7 @@ const Months: FC<Props> = ({ months, className }) => {
   ]
   const classes = useStyles()
   const chips = allMonths.map((month, index) => {
-    const isActive = months.includes(index + 1)
-    // const color = isActive ? { color: 'primary' } : { disabled: true }
+    const isActive = months.includes((index + 1) as Month)
     return (
       <Chip
         className={clsx(classes.chip, className)}

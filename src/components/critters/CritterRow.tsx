@@ -12,6 +12,7 @@ import { Critter } from 'typescript/types'
 interface Props {
   critter: Critter
   hours: string
+  showSizeColumn?: boolean
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -88,7 +89,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const CritterRow: FC<Props> = ({ critter, hours }) => {
+const CritterRow: FC<Props> = ({ critter, hours, showSizeColumn }) => {
   const classes = useStyles()
   const isDonated = useStore((state) => state.donated[critter.id])
   const toggleDonated = useStore((state) => state.toggleDonated)
@@ -154,7 +155,7 @@ const CritterRow: FC<Props> = ({ critter, hours }) => {
       <TableCell className={clsx(classes.cell, classes.location)} align="right">
         {critter.location}
       </TableCell>
-      {critter.size && (
+      {showSizeColumn && (
         <TableCell className={clsx(classes.cell, classes.hiddenMd)} align="right">
           {critter.size}
         </TableCell>

@@ -1,4 +1,4 @@
-import { CircularProgress, makeStyles, Paper } from '@material-ui/core'
+import { CircularProgress, CircularProgressProps, makeStyles, Paper } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
   loadingPaper: {
@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const Loading = (props: any) => {
+const Loading = (props: CircularProgressProps) => {
   const classes = useStyles()
   return (
     <Paper className={classes.loadingPaper} elevation={7}>

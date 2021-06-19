@@ -1,7 +1,13 @@
+import { FC, ReactNode } from 'react'
 import useStore, { FormType } from 'store'
 import { Link } from '@material-ui/core'
 
-const FormLink = ({ to, children }: { to?: FormType | undefined; children: any }) => {
+interface Props {
+  to?: FormType
+  children: ReactNode
+}
+
+const FormLink: FC<Props> = ({ to, children }) => {
   const setActiveForm = useStore((state) => state.setActiveForm)
 
   const handleSelectActiveForm = () => setActiveForm(to)

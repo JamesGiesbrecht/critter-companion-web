@@ -1,5 +1,5 @@
 import { FC, SyntheticEvent, useState } from 'react'
-import { Critter, Hour } from 'typescript/types'
+import { Critter, Hour, TableHeadCell } from 'typescript/types'
 import { TableContainer, Table, TableBody, makeStyles } from '@material-ui/core'
 import CritterTableHead from 'components/critters/CritterTableHead'
 import CritterRow from 'components/critters/CritterRow'
@@ -8,7 +8,7 @@ interface Props {
   critters: Critter[]
 }
 
-type Order = 'asc' | 'desc'
+export type Order = 'asc' | 'desc'
 
 const useStyles = makeStyles((theme) => ({
   tableWrapper: {
@@ -46,13 +46,13 @@ const getComparator = <Key extends keyof any>(order: Order, orderBy: Key) =>
     : (a: any, b: any) => -descendingComparator(a, b, orderBy)
 
 const stableSort = <T extends {}>(array: readonly T[], comparator: (a: T, b: T) => number) => {
-  const stabilizedThis = array.map((el: any, index: any) => [el, index])
-  stabilizedThis.sort((a: any, b: any) => {
+  const stabilizedThis = array.map((el, index) => [el, index] as [T, number])
+  stabilizedThis.sort((a, b) => {
     const order = comparator(a[0], b[0])
     if (order !== 0) return order
     return a[1] - b[1]
   })
-  return stabilizedThis.map((el: any) => el[0])
+  return stabilizedThis.map((el) => el[0])
 }
 
 const CrittersTable: FC<Props> = ({ critters }) => {
@@ -101,19 +101,37 @@ const CrittersTable: FC<Props> = ({ critters }) => {
     setOrderBy(property)
   }
 
+  const showSizeColumn = critters.some((critter) => critter.size)
+
+  const headCells: Array<TableHeadCell | null> = [
+    { id: 'name', align: 'center', label: 'Name' },
+    { id: 'value', align: 'right', label: 'Price' },
+    { id: 'location', hidden: 'sm', align: 'right', label: 'Location' },
+    showSizeColumn ? { id: 'size', hidden: 'md', align: 'right', label: 'Size' } : null,
+    { id: 'startTime', hidden: 'sm', align: 'right', label: 'Active Hours' },
+    { id: 'months', hidden: 'md', align: 'right', label: 'Active Months' },
+  ]
+
   const rows = stableSort(critters, getComparator(order, orderBy)).map((critter: Critter) => {
     const hours = getHours(critter.startTime, critter.endTime)
-    return <CritterRow key={critter.name} critter={critter} hours={hours} />
+    return (
+      <CritterRow
+        key={critter.name}
+        critter={critter}
+        hours={hours}
+        showSizeColumn={showSizeColumn}
+      />
+    )
   })
 
   return (
     <TableContainer className={classes.tableWrapper}>
       <Table className={classes.table}>
         <CritterTableHead
+          headCells={headCells}
           order={order}
           orderBy={orderBy}
           onSortRequest={handleSortRequest}
-          isFish={Boolean(critters[0].size)}
         />
         <TableBody>{rows}</TableBody>
       </Table>
