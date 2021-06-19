@@ -9,7 +9,7 @@ import { Avatar, IconButton, Menu, MenuItem, useTheme } from '@material-ui/core'
 
 const AccountButton = () => {
   const { user, logout } = useAuth()
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const history = useHistory()
   const theme = useTheme()
   const open = Boolean(anchorEl)

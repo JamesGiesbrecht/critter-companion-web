@@ -22,7 +22,7 @@ export interface StoreState {
   setDonated: (newDonated: { [id: string]: boolean }) => void
   toggleDonated: (id: string) => boolean
   activeForm: FormType | undefined
-  setActiveForm: (newActiveForm: FormType | undefined) => void
+  setActiveForm: (newActiveForm?: FormType) => void
   snackbar: { open: boolean; text: ReactNode; severity: Color }
   setSnackbar: (newError?: StoreState['snackbar']) => void
 }

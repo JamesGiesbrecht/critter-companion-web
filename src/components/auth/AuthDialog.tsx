@@ -1,7 +1,8 @@
 import { FC, ReactNode, SyntheticEvent } from 'react'
 
 import useStore from 'store'
-import { FormType } from 'typescript/enums'
+import { FormType, Providers } from 'typescript/enums'
+import { FormState, InputCollection } from 'typescript/types'
 
 import { Button, DialogContent, DialogTitle, makeStyles, Typography } from '@material-ui/core'
 import { LoadingButton } from '@material-ui/lab'
@@ -12,17 +13,17 @@ interface AuthDialogProps {
   disableSwitchButton?: boolean
   error?: boolean
   helperText?: ReactNode | string
-  inputs: any
-  isLoading?: boolean | string
+  inputs: InputCollection
+  isLoading?: boolean | Providers
   providerButtons?: ReactNode
   submitText: string
   title: string
-  type: FormType | undefined
-  onSubmit: (e: SyntheticEvent, state: any) => void
+  type?: FormType
+  onSubmit: (e: SyntheticEvent, state: FormState) => void
 }
 
 export type AuthFormProps = Partial<AuthDialogProps> & {
-  onSubmit: (e: SyntheticEvent, state: any) => void
+  onSubmit: (e: SyntheticEvent, state: FormState) => void
 }
 
 const useStyles = makeStyles((theme) => ({

@@ -7,7 +7,7 @@ import ClearIcon from '@material-ui/icons/ClearRounded'
 import SearchIcon from '@material-ui/icons/Search'
 
 interface Props {
-  inputRef: Ref<any> | undefined
+  inputRef?: Ref<HTMLInputElement>
 }
 
 const useStyles = makeStyles((theme) => ({

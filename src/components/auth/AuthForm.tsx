@@ -13,6 +13,7 @@ import SignUp from 'components/auth/forms/SignUp'
 import ForgotPassword from 'components/auth/forms/ForgotPassword'
 import VerificationEmail from 'components/auth/forms/VerificationEmail'
 import GoogleIcon from 'components/icons/GoogleIcon'
+import { InputCollection, FormState } from 'typescript/types'
 
 const useStyles = makeStyles((theme) => ({
   dialogPaper: {
@@ -28,10 +29,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-export const authInputs = {
+export const authInputs: InputCollection = {
   email: {
     label: 'Email',
     type: 'email',
+    value: '',
     validation: {
       required: true,
       email: true,
@@ -40,6 +42,7 @@ export const authInputs = {
   password: {
     label: 'Password',
     type: 'password',
+    value: '',
     validation: {
       required: true,
       minLength: 6,
@@ -48,6 +51,7 @@ export const authInputs = {
   confirmPassword: {
     label: 'Confirm Password',
     type: 'password',
+    value: '',
     validation: {
       required: true,
       matches: { name: 'password' },
@@ -83,9 +87,15 @@ const AuthForm = () => {
 
   const ActiveForm = activeFormName && forms[activeFormName]
 
-  const handleSubmit = async (e: SyntheticEvent, form?: any, submitType?: Providers) => {
+  const handleSubmit = async (e: SyntheticEvent, form?: FormState, submitType?: Providers) => {
     let result
     const submitMethod = submitType || activeFormName
+    let email = ''
+    let password = ''
+    if (form) {
+      email = form.inputs.email && form.inputs.email.value
+      password = form.inputs.password && form.inputs.password.value
+    }
     try {
       setSubmitError('')
       setIsLoading(submitType || true)
@@ -94,15 +104,15 @@ const AuthForm = () => {
           result = await auth.signInWithGoogle()
           break
         case FormType.Login:
-          result = await auth.login(form.inputs.email.value, form.inputs.password.value)
+          result = await auth.login(email, password)
           break
         case FormType.SignUp:
-          result = await auth.signUp(form.inputs.email.value, form.inputs.password.value)
+          result = await auth.signUp(email, password)
           await result.user?.sendEmailVerification()
           setActiveFormName(FormType.VerificationEmail)
           return
         case FormType.ForgotPassword:
-          result = await auth.resetPassword(form.inputs.email.value)
+          result = await auth.resetPassword(email)
           setSnackbar({
             open: true,
             text: 'Password reset email successfully sent',
@@ -128,7 +138,7 @@ const AuthForm = () => {
           errorMessage = 'Please enter a valid email address.'
           break
         case AuthError.UserDisabled:
-          errorMessage = `The account associated with ${form.inputs.email.value} has been disabled. Contact support for help with this issue.`
+          errorMessage = `The account associated with ${email} has been disabled. Contact support for help with this issue.`
           break
         case AuthError.UserNotFound:
           errorMessage = (
