@@ -6,7 +6,7 @@ import CrittersTable from 'components/critters/CrittersTable'
 import { Critter } from 'typescript/types'
 
 interface Props {
-  critters: Array<Critter>
+  critters: Critter[]
 }
 
 const useStyles = makeStyles(() => ({

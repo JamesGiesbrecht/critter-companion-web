@@ -25,8 +25,8 @@ export interface StoreState {
   filters: {
     mainFilter: MainFilter
     setMainFilter: (newMainFilter: MainFilter) => void
-    statusFilters: Array<Statuses>
-    setStatusFilters: (newStatusFilters: Array<Statuses>) => void
+    statusFilters: Statuses[]
+    setStatusFilters: (newStatusFilters: Statuses[]) => void
     isNorthern: boolean
     toggleIsNorthern: () => void
     showDonated: boolean
@@ -49,7 +49,7 @@ const useStore = create<StoreState>((set) => ({
     setMainFilter: (newMainFilter: MainFilter) =>
       set((state) => ({ filters: { ...state.filters, mainFilter: newMainFilter } })),
     statusFilters: [Statuses.New, Statuses.Leaving, Statuses.Incoming],
-    setStatusFilters: (newStatusFilters: Array<Statuses>) =>
+    setStatusFilters: (newStatusFilters: Statuses[]) =>
       set((state) => ({ filters: { ...state.filters, statusFilters: newStatusFilters } })),
     isNorthern: true,
     toggleIsNorthern: () =>

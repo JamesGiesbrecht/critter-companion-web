@@ -1,6 +1,6 @@
 import { JsonCritter } from 'typescript/types'
 
-const bugs: Array<JsonCritter> = [
+const bugs: JsonCritter[] = [
   {
     id: 'agrias-butterfly',
     name: 'Agrias Butterfly',

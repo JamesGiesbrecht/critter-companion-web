@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 const today = new Date()
 const curMonth = (today.getMonth() + 1) as Month
 
-const hasPrevMonth = (months: Array<Month>) => {
+const hasPrevMonth = (months: Month[]) => {
   // January
   if (curMonth === 1) {
     return months.includes(12)
@@ -33,7 +33,7 @@ const hasPrevMonth = (months: Array<Month>) => {
   return months.includes(((curMonth as number) - 1) as Month)
 }
 
-const hasNextMonth = (months: Array<Month>) => {
+const hasNextMonth = (months: Month[]) => {
   // December
   if (curMonth === 12) {
     return months.includes(1)
@@ -41,9 +41,9 @@ const hasNextMonth = (months: Array<Month>) => {
   return months.includes(((curMonth as number) + 1) as Month)
 }
 
-const isAvailableNow = (months: Array<Month>) => months.includes(curMonth)
+const isAvailableNow = (months: Month[]) => months.includes(curMonth)
 
-const getAvailability = (months: Array<Month>) => {
+const getAvailability = (months: Month[]) => {
   const availability: {
     isAvailableNow?: boolean
     [Statuses.New]?: boolean
@@ -93,7 +93,7 @@ const Critters = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [donatedRef, setDonated, updateCritters])
 
-  const addProperties = (critters: Array<JsonCritter>): Array<Critter> =>
+  const addProperties = (critters: JsonCritter[]): Critter[] =>
     critters.map((critter) => {
       const critterMonths = isNorthern ? critter.northernMonths : critter.southernMonths
       return {

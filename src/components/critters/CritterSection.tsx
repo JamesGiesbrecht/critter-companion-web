@@ -1,12 +1,12 @@
 import { useState, memo, useMemo, FC } from 'react'
+import { Critter, CritterType } from 'typescript/types'
 import useStore, { MainFilter } from 'store'
 import { Collapse, Paper, makeStyles, Typography, Button } from '@material-ui/core'
 import CrittersTable from 'components/critters/CrittersTable'
 import ExpandMoreIcon from 'components/ui/ExpandMoreIcon'
-import { Critter, CritterType } from 'typescript/types'
 
 interface Props {
-  allCritters: Array<Critter>
+  allCritters: Critter[]
   type: CritterType
 }
 

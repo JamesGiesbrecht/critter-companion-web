@@ -108,10 +108,8 @@ const FilterButtons = () => {
     }
   }
 
-  const handleStatusFiltersChange = (
-    e: MouseEvent<HTMLElement>,
-    newStatusFilters: Array<Statuses>,
-  ) => setStatusFilters(newStatusFilters)
+  const handleStatusFiltersChange = (e: MouseEvent<HTMLElement>, newStatusFilters: Statuses[]) =>
+    setStatusFilters(newStatusFilters)
 
   const toggles = (
     <>
