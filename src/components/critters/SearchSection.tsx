@@ -3,18 +3,18 @@ import { FC, useEffect, useState } from 'react'
 import useStore from 'store'
 import { Critter } from 'typescript/types'
 
-import { Paper, makeStyles, Typography } from '@material-ui/core'
+import { makeStyles, Typography } from '@material-ui/core'
 import { Search as SearchIcon } from '@material-ui/icons'
 import CrittersTable from 'components/critters/CrittersTable'
+import CustomPaper from 'components/ui/CustomPaper'
 
 interface Props {
   critters: Critter[]
 }
 
 const useStyles = makeStyles(() => ({
-  critters: {
+  search: {
     padding: '10px 0',
-    margin: '20px auto',
   },
   headingWrapper: {
     display: 'flex',
@@ -54,7 +54,7 @@ const SearchSection: FC<Props> = ({ critters }) => {
   }
 
   return (
-    <Paper classes={{ root: classes.critters }} elevation={7}>
+    <CustomPaper classes={{ root: classes.search }}>
       <div className={classes.headingWrapper}>
         <div className={classes.heading}>
           <SearchIcon className={classes.searchIcon} />
@@ -62,7 +62,7 @@ const SearchSection: FC<Props> = ({ critters }) => {
         </div>
       </div>
       {content}
-    </Paper>
+    </CustomPaper>
   )
 }
 
