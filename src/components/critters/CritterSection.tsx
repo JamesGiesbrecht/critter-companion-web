@@ -4,8 +4,9 @@ import useStore from 'store'
 import { MainFilter } from 'typescript/enums'
 import { Critter, CritterType } from 'typescript/types'
 
-import { Collapse, Paper, makeStyles, Typography, Button } from '@material-ui/core'
+import { Collapse, makeStyles, Typography, Button } from '@material-ui/core'
 import CrittersTable from 'components/critters/CrittersTable'
+import CustomPaper from 'components/ui/CustomPaper'
 import ExpandMoreIcon from 'components/ui/ExpandMoreIcon'
 
 interface Props {
@@ -13,13 +14,7 @@ interface Props {
   type: CritterType
 }
 
-const useStyles = makeStyles((theme) => ({
-  critters: {
-    padding: '10px 0',
-    [theme.breakpoints.down('sm')]: {
-      borderRadius: 0,
-    },
-  },
+const useStyles = makeStyles(() => ({
   headingWrapper: {
     display: 'flex',
     flexDirection: 'row',
@@ -93,7 +88,7 @@ const CritterSection: FC<Props> = ({ allCritters, type }) => {
   }
 
   return (
-    <Paper classes={{ root: classes.critters }} elevation={7}>
+    <CustomPaper>
       <div className={classes.headingWrapper}>
         <div className={classes.heading}>
           <img className={classes.headingImg} src={randomImg} alt={type} />
@@ -108,7 +103,7 @@ const CritterSection: FC<Props> = ({ allCritters, type }) => {
         </Button>
       </div>
       <Collapse in={Boolean(expanded)}>{content}</Collapse>
-    </Paper>
+    </CustomPaper>
   )
 }
 
