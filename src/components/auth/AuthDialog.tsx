@@ -1,13 +1,10 @@
 import { FC, ReactNode, SyntheticEvent } from 'react'
-import useStore, { FormType } from 'store'
-import {
-  Button,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  makeStyles,
-  Typography,
-} from '@material-ui/core'
+
+import useStore from 'store'
+import { FormType, Providers } from 'typescript/enums'
+import { FormState, InputCollection } from 'typescript/types'
+
+import { Button, DialogContent, DialogTitle, makeStyles, Typography } from '@material-ui/core'
 import { LoadingButton } from '@material-ui/lab'
 import Form from 'components/common/Form'
 
@@ -16,20 +13,28 @@ interface AuthDialogProps {
   disableSwitchButton?: boolean
   error?: boolean
   helperText?: ReactNode | string
-  inputs: any
-  isLoading?: boolean
+  inputs: InputCollection
+  isLoading?: boolean | Providers
+  providerButtons?: ReactNode
   submitText: string
   title: string
-  type: FormType | undefined
-  onSubmit: (e: SyntheticEvent, state: any) => void
+  type?: FormType
+  onSubmit: (e: SyntheticEvent, state: FormState) => void
 }
 
 export type AuthFormProps = Partial<AuthDialogProps> & {
-  onSubmit: (e: SyntheticEvent, state: any) => void
+  onSubmit: (e: SyntheticEvent, state: FormState) => void
 }
 
 const useStyles = makeStyles((theme) => ({
-  formActions: { display: 'flex', flexDirection: 'column' },
+  formActions: {
+    display: 'flex',
+    flexDirection: 'column',
+    margin: 'auto',
+    maxWidth: 280,
+    paddingTop: theme.spacing(3),
+    '& > *': { margin: 0, marginBottom: theme.spacing(2), width: '100%' },
+  },
   submitError: {
     color: theme.palette.error.main,
   },
@@ -42,6 +47,7 @@ const AuthDialog: FC<AuthDialogProps> = ({
   helperText,
   inputs,
   isLoading,
+  providerButtons,
   submitText,
   title,
   type,
@@ -66,21 +72,31 @@ const AuthDialog: FC<AuthDialogProps> = ({
         )}
         {children && <Typography>{children}</Typography>}
         <Form inputs={inputs} type={type} onSubmit={onSubmit}>
-          <DialogActions className={classes.formActions}>
-            <LoadingButton loading={isLoading} type="submit" color="primary" size="large">
+          <div className={classes.formActions}>
+            <LoadingButton
+              loading={isLoading === true}
+              loadingPosition="start"
+              // To satisfy the compiler
+              startIcon={<></>}
+              endIcon={<></>}
+              disabled={Boolean(isLoading)}
+              variant="contained"
+              type="submit"
+              color="primary">
               {submitText}
             </LoadingButton>
+            {(type === FormType.Login || type === FormType.SignUp) && providerButtons}
             {!disableSwitchButton && (
               <Button
                 type="button"
                 size="small"
                 color="inherit"
-                disabled={isLoading}
+                disabled={Boolean(isLoading)}
                 onClick={toggleState}>
                 {`Switch to ${type === FormType.Login ? 'Sign Up' : 'Login'}`}
               </Button>
             )}
-          </DialogActions>
+          </div>
         </Form>
       </DialogContent>
     </>

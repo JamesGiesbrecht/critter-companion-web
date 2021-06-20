@@ -1,51 +1,43 @@
+import { FC, SyntheticEvent } from 'react'
 import clsx from 'clsx'
-import { hidden } from 'assets/cssClasses'
+
+import { hidden } from 'styles/cssClasses'
+import { Critter, TableHeadCell, Order } from 'typescript/types'
+
 import { TableHead, TableRow, TableCell, TableSortLabel, makeStyles } from '@material-ui/core'
+
+interface Props {
+  headCells: Array<TableHeadCell | null>
+  order: Order
+  orderBy: keyof Critter
+  onSortRequest: (e: SyntheticEvent, property: keyof Critter) => void
+}
 
 const useStyles = makeStyles((theme) => ({
   hidden,
   headers: {
     whiteSpace: 'nowrap',
   },
-  location: {
+  hiddenSm: {
     [theme.breakpoints.down('sm')]: {
       ...hidden,
     },
   },
-  start_time: {
-    [theme.breakpoints.down('sm')]: {
-      ...hidden,
-    },
-  },
-  months: {
-    [theme.breakpoints.down('md')]: {
-      ...hidden,
-    },
-  },
-  size: {
+  hiddenMd: {
     [theme.breakpoints.down('md')]: {
       ...hidden,
     },
   },
 }))
 
-const headCells = [
-  { id: 'name', numeric: false, align: 'center', label: 'Name' },
-  { id: 'value', numeric: true, align: 'right', label: 'Price' },
-  { id: 'location', numeric: false, align: 'right', label: 'Location' },
-  { id: 'size', numeric: true, align: 'right', label: 'Size' },
-  { id: 'start_time', numeric: false, align: 'right', label: 'Active Hours' },
-  { id: 'months', numeric: false, align: 'right', label: 'Active Months' },
-]
-
-const EnhancedTableHead = ({ order, orderBy, onSortRequest, isFish }) => {
+const CritterTableHead: FC<Props> = ({ headCells, order, orderBy, onSortRequest }) => {
   const classes = useStyles()
-  const createSortHandler = (property) => (event) => {
+  const createSortHandler = (property: keyof Critter) => (event: SyntheticEvent) => {
     onSortRequest(event, property)
   }
 
   const headers = headCells.map((headCell) => {
-    if (headCell.id === 'size' && !isFish) return null
+    if (!headCell) return null
     let label
     if (headCell.id === 'months') {
       label = headCell.label
@@ -67,7 +59,11 @@ const EnhancedTableHead = ({ order, orderBy, onSortRequest, isFish }) => {
 
     return (
       <TableCell
-        className={clsx(classes.headers, classes[headCell.id])}
+        className={clsx(
+          classes.headers,
+          headCell.hidden === 'sm' && classes.hiddenSm,
+          headCell.hidden === 'md' && classes.hiddenMd,
+        )}
         key={headCell.id}
         align={headCell.align}
         sortDirection={orderBy === headCell.id ? order : false}>
@@ -86,4 +82,4 @@ const EnhancedTableHead = ({ order, orderBy, onSortRequest, isFish }) => {
   )
 }
 
-export default EnhancedTableHead
+export default CritterTableHead

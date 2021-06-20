@@ -1,16 +1,20 @@
-import { useState, memo, useMemo } from 'react'
-import useStore, { MainFilter } from 'store'
-import { Collapse, Paper, makeStyles, Typography, Button } from '@material-ui/core'
+import { useState, memo, useMemo, FC } from 'react'
+
+import useStore from 'store'
+import { MainFilter } from 'typescript/enums'
+import { Critter, CritterType } from 'typescript/types'
+
+import { Collapse, makeStyles, Typography, Button } from '@material-ui/core'
 import CrittersTable from 'components/critters/CrittersTable'
+import CustomPaper from 'components/ui/CustomPaper'
 import ExpandMoreIcon from 'components/ui/ExpandMoreIcon'
 
-const useStyles = makeStyles((theme) => ({
-  critters: {
-    padding: '10px 0',
-    [theme.breakpoints.down('sm')]: {
-      borderRadius: 0,
-    },
-  },
+interface Props {
+  allCritters: Critter[]
+  type: CritterType
+}
+
+const useStyles = makeStyles(() => ({
   headingWrapper: {
     display: 'flex',
     flexDirection: 'row',
@@ -29,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const CritterSection = ({ allCritters, type }) => {
+const CritterSection: FC<Props> = ({ allCritters, type }) => {
   const classes = useStyles()
   const mainFilter = useStore((state) => state.filters.mainFilter)
   const statusFilters = useStore((state) => state.filters.statusFilters)
@@ -42,7 +46,7 @@ const CritterSection = ({ allCritters, type }) => {
   const handleToggleExpand = () => setExpanded((prevExpanded) => !prevExpanded)
 
   const randomImg = useMemo(
-    () => allCritters[Math.floor(Math.random() * allCritters.length)].image_path,
+    () => allCritters[Math.floor(Math.random() * allCritters.length)].imagePath,
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [],
   )
@@ -84,7 +88,7 @@ const CritterSection = ({ allCritters, type }) => {
   }
 
   return (
-    <Paper classes={{ root: classes.critters }} elevation={7}>
+    <CustomPaper>
       <div className={classes.headingWrapper}>
         <div className={classes.heading}>
           <img className={classes.headingImg} src={randomImg} alt={type} />
@@ -99,7 +103,7 @@ const CritterSection = ({ allCritters, type }) => {
         </Button>
       </div>
       <Collapse in={Boolean(expanded)}>{content}</Collapse>
-    </Paper>
+    </CustomPaper>
   )
 }
 

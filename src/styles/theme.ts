@@ -1,12 +1,12 @@
-import { createTheme, Theme } from '@material-ui/core/styles'
 import { PaletteMode } from '@material-ui/core'
 import { blue, green, yellow } from '@material-ui/core/colors'
+import { createTheme, Theme } from '@material-ui/core/styles'
 
 // Edit this function for global theme overrides
 const getTheme = (colorScheme: PaletteMode): Theme => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const defaultTheme = createTheme({ palette: { mode: colorScheme } })
-  const themeVars = (light: any, dark: any) => (colorScheme === 'light' ? light : dark)
+  const themeVars = <T extends {}>(light: T, dark: T) => (colorScheme === 'light' ? light : dark)
   return createTheme({
     breakpoints: {
       values: {

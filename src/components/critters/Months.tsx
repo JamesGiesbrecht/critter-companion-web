@@ -1,6 +1,14 @@
-import { memo } from 'react'
+import { memo, FC } from 'react'
 import clsx from 'clsx'
+
+import { Month } from 'typescript/types'
+
 import { Chip, makeStyles } from '@material-ui/core'
+
+interface Props {
+  months: Month[]
+  className?: string
+}
 
 const useStyles = makeStyles((theme) => ({
   chip: {
@@ -21,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const Months = ({ months, className }) => {
+const Months: FC<Props> = ({ months, className }) => {
   const allMonths = [
     'Jan',
     'Feb',
@@ -38,8 +46,7 @@ const Months = ({ months, className }) => {
   ]
   const classes = useStyles()
   const chips = allMonths.map((month, index) => {
-    const isActive = months.includes(index + 1)
-    const color = isActive ? { color: 'primary' } : { disabled: true }
+    const isActive = months.includes((index + 1) as Month)
     return (
       <Chip
         className={clsx(classes.chip, className)}
@@ -47,12 +54,13 @@ const Months = ({ months, className }) => {
         key={month}
         size="small"
         label={month}
-        {...color}
+        color={isActive ? 'primary' : 'default'}
+        disabled={!isActive}
       />
     )
   })
 
-  return chips
+  return <>{chips}</>
 }
 
 export default memo(Months)

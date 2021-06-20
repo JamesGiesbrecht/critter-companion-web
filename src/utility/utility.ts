@@ -10,3 +10,9 @@ export const stringToColor = (string: string, theme: PaletteMode) => {
   }
   return `hsl(${hash % 360}, ${(hash % 50) + 40}%, ${luminance}%)`
 }
+
+export const removeItem = <T extends {}>(arr: T[], item: T) => {
+  const index = arr.indexOf(item)
+  if (index > -1) arr.splice(index, 1)
+  return arr
+}

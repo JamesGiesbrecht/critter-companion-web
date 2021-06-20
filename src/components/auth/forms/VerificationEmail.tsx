@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { FormType } from 'store'
+import { FormType } from 'typescript/enums'
 import AuthDialog, { AuthFormProps } from 'components/auth/AuthDialog'
 import { useAuth } from 'context/Auth'
 

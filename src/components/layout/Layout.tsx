@@ -1,11 +1,13 @@
 import { FC, ReactNode, SyntheticEvent } from 'react'
+
 import { useAuth } from 'context/Auth'
+import useStore from 'store'
+
 import { Alert, Container, makeStyles, Slide, Snackbar } from '@material-ui/core'
+import AuthForm from 'components/auth/AuthForm'
 import Footer from 'components/layout/Footer'
 import Centered from 'components/ui/Centered'
 import Loading from 'components/ui/Loading'
-import LoginSignUpForm from 'components/auth/LoginSignUpForm'
-import useStore from 'store'
 
 interface Props {
   children: ReactNode
@@ -48,7 +50,7 @@ const Layout: FC<Props> = ({ children }) => {
 
   return (
     <Container className={classes.content} disableGutters>
-      <LoginSignUpForm />
+      <AuthForm />
       {children}
       <Footer />
       <footer className={classes.footerMargin} />

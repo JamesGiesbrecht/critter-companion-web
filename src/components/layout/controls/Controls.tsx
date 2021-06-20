@@ -1,30 +1,31 @@
 import { useRef, useState } from 'react'
-import useStore, { FormType, MainFilter } from 'store'
+
+import logo from 'assets/images/app-logo.png'
+import { useAuth } from 'context/Auth'
 import { useColorScheme } from 'context/Theme'
-import { Paper, makeStyles, IconButton, Button, Collapse, Divider } from '@material-ui/core'
+import useStore from 'store'
+import { FormType, MainFilter } from 'typescript/enums'
+
+import { makeStyles, IconButton, Button, Collapse, Divider } from '@material-ui/core'
 import {
   Brightness7 as LightModeIcon,
   Brightness3 as DarkModeIcon,
   FilterAlt as FilterIcon,
   Search as SearchIcon,
 } from '@material-ui/icons'
-import ExpandMoreIcon from 'components/ui/ExpandMoreIcon'
-import Search from 'components/layout/controls/components/Search'
-import FilterButtons from 'components/layout/controls/components/FilterButtons'
-import logo from 'assets/images/app-logo.png'
-import { useAuth } from 'context/Auth'
 import AccountButton from 'components/auth/AccountButton'
+import FilterButtons from 'components/layout/controls/components/FilterButtons'
+import Search from 'components/layout/controls/components/Search'
+import ExpandMoreIcon from 'components/ui/ExpandMoreIcon'
+import CustomPaper from 'components/ui/CustomPaper'
 
 const logoWidth = 300
 
 const useStyles = makeStyles((theme) => ({
   controls: {
-    padding: '15px',
+    padding: '15px!important',
     textAlign: 'center',
     marginTop: 100,
-    [theme.breakpoints.down('sm')]: {
-      borderRadius: 0,
-    },
     [theme.breakpoints.down('md')]: {
       marginTop: 190,
     },
@@ -93,9 +94,15 @@ const Controls = () => {
   const [searchExpanded, setSearchExpanded] = useState(false)
   const searchRef = useRef<HTMLInputElement>(null)
   const { colorScheme, toggleColorScheme } = useColorScheme()
+  const search = useStore((state) => state.filters.search)
   const mainFilter = useStore((state) => state.filters.mainFilter)
   const setActiveFormName = useStore((state) => state.setActiveForm)
   const { user } = useAuth()
+
+  const handleCloseSearch = () => {
+    if (search) return
+    setSearchExpanded(false)
+  }
 
   const getFilterText = (filter: MainFilter) => {
     switch (filter) {
@@ -121,26 +128,27 @@ const Controls = () => {
 
   const handleToggleFilterExpand = () => {
     setFiltersExpanded((prevExpanded) => !prevExpanded)
-    setSearchExpanded(false)
+    handleCloseSearch()
   }
 
   const handleToggleSearchExpand = () => {
     setSearchExpanded((prevExpanded) => {
-      if (!prevExpanded) {
+      if (!prevExpanded || search) {
         setTimeout(() => {
           if (searchRef.current !== null) {
             searchRef.current.focus()
           }
         }, 100)
       }
+      if (search) return true
       return !prevExpanded
     })
-    setFiltersExpanded(false)
+    if (!search) setFiltersExpanded(false)
   }
 
   return (
     <div>
-      <Paper classes={{ root: classes.controls }} elevation={7}>
+      <CustomPaper classes={{ root: classes.controls }}>
         <div className={classes.mainControls}>
           <div className={classes.subControls}>
             <Button color="inherit" startIcon={<SearchIcon />} onClick={handleToggleSearchExpand}>
@@ -191,7 +199,7 @@ const Controls = () => {
         <Collapse in={filtersExpanded}>
           <FilterButtons />
         </Collapse>
-      </Paper>
+      </CustomPaper>
       <Collapse in={!searchExpanded && !filtersExpanded}>
         <div className={classes.smoothBottomMargin} />
       </Collapse>

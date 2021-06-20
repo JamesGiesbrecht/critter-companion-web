@@ -1,8 +1,11 @@
 import { MouseEvent } from 'react'
 import clsx from 'clsx'
-import useStore, { MainFilter, Statuses } from 'store'
-import { removeItem } from 'assets/utility'
-import { dot } from 'assets/cssClasses'
+
+import useStore from 'store'
+import { dot } from 'styles/cssClasses'
+import { MainFilter, Statuses } from 'typescript/enums'
+import { removeItem } from 'utility/utility'
+
 import {
   ToggleButtonGroup,
   ToggleButton,
@@ -57,6 +60,12 @@ const useStyles = makeStyles((theme) => ({
       flexGrow: 1,
     },
   },
+  donatedSelected: {
+    backgroundColor: `${theme.palette.primary.main}75!important`,
+    '&:hover': {
+      backgroundColor: `${theme.palette.primary.main}50!important`,
+    },
+  },
   disabled: {
     '& span': {
       color: theme.palette.text.disabled,
@@ -108,10 +117,8 @@ const FilterButtons = () => {
     }
   }
 
-  const handleStatusFiltersChange = (
-    e: MouseEvent<HTMLElement>,
-    newStatusFilters: Array<Statuses>,
-  ) => setStatusFilters(newStatusFilters)
+  const handleStatusFiltersChange = (e: MouseEvent<HTMLElement>, newStatusFilters: Statuses[]) =>
+    setStatusFilters(newStatusFilters)
 
   const toggles = (
     <>
@@ -128,6 +135,7 @@ const FilterButtons = () => {
       <ToggleButton
         size="small"
         className={classes.donatedToggle}
+        classes={{ selected: classes.donatedSelected }}
         value={showDonated}
         selected={showDonated}
         onChange={toggleShowDonated}>

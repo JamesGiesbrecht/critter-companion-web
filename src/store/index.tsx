@@ -1,32 +1,16 @@
-import { Color } from '@material-ui/lab'
 import { ReactNode } from 'react'
 import create from 'zustand'
 
-export enum MainFilter {
-  All = 'All',
-  Available = 'Available',
-  Custom = 'Custom',
-}
+import { FormType, Statuses, MainFilter } from 'typescript/enums'
 
-export enum Statuses {
-  New = 'New',
-  Leaving = 'Leaving',
-  Incoming = 'Incoming',
-}
-
-export enum FormType {
-  Login = 'Login',
-  SignUp = 'SignUp',
-  ForgotPassword = 'ForgotPassword',
-  VerificationEmail = 'VerificationEmail',
-}
+import { Color } from '@material-ui/lab'
 
 export interface StoreState {
   filters: {
     mainFilter: MainFilter
     setMainFilter: (newMainFilter: MainFilter) => void
-    statusFilters: Array<Statuses>
-    setStatusFilters: (newStatusFilters: Array<Statuses>) => void
+    statusFilters: Statuses[]
+    setStatusFilters: (newStatusFilters: Statuses[]) => void
     isNorthern: boolean
     toggleIsNorthern: () => void
     showDonated: boolean
@@ -38,7 +22,7 @@ export interface StoreState {
   setDonated: (newDonated: { [id: string]: boolean }) => void
   toggleDonated: (id: string) => boolean
   activeForm: FormType | undefined
-  setActiveForm: (newActiveForm: FormType | undefined) => void
+  setActiveForm: (newActiveForm?: FormType) => void
   snackbar: { open: boolean; text: ReactNode; severity: Color }
   setSnackbar: (newError?: StoreState['snackbar']) => void
 }
@@ -49,7 +33,7 @@ const useStore = create<StoreState>((set) => ({
     setMainFilter: (newMainFilter: MainFilter) =>
       set((state) => ({ filters: { ...state.filters, mainFilter: newMainFilter } })),
     statusFilters: [Statuses.New, Statuses.Leaving, Statuses.Incoming],
-    setStatusFilters: (newStatusFilters: Array<Statuses>) =>
+    setStatusFilters: (newStatusFilters: Statuses[]) =>
       set((state) => ({ filters: { ...state.filters, statusFilters: newStatusFilters } })),
     isNorthern: true,
     toggleIsNorthern: () =>

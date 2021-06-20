@@ -1,32 +1,28 @@
+import { FC, Fragment, ReactNode, SyntheticEvent, useEffect, useReducer } from 'react'
+
+import { FormActionType, FormType } from 'typescript/enums'
+import { Input, InputCollection, FormState } from 'typescript/types'
+
 import { TextField } from '@material-ui/core'
-import { FC, Fragment, SyntheticEvent, useEffect, useReducer } from 'react'
 
 interface Props {
-  [key: string]: any
-  children: any
-  type?: string
-  onSubmit: (e: SyntheticEvent, state: any) => void
+  children: ReactNode
+  inputs: InputCollection
+  type?: FormType
+  onSubmit: (e: SyntheticEvent, state: FormState) => void
 }
-
-enum FormActionType {
-  InputUpdate,
-  InputBlur,
-  InitializeForm,
-  ValidateForm,
-}
-
 interface FormAction {
   type: FormActionType
-  [key: string]: any
+  payload?: { [x: string]: any }
 }
 
-const validateInput = (input: any, value?: any) => {
+const validateInput = (input: Input, value?: string) => {
   const { label, validation } = input
   if (value === null || value === undefined) {
     // eslint-disable-next-line no-param-reassign
     value = input.value
   }
-  const { required, email, min, max, minLength, matches } = validation
+  const { required, email, min, max, minLength, maxLength, matches } = validation
   let error = ''
 
   const emailRegex =
@@ -42,17 +38,21 @@ const validateInput = (input: any, value?: any) => {
     error = `${label} must be less than ${max}`
   } else if (minLength != null && value.length < minLength) {
     error = `${label} must be at least ${minLength} characters`
+  } else if (maxLength != null && value.length > maxLength) {
+    error = `${label} cannot be more than ${maxLength} characters`
   } else if (matches && matches.value !== value) {
     error = `${label} and ${matches.label} must match`
   }
   return error
 }
 
-const formReducer = (state: any, action: FormAction) => {
+const formReducer = (state: FormState, action: FormAction) => {
   const { inputs } = state
+  // eslint-disable-next-line no-param-reassign
+  if (!action.payload) action.payload = {}
   switch (action.type) {
     case FormActionType.InputUpdate: {
-      const input = inputs[action.inputName]
+      const input = inputs[action.payload.inputName]
       const { matches } = input.validation
       if (matches && inputs[matches.name]) {
         input.validation.matches = {
@@ -61,12 +61,12 @@ const formReducer = (state: any, action: FormAction) => {
           label: inputs[matches.name].label,
         }
       }
-      const updatedInputs = {
+      const updatedInputs: InputCollection = {
         ...inputs,
-        [action.inputName]: {
+        [action.payload.inputName]: {
           ...input,
-          value: action.value,
-          error: validateInput(input, action.value),
+          value: action.payload.value,
+          error: validateInput(input, action.payload.value),
         },
       }
       const formIsValid = Object.keys(updatedInputs).every(
@@ -81,8 +81,8 @@ const formReducer = (state: any, action: FormAction) => {
     case FormActionType.InputBlur: {
       const updatedInputs = {
         ...inputs,
-        [action.inputName]: {
-          ...inputs[action.inputName],
+        [action.payload.inputName]: {
+          ...inputs[action.payload.inputName],
           touched: true,
         },
       }
@@ -94,12 +94,12 @@ const formReducer = (state: any, action: FormAction) => {
     case FormActionType.InitializeForm: {
       return {
         ...state,
-        inputs: action.inputs,
-        type: action.formType,
+        inputs: action.payload.inputs,
+        type: action.payload.formType,
       }
     }
     case FormActionType.ValidateForm: {
-      const updatedInputs: any = {}
+      const updatedInputs: InputCollection = {}
       let firstInvalidInput: string | null = null
       const formValidityState = Object.keys(inputs).map((name) => {
         const input = inputs[name]
@@ -131,15 +131,16 @@ const formReducer = (state: any, action: FormAction) => {
 }
 
 const Form: FC<Props> = ({ children, inputs, type, onSubmit }) => {
-  const [formState, formDispatch] = useReducer(formReducer, {
+  const initialFormState: FormState = {
     inputs,
     type,
     formIsValid: false,
-  })
+  }
+  const [formState, formDispatch] = useReducer(formReducer, initialFormState)
 
   useEffect(() => {
     if (type && type !== formState.type) {
-      formDispatch({ type: FormActionType.InitializeForm, inputs, formType: type })
+      formDispatch({ type: FormActionType.InitializeForm, payload: { inputs, formType: type } })
     }
   }, [type, formState.type, inputs])
 
@@ -169,11 +170,15 @@ const Form: FC<Props> = ({ children, inputs, type, onSubmit }) => {
           onChange={(e) =>
             formDispatch({
               type: FormActionType.InputUpdate,
-              value: e.target.value,
-              inputName: name,
+              payload: {
+                value: e.target.value,
+                inputName: name,
+              },
             })
           }
-          onBlur={() => formDispatch({ type: FormActionType.InputBlur, inputName: name })}
+          onBlur={() =>
+            formDispatch({ type: FormActionType.InputBlur, payload: { inputName: name } })
+          }
         />
         {input.after}
       </Fragment>

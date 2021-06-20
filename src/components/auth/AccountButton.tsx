@@ -1,13 +1,15 @@
 import { useState, MouseEvent } from 'react'
 import { useHistory } from 'react-router-dom'
+
+import Routes from 'constants/Routes'
 import { useAuth } from 'context/Auth'
 import { stringToColor } from 'utility/utility'
-import Routes from 'constants/Routes'
+
 import { Avatar, IconButton, Menu, MenuItem, useTheme } from '@material-ui/core'
 
 const AccountButton = () => {
   const { user, logout } = useAuth()
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const history = useHistory()
   const theme = useTheme()
   const open = Boolean(anchorEl)

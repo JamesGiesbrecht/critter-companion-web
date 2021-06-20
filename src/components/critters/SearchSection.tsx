@@ -1,13 +1,20 @@
-import { useEffect, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
+
 import useStore from 'store'
-import { Paper, makeStyles, Typography } from '@material-ui/core'
+import { Critter } from 'typescript/types'
+
+import { makeStyles, Typography } from '@material-ui/core'
 import { Search as SearchIcon } from '@material-ui/icons'
 import CrittersTable from 'components/critters/CrittersTable'
+import CustomPaper from 'components/ui/CustomPaper'
+
+interface Props {
+  critters: Critter[]
+}
 
 const useStyles = makeStyles(() => ({
-  critters: {
+  search: {
     padding: '10px 0',
-    margin: '20px auto',
   },
   headingWrapper: {
     display: 'flex',
@@ -28,16 +35,16 @@ const useStyles = makeStyles(() => ({
   },
 }))
 
-const SearchSection = ({ allCritters }) => {
+const SearchSection: FC<Props> = ({ critters }) => {
   const classes = useStyles()
   const search = useStore((state) => state.filters.search)
-  const [filteredCritters, setFilteredCritters] = useState(allCritters)
+  const [filteredCritters, setFilteredCritters] = useState(critters)
 
   useEffect(() => {
     setFilteredCritters(
-      allCritters.filter((critter) => critter.name.toLowerCase().search(search) !== -1),
+      critters.filter((critter) => critter.name.toLowerCase().search(search) !== -1),
     )
-  }, [allCritters, search])
+  }, [critters, search])
 
   let content
   if (filteredCritters.length === 0) {
@@ -47,7 +54,7 @@ const SearchSection = ({ allCritters }) => {
   }
 
   return (
-    <Paper classes={{ root: classes.critters }} elevation={7}>
+    <CustomPaper classes={{ root: classes.search }}>
       <div className={classes.headingWrapper}>
         <div className={classes.heading}>
           <SearchIcon className={classes.searchIcon} />
@@ -55,7 +62,7 @@ const SearchSection = ({ allCritters }) => {
         </div>
       </div>
       {content}
-    </Paper>
+    </CustomPaper>
   )
 }
 

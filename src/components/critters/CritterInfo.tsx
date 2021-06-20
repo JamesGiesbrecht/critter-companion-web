@@ -1,6 +1,17 @@
+import { FC, ReactNode } from 'react'
+
+import { Critter } from 'typescript/types'
+
 import { Card, CardHeader, CardContent, Typography, Dialog, makeStyles } from '@material-ui/core'
-import { FishSizes } from 'constants/AppConstants'
 import Months from 'components/critters/Months'
+
+interface Props {
+  critter: Critter
+  dialogOpen: boolean
+  hours: string
+  nameButton: ReactNode
+  handleDialogClose: () => void
+}
 
 const useStyles = makeStyles((theme) => ({
   critterInfo: {
@@ -51,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-const CritterInfo = ({ critter, dialogOpen, handleDialogClose, nameButton, hours }) => {
+const CritterInfo: FC<Props> = ({ critter, dialogOpen, hours, nameButton, handleDialogClose }) => {
   const classes = useStyles()
 
   return (
@@ -64,7 +75,7 @@ const CritterInfo = ({ critter, dialogOpen, handleDialogClose, nameButton, hours
       <Card aria-labelledby={critter.name}>
         <CardHeader title={nameButton} />
         <CardContent className={classes.content} aria-describedby={`${critter.name} Details`}>
-          <img className={classes.critterImg} src={critter.image_path} alt={critter.name} />
+          <img className={classes.critterImg} src={critter.imagePath} alt={critter.name} />
           <div className={classes.info}>
             <div>
               <Typography variant="subtitle2" className={classes.infoTitle}>
@@ -89,7 +100,7 @@ const CritterInfo = ({ critter, dialogOpen, handleDialogClose, nameButton, hours
                 <Typography variant="subtitle2" className={classes.infoTitle}>
                   Size:
                 </Typography>
-                <Typography>{FishSizes[critter.size]}</Typography>
+                <Typography>{critter.size}</Typography>
               </div>
             )}
           </div>

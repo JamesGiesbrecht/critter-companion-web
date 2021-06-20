@@ -1,11 +1,13 @@
-import useStore from 'store'
-import { InputBase, makeStyles } from '@material-ui/core'
-import SearchIcon from '@material-ui/icons/Search'
-import ClearIcon from '@material-ui/icons/ClearRounded'
 import { ChangeEvent, FC, Ref } from 'react'
 
+import useStore from 'store'
+
+import { InputBase, makeStyles } from '@material-ui/core'
+import ClearIcon from '@material-ui/icons/ClearRounded'
+import SearchIcon from '@material-ui/icons/Search'
+
 interface Props {
-  inputRef: Ref<any> | undefined
+  inputRef?: Ref<HTMLInputElement>
 }
 
 const useStyles = makeStyles((theme) => ({
