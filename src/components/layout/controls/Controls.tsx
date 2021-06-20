@@ -94,9 +94,15 @@ const Controls = () => {
   const [searchExpanded, setSearchExpanded] = useState(false)
   const searchRef = useRef<HTMLInputElement>(null)
   const { colorScheme, toggleColorScheme } = useColorScheme()
+  const search = useStore((state) => state.filters.search)
   const mainFilter = useStore((state) => state.filters.mainFilter)
   const setActiveFormName = useStore((state) => state.setActiveForm)
   const { user } = useAuth()
+
+  const handleCloseSearch = () => {
+    if (search) return
+    setSearchExpanded(false)
+  }
 
   const getFilterText = (filter: MainFilter) => {
     switch (filter) {
@@ -122,21 +128,22 @@ const Controls = () => {
 
   const handleToggleFilterExpand = () => {
     setFiltersExpanded((prevExpanded) => !prevExpanded)
-    setSearchExpanded(false)
+    handleCloseSearch()
   }
 
   const handleToggleSearchExpand = () => {
     setSearchExpanded((prevExpanded) => {
-      if (!prevExpanded) {
+      if (!prevExpanded || search) {
         setTimeout(() => {
           if (searchRef.current !== null) {
             searchRef.current.focus()
           }
         }, 100)
       }
+      if (search) return true
       return !prevExpanded
     })
-    setFiltersExpanded(false)
+    if (!search) setFiltersExpanded(false)
   }
 
   return (
