@@ -1,4 +1,4 @@
-import { SyntheticEvent, useEffect, useState } from 'react'
+import { SyntheticEvent, useEffect, useMemo, useState } from 'react'
 
 import bugsData from 'assets/data/bugs'
 import fishData from 'assets/data/fish'
@@ -6,7 +6,7 @@ import seaData from 'assets/data/sea'
 import { useApi } from 'context/Api'
 import { useAuth } from 'context/Auth'
 import useStore from 'store'
-import { CritterType } from 'typescript/types'
+import { CritterType, JsonCritter } from 'typescript/types'
 import { addProperties } from 'utility/critterUtility'
 
 import { makeStyles, Tab, Tabs } from '@material-ui/core'
@@ -22,6 +22,22 @@ const useStyles = makeStyles((theme) => ({
   root: {
     '& > *:not(:last-child)': {
       marginBottom: theme.spacing(2),
+    },
+  },
+  tab: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    [theme.breakpoints.down(450)]: {
+      flexDirection: 'column',
+    },
+  },
+  tabImg: {
+    width: 45,
+    marginRight: theme.spacing(1),
+    [theme.breakpoints.down(450)]: {
+      marginRight: 0,
     },
   },
 }))
@@ -56,6 +72,13 @@ const Critters = () => {
 
   const handleTabChange = (event: SyntheticEvent, newTab: CritterType) => setActiveTab(newTab)
 
+  const getRandomImg = (critters: JsonCritter[]) =>
+    critters[Math.floor(Math.random() * critters.length)].imagePath
+
+  const randomBug = useMemo(() => getRandomImg(bugsData), [])
+  const randomFish = useMemo(() => getRandomImg(fishData), [])
+  const randomSeaCreature = useMemo(() => getRandomImg(seaData), [])
+
   let content
 
   if (isLoading) {
@@ -71,9 +94,33 @@ const Critters = () => {
     content = (
       <CustomPaper>
         <Tabs value={activeTab} onChange={handleTabChange} variant="fullWidth">
-          <Tab value="Bugs" label="Bugs" />
-          <Tab value="Fish" label="Fish" />
-          <Tab value="Sea" label="Sea" />
+          <Tab
+            value="Bugs"
+            label={
+              <span className={classes.tab}>
+                <img className={classes.tabImg} src={randomBug} alt="" />
+                Bugs
+              </span>
+            }
+          />
+          <Tab
+            value="Fish"
+            label={
+              <span className={classes.tab}>
+                <img className={classes.tabImg} src={randomFish} alt="" />
+                Fish
+              </span>
+            }
+          />
+          <Tab
+            value="Sea"
+            label={
+              <span className={classes.tab}>
+                <img className={classes.tabImg} src={randomSeaCreature} alt="" />
+                Sea
+              </span>
+            }
+          />
         </Tabs>
         {activeTab === 'Bugs' && <CrittersTable critters={addProperties(bugsData, isNorthern)} />}
         {activeTab === 'Fish' && <CrittersTable critters={addProperties(fishData, isNorthern)} />}
