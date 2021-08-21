@@ -1,6 +1,7 @@
 import { FC, SyntheticEvent, useState } from 'react'
+import { Hour } from '@james-giesbrecht/critter-companion-utility'
 
-import { Critter, Hour, TableHeadCell, Order } from 'typescript/types'
+import { Critter, TableHeadCell, Order } from 'typescript/types'
 
 import { TableContainer, Table, TableBody, makeStyles } from '@material-ui/core'
 import CritterRow from 'components/critters/CritterRow'

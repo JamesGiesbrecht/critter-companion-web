@@ -1,13 +1,16 @@
 import { SyntheticEvent, useEffect, useMemo, useState } from 'react'
+import {
+  BaseCritter,
+  CritterType,
+  bugsData,
+  fishData,
+  seaData,
+} from '@james-giesbrecht/critter-companion-utility'
 
-import bugsData from 'assets/data/bugs'
-import fishData from 'assets/data/fish'
-import seaData from 'assets/data/sea'
 import { useApi } from 'context/Api'
 import { useAuth } from 'context/Auth'
 import useStore from 'store'
-import { CritterType, JsonCritter } from 'typescript/types'
-import { addProperties } from 'utility/critterUtility'
+import { addProperties, getCritterImagePath } from 'utility/critterUtility'
 
 import { makeStyles, Tab, Tabs } from '@material-ui/core'
 import CrittersTable from 'components/critters/CrittersTable'
@@ -50,7 +53,7 @@ const Critters = () => {
   const setDonated = useStore((state) => state.setDonated)
   const { donatedRef, updateCritters } = useApi()
   const { user } = useAuth()
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState<boolean>(false)
   const [activeTab, setActiveTab] = useState<CritterType>('Bugs')
 
   useEffect(() => {
@@ -72,8 +75,8 @@ const Critters = () => {
 
   const handleTabChange = (event: SyntheticEvent, newTab: CritterType) => setActiveTab(newTab)
 
-  const getRandomImg = (critters: JsonCritter[]) =>
-    critters[Math.floor(Math.random() * critters.length)].imagePath
+  const getRandomImg = (critters: BaseCritter[]) =>
+    getCritterImagePath(critters[Math.floor(Math.random() * critters.length)].id)
 
   const randomBug = useMemo(() => getRandomImg(bugsData), [])
   const randomFish = useMemo(() => getRandomImg(fishData), [])

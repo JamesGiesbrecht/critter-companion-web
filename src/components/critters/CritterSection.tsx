@@ -1,8 +1,10 @@
 import { useState, memo, useMemo, FC } from 'react'
+import { CritterType } from '@james-giesbrecht/critter-companion-utility'
 
+import { getCritterImagePath } from 'utility/critterUtility'
 import useStore from 'store'
 import { MainFilter } from 'typescript/enums'
-import { Critter, CritterType } from 'typescript/types'
+import { Critter } from 'typescript/types'
 
 import { Collapse, makeStyles, Typography, Button } from '@material-ui/core'
 import CrittersTable from 'components/critters/CrittersTable'
@@ -46,7 +48,7 @@ const CritterSection: FC<Props> = ({ allCritters, type }) => {
   const handleToggleExpand = () => setExpanded((prevExpanded) => !prevExpanded)
 
   const randomImg = useMemo(
-    () => allCritters[Math.floor(Math.random() * allCritters.length)].imagePath,
+    () => getCritterImagePath(allCritters[Math.floor(Math.random() * allCritters.length)].id),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [],
   )

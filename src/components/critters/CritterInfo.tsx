@@ -1,6 +1,7 @@
 import { FC, ReactNode } from 'react'
 
 import { Critter } from 'typescript/types'
+import { getCritterImagePath } from 'utility/critterUtility'
 
 import { Card, CardHeader, CardContent, Typography, Dialog, makeStyles } from '@material-ui/core'
 import Months from 'components/critters/Months'
@@ -75,7 +76,11 @@ const CritterInfo: FC<Props> = ({ critter, dialogOpen, hours, nameButton, handle
       <Card aria-labelledby={critter.name}>
         <CardHeader title={nameButton} />
         <CardContent className={classes.content} aria-describedby={`${critter.name} Details`}>
-          <img className={classes.critterImg} src={critter.imagePath} alt={critter.name} />
+          <img
+            className={classes.critterImg}
+            src={getCritterImagePath(critter.id)}
+            alt={critter.name}
+          />
           <div className={classes.info}>
             <div>
               <Typography variant="subtitle2" className={classes.infoTitle}>

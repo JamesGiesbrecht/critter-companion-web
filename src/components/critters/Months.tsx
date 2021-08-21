@@ -1,7 +1,6 @@
 import { memo, FC } from 'react'
+import { Month } from '@james-giesbrecht/critter-companion-utility'
 import clsx from 'clsx'
-
-import { Month } from 'typescript/types'
 
 import { Chip, makeStyles } from '@material-ui/core'
 

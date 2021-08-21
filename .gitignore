@@ -25,3 +25,4 @@ yarn-error.log*
 *.psd
 /full_res_assets
 .vscode
+/.firebase

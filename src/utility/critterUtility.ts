@@ -1,8 +1,12 @@
-import { Critter, JsonCritter, Month } from 'typescript/types'
+import { BaseCritter, Month } from '@james-giesbrecht/critter-companion-utility'
+
+import { Critter } from 'typescript/types'
 import { Statuses } from 'typescript/enums'
 
 const today = new Date()
 const curMonth = (today.getMonth() + 1) as Month
+
+export const getCritterImagePath = (critterId: string) => `assets/images/critters/${critterId}.png`
 
 const hasPrevMonth = (months: Month[]) => {
   // January
@@ -46,7 +50,7 @@ const getAvailability = (months: Month[]) => {
 }
 
 // eslint-disable-next-line import/prefer-default-export
-export const addProperties = (critters: JsonCritter[], isNorthern: boolean): Critter[] =>
+export const addProperties = (critters: BaseCritter[], isNorthern: boolean): Critter[] =>
   critters.map((critter) => {
     const critterMonths = isNorthern ? critter.northernMonths : critter.southernMonths
     return {

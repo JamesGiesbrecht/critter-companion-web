@@ -11,6 +11,7 @@ import { TableRow, TableCell, makeStyles, Typography, Button, ButtonProps } from
 import CritterInfo from 'components/critters/CritterInfo'
 import Months from 'components/critters/Months'
 import BlathersIcon from 'components/icons/BlathersIcon'
+import { getCritterImagePath } from 'utility/critterUtility'
 
 interface Props {
   critter: Critter
@@ -145,7 +146,11 @@ const CritterRow: FC<Props> = ({ critter, hours, showSizeColumn }) => {
   return (
     <TableRow hover onClick={handleDialogOpen}>
       <TableCell className={clsx(classes.critterImgCell, classes.cell)}>
-        <img className={classes.critterImg} src={critter.imagePath} alt={critter.name} />
+        <img
+          className={classes.critterImg}
+          src={getCritterImagePath(critter.id)}
+          alt={critter.name}
+        />
       </TableCell>
       <TableCell className={clsx(classes.nameWrapper, classes.cell)}>
         <Button {...nameButtonProps} ref={nameButtonRef}>
