@@ -28,6 +28,11 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "deploy:local:no-build": "firebase emulators:start",
+    "deploy:local": "yarn build && yarn deploy:local:no-build",
+    "deploy:test:no-build": "firebase hosting:channel:deploy critter-companion",
+    "deploy:test": "yarn build && yarn deploy:test:no-build",
+    "deploy:prod": "yarn build && firebase deploy --only hosting",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
     "link:utility": "yarn link \"@james-giesbrecht/critter-companion-utility\"",
     "unlink:utility": "yarn unlink \"@james-giesbrecht/critter-companion-utility\" && yarn install --force"
