@@ -1,4 +1,5 @@
-import { BaseCritter, Critter, Month } from '@james-giesbrecht/critter-companion-utility'
+import { BaseCritter, Critter, Month, Status } from '@james-giesbrecht/critter-companion-utility'
+import { MainFilter } from 'typescript/enums'
 
 const today = new Date()
 const curMonth = (today.getMonth() + 1) as Month
@@ -46,13 +47,51 @@ const getAvailability = (months: Month[]) => {
   return availability
 }
 
-// eslint-disable-next-line import/prefer-default-export
-export const addProperties = (critters: BaseCritter[], isNorthern: boolean): Critter[] =>
-  critters.map((critter) => {
-    const critterMonths = isNorthern ? critter.northernMonths : critter.southernMonths
-    return {
-      ...critter,
-      months: critterMonths,
-      ...getAvailability(critterMonths),
-    }
-  })
+export const filterCritters = (
+  critters: BaseCritter[],
+  filterConfig: {
+    isNorthern: boolean
+    mainFilter: MainFilter
+    statusFilters: Status[]
+    showDonated: boolean
+    donated: { [id: string]: boolean }
+  },
+): Critter[] => {
+  const { isNorthern, mainFilter, statusFilters, showDonated, donated } = filterConfig
+  const filteredCritters = critters
+    .map((critter) => {
+      // remove critters that are donated
+      if (!showDonated && donated[critter.id]) {
+        return null
+      }
+      const critterMonths = isNorthern ? critter.northernMonths : critter.southernMonths
+      const updatedCritter = {
+        ...critter,
+        months: critterMonths,
+        ...getAvailability(critterMonths),
+      }
+      if (mainFilter === MainFilter.All) {
+        return updatedCritter
+      }
+      if (mainFilter === MainFilter.Available && !updatedCritter.isAvailableNow) {
+        // remove critters that are not available now
+        return null
+      }
+      if (mainFilter === MainFilter.Custom) {
+        //  Checking if any of the conditions in show are true properties on the critter
+        if (
+          (statusFilters.includes('new') && updatedCritter.isNew) ||
+          (statusFilters.includes('leaving') && updatedCritter.isLeaving) ||
+          (statusFilters.includes('incoming') && updatedCritter.isIncoming)
+        ) {
+          return updatedCritter
+        }
+        return null
+      }
+
+      return updatedCritter
+    })
+    .filter((critter): critter is Critter => critter !== null && critter !== undefined)
+
+  return filteredCritters
+}

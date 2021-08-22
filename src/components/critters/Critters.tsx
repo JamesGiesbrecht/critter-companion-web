@@ -5,12 +5,14 @@ import {
   bugsData,
   fishData,
   seaData,
+  Critter,
 } from '@james-giesbrecht/critter-companion-utility'
 
 import { useApi } from 'context/Api'
 import { useAuth } from 'context/Auth'
 import useStore from 'store'
-import { addProperties, getCritterImagePath } from 'utility/critterUtility'
+import { MainFilter } from 'typescript/enums'
+import { filterCritters, getCritterImagePath } from 'utility/critterUtility'
 
 import { makeStyles, Tab, Tabs } from '@material-ui/core'
 import CrittersTable from 'components/critters/CrittersTable'
@@ -45,16 +47,40 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
+const initialFilterConfig = {
+  isNorthern: true,
+  mainFilter: MainFilter.All,
+  statusFilters: [],
+  showDonated: true,
+  donated: {},
+}
+
+const critterData: {
+  Bugs: { raw: BaseCritter[]; initial: Critter[] }
+  Fish: { raw: BaseCritter[]; initial: Critter[] }
+  Sea: { raw: BaseCritter[]; initial: Critter[] }
+} = {
+  Bugs: { raw: bugsData, initial: filterCritters(bugsData, initialFilterConfig) },
+  Fish: { raw: fishData, initial: filterCritters(fishData, initialFilterConfig) },
+  Sea: { raw: seaData, initial: filterCritters(seaData, initialFilterConfig) },
+}
+
 const Critters = () => {
   const classes = useStyles()
   const isNorthern = useStore((state) => state.filters.isNorthern)
   const search = useStore((state) => state.filters.search)
   const donated = useStore((state) => state.donated)
   const setDonated = useStore((state) => state.setDonated)
+  const mainFilter = useStore((state) => state.filters.mainFilter)
+  const statusFilters = useStore((state) => state.filters.statusFilters)
+  const showDonated = useStore((state) => state.filters.showDonated)
   const { donatedRef, updateCritters } = useApi()
   const { user } = useAuth()
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [activeTab, setActiveTab] = useState<CritterType>('Bugs')
+  const [filteredBugs, setFilteredBugs] = useState<Critter[]>(critterData.Bugs.initial)
+  const [filteredFish, setFilteredFish] = useState<Critter[]>(critterData.Fish.initial)
+  const [filteredSea, setFilteredSea] = useState<Critter[]>(critterData.Sea.initial)
 
   useEffect(() => {
     if (donatedRef) {
@@ -73,7 +99,26 @@ const Critters = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [donatedRef, setDonated, updateCritters])
 
-  const handleTabChange = (event: SyntheticEvent, newTab: CritterType) => setActiveTab(newTab)
+  useEffect(() => {
+    const newData = filterCritters(critterData[activeTab].raw, {
+      isNorthern,
+      mainFilter,
+      statusFilters,
+      showDonated,
+      donated,
+    })
+    if (activeTab === 'Bugs') {
+      setFilteredBugs(newData)
+    } else if (activeTab === 'Fish') {
+      setFilteredFish(newData)
+    } else if (activeTab === 'Sea') {
+      setFilteredSea(newData)
+    }
+  }, [activeTab, isNorthern, mainFilter, statusFilters, showDonated, donated])
+
+  const handleTabChange = (event: SyntheticEvent, newTab: CritterType) => {
+    setActiveTab(newTab)
+  }
 
   const getRandomImg = (critters: BaseCritter[]) =>
     getCritterImagePath(critters[Math.floor(Math.random() * critters.length)].id)
@@ -91,7 +136,13 @@ const Critters = () => {
       </Centered>
     )
   } else if (search) {
-    const allCritters = addProperties(bugsData.concat(fishData, seaData), isNorthern)
+    const allCritters = filterCritters(bugsData.concat(fishData, seaData), {
+      isNorthern,
+      mainFilter: MainFilter.All,
+      statusFilters,
+      showDonated,
+      donated,
+    })
     content = <SearchSection critters={allCritters} />
   } else {
     content = (
@@ -125,9 +176,9 @@ const Critters = () => {
             }
           />
         </Tabs>
-        {activeTab === 'Bugs' && <CrittersTable critters={addProperties(bugsData, isNorthern)} />}
-        {activeTab === 'Fish' && <CrittersTable critters={addProperties(fishData, isNorthern)} />}
-        {activeTab === 'Sea' && <CrittersTable critters={addProperties(seaData, isNorthern)} />}
+        {activeTab === 'Bugs' && <CrittersTable critters={filteredBugs} />}
+        {activeTab === 'Fish' && <CrittersTable critters={filteredFish} />}
+        {activeTab === 'Sea' && <CrittersTable critters={filteredSea} />}
       </CustomPaper>
     )
   }
