@@ -1,9 +1,10 @@
 import { MouseEvent } from 'react'
+import { Status } from '@james-giesbrecht/critter-companion-utility'
 import clsx from 'clsx'
 
 import useStore from 'store'
 import { dot } from 'styles/cssClasses'
-import { MainFilter, Statuses } from 'typescript/enums'
+import { MainFilter } from 'typescript/enums'
 import { removeItem } from 'utility/utility'
 
 import {
@@ -104,20 +105,20 @@ const FilterButtons = () => {
       setMainFilter(MainFilter.Custom)
     } else {
       let newStatusFilters = statusFilters
-      if (!newStatusFilters.includes(Statuses.New)) newStatusFilters.push(Statuses.New)
-      if (!newStatusFilters.includes(Statuses.Leaving)) newStatusFilters.push(Statuses.Leaving)
+      if (!newStatusFilters.includes('new')) newStatusFilters.push('new')
+      if (!newStatusFilters.includes('leaving')) newStatusFilters.push('leaving')
       if (newMainFilter === MainFilter.All) {
-        if (!newStatusFilters.includes(Statuses.Incoming)) newStatusFilters.push(Statuses.Incoming)
+        if (!newStatusFilters.includes('incoming')) newStatusFilters.push('incoming')
       } else if (newMainFilter === MainFilter.Available) {
-        if (newStatusFilters.includes(Statuses.Incoming))
-          newStatusFilters = removeItem(newStatusFilters, Statuses.Incoming)
+        if (newStatusFilters.includes('incoming'))
+          newStatusFilters = removeItem(newStatusFilters, 'incoming')
       }
       setStatusFilters(newStatusFilters)
       setMainFilter(newMainFilter)
     }
   }
 
-  const handleStatusFiltersChange = (e: MouseEvent<HTMLElement>, newStatusFilters: Statuses[]) =>
+  const handleStatusFiltersChange = (e: MouseEvent<HTMLElement>, newStatusFilters: Status[]) =>
     setStatusFilters(newStatusFilters)
 
   const toggles = (
@@ -163,21 +164,21 @@ const FilterButtons = () => {
         onChange={handleStatusFiltersChange}
         size="small">
         <ToggleButton
-          value={Statuses.New}
+          value="new"
           classes={{ disabled: classes.disabled }}
           disabled={mainFilter !== MainFilter.Custom}>
           New
           <span className={clsx(classes.dot, classes.new)} />
         </ToggleButton>
         <ToggleButton
-          value={Statuses.Leaving}
+          value="leaving"
           classes={{ disabled: classes.disabled }}
           disabled={mainFilter !== MainFilter.Custom}>
           Leaving
           <span className={clsx(classes.dot, classes.leaving)} />
         </ToggleButton>
         <ToggleButton
-          value={Statuses.Incoming}
+          value="incoming"
           classes={{ disabled: classes.disabled }}
           disabled={mainFilter !== MainFilter.Custom}>
           Incoming

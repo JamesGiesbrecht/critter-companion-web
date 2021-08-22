@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from 'react'
+import { Critter } from '@james-giesbrecht/critter-companion-utility'
 
 import useStore from 'store'
-import { Critter } from 'typescript/types'
 
 import { makeStyles, Typography } from '@material-ui/core'
 import { Search as SearchIcon } from '@material-ui/icons'

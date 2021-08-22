@@ -5,7 +5,7 @@
   "dependencies": {
     "@emotion/react": "^11.4.0",
     "@emotion/styled": "^11.3.0",
-    "@james-giesbrecht/critter-companion-utility": "^0.0.1",
+    "@james-giesbrecht/critter-companion-utility": "^0.0.2",
     "@material-ui/core": "^5.0.0-alpha.30",
     "@material-ui/icons": "^5.0.0-alpha.28",
     "@material-ui/lab": "^5.0.0-alpha.34",
@@ -29,7 +29,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
-    "link:utility": "yarn link \"@james-giesbrecht/critter-companion-utility\""
+    "link:utility": "yarn link \"@james-giesbrecht/critter-companion-utility\"",
+    "unlink:utility": "yarn unlink \"@james-giesbrecht/critter-companion-utility\" && yarn install --force"
   },
   "eslintConfig": {
     "extends": "react-app"

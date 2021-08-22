@@ -1,11 +1,10 @@
 import { FC, memo, SyntheticEvent, useRef, useState } from 'react'
+import { Critter } from '@james-giesbrecht/critter-companion-utility'
 import clsx from 'clsx'
 
 import { useApi } from 'context/Api'
 import useStore from 'store'
 import { dot, hidden } from 'styles/cssClasses'
-import { Statuses } from 'typescript/enums'
-import { Critter } from 'typescript/types'
 
 import { TableRow, TableCell, makeStyles, Typography, Button, ButtonProps } from '@material-ui/core'
 import CritterInfo from 'components/critters/CritterInfo'
@@ -137,9 +136,9 @@ const CritterRow: FC<Props> = ({ critter, hours, showSizeColumn }) => {
   const nameButtonContents = (
     <Typography component="span">
       {critter.name}
-      {critter[Statuses.New] && <span className={clsx(classes.dot, classes.new)} />}
-      {critter[Statuses.Leaving] && <span className={clsx(classes.dot, classes.leaving)} />}
-      {critter[Statuses.Incoming] && <span className={clsx(classes.dot, classes.incoming)} />}
+      {critter.isNew && <span className={clsx(classes.dot, classes.new)} />}
+      {critter.isLeaving && <span className={clsx(classes.dot, classes.leaving)} />}
+      {critter.isIncoming && <span className={clsx(classes.dot, classes.incoming)} />}
     </Typography>
   )
 

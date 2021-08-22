@@ -1,7 +1,8 @@
 import { ReactNode } from 'react'
+import { Status } from '@james-giesbrecht/critter-companion-utility'
 import create from 'zustand'
 
-import { FormType, Statuses, MainFilter } from 'typescript/enums'
+import { FormType, MainFilter } from 'typescript/enums'
 
 import { Color } from '@material-ui/lab'
 
@@ -9,8 +10,8 @@ export interface StoreState {
   filters: {
     mainFilter: MainFilter
     setMainFilter: (newMainFilter: MainFilter) => void
-    statusFilters: Statuses[]
-    setStatusFilters: (newStatusFilters: Statuses[]) => void
+    statusFilters: Status[]
+    setStatusFilters: (newStatusFilters: Status[]) => void
     isNorthern: boolean
     toggleIsNorthern: () => void
     showDonated: boolean
@@ -32,8 +33,8 @@ const useStore = create<StoreState>((set) => ({
     mainFilter: MainFilter.All,
     setMainFilter: (newMainFilter: MainFilter) =>
       set((state) => ({ filters: { ...state.filters, mainFilter: newMainFilter } })),
-    statusFilters: [Statuses.New, Statuses.Leaving, Statuses.Incoming],
-    setStatusFilters: (newStatusFilters: Statuses[]) =>
+    statusFilters: ['new', 'leaving', 'incoming'],
+    setStatusFilters: (newStatusFilters: Status[]) =>
       set((state) => ({ filters: { ...state.filters, statusFilters: newStatusFilters } })),
     isNorthern: true,
     toggleIsNorthern: () =>

@@ -1,10 +1,9 @@
 import { useState, memo, useMemo, FC } from 'react'
-import { CritterType } from '@james-giesbrecht/critter-companion-utility'
+import { Critter, CritterType } from '@james-giesbrecht/critter-companion-utility'
 
 import { getCritterImagePath } from 'utility/critterUtility'
 import useStore from 'store'
 import { MainFilter } from 'typescript/enums'
-import { Critter } from 'typescript/types'
 
 import { Collapse, makeStyles, Typography, Button } from '@material-ui/core'
 import CrittersTable from 'components/critters/CrittersTable'
@@ -67,8 +66,11 @@ const CritterSection: FC<Props> = ({ allCritters, type }) => {
       filteredCritters = allCritters.filter((critter) => critter.isAvailableNow)
     } else {
       //  Checking if any of the conditions in show are true properties on the critter
-      filteredCritters = allCritters.filter((critter) =>
-        statusFilters.some((condition) => critter[condition]),
+      filteredCritters = allCritters.filter(
+        (critter) =>
+          (statusFilters.includes('incoming') && critter.isIncoming) ||
+          (statusFilters.includes('leaving') && critter.isLeaving) ||
+          (statusFilters.includes('new') && critter.isNew),
       )
     }
 

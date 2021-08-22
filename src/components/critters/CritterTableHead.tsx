@@ -1,8 +1,9 @@
 import { FC, SyntheticEvent } from 'react'
+import { Critter } from '@james-giesbrecht/critter-companion-utility'
 import clsx from 'clsx'
 
 import { hidden } from 'styles/cssClasses'
-import { Critter, TableHeadCell, Order } from 'typescript/types'
+import { TableHeadCell, Order } from 'typescript/types'
 
 import { TableHead, TableRow, TableCell, TableSortLabel, makeStyles } from '@material-ui/core'
 

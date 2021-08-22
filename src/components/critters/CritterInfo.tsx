@@ -1,6 +1,6 @@
 import { FC, ReactNode } from 'react'
+import { Critter } from '@james-giesbrecht/critter-companion-utility'
 
-import { Critter } from 'typescript/types'
 import { getCritterImagePath } from 'utility/critterUtility'
 
 import { Card, CardHeader, CardContent, Typography, Dialog, makeStyles } from '@material-ui/core'

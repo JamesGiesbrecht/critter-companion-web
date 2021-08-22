@@ -1,16 +1,8 @@
 import { ReactNode } from 'react'
 import { Breakpoint, TableCellProps } from '@material-ui/core'
-import { BaseCritter, Month } from '@james-giesbrecht/critter-companion-utility'
+import { Critter } from '@james-giesbrecht/critter-companion-utility'
 
-import { FormType, Statuses } from 'typescript/enums'
-
-export type Critter = BaseCritter & {
-  isAvailableNow?: boolean
-  [Statuses.Leaving]?: boolean
-  [Statuses.New]?: boolean
-  [Statuses.Incoming]?: boolean
-  months: Month[]
-}
+import { FormType } from 'typescript/enums'
 
 export type TableHeadCell = {
   id: keyof Critter

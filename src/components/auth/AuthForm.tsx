@@ -1,8 +1,10 @@
 import { SyntheticEvent, useEffect, useState } from 'react'
+import { AuthError } from '@james-giesbrecht/critter-companion-utility'
 
 import { useAuth } from 'context/Auth'
 import useStore from 'store'
-import { Providers, AuthError, FormType } from 'typescript/enums'
+import { Providers, FormType } from 'typescript/enums'
+import { InputCollection, FormState } from 'typescript/types'
 
 import { Dialog, makeStyles } from '@material-ui/core'
 import { grey } from '@material-ui/core/colors'
@@ -13,7 +15,6 @@ import SignUp from 'components/auth/forms/SignUp'
 import ForgotPassword from 'components/auth/forms/ForgotPassword'
 import VerificationEmail from 'components/auth/forms/VerificationEmail'
 import GoogleIcon from 'components/icons/GoogleIcon'
-import { InputCollection, FormState } from 'typescript/types'
 
 const useStyles = makeStyles((theme) => ({
   dialogPaper: {
