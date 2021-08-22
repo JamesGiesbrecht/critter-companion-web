@@ -11,6 +11,10 @@
 # production
 /build
 
+# firebase
+/.firebase
+*.log
+
 # misc
 .DS_Store
 .env.local
@@ -25,4 +29,3 @@ yarn-error.log*
 *.psd
 /full_res_assets
 .vscode
-/.firebase
